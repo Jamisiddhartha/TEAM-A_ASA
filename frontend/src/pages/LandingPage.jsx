@@ -1,0 +1,268 @@
+import React from "react";
+import { Link } from "react-router-dom";
+
+import uidaiLogo from "../assets/uidai-logo.jpg";
+
+import heroImage from "../assets/aadhaar.png";
+
+import applyIcon from "../assets/apply.jpeg";
+
+import trackIcon from "../assets/track.jpeg";
+
+import secureIcon from "../assets/secure.jpeg";
+
+ 
+
+const LandingPage = () => {
+
+  return (
+
+    <div className="min-h-screen bg-gray-100 flex flex-col">
+
+ 
+
+      <header className="w-full bg-white border-b shadow-sm">
+
+        <div className="max-w-screen-xl mx-auto px-8 py-3 flex items-center">
+
+ 
+
+          <div className="flex items-center gap-3">
+
+            <img src={uidaiLogo} className="h-10" />
+
+            <div>
+
+              <h1 className="text-xl font-semibold">
+
+                <span className="text-orange-500">UIDAI</span> Portal
+
+              </h1>
+
+              <p className="text-xs text-gray-500">ASA Onboarding</p>
+
+            </div>
+
+          </div>
+
+ 
+
+          <nav className="hidden md:flex items-center ml-auto gap-6 text-sm text-gray-700">
+
+            <a href="#" className="hover:text-orange-500 cursor-pointer">Home</a>
+
+            <a href="#" className="hover:text-orange-500 cursor-pointer">About</a>
+
+            <a href="#" className="hover:text-orange-500 cursor-pointer">Onboarding Process</a>
+
+           
+
+          </nav>
+
+ 
+
+          <div className="hidden md:flex items-center gap-4 ml-6">
+
+          <Link to="/register" className="px-4 py-2 bg-orange-400 text-white rounded-md hover:bg-orange-500">
+  Register
+</Link>
+
+<Link to="/login" className="px-4 py-2 border border-gray-300 rounded-md hover:bg-gray-100">
+  Login
+</Link>
+          </div>
+
+ 
+
+        </div>
+
+      </header>
+
+ 
+
+      <section className="w-full min-h-screen bg-center bg-cover bg-no-repeat
+
+      flex items-center" style={{ backgroundImage: `url(${heroImage})` }}>
+
+ 
+
+        <div className="pl-8">
+
+          <h2 className="text-5xl font-bold text-gray-800 leading-tight">
+
+            Authentication Service
+
+            <br />
+
+            <span className="text-orange-500">Agency Portal</span>
+
+          </h2>
+
+ 
+
+          <p className="mt-6 text-lg text-gray-600 max-w-md">
+
+            Secure platform to apply & manage ASA onboarding and access services in a transparent manner.
+
+          </p>
+
+ 
+
+          <div className="mt-8 flex gap-4">
+                 
+                 <Link
+to="/login"
+className="px-6 py-3 bg-orange-400 text-white rounded-lg hover:bg-orange-500 font-medium"
+>
+Apply Now
+</Link>
+
+ 
+
+            <a
+
+              href="#"
+
+              className="px-6 py-3 border border-gray-300 rounded-lg hover:bg-gray-100 font-medium"
+
+            >
+
+              Learn More
+
+            </a>
+
+          </div>
+
+        </div>
+
+ 
+
+      </section>
+
+ 
+
+      <section className="bg-gray-100 py-5">
+
+        <div className="max-w-screen-xl mx-auto px-2 text-center">
+
+ 
+
+          <h3 className="text-3xl font-semibold text-gray-800">
+
+            Key <span className="text-orange-500">Features</span>
+
+          </h3>
+
+ 
+
+          <div className="grid md:grid-cols-3 gap-8 mt-12">
+
+ 
+
+            <div className="bg-white p-8 rounded-xl shadow-lg
+
+            hover:scale-110 transition duration-300">
+
+              <img src={applyIcon} className="h-16 mx-auto mb-4" />
+
+              <h4 className="text-lg font-semibold">Apply for ASA</h4>
+
+              <p className="text-gray-500 mt-2 text-sm">
+
+                Easily submit your ASA application online
+
+              </p>
+
+            </div>
+
+ 
+
+            <div className="bg-white p-8 rounded-xl shadow-lg
+
+            hover:scale-110 transition duration-300">
+
+              <img src={trackIcon} className="h-16 mx-auto mb-4" />
+
+              <h4 className="text-lg font-semibold">Track Application Status</h4>
+
+              <p className="text-gray-500 mt-2 text-sm">
+
+                Get real-time updates on your application progress
+
+              </p>
+
+            </div>
+
+ 
+
+            <div className="bg-white p-8 rounded-xl shadow-lg
+
+            hover:scale-110 transition duration-300">
+
+              <img src={secureIcon} className="h-16 mx-auto mb-4" />
+
+              <h4 className="text-lg font-semibold">Transparent Process</h4>
+
+              <p className="text-gray-500 mt-2 text-sm">
+
+                Experience a fully digital and transparent onboarding process
+
+              </p>
+
+            </div>
+
+ 
+
+          </div>
+
+        </div>
+
+      </section>
+
+ 
+
+      <footer className="bg-white border-t py-4 mt-auto">
+
+        <div className="max-w-screen-xl mx-auto px-8 flex items-center justify-between text-sm text-gray-500">
+
+ 
+
+          <div className="flex items-center gap-2">
+
+            <img src={uidaiLogo} className="h-6" />
+
+            <span>UIDAI ASA Portal</span>
+
+          </div>
+
+ 
+
+          <div className="flex gap-6">
+
+            <a href="#">Contact</a>
+
+            <a href="#">Privacy</a>
+
+            <a href="#">Terms</a>
+
+          </div>
+
+ 
+
+        </div>
+
+      </footer>
+
+ 
+
+    </div>
+
+  );
+
+};
+
+ 
+
+export default LandingPage;
+
+ 
