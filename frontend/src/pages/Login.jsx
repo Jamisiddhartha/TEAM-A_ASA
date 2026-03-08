@@ -1,12 +1,14 @@
 import { useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import ReCAPTCHA from "react-google-recaptcha";
 import "./Login.css";
 import { Mail, Lock, Eye, EyeOff } from "lucide-react";
 import aadhaarBg from "../assets/aadhaar.png";
+import uidaiLogo from "../assets/uidai-logo.jpg";
 
 export default function Login() {
+  const navigate = useNavigate();
 
   const [form, setForm] = useState({
     email: "",
@@ -39,11 +41,13 @@ export default function Login() {
         }
       );
 
-      alert(res.data.message);
-
-      if (res.data.token) {
-        localStorage.setItem("token", res.data.token);
-      }
+   
+if (res.data.token) {
+  localStorage.setItem("token", res.data.token);
+  navigate("/form");
+} else {
+  alert(res.data.message);
+}
 
       setLoading(false);
 
@@ -61,15 +65,28 @@ export default function Login() {
   <div className="login-page" style={{ backgroundImage: `url(${aadhaarBg})` }}>
       {/* NAVBAR */}
       <nav className="login-navbar">
-        <div className="navbar-brand">
-          <span className="navbar-title">UIDAI Portal</span>
-          <span className="navbar-subtitle">ASA Onboarding</span>
-        </div>
+       
+          
+          
+         <div className="navbar-brand">
+
+  <img src={uidaiLogo} alt="UIDAI Logo" className="navbar-logo" />
+
+  <div className="navbar-text">
+    <h1 className="navbar-title">
+      <span className="uidai-text">UIDAI</span> Portal
+    </h1>
+    <p className="navbar-subtitle">ASA Onboarding</p>
+  </div>
+
+</div>
         <div className="navbar-links">
           <a href="#">Home</a>
           <a href="#">About</a>
           <a href="#">Onboarding Process</a>
-          <a href="#">Guidelines</a>
+
+          
+          
           <Link to="/register">
             <button className="btn btn-primary btn-sm">Register</button>
           </Link>
