@@ -6,7 +6,6 @@ overflow-x:hidden;
 font-family: Arial, Helvetica, sans-serif;
 }
 
-
 /* ===== PAGE ===== */
 
 .register-page{
@@ -14,17 +13,13 @@ min-height:100vh;
 display:flex;
 flex-direction:column;
 
-
 background-size:cover;
 background-position:center -100px;
 background-repeat:no-repeat;
 background-attachment:fixed;
-background-color:#f5f7fb; /* fallback color */
+background-color:#f5f7fb;
 width:100vw;
 }
-
-
-
 
 /* ===== MAIN SECTION ===== */
 
@@ -50,7 +45,6 @@ margin:auto;
 box-sizing:border-box;
 }
 
-
 /* ===== FORM CARD ===== */
 
 .register-card{
@@ -69,9 +63,8 @@ flex-direction:column;
 margin-top:20px;
 margin-bottom:40px;
 
-margin-left: 55px;
+margin-left:55px;
 }
-
 
 /* ===== TITLE ===== */
 
@@ -80,9 +73,8 @@ text-align:center;
 font-size:32px;
 font-weight:600;
 margin-bottom:25px;
-color:#1f2937;
+color:#161D23;
 }
-
 
 /* ===== INPUTS ===== */
 
@@ -97,7 +89,7 @@ border-radius:8px;
 border:1px solid #d1d5db;
 
 background:white;
-color:#111827;
+color:#161D23;
 
 font-size:14px;
 box-sizing:border-box;
@@ -107,19 +99,13 @@ transition:0.3s;
 .register-card input:focus,
 .register-card select:focus{
 outline:none;
-border-color:#f59e0b;
-box-shadow:0 0 0 3px rgba(245,158,11,0.2);
+border-color:#FFE600;
+box-shadow:0 0 0 3px rgba(255,230,0,0.2);
 }
 
 .register-card input::placeholder{
 color:#9ca3af;
 }
-
-
-/* ===== SELECT ===== */
-
-
-
 
 /* ===== OTP TIMER ===== */
 
@@ -128,7 +114,6 @@ position:relative;
 top:-8px;
 }
 
-
 /* ===== BUTTON ===== */
 
 .register-submit{
@@ -136,8 +121,8 @@ width:100%;
 padding:14px;
 
 border:none;
-background:#f59e0b;
-color:white;
+background:#FFE600;
+color:#161D23;
 
 border-radius:8px;
 
@@ -149,11 +134,10 @@ transition:0.3s;
 }
 
 .register-submit:hover{
-background:#d97706;
+background:#f5dc00;
 transform:translateY(-2px);
 box-shadow:0 6px 15px rgba(0,0,0,0.1);
 }
-
 
 /* ===== LOGIN LINK ===== */
 
@@ -164,14 +148,10 @@ color:#6b7280;
 }
 
 .register-link a{
-color:#2563eb;
+color:#FFE600;
 text-decoration:none;
 font-weight:500;
 }
-
-
-
-
 
 /* ===== PASSWORD RULES ===== */
 
@@ -181,7 +161,6 @@ margin-top:5px;
 margin-bottom:15px;
 line-height:20px;
 }
-
 
 /* ===== ERRORS ===== */
 
@@ -195,7 +174,6 @@ font-size:12px;
 margin-top:-10px;
 margin-bottom:10px;
 }
-
 
 /* ===== RESPONSIVE ===== */
 
@@ -212,10 +190,11 @@ margin:auto;
 }
 
 }
-select {
-  width: 100%;
-  padding: 12px;
-  border-radius: 10px;
-  border: 1px solid #ccc;
-  font-size: 14px;
+
+select{
+width:100%;
+padding:12px;
+border-radius:10px;
+border:1px solid #ccc;
+font-size:14px;
 }

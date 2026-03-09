@@ -234,7 +234,7 @@ const validateForm = () => {
       
                     <h1 className="text-xl font-semibold">
       
-                      <span className="text-orange-500">UIDAI</span> Portal
+                      <span style={{color:"#FFE600"}}>UIDAI</span> PortalPortal
       
                     </h1>
       
@@ -266,7 +266,7 @@ const validateForm = () => {
         Register
       </Link>
       
-      <Link to="/login" className="px-4 py-2 bg-orange-400 text-white rounded-md hover:bg-orange-500">
+      <Link to="/login" className="px-4 py-2 bg-yellow-500 text-white rounded-md hover:bg-yellow-500">
         Login
       </Link>
                 </div>

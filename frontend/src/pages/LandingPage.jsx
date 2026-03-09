@@ -35,7 +35,7 @@ const LandingPage = () => {
 
               <h1 className="text-xl font-semibold">
 
-                <span className="text-orange-500">UIDAI</span> Portal
+                <span style={{color:"#FFE600"}}>UIDAI</span>
 
               </h1>
 
@@ -62,13 +62,19 @@ const LandingPage = () => {
  
 
           <div className="hidden md:flex items-center gap-4 ml-6">
-
-          <Link to="/register" className="px-4 py-2 bg-orange-400 text-white rounded-md hover:bg-orange-500">
-  Register
+           <Link 
+to="/register"
+className="px-4 py-2 rounded-md font-semibold text-black"
+style={{ background:"#FFE600" }}
+>
+Register
 </Link>
-
-<Link to="/login" className="px-4 py-2 bg-orange-400 text-white rounded-md hover:bg-orange-500">
-  Login
+         <Link 
+to="/login"
+className="px-4 py-2 rounded-md font-semibold text-black"
+style={{ background:"#FFE600" }}
+>
+Login
 </Link>
           </div>
 
@@ -93,7 +99,7 @@ const LandingPage = () => {
 
             <br />
 
-            <span className="text-orange-500">Agency Portal</span>
+           <span style={{color:"#FFE600"}}>Agency Portal</span>
 
           </h2>
 
@@ -108,10 +114,10 @@ const LandingPage = () => {
  
 
           <div className="mt-8 flex gap-4">
-                 
-                 <Link
+                <Link
 to="/login"
-className="px-6 py-3 bg-orange-400 text-white rounded-lg hover:bg-orange-500 font-medium"
+className="px-6 py-3 text-black rounded-lg font-medium hover:opacity-90"
+style={{background:"#FFE600"}}
 >
 Apply Now
 </Link>
@@ -148,7 +154,7 @@ Apply Now
 
           <h3 className="text-3xl font-semibold text-gray-800">
 
-            Key <span className="text-orange-500">Features</span>
+           Key <span style={{color:"#FFE600"}}>Features</span>
 
           </h3>
 

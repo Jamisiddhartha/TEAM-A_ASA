@@ -78,7 +78,7 @@ if (res.data.token) {
       
                     <h1 className="text-xl font-semibold">
       
-                      <span className="text-orange-500">UIDAI</span> Portal
+                    <span style={{color:"#FFE600"}}>UIDAI</span> Portal
       
                     </h1>
       
@@ -92,7 +92,7 @@ if (res.data.token) {
       
                 <nav className="hidden md:flex items-center ml-auto gap-6 text-sm text-gray-700">
       
-                  <a href="/" className="hover:text-orange-500 cursor-pointer">Home</a>
+               <a href="/" className="hover:text-yellow-400 cursor-pointer">Home</a>
       
                   <a href="#" className="hover:text-orange-500 cursor-pointer">About</a>
       
@@ -106,7 +106,7 @@ if (res.data.token) {
       
                 <div className="hidden md:flex items-center gap-4 ml-6">
       
-                <Link to="/register" className="px-4 py-2 bg-orange-400 text-white rounded-md hover:bg-orange-500">
+               <Link to="/register" className="px-4 py-2 rounded-md font-semibold" style={{background:"#FFE600", color:"#161D23"}}>
         Register
       </Link>
       
