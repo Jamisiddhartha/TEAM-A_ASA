@@ -257,8 +257,7 @@ html, body {
 
 .footer-brand {
   font-size: 0.875rem;
-  font-weight: 600;
-  color: #1a2332;
+  color:gray;
 }
 
 .footer-links {

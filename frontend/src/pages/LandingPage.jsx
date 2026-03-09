@@ -5,7 +5,7 @@ import uidaiLogo from "../assets/uidai-logo.jpg";
 
 import heroImage from "../assets/aadhaar.png";
 
-import applyIcon from "../assets/apply.jpeg";
+import securityIcon from "../assets/security.png";
 
 import trackIcon from "../assets/track.jpeg";
 
@@ -21,7 +21,7 @@ const LandingPage = () => {
 
  
 
-      <header className="w-full bg-white border-b shadow-sm">
+      <header className="w-full bg-white border-b shadow-sm fixed top-0 left-0 z-50">
 
         <div className="max-w-screen-xl mx-auto px-8 py-3 flex items-center">
 
@@ -54,7 +54,7 @@ const LandingPage = () => {
             <a href="#" className="hover:text-orange-500 cursor-pointer">About</a>
 
             <a href="#" className="hover:text-orange-500 cursor-pointer">Onboarding Process</a>
-
+            <a href="#" className="hover:text-orange-500 cursor-pointer">Guidelines</a>
            
 
           </nav>
@@ -67,7 +67,7 @@ const LandingPage = () => {
   Register
 </Link>
 
-<Link to="/login" className="px-4 py-2 border border-gray-300 rounded-md hover:bg-gray-100">
+<Link to="/login" className="px-4 py-2 bg-orange-400 text-white rounded-md hover:bg-orange-500">
   Login
 </Link>
           </div>
@@ -78,8 +78,7 @@ const LandingPage = () => {
 
       </header>
 
- 
-
+   
       <section className="w-full min-h-screen bg-center bg-cover bg-no-repeat
 
       flex items-center" style={{ backgroundImage: `url(${heroImage})` }}>
@@ -163,13 +162,13 @@ Apply Now
 
             hover:scale-110 transition duration-300">
 
-              <img src={applyIcon} className="h-16 mx-auto mb-4" />
+              <img src={securityIcon} className="h-16 mx-auto mb-4" />
 
-              <h4 className="text-lg font-semibold">Apply for ASA</h4>
+              <h4 className="text-lg font-semibold">Security Authentication</h4>
 
               <p className="text-gray-500 mt-2 text-sm">
 
-                Easily submit your ASA application online
+                Robust security measures to protect your data and privacy
 
               </p>
 
@@ -221,7 +220,7 @@ Apply Now
 
  
 
-      <footer className="bg-white border-t py-4 mt-auto">
+      <footer className="bg-white border-t py-4 fixed bottom-0 left-0 w-full z-50">
 
         <div className="max-w-screen-xl mx-auto px-8 flex items-center justify-between text-sm text-gray-500">
 
