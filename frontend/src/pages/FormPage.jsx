@@ -9,7 +9,6 @@ function FormPage() {
   return (
     <div>
       <Header/>
-      <h2>ASA Application Form</h2>
 
        <ApplicantDetails />
       <ContactDetails />

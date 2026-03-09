@@ -11,7 +11,7 @@ function Header() {
   };
 
   return (
-    <div className="w-full bg-white shadow-md border-b">
+    <div className="hidden w-full bg-white shadow-md border-b">
 
       <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
 

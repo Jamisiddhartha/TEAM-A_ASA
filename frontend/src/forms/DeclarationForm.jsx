@@ -1,222 +1,204 @@
-function DeclarationForm({ activeStep }) {
+function DeclarationForm({ activeStep, setActiveStep }) {
+
   if (activeStep !== 5) return null;
 
   return (
-    <div id="step-5">
-      <div className="max-w-4xl grid grid-cols-1 md:grid-cols-2 gap-6">
 
-        {/* Declaration Section */}
-        <div className="md:col-span-2">
-          <h3 className="text-lg font-semibold text-gray-700 mb-4">
-            Declaration & Acknowledgments
-          </h3>
-          <p className="text-sm text-gray-600 mb-6">
-            I hereby declare that the information provided in this application
-            is true and correct to the best of my knowledge and belief:
-          </p>
-        </div>
+<form
+onSubmit={(e)=>{
+e.preventDefault();
+alert("Application Submitted Successfully");
+}}
+className="max-w-5xl mx-auto bg-white p-8 rounded-lg shadow-md"
+>
 
-        {/* Checkbox 1 */}
-        <div className="md:col-span-2">
-          <label className="flex items-start gap-3 mb-4">
-            <input
-              required
-              type="checkbox"
-              className="w-4 h-4 mt-1 text-yellow-500 rounded focus:ring-orange-400"
-            />
-            <span className="text-sm flex-1 leading-relaxed">
-              I certify that the applicant is duly authorized to submit this
-              application and all information provided is accurate, complete,
-              and not misleading.
-            </span>
-          </label>
-        </div>
+<h2 className="text-xl font-semibold text-yellow-500 mb-6">
+DECLARATION
+</h2>
 
-        {/* Checkbox 2 */}
-        <div className="md:col-span-2">
-          <label className="flex items-start gap-3 mb-4">
-            <input
-              required
-              type="checkbox"
-              className="w-4 h-4 mt-1 text-yellow-500 rounded focus:ring-orange-400"
-            />
-            <span className="text-sm flex-1 leading-relaxed">
-              The applicant has the necessary technical, financial, and
-              operational capacity to provide the services as per the
-              application requirements.
-            </span>
-          </label>
-        </div>
+<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-        {/* Checkbox 3 */}
-        <div className="md:col-span-2">
-          <label className="flex items-start gap-3 mb-4">
-            <input
-              required
-              type="checkbox"
-              className="w-4 h-4 mt-1 text-yellow-500 rounded focus:ring-orange-400"
-            />
-            <span className="text-sm flex-1 leading-relaxed">
-              The applicant agrees to comply with all applicable laws,
-              regulations, and guidelines governing the services.
-            </span>
-          </label>
-        </div>
 
-        {/* Checkbox 4 */}
-        <div className="md:col-span-2">
-          <label className="flex items-start gap-3 mb-4">
-            <input
-              required
-              type="checkbox"
-              className="w-4 h-4 mt-1 text-yellow-500 rounded focus:ring-orange-400"
-            />
-            <span className="text-sm flex-1 leading-relaxed">
-              The applicant acknowledges that false or misleading information
-              may result in rejection of the application or legal action.
-            </span>
-          </label>
-        </div>
+{/* Declaration Section */}
 
-        {/* Checkbox 5 */}
-        <div className="md:col-span-2">
-          <label className="flex items-start gap-3 mb-4">
-            <input
-              required
-              type="checkbox"
-              className="w-4 h-4 mt-1 text-yellow-500 rounded focus:ring-orange-400"
-            />
-            <span className="text-sm flex-1 leading-relaxed">
-              I agree to the terms and conditions and privacy policy as
-              outlined by the authority.
-            </span>
-          </label>
-        </div>
+<div className="md:col-span-2">
+<h3 className="text-lg font-semibold text-gray-700 mb-4">
+Declaration & Acknowledgments <span className="text-red-500 font-bold">*</span>
+</h3>
 
-        {/* Checkbox 6 */}
-        <div className="md:col-span-2">
-          <label className="flex items-start gap-3 mb-6">
-            <input
-              required
-              type="checkbox"
-              className="w-4 h-4 mt-1 text-yellow-500 rounded focus:ring-orange-400"
-            />
-            <span className="text-sm flex-1 leading-relaxed">
-              The applicant will maintain data security and protect personal
-              information in compliance with applicable data protection laws.
-            </span>
-          </label>
-        </div>
+<p className="text-sm text-gray-600 mb-6">
+I hereby declare that the information provided in this application
+is true and correct to the best of my knowledge and belief.
+</p>
+</div>
 
-        {/* Declarant Details */}
-        <div className="md:col-span-2">
-          <h3 className="text-lg font-semibold text-gray-700 mt-6 mb-4">
-            Declarant Details
-          </h3>
-        </div>
 
-        {/* Name */}
-        <div>
-          <label className="block text-sm font-medium mb-1">
-            Declarant Name *
-          </label>
-          <input
-            required
-            type="text"
-            placeholder="Full name"
-            className="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 outline-none"
-          />
-        </div>
+{/* Checkboxes */}
 
-        {/* Designation */}
-        <div>
-          <label className="block text-sm font-medium mb-1">
-            Declarant Designation *
-          </label>
-          <input
-            required
-            type="text"
-            placeholder="Designation"
-            className="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 outline-none"
-          />
-        </div>
+<div className="md:col-span-2 flex items-start gap-3">
+<input required type="checkbox" className="mt-1"/>
+<span className="text-sm">
+I certify that the applicant is authorized to submit this application.
+</span>
+</div>
 
-        {/* Email */}
-        <div>
-          <label className="block text-sm font-medium mb-1">
-            Declarant Email *
-          </label>
-          <input
-            required
-            type="email"
-            placeholder="Email address"
-            className="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 outline-none"
-          />
-        </div>
+<div className="md:col-span-2 flex items-start gap-3">
+<input required type="checkbox" className="mt-1"/>
+<span className="text-sm">
+The information provided in this application is accurate and complete.
+</span>
+</div>
 
-        {/* Phone */}
-        <div>
-          <label className="block text-sm font-medium mb-1">
-            Declarant Phone *
-          </label>
-          <input
-            required
-            type="tel"
-            inputMode="numeric"
-            placeholder="Phone number (numbers only)"
-            className="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 outline-none"
-          />
-        </div>
+<div className="md:col-span-2 flex items-start gap-3">
+<input required type="checkbox" className="mt-1"/>
+<span className="text-sm">
+The applicant has the required operational and technical capacity.
+</span>
+</div>
 
-        {/* Date */}
-        <div className="md:col-span-2">
-          <label className="block text-sm font-medium mb-1">
-            Date of Declaration *
-          </label>
-          <input
-            required
-            type="date"
-            className="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 outline-none"
-          />
-        </div>
+<div className="md:col-span-2 flex items-start gap-3">
+<input required type="checkbox" className="mt-1"/>
+<span className="text-sm">
+The applicant agrees to comply with all applicable regulations.
+</span>
+</div>
 
-        {/* Signature */}
-        <div className="md:col-span-2">
-          <label className="block text-sm font-medium mb-1">
-            Signature / Digital Signature (Description) *
-          </label>
-          <textarea
-            required
-            rows="3"
-            placeholder="Enter signature details or description"
-            className="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 outline-none"
-          ></textarea>
-        </div>
+<div className="md:col-span-2 flex items-start gap-3">
+<input required type="checkbox" className="mt-1"/>
+<span className="text-sm">
+False information may result in rejection or legal action.
+</span>
+</div>
 
-      </div>
+<div className="md:col-span-2 flex items-start gap-3">
+<input required type="checkbox" className="mt-1"/>
+<span className="text-sm">
+The applicant agrees to maintain data security and privacy.
+</span>
+</div>
 
-      {/* Navigation Buttons */}
-      <div className="flex justify-between mt-10 pt-6 border-t border-gray-200">
-        <button
-          type="button"
-          onClick={() =>
-            window.dispatchEvent(
-              new CustomEvent("changeStep", { detail: activeStep - 1 })
-            )
-          }
-          className="px-8 py-3 bg-gray-400 text-white rounded-lg font-semibold hover:bg-gray-500 transition"
-        >
-          Previous
-        </button>
 
-        <button
-          type="submit"
-          className="px-8 py-3 text-white rounded-lg font-semibold bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 shadow-md hover:shadow-lg transition"
-        >
-          Submit Application
-        </button>
-      </div>
-    </div>
+{/* Declarant Details */}
+
+<div className="md:col-span-2 mt-6">
+<h3 className="text-lg font-semibold text-gray-700 mb-4">
+Declarant Details
+</h3>
+</div>
+
+
+<div>
+<label className="block text-sm font-medium mb-1">
+Declarant Name <span className="text-red-500 font-bold">*</span>
+</label>
+
+<input
+required
+type="text"
+placeholder="Full name"
+className="w-full border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-yellow-400"
+/>
+</div>
+
+
+<div>
+<label className="block text-sm font-medium mb-1">
+Declarant Designation <span className="text-red-500 font-bold">*</span>
+</label>
+
+<input
+required
+type="text"
+placeholder="Designation"
+className="w-full border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-yellow-400"
+/>
+</div>
+
+
+<div>
+<label className="block text-sm font-medium mb-1">
+Declarant Email <span className="text-red-500 font-bold">*</span>
+</label>
+
+<input
+required
+type="email"
+pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$"
+placeholder="Email address"
+className="w-full border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-yellow-400"
+/>
+</div>
+
+
+<div>
+<label className="block text-sm font-medium mb-1">
+Declarant Phone <span className="text-red-500 font-bold">*</span>
+</label>
+
+<input
+required
+type="tel"
+pattern="[0-9]{10}"
+maxLength="10"
+inputMode="numeric"
+placeholder="10 digit phone number"
+className="w-full border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-yellow-400"
+/>
+</div>
+
+
+<div className="md:col-span-2">
+<label className="block text-sm font-medium mb-1">
+Date of Declaration <span className="text-red-500 font-bold">*</span>
+</label>
+
+<input
+required
+type="date"
+className="w-full border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-yellow-400"
+/>
+</div>
+
+
+<div className="md:col-span-2">
+<label className="block text-sm font-medium mb-1">
+Signature / Digital Signature <span className="text-red-500 font-bold">*</span>
+</label>
+
+<textarea
+required
+rows="3"
+placeholder="Enter signature details"
+className="w-full border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-yellow-400"
+></textarea>
+</div>
+
+</div>
+
+
+{/* Navigation Buttons */}
+
+<div className="flex justify-between mt-10">
+
+<button
+type="button"
+onClick={()=>setActiveStep(4)}
+className="px-6 py-2 bg-yellow-500 text-black rounded-md hover:bg-yellow-600"
+>
+Previous
+</button>
+
+<button
+type="submit"
+className="px-6 py-2 bg-green-500 text-white rounded-md hover:bg-green-600"
+>
+Submit Application
+</button>
+
+</div>
+
+</form>
+
   );
 }
 

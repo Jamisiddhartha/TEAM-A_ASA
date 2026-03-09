@@ -1,168 +1,172 @@
-function AuthenticationForm({ activeStep }) {
+function AuthenticationForm({ activeStep, setActiveStep }) {
+
   if (activeStep !== 4) return null;
 
   return (
-    <div id="step-4">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {/* Authentication Checkboxes Section */}
-        <div className="md:col-span-2">
-          <h3 className="text-lg font-semibold text-gray-700 mb-4 mb-4">
-            Authentication Requirements
-          </h3>
-          <p className="text-sm text-gray-600 mb-4">
-            Please confirm the following authentication criteria:
-          </p>
-        </div>
 
-        <div className="md:col-span-2">
-          <label className="flex items-center mb-4">
-            <input
-              required
-              type="checkbox"
-              className="w-4 h-4 text-yellow-500 rounded focus:ring-orange-400"
-            />
-            <span className="ml-3 text-sm font-medium">
-              Applicant is authorized to submit this application
-            </span>
-          </label>
-        </div>
+<form
+onSubmit={(e)=>{
+e.preventDefault();
+setActiveStep(5);
+}}
+className="max-w-5xl mx-auto bg-white p-8 rounded-lg shadow-md"
+>
 
-        <div className="md:col-span-2">
-          <label className="flex items-center mb-4">
-            <input
-              required
-              type="checkbox"
-              className="w-4 h-4 text-yellow-500 rounded focus:ring-orange-400"
-            />
-            <span className="ml-3 text-sm font-medium">
-              All information provided is accurate and true
-            </span>
-          </label>
-        </div>
+<h2 className="text-xl font-semibold text-yellow-500 mb-6">
+AUTHENTICATION
+</h2>
 
-        <div className="md:col-span-2">
-          <label className="flex items-center mb-4">
-            <input
-              required
-              type="checkbox"
-              className="w-4 h-4 text-yellow-500 rounded focus:ring-orange-400"
-            />
-            <span className="ml-3 text-sm font-medium">
-              Organization complies with data protection regulations
-            </span>
-          </label>
-        </div>
+<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-        <div className="md:col-span-2">
-          <label className="flex items-center mb-4">
-            <input
-              required
-              type="checkbox"
-              className="w-4 h-4 text-yellow-500 rounded focus:ring-orange-400"
-            />
-            <span className="ml-3 text-sm font-medium">
-              Organization has adequate security infrastructure
-            </span>
-          </label>
-        </div>
 
-        <div className="md:col-span-2">
-          <label className="flex items-center mb-4">
-            <input
-              required
-              type="checkbox"
-              className="w-4 h-4 text-yellow-500 rounded focus:ring-orange-400"
-            />
-            <span className="ml-3 text-sm font-medium">
-              Organization understands the terms and conditions
-            </span>
-          </label>
-        </div>
+{/* Authentication Checkboxes */}
 
-        {/* Authorized Officer Details */}
-        <div className="md:col-span-2">
-          <h3 className="text-lg font-semibold text-gray-700 mb-4 mb-4 mt-6">
-            Authorized Officer Details
-          </h3>
-        </div>
+<div className="md:col-span-2">
+<h3 className="text-lg font-semibold text-gray-700 mb-4">
+Authentication Requirements <span className="text-red-500 font-bold">*</span>
+</h3>
 
-        <div>
-          <label className="block text-sm font-medium mb-1">
-            Officer Name *
-          </label>
-          <input
-            required
-            type="text"
-            placeholder="Full name of authorized officer"
-            className="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 focus:outline-none transition-all duration-200 focus:outline-none"
-          />
-        </div>
+<p className="text-sm text-gray-600 mb-4">
+Please confirm the following authentication criteria:
+</p>
+</div>
 
-        <div>
-          <label className="block text-sm font-medium mb-1">
-            Officer Designation *
-          </label>
-          <input
-            required
-            type="text"
-            placeholder="Designation"
-            className="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 focus:outline-none transition-all duration-200 focus:outline-none"
-          />
-        </div>
 
-        <div>
-          <label className="block text-sm font-medium mb-1">
-            Officer Email *
-          </label>
-          <input
-            required
-            type="email"
-            placeholder="Email address"
-            className="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 focus:outline-none transition-all duration-200 focus:outline-none"
-          />
-        </div>
+<div className="md:col-span-2 flex items-center">
+<input required type="checkbox" className="mr-3"/>
+<span className="text-sm">
+Applicant is authorized to submit this application
+</span>
+</div>
 
-        <div>
-          <label className="block text-sm font-medium mb-1">
-            Officer Phone *
-          </label>
-          <input
-            required
-            type="tel"
-            inputMode="numeric"
-            placeholder="Phone number (numbers only)"
-            className="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 focus:outline-none transition-all duration-200 focus:outline-none"
-          />
-        </div>
-      </div>
 
-      {/* Navigation Buttons */}
-      <div className="flex justify-between mt-10 pt-6 border-t border-gray-200">
-        <button
-          type="button"
-          onClick={() =>
-            window.dispatchEvent(
-              new CustomEvent("changeStep", { detail: activeStep - 1 })
-            )
-          }
-          className="px-8 py-3 bg-gray-400 text-white rounded-lg font-semibold hover:bg-gray-500 transition-all duration-200"
-        >
-          Previous
-        </button>
+<div className="md:col-span-2 flex items-center">
+<input required type="checkbox" className="mr-3"/>
+<span className="text-sm">
+All information provided is accurate and true
+</span>
+</div>
 
-        <button
-          type="button"
-          onClick={() =>
-            window.dispatchEvent(
-              new CustomEvent("changeStep", { detail: activeStep + 1 })
-            )
-          }
-          className="px-8 py-3 text-white rounded-lg font-semibold bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 shadow-md hover:shadow-lg transition-all duration-200"
-        >
-          Next
-        </button>
-      </div>
-    </div>
+
+<div className="md:col-span-2 flex items-center">
+<input required type="checkbox" className="mr-3"/>
+<span className="text-sm">
+Organization complies with data protection regulations
+</span>
+</div>
+
+
+<div className="md:col-span-2 flex items-center">
+<input required type="checkbox" className="mr-3"/>
+<span className="text-sm">
+Organization has adequate security infrastructure
+</span>
+</div>
+
+
+<div className="md:col-span-2 flex items-center">
+<input required type="checkbox" className="mr-3"/>
+<span className="text-sm">
+Organization understands the terms and conditions
+</span>
+</div>
+
+
+
+{/* Authorized Officer */}
+
+<div className="md:col-span-2 mt-6">
+<h3 className="text-lg font-semibold text-gray-700 mb-4">
+Authorized Officer Details
+</h3>
+</div>
+
+
+<div>
+<label className="block text-sm font-medium mb-1">
+Officer Name <span className="text-red-500 font-bold">*</span>
+</label>
+
+<input
+required
+type="text"
+placeholder="Full name of authorized officer"
+className="w-full border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-yellow-400"
+/>
+</div>
+
+
+<div>
+<label className="block text-sm font-medium mb-1">
+Officer Designation <span className="text-red-500 font-bold">*</span>
+</label>
+
+<input
+required
+type="text"
+placeholder="Designation"
+className="w-full border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-yellow-400"
+/>
+</div>
+
+
+<div>
+<label className="block text-sm font-medium mb-1">
+Officer Email <span className="text-red-500 font-bold">*</span>
+</label>
+
+<input
+required
+type="email"
+pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$"
+placeholder="Email address"
+className="w-full border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-yellow-400"
+/>
+</div>
+
+
+<div>
+<label className="block text-sm font-medium mb-1">
+Officer Phone <span className="text-red-500 font-bold">*</span>
+</label>
+
+<input
+required
+type="tel"
+pattern="[0-9]{10}"
+maxLength="10"
+inputMode="numeric"
+placeholder="10 digit phone number"
+className="w-full border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-yellow-400"
+/>
+</div>
+
+</div>
+
+
+{/* Navigation Buttons */}
+
+<div className="flex justify-between mt-10">
+
+<button
+type="button"
+onClick={()=>setActiveStep(3)}
+className="px-6 py-2 bg-yellow-500 text-black rounded-md hover:bg-yellow-600"
+>
+Previous
+</button>
+
+<button
+type="submit"
+className="px-6 py-2 bg-yellow-500 text-black font-semibold rounded-md hover:bg-yellow-600"
+>
+Next
+</button>
+
+</div>
+
+</form>
+
   );
 }
 

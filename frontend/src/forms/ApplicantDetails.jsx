@@ -1,309 +1,429 @@
-// since we are using the file directly in the browser via Live Server
-// and loading React from a CDN, we can't use ES module imports here.
-// Babel will transpile the JSX but it won't resolve `import` statements.
-// instead grab what we need from the global `React` object.
-/* eslint-disable */
-// @ts-nocheck
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import uidaiLogo from "../assets/uidai-logo.jpg";
+
 import ContactDetails from "./ContactDetails";
 import ASADetailsForm from "./ASADetailsForm";
 import AuthenticationForm from "./AuthenticationForm";
 import DeclarationForm from "./DeclarationForm";
-import { useState, useEffect } from "react";
 
 function ApplicationForm() {
+
   const [activeStep, setActiveStep] = useState(1);
-  
-  // validate required fields inside a step container with id="step-N"
-  function validateStep(step) {
-    const container = document.getElementById(`step-${step}`);
-    if (!container) return [];
-    const requiredEls = container.querySelectorAll('[required]');
-    const missing = [];
-    for (let el of requiredEls) {
-      const val = el.value.trim();
-      if (val === '') {
-        // find the associated label
-        const label = el.previousElementSibling;
-        if (label && label.tagName === 'LABEL') {
-          missing.push(label.textContent.trim());
-        } else {
-          missing.push('Unknown required field');
-        }
-        el.focus();
-        break;
-      }
-      // validate phone/tel fields: must contain only numbers
-      if (el.type === 'tel' && val !== '') {
-        if (!/^\d+$/.test(val)) {
-          const label = el.previousElementSibling;
-          const fieldName = (label && label.tagName === 'LABEL') 
-            ? label.textContent.trim() 
-            : 'Phone field';
-          missing.push(`${fieldName} - Invalid entry (numbers only)`);
-          el.focus();
-          break;
-        }
-      }
-    }
-    return missing;
-  }
 
-  function changeStep(target) {
-    if (target === activeStep) return;
-    // moving forward: validate current step
-    if (target > activeStep) {
-      const missing = validateStep(activeStep);
-      if (missing.length > 0) {
-        alert(`Please fill the following required fields before proceeding:\n- ${missing.join('\n- ')}`);
-        return;
-      }
-    }
-    setActiveStep(target);
-  }
-
-  // listen for changeStep events dispatched by child components
   useEffect(() => {
-    const handler = (e) => {
-      if (e && e.detail) changeStep(e.detail);
-    };
-    window.addEventListener('changeStep', handler);
-    return () => window.removeEventListener('changeStep', handler);
-  }, [activeStep]);
- 
-  // @ts-ignore
+
+    const parentHeader = document.querySelector("div.w-full.bg-white.shadow-md.border-b");
+
+    if (parentHeader) {
+      parentHeader.style.display = "none";
+    }
+
+  }, []);
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-100 flex items-center justify-center p-4">
-      <div className="w-full max-w-7xl flex gap-6">
-        {/* Sidebar Navigation */}
-        <div className="w-64 bg-gradient-to-b from-blue-900 to-blue-800 rounded-2xl shadow-xl p-6 h-fit sticky top-4">
-          <h2 className="text-white text-xl font-bold mb-8">Application Form</h2>
-          <nav className="space-y-2">
-            {[
-              { step: 1, label: 'Applicant Details' },
-              { step: 2, label: 'Contact Details' },
-              { step: 3, label: 'ASA Form' },
-              { step: 4, label: 'Authentication' },
-              { step: 5, label: 'Declaration' }
-            ].map((item) => (
-              <button
-                key={item.step}
-                onClick={() => setActiveStep(item.step)}
-                className={`w-full text-left px-4 py-3 rounded-lg font-semibold transition-all duration-200 flex items-center gap-3 ${
-                  activeStep === item.step
-                    ? 'bg-gradient-to-r from-orange-400 to-orange-500 text-white shadow-lg'
-                    : activeStep > item.step
-                    ? 'bg-blue-700 text-white hover:bg-blue-600'
-                    : 'bg-blue-700 text-blue-200 hover:bg-blue-600 cursor-not-allowed opacity-60'
-                }`}
-                disabled={activeStep < item.step}
-              >
-                <span className={`w-6 h-6 rounded-full flex items-center justify-center text-sm font-bold ${
-                  activeStep === item.step
-                    ? 'bg-white text-orange-500'
-                    : activeStep > item.step
-                    ? 'bg-blue-600 text-white'
-                    : 'bg-blue-600 text-blue-300'
-                }`}>
-                  {item.step}
-                </span>
-                <span>{item.label}</span>
-              </button>
-            ))}
-          </nav>
-          
-          {/* Progress Bar */}
-          <div className="mt-8 pt-6 border-t border-blue-700">
-            <p className="text-blue-200 text-xs font-semibold mb-2">PROGRESS</p>
-            <div className="w-full bg-blue-700 rounded-full h-2">
-              <div
-                className="bg-gradient-to-r from-orange-400 to-orange-500 h-2 rounded-full transition-all duration-500"
-                style={{ width: `${(activeStep / 5) * 100}%` }}
-              ></div>
+    <div className="min-h-screen bg-gray-100 flex flex-col">
+
+      {/* HEADER */}
+
+      <header className="fixed top-0 left-0 w-full bg-white border-b shadow-sm z-50">
+        <div className="max-w-screen-xl mx-auto px-8 py-3 flex items-center">
+
+          <div className="flex items-center gap-3">
+            <img src={uidaiLogo} className="h-10" alt="uidai" />
+
+            <div>
+              <h1 className="text-xl font-semibold">
+                <span className="text-yellow-500">UIDAI</span> Portal
+              </h1>
+              <p className="text-xs text-gray-500">ASA Onboarding</p>
             </div>
-            <p className="text-blue-200 text-xs mt-2">{activeStep} of 5 completed</p>
           </div>
+
+          <div className="ml-auto">
+            <Link
+              to="/login"
+              className="px-4 py-2 bg-yellow-500 text-white rounded-md hover:bg-red-600"
+            >
+              Logout
+            </Link>
+          </div>
+
+        </div>
+      </header>
+
+
+      {/* MAIN */}
+
+      <div className="flex flex-1 pt-16 pb-12">
+
+
+        {/* SIDEBAR */}
+
+        <div className="w-72 bg-black text-white p-6">
+
+          <h2 className="text-2xl font-bold text-yellow-400 mb-10">
+            Application Portal
+          </h2>
+
+          <ul className="space-y-4">
+
+            {/* STEP 1 */}
+
+            <li
+              className={`p-2 rounded ${activeStep >= 1
+                ? "cursor-pointer bg-yellow-500 text-black"
+                : "bg-gray-600 text-gray-300 cursor-not-allowed"
+              }`}
+              onClick={() => activeStep >= 1 && setActiveStep(1)}
+            >
+              1. Applicant Details
+            </li>
+
+            {/* STEP 2 */}
+
+            <li
+              className={`p-2 rounded ${activeStep >= 2
+                ? "cursor-pointer bg-yellow-500 text-black"
+                : "bg-gray-600 text-gray-300 cursor-not-allowed"
+              }`}
+              onClick={() => activeStep >= 2 && setActiveStep(2)}
+            >
+              2. Contact Details
+            </li>
+
+            {/* STEP 3 */}
+
+            <li
+              className={`p-2 rounded ${activeStep >= 3
+                ? "cursor-pointer bg-yellow-500 text-black"
+                : "bg-gray-600 text-gray-300 cursor-not-allowed"
+              }`}
+              onClick={() => activeStep >= 3 && setActiveStep(3)}
+            >
+              3. ASA Form
+            </li>
+
+            {/* STEP 4 */}
+
+            <li
+              className={`p-2 rounded ${activeStep >= 4
+                ? "cursor-pointer bg-yellow-500 text-black"
+                : "bg-gray-600 text-gray-300 cursor-not-allowed"
+              }`}
+              onClick={() => activeStep >= 4 && setActiveStep(4)}
+            >
+              4. Authentication
+            </li>
+
+            {/* STEP 5 */}
+
+            <li
+              className={`p-2 rounded ${activeStep >= 5
+                ? "cursor-pointer bg-yellow-500 text-black"
+                : "bg-gray-600 text-gray-300 cursor-not-allowed"
+              }`}
+              onClick={() => activeStep >= 5 && setActiveStep(5)}
+            >
+              5. Declaration
+            </li>
+
+          </ul>
+
         </div>
 
-        {/* Main Content Area */}
-        <div className="flex-1">
-          {/* Step Header */}
-          <div className="mb-6">
-            <h1 className="text-3xl font-bold text-gray-800">
-              {["Applicant Details", "Contact Details", "ASA Form", "Authentication", "Declaration"][activeStep - 1]}
+
+        {/* FORM AREA */}
+
+        <div className="flex-1 p-10 overflow-y-auto">
+
+
+          {/* CENTER WRAPPER */}
+
+          <div className="max-w-5xl mx-auto">
+
+            <h1 className="text-2xl font-bold mb-6 text-gray-800 text-center">
+              ASA Application Form
             </h1>
-            <p className="text-gray-600 mt-2">Step {activeStep} of 5</p>
+
+
+            {/* STEP PROGRESS */}
+
+            <div className="mb-10 justify-center">
+              <div className="flex items-center justify-center">
+
+                {[1,2,3,4,5].map((step) => (
+
+                  <div key={step} className="flex items-center">
+
+                    <div
+                      className={`flex items-center justify-center w-10 h-10 rounded-full font-bold
+                      ${activeStep >= step ? "bg-yellow-500 text-black" : "bg-gray-300 text-gray-600"}`}
+                    >
+                      {step}
+                    </div>
+
+                    {step !== 5 && (
+                      <div
+                        className={`w-24 h-1 mx-2 ${activeStep > step ? "bg-yellow-500" : "bg-gray-300"}`}
+                      ></div>
+                    )}
+
+                  </div>
+
+                ))}
+
+              </div>
+            </div>
+
+
+            {/* PROGRESS BAR */}
+
+            <div className="mb-6">
+
+              <div className="flex justify-between mb-1 text-sm font-medium px-1">
+
+                <span>
+                  {
+                    [
+                      "Applicant Details",
+                      "Contact Details",
+                      "ASA Form",
+                      "Authentication",
+                      "Declaration"
+                    ][activeStep - 1]
+                  }
+                </span>
+
+                <span>{(activeStep - 1) * 20}%</span>
+
+              </div>
+
+              <div className="w-full bg-gray-300 rounded-full h-3">
+
+                <div
+                  className="bg-yellow-500 h-3 rounded-full transition-all duration-500"
+                  style={{ width: `${(activeStep - 1) * 20}%` }}
+                ></div>
+
+              </div>
+
+            </div>
+
           </div>
 
-          {/* Form Container */}
-          <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl border border-white/20 p-10">
-          {activeStep === 1 && (
-            <div id="step-1">
-              <h2 className="text-xl font-semibold text-gray-800 mb-6">APPLICANT DETAILS</h2>
 
-              {/* Form Grid */}
+          {/* STEP 1 FORM */}
+
+          {activeStep === 1 && (
+
+            <form
+              onSubmit={(e)=>{
+                e.preventDefault();
+                setActiveStep(2);
+              }}
+              className="max-w-5xl mx-auto bg-white p-8 rounded-lg shadow-md"
+            >
+
+              <h2 className="text-xl font-semibold text-yellow-500 mb-6">
+                APPLICANT DETAILS
+              </h2>
+
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {/* Type of Applicant */}
+
+
                 <div>
                   <label className="block text-sm font-medium mb-1">
-                    Type of Applicant *
+                    Type of Applicant <span className="text-red-500 font-bold">*</span>
                   </label>
-                  <select required className="w-full border-2 border-gray-300 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 focus:outline-none transition-all duration-200">
-                    <option>Please Select</option>
+
+                  <select required className="w-full border p-2 rounded-md">
+                    <option value="">Please Select</option>
                     <option>Government</option>
                     <option>Private</option>
                   </select>
                 </div>
 
-                {/* Applicant Name */}
+
                 <div>
                   <label className="block text-sm font-medium mb-1">
-                    Applicant Name *
+                    Applicant Name <span className="text-red-500 font-bold">*</span>
                   </label>
+
                   <input
                     required
                     type="text"
                     placeholder="Applicant Name"
-                    className="w-full border-2 border-gray-300 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 focus:outline-none transition-all duration-200"
+                    className="w-full border p-2 rounded-md"
                   />
                 </div>
 
-                {/* Registration No */}
+
                 <div>
                   <label className="block text-sm font-medium mb-1">
-                    Registration / Incorporation No. *
+                    Registration / Incorporation No. <span className="text-red-500 font-bold">*</span>
                   </label>
+
                   <input
                     required
                     type="text"
                     placeholder="Registration Number"
-                    className="w-full border-2 border-gray-300 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 focus:outline-none transition-all duration-200"
+                    className="w-full border p-2 rounded-md"
                   />
                 </div>
 
-                {/* License Number */}
+
                 <div>
                   <label className="block text-sm font-medium mb-1">
-                    License Number *
+                    License Number <span className="text-red-500 font-bold">*</span>
                   </label>
+
                   <input
                     required
                     type="text"
                     placeholder="License Number"
-                    className="w-full border-2 border-gray-300 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 focus:outline-none transition-all duration-200"
+                    className="w-full border p-2 rounded-md"
                   />
                 </div>
 
-                {/* Registered Office Address */}
+
                 <div>
                   <label className="block text-sm font-medium mb-1">
-                    Registered Office Address *
+                    Registered Office Address <span className="text-red-500 font-bold">*</span>
                   </label>
+
                   <input
                     required
                     type="text"
                     placeholder="Registered office address"
-                    className="w-full border-2 border-gray-300 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 focus:outline-none transition-all duration-200"
+                    className="w-full border p-2 rounded-md"
                   />
                 </div>
 
-                {/* Correspondence Address */}
+
                 <div>
                   <label className="block text-sm font-medium mb-1">
-                    Correspondence Address
+                    Correspondence Address <span className="text-red-500 font-bold">*</span>
                   </label>
+
                   <input
+                    required
                     type="text"
                     placeholder="Correspondence address"
-                    className="w-full border-2 border-gray-300 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 focus:outline-none transition-all duration-200"
+                    className="w-full border p-2 rounded-md"
                   />
                 </div>
 
-                {/* GSTN */}
+
                 <div>
                   <label className="block text-sm font-medium mb-1">
-                    GSTN Registration Number
+                    GSTN Registration Number <span className="text-red-500 font-bold">*</span>
                   </label>
+
                   <input
+                    required
                     type="text"
                     placeholder="GSTN number"
-                    className="w-full border-2 border-gray-300 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 focus:outline-none transition-all duration-200"
+                    className="w-full border p-2 rounded-md"
                   />
                 </div>
 
-                {/* TAN */}
+
                 <div>
                   <label className="block text-sm font-medium mb-1">
-                    TAN Number
+                    TAN Number <span className="text-red-500 font-bold">*</span>
                   </label>
+
                   <input
+                    required
                     type="text"
                     placeholder="TAN number"
-                    className="w-full border-2 border-gray-300 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 focus:outline-none transition-all duration-200"
+                    className="w-full border p-2 rounded-md"
                   />
                 </div>
+
               </div>
 
-              {/* Category Dropdown */}
+
               <div className="mt-6">
+
                 <label className="block text-sm font-medium mb-1">
-                  Category of Applicant
+                  Category of Applicant <span className="text-red-500 font-bold">*</span>
                 </label>
-                <select className="w-full border-2 border-gray-300 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 focus:outline-none transition-all duration-200">
+
+                <select required className="w-full border p-2 rounded-md">
+
                   <option value="">Select Category</option>
-                  <option>
-                    Category 1: Ministry/Department of Central or State Government
-                  </option>
-                  <option>
-                    Category 2: Authority constituted under Central or State Act
-                  </option>
-                  <option>
-                    Category 3: Any other entity of national importance
-                  </option>
-                  <option>
-                    Category 4: Company registered under Companies Act, 2013
-                  </option>
-                  <option>
-                    Category 5: An AUA or a KUA
-                  </option>
+
+                  <option>Category 1: Ministry/Department of Central or State Government</option>
+                  <option>Category 2: Authority constituted under Central or State Act</option>
+                  <option>Category 3: Any other entity of national importance</option>
+                  <option>Category 4: Company registered under Companies Act, 2013</option>
+                  <option>Category 5: An AUA or a KUA</option>
+
                 </select>
+
               </div>
 
-              {/* Prev/Next Buttons */}
-              <div className="flex justify-between mt-10 pt-6 border-t border-gray-200">
+
+              <div className="flex justify-between mt-8">
+
                 <button
                   type="button"
-                  onClick={() => activeStep > 1 && setActiveStep(activeStep - 1)}
-                  className={`px-8 py-3 rounded-lg font-semibold transition-all duration-200 ${
-                    activeStep === 1
-                      ? 'bg-gray-300 text-gray-500 cursor-not-allowed opacity-50'
-                      : 'bg-gray-400 text-white hover:bg-gray-500'
-                  }`}
-                  disabled={activeStep === 1}
+                  disabled
+                  className="px-6 py-2 bg-gray-300 rounded-md opacity-50 cursor-not-allowed"
                 >
                   Previous
                 </button>
+
                 <button
-                  type="button"
-                  onClick={() => window.dispatchEvent(new CustomEvent('changeStep', { detail: activeStep + 1 }))}
-                  className={`px-8 py-3 text-white rounded-lg font-semibold transition-all duration-200 shadow-md hover:shadow-lg ${
-                    activeStep === 5
-                      ? 'bg-green-500 hover:bg-green-600'
-                      : 'bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700'
-                  }`}
+                  type="submit"
+                  className="px-6 py-2 bg-yellow-500 text-black font-semibold rounded-md hover:bg-yellow-600"
                 >
-                  {activeStep === 5 ? 'Submit' : 'Next'}
+                  Next
                 </button>
+
               </div>
-            </div>
+
+            </form>
+
           )}
-          {activeStep === 2 && <ContactDetails activeStep={activeStep} />}
-          {activeStep === 3 && <ASADetailsForm activeStep={activeStep} />}
-          {activeStep === 4 && <AuthenticationForm activeStep={activeStep} />}
-          {activeStep === 5 && <DeclarationForm activeStep={activeStep} />}
-          </div>
+
+
+          <ContactDetails activeStep={activeStep} setActiveStep={setActiveStep} />
+          <ASADetailsForm activeStep={activeStep} setActiveStep={setActiveStep} />
+          <AuthenticationForm activeStep={activeStep} setActiveStep={setActiveStep} />
+          <DeclarationForm activeStep={activeStep} setActiveStep={setActiveStep} />
+
         </div>
+
       </div>
+
+
+      {/* FOOTER */}
+
+      <footer className="fixed bottom-0 left-0 w-full bg-white border-t py-4">
+
+        <div className="max-w-screen-xl mx-auto px-8 flex items-center justify-between text-sm text-gray-500">
+
+          <div className="flex items-center gap-2">
+            <img src={uidaiLogo} className="h-6" />
+            <span>UIDAI ASA Portal</span>
+          </div>
+
+          <div className="flex gap-6">
+            <a href="#">Contact</a>
+            <a href="#">Privacy</a>
+            <a href="#">Terms</a>
+          </div>
+
+        </div>
+
+      </footer>
+
     </div>
   );
 }
+
 export default ApplicationForm;
