@@ -1,4 +1,4 @@
-function DeclarationForm({ activeStep }) {
+function DeclarationForm({ activeStep, formData, handleInputChange, handleSubmit }) {
   if (activeStep !== 5) return null;
 
   return (
@@ -22,6 +22,9 @@ function DeclarationForm({ activeStep }) {
             <input
               required
               type="checkbox"
+              name="decAuthSub"
+              checked={formData.decAuthSub || false}
+              onChange={handleInputChange}
               className="w-4 h-4 mt-1 text-yellow-500 rounded focus:ring-orange-400"
             />
             <span className="text-sm flex-1 leading-relaxed">
@@ -38,6 +41,9 @@ function DeclarationForm({ activeStep }) {
             <input
               required
               type="checkbox"
+              name="decTechCap"
+              checked={formData.decTechCap || false}
+              onChange={handleInputChange}
               className="w-4 h-4 mt-1 text-yellow-500 rounded focus:ring-orange-400"
             />
             <span className="text-sm flex-1 leading-relaxed">
@@ -54,6 +60,9 @@ function DeclarationForm({ activeStep }) {
             <input
               required
               type="checkbox"
+              name="decCompLaw"
+              checked={formData.decCompLaw || false}
+              onChange={handleInputChange}
               className="w-4 h-4 mt-1 text-yellow-500 rounded focus:ring-orange-400"
             />
             <span className="text-sm flex-1 leading-relaxed">
@@ -69,6 +78,9 @@ function DeclarationForm({ activeStep }) {
             <input
               required
               type="checkbox"
+              name="decFalseInfo"
+              checked={formData.decFalseInfo || false}
+              onChange={handleInputChange}
               className="w-4 h-4 mt-1 text-yellow-500 rounded focus:ring-orange-400"
             />
             <span className="text-sm flex-1 leading-relaxed">
@@ -84,6 +96,9 @@ function DeclarationForm({ activeStep }) {
             <input
               required
               type="checkbox"
+              name="decTerms"
+              checked={formData.decTerms || false}
+              onChange={handleInputChange}
               className="w-4 h-4 mt-1 text-yellow-500 rounded focus:ring-orange-400"
             />
             <span className="text-sm flex-1 leading-relaxed">
@@ -99,6 +114,9 @@ function DeclarationForm({ activeStep }) {
             <input
               required
               type="checkbox"
+              name="decDataSec"
+              checked={formData.decDataSec || false}
+              onChange={handleInputChange}
               className="w-4 h-4 mt-1 text-yellow-500 rounded focus:ring-orange-400"
             />
             <span className="text-sm flex-1 leading-relaxed">
@@ -123,6 +141,9 @@ function DeclarationForm({ activeStep }) {
           <input
             required
             type="text"
+            name="declarantName"
+            value={formData.declarantName || ""}
+            onChange={handleInputChange}
             placeholder="Full name"
             className="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 outline-none"
           />
@@ -136,6 +157,9 @@ function DeclarationForm({ activeStep }) {
           <input
             required
             type="text"
+            name="declarantDesignation"
+            value={formData.declarantDesignation || ""}
+            onChange={handleInputChange}
             placeholder="Designation"
             className="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 outline-none"
           />
@@ -149,6 +173,9 @@ function DeclarationForm({ activeStep }) {
           <input
             required
             type="email"
+            name="declarantEmail"
+            value={formData.declarantEmail || ""}
+            onChange={handleInputChange}
             placeholder="Email address"
             className="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 outline-none"
           />
@@ -163,6 +190,9 @@ function DeclarationForm({ activeStep }) {
             required
             type="tel"
             inputMode="numeric"
+            name="declarantPhone"
+            value={formData.declarantPhone || ""}
+            onChange={handleInputChange}
             placeholder="Phone number (numbers only)"
             className="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 outline-none"
           />
@@ -176,6 +206,9 @@ function DeclarationForm({ activeStep }) {
           <input
             required
             type="date"
+            name="declarationDate"
+            value={formData.declarationDate || ""}
+            onChange={handleInputChange}
             className="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 outline-none"
           />
         </div>
@@ -188,6 +221,9 @@ function DeclarationForm({ activeStep }) {
           <textarea
             required
             rows="3"
+            name="signature"
+            value={formData.signature || ""}
+            onChange={handleInputChange}
             placeholder="Enter signature details or description"
             className="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 outline-none"
           ></textarea>
@@ -210,7 +246,8 @@ function DeclarationForm({ activeStep }) {
         </button>
 
         <button
-          type="submit"
+          type="button"
+          onClick={handleSubmit}
           className="px-8 py-3 text-white rounded-lg font-semibold bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 shadow-md hover:shadow-lg transition"
         >
           Submit Application

@@ -4,14 +4,69 @@
 // instead grab what we need from the global `React` object.
 /* eslint-disable */
 // @ts-nocheck
+import { useState, useEffect } from "react";
+import axios from "axios";
 import ContactDetails from "./ContactDetails";
 import ASADetailsForm from "./ASADetailsForm";
 import AuthenticationForm from "./AuthenticationForm";
 import DeclarationForm from "./DeclarationForm";
-import { useState, useEffect } from "react";
 
 function ApplicationForm() {
   const [activeStep, setActiveStep] = useState(1);
+  const [formData, setFormData] = useState({
+    applicantType: "",
+    applicantName: "",
+    registrationNo: "",
+    licenseNo: "",
+    registeredAddress: "",
+    correspondenceAddress: "",
+    gstnNo: "",
+    tanNo: "",
+    categoryOfApplicant: "",
+  });
+
+  const handleInputChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: type === 'checkbox' ? checked : value
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e?.preventDefault();
+    try {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        alert("Please login first to submit an application.");
+        return;
+      }
+
+      // Add a status indicator using sweetalert or just a simple alert for now
+      alert("Submitting your application...");
+
+      const response = await axios.post(
+        "http://localhost:5000/api/applications/submit",
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        }
+      );
+
+      if (response.data.success) {
+        alert("Application submitted successfully!");
+        // We could redirect to a success page or dashboard here
+      } else {
+        alert(response.data.message || "Failed to submit application");
+      }
+    } catch (error) {
+      console.error("Submission error:", error);
+      alert(error.response?.data?.message || "An error occurred during submission");
+    }
+  };
+
   
   // validate required fields inside a step container with id="step-N"
   function validateStep(step) {
@@ -147,10 +202,16 @@ function ApplicationForm() {
                   <label className="block text-sm font-medium mb-1">
                     Type of Applicant *
                   </label>
-                  <select required className="w-full border-2 border-gray-300 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 focus:outline-none transition-all duration-200">
-                    <option>Please Select</option>
-                    <option>Government</option>
-                    <option>Private</option>
+                  <select 
+                    required 
+                    name="applicantType"
+                    value={formData.applicantType || ""}
+                    onChange={handleInputChange}
+                    className="w-full border-2 border-gray-300 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 focus:outline-none transition-all duration-200"
+                  >
+                    <option value="">Please Select</option>
+                    <option value="Government">Government</option>
+                    <option value="Private">Private</option>
                   </select>
                 </div>
 
@@ -162,6 +223,9 @@ function ApplicationForm() {
                   <input
                     required
                     type="text"
+                    name="applicantName"
+                    value={formData.applicantName || ""}
+                    onChange={handleInputChange}
                     placeholder="Applicant Name"
                     className="w-full border-2 border-gray-300 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 focus:outline-none transition-all duration-200"
                   />
@@ -175,6 +239,9 @@ function ApplicationForm() {
                   <input
                     required
                     type="text"
+                    name="registrationNo"
+                    value={formData.registrationNo || ""}
+                    onChange={handleInputChange}
                     placeholder="Registration Number"
                     className="w-full border-2 border-gray-300 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 focus:outline-none transition-all duration-200"
                   />
@@ -188,6 +255,9 @@ function ApplicationForm() {
                   <input
                     required
                     type="text"
+                    name="licenseNo"
+                    value={formData.licenseNo || ""}
+                    onChange={handleInputChange}
                     placeholder="License Number"
                     className="w-full border-2 border-gray-300 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 focus:outline-none transition-all duration-200"
                   />
@@ -201,6 +271,9 @@ function ApplicationForm() {
                   <input
                     required
                     type="text"
+                    name="registeredAddress"
+                    value={formData.registeredAddress || ""}
+                    onChange={handleInputChange}
                     placeholder="Registered office address"
                     className="w-full border-2 border-gray-300 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 focus:outline-none transition-all duration-200"
                   />
@@ -213,6 +286,9 @@ function ApplicationForm() {
                   </label>
                   <input
                     type="text"
+                    name="correspondenceAddress"
+                    value={formData.correspondenceAddress || ""}
+                    onChange={handleInputChange}
                     placeholder="Correspondence address"
                     className="w-full border-2 border-gray-300 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 focus:outline-none transition-all duration-200"
                   />
@@ -225,6 +301,9 @@ function ApplicationForm() {
                   </label>
                   <input
                     type="text"
+                    name="gstnNo"
+                    value={formData.gstnNo || ""}
+                    onChange={handleInputChange}
                     placeholder="GSTN number"
                     className="w-full border-2 border-gray-300 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 focus:outline-none transition-all duration-200"
                   />
@@ -237,34 +316,31 @@ function ApplicationForm() {
                   </label>
                   <input
                     type="text"
+                    name="tanNo"
+                    value={formData.tanNo || ""}
+                    onChange={handleInputChange}
                     placeholder="TAN number"
                     className="w-full border-2 border-gray-300 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 focus:outline-none transition-all duration-200"
                   />
                 </div>
               </div>
 
-              {/* Category Dropdown */}
               <div className="mt-6">
                 <label className="block text-sm font-medium mb-1">
                   Category of Applicant
                 </label>
-                <select className="w-full border-2 border-gray-300 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 focus:outline-none transition-all duration-200">
+                <select 
+                  name="categoryOfApplicant"
+                  value={formData.categoryOfApplicant || ""}
+                  onChange={handleInputChange}
+                  className="w-full border-2 border-gray-300 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 focus:outline-none transition-all duration-200"
+                >
                   <option value="">Select Category</option>
-                  <option>
-                    Category 1: Ministry/Department of Central or State Government
-                  </option>
-                  <option>
-                    Category 2: Authority constituted under Central or State Act
-                  </option>
-                  <option>
-                    Category 3: Any other entity of national importance
-                  </option>
-                  <option>
-                    Category 4: Company registered under Companies Act, 2013
-                  </option>
-                  <option>
-                    Category 5: An AUA or a KUA
-                  </option>
+                  <option value="Category 1">Category 1: Ministry/Department of Central or State Government</option>
+                  <option value="Category 2">Category 2: Authority constituted under Central or State Act</option>
+                  <option value="Category 3">Category 3: Any other entity of national importance</option>
+                  <option value="Category 4">Category 4: Company registered under Companies Act, 2013</option>
+                  <option value="Category 5">Category 5: An AUA or a KUA</option>
                 </select>
               </div>
 
@@ -296,10 +372,10 @@ function ApplicationForm() {
               </div>
             </div>
           )}
-          {activeStep === 2 && <ContactDetails activeStep={activeStep} />}
-          {activeStep === 3 && <ASADetailsForm activeStep={activeStep} />}
-          {activeStep === 4 && <AuthenticationForm activeStep={activeStep} />}
-          {activeStep === 5 && <DeclarationForm activeStep={activeStep} />}
+          {activeStep === 2 && <ContactDetails activeStep={activeStep} formData={formData} handleInputChange={handleInputChange} />}
+          {activeStep === 3 && <ASADetailsForm activeStep={activeStep} formData={formData} handleInputChange={handleInputChange} />}
+          {activeStep === 4 && <AuthenticationForm activeStep={activeStep} formData={formData} handleInputChange={handleInputChange} />}
+          {activeStep === 5 && <DeclarationForm activeStep={activeStep} formData={formData} handleInputChange={handleInputChange} handleSubmit={handleSubmit} />}
           </div>
         </div>
       </div>

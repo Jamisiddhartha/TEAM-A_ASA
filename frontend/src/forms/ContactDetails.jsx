@@ -1,4 +1,4 @@
-function ContactDetails({ activeStep }) {
+function ContactDetails({ activeStep, formData, handleInputChange }) {
   if (activeStep !== 2) return null;
 
   return (
@@ -16,8 +16,11 @@ function ContactDetails({ activeStep }) {
           <input
             required
             type="text"
+            name="kmpName"
+            value={formData.kmpName || ""}
+            onChange={handleInputChange}
             placeholder="Name"
-            className="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 focus:outline-none transition-all duration-200 focus:outline-none"
+            className="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 focus:outline-none transition-all duration-200"
           />
         </div>
 
@@ -27,8 +30,11 @@ function ContactDetails({ activeStep }) {
           </label>
           <input
             type="text"
+            name="kmpDesignation"
+            value={formData.kmpDesignation || ""}
+            onChange={handleInputChange}
             placeholder="Full designation"
-            className="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 focus:outline-none transition-all duration-200 focus:outline-none"
+            className="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 focus:outline-none transition-all duration-200"
           />
         </div>
 
@@ -39,8 +45,11 @@ function ContactDetails({ activeStep }) {
           <input
             required
             type="email"
+            name="kmpEmail"
+            value={formData.kmpEmail || ""}
+            onChange={handleInputChange}
             placeholder="Email address"
-            className="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 focus:outline-none transition-all duration-200 focus:outline-none"
+            className="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 focus:outline-none transition-all duration-200"
           />
         </div>
 
@@ -51,8 +60,11 @@ function ContactDetails({ activeStep }) {
           <input
             required
             type="tel"
+            name="kmpMobile"
+            value={formData.kmpMobile || ""}
+            onChange={handleInputChange}
             placeholder="Mobile number"
-            className="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 focus:outline-none transition-all duration-200 focus:outline-none"
+            className="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 focus:outline-none transition-all duration-200"
           />
         </div>
 
@@ -68,8 +80,11 @@ function ContactDetails({ activeStep }) {
           <input
             required
             type="text"
+            name="cisoName"
+            value={formData.cisoName || ""}
+            onChange={handleInputChange}
             placeholder="Name"
-            className="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 focus:outline-none transition-all duration-200 focus:outline-none"
+            className="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 focus:outline-none transition-all duration-200"
           />
         </div>
 
@@ -79,8 +94,11 @@ function ContactDetails({ activeStep }) {
           </label>
           <input
             type="text"
+            name="cisoDesignation"
+            value={formData.cisoDesignation || ""}
+            onChange={handleInputChange}
             placeholder="Full designation"
-            className="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 focus:outline-none transition-all duration-200 focus:outline-none"
+            className="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 focus:outline-none transition-all duration-200"
           />
         </div>
 
@@ -91,8 +109,11 @@ function ContactDetails({ activeStep }) {
           <input
             required
             type="email"
+            name="cisoEmail"
+            value={formData.cisoEmail || ""}
+            onChange={handleInputChange}
             placeholder="Email address"
-            className="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 focus:outline-none transition-all duration-200 focus:outline-none"
+            className="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 focus:outline-none transition-all duration-200"
           />
         </div>
 
@@ -103,8 +124,11 @@ function ContactDetails({ activeStep }) {
           <input
             required
             type="tel"
+            name="cisoMobile"
+            value={formData.cisoMobile || ""}
+            onChange={handleInputChange}
             placeholder="Mobile number"
-            className="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 focus:outline-none transition-all duration-200 focus:outline-none"
+            className="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 focus:outline-none transition-all duration-200"
           />
         </div>
 
@@ -120,8 +144,11 @@ function ContactDetails({ activeStep }) {
           <input
             required
             type="text"
+            name="mpocName"
+            value={formData.mpocName || ""}
+            onChange={handleInputChange}
             placeholder="Name"
-            className="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 focus:outline-none transition-all duration-200 focus:outline-none"
+            className="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 focus:outline-none transition-all duration-200"
           />
         </div>
 
@@ -131,8 +158,11 @@ function ContactDetails({ activeStep }) {
           </label>
           <input
             type="text"
+            name="mpocDesignation"
+            value={formData.mpocDesignation || ""}
+            onChange={handleInputChange}
             placeholder="Full designation"
-            className="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 focus:outline-none transition-all duration-200 focus:outline-none"
+            className="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 focus:outline-none transition-all duration-200"
           />
         </div>
 
@@ -143,8 +173,11 @@ function ContactDetails({ activeStep }) {
           <input
             required
             type="email"
+            name="mpocEmail"
+            value={formData.mpocEmail || ""}
+            onChange={handleInputChange}
             placeholder="Email address"
-            className="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 focus:outline-none transition-all duration-200 focus:outline-none"
+            className="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 focus:outline-none transition-all duration-200"
           />
         </div>
 
@@ -155,8 +188,11 @@ function ContactDetails({ activeStep }) {
           <input
             required
             type="tel"
+            name="mpocMobile"
+            value={formData.mpocMobile || ""}
+            onChange={handleInputChange}
             placeholder="Mobile number"
-            className="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 focus:outline-none transition-all duration-200 focus:outline-none"
+            className="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 focus:outline-none transition-all duration-200"
           />
         </div>
 
@@ -171,8 +207,11 @@ function ContactDetails({ activeStep }) {
           <label className="block text-sm font-medium mb-1">TPOC Name</label>
           <input
             type="text"
+            name="tpocName"
+            value={formData.tpocName || ""}
+            onChange={handleInputChange}
             placeholder="Name"
-            className="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 focus:outline-none transition-all duration-200 focus:outline-none"
+            className="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 focus:outline-none transition-all duration-200"
           />
         </div>
 
@@ -182,8 +221,11 @@ function ContactDetails({ activeStep }) {
           </label>
           <input
             type="text"
+            name="tpocDesignation"
+            value={formData.tpocDesignation || ""}
+            onChange={handleInputChange}
             placeholder="Full designation"
-            className="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 focus:outline-none transition-all duration-200 focus:outline-none"
+            className="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 focus:outline-none transition-all duration-200"
           />
         </div>
 
@@ -193,8 +235,11 @@ function ContactDetails({ activeStep }) {
           </label>
           <input
             type="email"
+            name="tpocEmail"
+            value={formData.tpocEmail || ""}
+            onChange={handleInputChange}
             placeholder="Email address"
-            className="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 focus:outline-none transition-all duration-200 focus:outline-none"
+            className="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 focus:outline-none transition-all duration-200"
           />
         </div>
 
@@ -204,8 +249,11 @@ function ContactDetails({ activeStep }) {
           </label>
           <input
             type="tel"
+            name="tpocMobile"
+            value={formData.tpocMobile || ""}
+            onChange={handleInputChange}
             placeholder="Mobile number"
-            className="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 focus:outline-none transition-all duration-200 focus:outline-none"
+            className="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 focus:outline-none transition-all duration-200"
           />
         </div>
 
@@ -221,8 +269,11 @@ function ContactDetails({ activeStep }) {
           <input
             required
             type="url"
+            name="grievanceUrl"
+            value={formData.grievanceUrl || ""}
+            onChange={handleInputChange}
             placeholder="Website URL"
-            className="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 focus:outline-none transition-all duration-200 focus:outline-none"
+            className="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 focus:outline-none transition-all duration-200"
           />
         </div>
 
@@ -231,8 +282,11 @@ function ContactDetails({ activeStep }) {
           <input
             required
             type="email"
+            name="grievanceEmail"
+            value={formData.grievanceEmail || ""}
+            onChange={handleInputChange}
             placeholder="Grievance email"
-            className="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 focus:outline-none transition-all duration-200 focus:outline-none"
+            className="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 focus:outline-none transition-all duration-200"
           />
         </div>
 
@@ -242,8 +296,11 @@ function ContactDetails({ activeStep }) {
           </label>
           <input
             type="tel"
+            name="grievanceHelpdesk"
+            value={formData.grievanceHelpdesk || ""}
+            onChange={handleInputChange}
             placeholder="Helpdesk number"
-            className="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 focus:outline-none transition-all duration-200 focus:outline-none"
+            className="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 focus:outline-none transition-all duration-200"
           />
         </div>
 
@@ -254,8 +311,11 @@ function ContactDetails({ activeStep }) {
           <input
             required
             type="text"
+            name="grievanceOfficerName"
+            value={formData.grievanceOfficerName || ""}
+            onChange={handleInputChange}
             placeholder="Officer name"
-            className="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 focus:outline-none transition-all duration-200 focus:outline-none"
+            className="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 focus:outline-none transition-all duration-200"
           />
         </div>
 
@@ -267,8 +327,11 @@ function ContactDetails({ activeStep }) {
             required
             type="tel"
             inputMode="numeric"
+            name="grievanceOfficerMobile"
+            value={formData.grievanceOfficerMobile || ""}
+            onChange={handleInputChange}
             placeholder="Officer mobile (numbers only)"
-            className="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 focus:outline-none transition-all duration-200 focus:outline-none"
+            className="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 focus:outline-none transition-all duration-200"
           />
         </div>
 
@@ -279,8 +342,11 @@ function ContactDetails({ activeStep }) {
           <input
             required
             type="email"
+            name="grievanceOfficerEmail"
+            value={formData.grievanceOfficerEmail || ""}
+            onChange={handleInputChange}
             placeholder="Officer email"
-            className="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 focus:outline-none transition-all duration-200 focus:outline-none"
+            className="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 focus:outline-none transition-all duration-200"
           />
         </div>
       </div>

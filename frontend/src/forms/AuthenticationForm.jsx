@@ -1,4 +1,4 @@
-function AuthenticationForm({ activeStep }) {
+function AuthenticationForm({ activeStep, formData, handleInputChange }) {
   if (activeStep !== 4) return null;
 
   return (
@@ -15,67 +15,78 @@ function AuthenticationForm({ activeStep }) {
         </div>
 
         <div className="md:col-span-2">
-          <label className="flex items-center mb-4">
+          <label className="flex items-center space-x-3 cursor-pointer mb-2">
             <input
-              required
               type="checkbox"
-              className="w-4 h-4 text-yellow-500 rounded focus:ring-orange-400"
+              name="authYes"
+              checked={formData.authYes || false}
+              onChange={handleInputChange}
+              className="w-5 h-5 text-orange-500 rounded border-gray-300 focus:ring-orange-500"
             />
-            <span className="ml-3 text-sm font-medium">
-              Applicant is authorized to submit this application
-            </span>
+            <span className="text-gray-700">Yes</span>
+          </label>
+          <label className="flex items-center space-x-3 cursor-pointer mb-4">
+            <input
+              type="checkbox"
+              name="authNo"
+              checked={formData.authNo || false}
+              onChange={handleInputChange}
+              className="w-5 h-5 text-orange-500 rounded border-gray-300 focus:ring-orange-500"
+            />
+            <span className="text-gray-700">No</span>
           </label>
         </div>
 
         <div className="md:col-span-2">
-          <label className="flex items-center mb-4">
+          <label className="flex items-center space-x-3 cursor-pointer mb-2">
             <input
-              required
               type="checkbox"
-              className="w-4 h-4 text-yellow-500 rounded focus:ring-orange-400"
+              name="authDemographic"
+              checked={formData.authDemographic || false}
+              onChange={handleInputChange}
+              className="w-5 h-5 text-orange-500 rounded border-gray-300 focus:ring-orange-500 mt-1"
             />
-            <span className="ml-3 text-sm font-medium">
-              All information provided is accurate and true
-            </span>
+            <span className="text-gray-700">Demographic</span>
           </label>
-        </div>
-
-        <div className="md:col-span-2">
-          <label className="flex items-center mb-4">
+          <label className="flex items-start space-x-3 cursor-pointer mb-2">
             <input
-              required
               type="checkbox"
-              className="w-4 h-4 text-yellow-500 rounded focus:ring-orange-400"
+              name="authOTP"
+              checked={formData.authOTP || false}
+              onChange={handleInputChange}
+              className="w-5 h-5 text-orange-500 rounded border-gray-300 focus:ring-orange-500 mt-1"
             />
-            <span className="ml-3 text-sm font-medium">
-              Organization complies with data protection regulations
-            </span>
+            <span className="text-gray-700">OTP</span>
           </label>
-        </div>
-
-        <div className="md:col-span-2">
-          <label className="flex items-center mb-4">
+          <label className="flex items-start space-x-3 cursor-pointer mb-2">
             <input
-              required
               type="checkbox"
-              className="w-4 h-4 text-yellow-500 rounded focus:ring-orange-400"
+              name="authFingerprint"
+              checked={formData.authFingerprint || false}
+              onChange={handleInputChange}
+              className="w-5 h-5 text-orange-500 rounded border-gray-300 focus:ring-orange-500 mt-1"
             />
-            <span className="ml-3 text-sm font-medium">
-              Organization has adequate security infrastructure
-            </span>
+            <span className="text-gray-700">Fingerprint</span>
           </label>
-        </div>
-
-        <div className="md:col-span-2">
-          <label className="flex items-center mb-4">
+          <label className="flex items-start space-x-3 cursor-pointer mb-2">
             <input
-              required
               type="checkbox"
-              className="w-4 h-4 text-yellow-500 rounded focus:ring-orange-400"
+              name="authIris"
+              checked={formData.authIris || false}
+              onChange={handleInputChange}
+              className="w-5 h-5 text-orange-500 rounded border-gray-300 focus:ring-orange-500 mt-1"
             />
-            <span className="ml-3 text-sm font-medium">
-              Organization understands the terms and conditions
-            </span>
+            <span className="text-gray-700">Iris</span>
+          </label>
+          <label className="flex items-start space-x-3 cursor-pointer mb-4">
+            <input
+              type="checkbox"
+              name="authFace"
+              checked={formData.authFace || false}
+              onChange={handleInputChange}
+              className="w-5 h-5 text-orange-500 rounded border-gray-300 focus:ring-orange-500 mt-1"
+            />
+            <span className="text-gray-700">Face</span>
           </label>
         </div>
 
@@ -88,11 +99,29 @@ function AuthenticationForm({ activeStep }) {
 
         <div>
           <label className="block text-sm font-medium mb-1">
+            Application Details
+          </label>
+          <textarea
+            required
+            name="appDetails"
+            value={formData.appDetails || ""}
+            onChange={handleInputChange}
+            placeholder="Briefly describe the applications/services requiring Aadhaar authentication"
+            rows="4"
+            className="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 focus:outline-none transition-all duration-200"
+          ></textarea>
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium mb-1">
             Officer Name *
           </label>
           <input
             required
             type="text"
+            name="officerName"
+            value={formData.officerName || ""}
+            onChange={handleInputChange}
             placeholder="Full name of authorized officer"
             className="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 focus:outline-none transition-all duration-200 focus:outline-none"
           />
@@ -105,8 +134,11 @@ function AuthenticationForm({ activeStep }) {
           <input
             required
             type="text"
+            name="officerDesignation"
+            value={formData.officerDesignation || ""}
+            onChange={handleInputChange}
             placeholder="Designation"
-            className="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 focus:outline-none transition-all duration-200 focus:outline-none"
+            className="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 focus:outline-none transition-all duration-200"
           />
         </div>
 
@@ -117,8 +149,11 @@ function AuthenticationForm({ activeStep }) {
           <input
             required
             type="email"
+            name="officerEmail"
+            value={formData.officerEmail || ""}
+            onChange={handleInputChange}
             placeholder="Email address"
-            className="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 focus:outline-none transition-all duration-200 focus:outline-none"
+            className="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 focus:outline-none transition-all duration-200"
           />
         </div>
 
@@ -130,8 +165,11 @@ function AuthenticationForm({ activeStep }) {
             required
             type="tel"
             inputMode="numeric"
+            name="officerPhone"
+            value={formData.officerPhone || ""}
+            onChange={handleInputChange}
             placeholder="Phone number (numbers only)"
-            className="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 focus:outline-none transition-all duration-200 focus:outline-none"
+            className="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 focus:outline-none transition-all duration-200"
           />
         </div>
       </div>
