@@ -146,7 +146,7 @@ Apply Now
 
  
 
-      <section className="bg-gray-100 py-5">
+      <section className="bg-gray-100 py-5 pb-20">
 
         <div className="max-w-screen-xl mx-auto px-2 text-center">
 

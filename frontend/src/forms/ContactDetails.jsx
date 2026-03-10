@@ -1,348 +1,323 @@
-function ContactDetails({ activeStep }) {
+function ContactDetails({ activeStep, setActiveStep }) {
+
   if (activeStep !== 2) return null;
 
   return (
-    <div id="step-2">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {/* Key Managerial Personnel (KMP) */}
-        <div className="md:col-span-2">
-          <h3 className="text-lg font-semibold text-gray-700 mb-4 mb-4">
-            Key Managerial Personnel (KMP)
-          </h3>
-        </div>
 
-        <div>
-          <label className="block text-sm font-medium mb-1">KMP Name</label>
-          <input
-            required
-            type="text"
-            placeholder="Name"
-            className="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 focus:outline-none transition-all duration-200 focus:outline-none"
-          />
-        </div>
+<form
+  onSubmit={(e)=>{
+    e.preventDefault();
+    setActiveStep(3);
+  }}
+  className="max-w-5xl mx-auto bg-white p-8 rounded-lg shadow-md"
+>
 
-        <div>
-          <label className="block text-sm font-medium mb-1">
-            Full Designation
-          </label>
-          <input
-            type="text"
-            placeholder="Full designation"
-            className="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 focus:outline-none transition-all duration-200 focus:outline-none"
-          />
-        </div>
+<h2 className="text-xl font-semibold text-yellow-500 mb-6">
+CONTACT DETAILS
+</h2>
 
-        <div>
-          <label className="block text-sm font-medium mb-1">
-            Official Email Address
-          </label>
-          <input
-            required
-            type="email"
-            placeholder="Email address"
-            className="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 focus:outline-none transition-all duration-200 focus:outline-none"
-          />
-        </div>
+<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-        <div>
-          <label className="block text-sm font-medium mb-1">
-            Mobile Number
-          </label>
-          <input
-            required
-            type="tel"
-            placeholder="Mobile number"
-            className="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 focus:outline-none transition-all duration-200 focus:outline-none"
-          />
-        </div>
 
-        {/* Chief Information Security Officer (CISO) */}
-        <div className="md:col-span-2">
-          <h3 className="text-lg font-semibold text-gray-700 mb-4 mb-4 mt-6">
-            Chief Information Security Officer (CISO)
-          </h3>
-        </div>
+{/* KMP */}
 
-        <div>
-          <label className="block text-sm font-medium mb-1">CISO Name</label>
-          <input
-            required
-            type="text"
-            placeholder="Name"
-            className="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 focus:outline-none transition-all duration-200 focus:outline-none"
-          />
-        </div>
+<div className="md:col-span-2">
+<h3 className="text-lg font-semibold text-gray-700 mb-4">
+Key Managerial Personnel (KMP)
+</h3>
+</div>
 
-        <div>
-          <label className="block text-sm font-medium mb-1">
-            Full Designation
-          </label>
-          <input
-            type="text"
-            placeholder="Full designation"
-            className="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 focus:outline-none transition-all duration-200 focus:outline-none"
-          />
-        </div>
+<div>
+<label className="block text-sm font-medium mb-1">
+KMP Name <span className="text-red-500 font-bold">*</span>
+</label>
 
-        <div>
-          <label className="block text-sm font-medium mb-1">
-            Official Email Address
-          </label>
-          <input
-            required
-            type="email"
-            placeholder="Email address"
-            className="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 focus:outline-none transition-all duration-200 focus:outline-none"
-          />
-        </div>
+<input
+required
+type="text"
+placeholder="Name"
+className="w-full border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-yellow-400"
+/>
+</div>
 
-        <div>
-          <label className="block text-sm font-medium mb-1">
-            Mobile Number
-          </label>
-          <input
-            required
-            type="tel"
-            placeholder="Mobile number"
-            className="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 focus:outline-none transition-all duration-200 focus:outline-none"
-          />
-        </div>
 
-        {/* Management Point of Contact (MPOC) */}
-        <div className="md:col-span-2">
-          <h3 className="text-lg font-semibold text-gray-700 mb-4 mb-4 mt-6">
-            Management Point of Contact (MPOC)
-          </h3>
-        </div>
+<div>
+<label className="block text-sm font-medium mb-1">
+Full Designation <span className="text-red-500 font-bold">*</span>
+</label>
 
-        <div>
-          <label className="block text-sm font-medium mb-1">MPOC Name</label>
-          <input
-            required
-            type="text"
-            placeholder="Name"
-            className="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 focus:outline-none transition-all duration-200 focus:outline-none"
-          />
-        </div>
+<input
+required
+type="text"
+placeholder="Full designation"
+className="w-full border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-yellow-400"
+/>
+</div>
 
-        <div>
-          <label className="block text-sm font-medium mb-1">
-            Full Designation
-          </label>
-          <input
-            type="text"
-            placeholder="Full designation"
-            className="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 focus:outline-none transition-all duration-200 focus:outline-none"
-          />
-        </div>
 
-        <div>
-          <label className="block text-sm font-medium mb-1">
-            Official Email Address
-          </label>
-          <input
-            required
-            type="email"
-            placeholder="Email address"
-            className="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 focus:outline-none transition-all duration-200 focus:outline-none"
-          />
-        </div>
+<div>
+<label className="block text-sm font-medium mb-1">
+Official Email Address <span className="text-red-500 font-bold">*</span>
+</label>
 
-        <div>
-          <label className="block text-sm font-medium mb-1">
-            Mobile Number
-          </label>
-          <input
-            required
-            type="tel"
-            placeholder="Mobile number"
-            className="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 focus:outline-none transition-all duration-200 focus:outline-none"
-          />
-        </div>
+<input
+required
+type="email"
+pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$"
+placeholder="Email address"
+className="w-full border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-yellow-400"
+/>
+</div>
 
-        {/* Technical Point of Contact (TPOC) */}
-        <div className="md:col-span-2">
-          <h3 className="text-lg font-semibold text-gray-700 mb-4 mb-4 mt-6">
-            Technical Point of Contact (TPOC)
-          </h3>
-        </div>
 
-        <div>
-          <label className="block text-sm font-medium mb-1">TPOC Name</label>
-          <input
-            type="text"
-            placeholder="Name"
-            className="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 focus:outline-none transition-all duration-200 focus:outline-none"
-          />
-        </div>
+<div>
+<label className="block text-sm font-medium mb-1">
+Mobile Number <span className="text-red-500 font-bold">*</span>
+</label>
 
-        <div>
-          <label className="block text-sm font-medium mb-1">
-            Full Designation
-          </label>
-          <input
-            type="text"
-            placeholder="Full designation"
-            className="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 focus:outline-none transition-all duration-200 focus:outline-none"
-          />
-        </div>
+<input
+required
+type="tel"
+pattern="[0-9]{10}"
+maxLength="10"
+inputMode="numeric"
+placeholder="10 digit mobile number"
+className="w-full border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-yellow-400"
+/>
+</div>
 
-        <div>
-          <label className="block text-sm font-medium mb-1">
-            Official Email Address
-          </label>
-          <input
-            type="email"
-            placeholder="Email address"
-            className="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 focus:outline-none transition-all duration-200 focus:outline-none"
-          />
-        </div>
 
-        <div>
-          <label className="block text-sm font-medium mb-1">
-            Mobile Number
-          </label>
-          <input
-            type="tel"
-            placeholder="Mobile number"
-            className="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 focus:outline-none transition-all duration-200 focus:outline-none"
-          />
-        </div>
+{/* CISO */}
 
-        {/* Grievance Redressal */}
-        <div className="md:col-span-2">
-          <h3 className="text-lg font-semibold text-gray-700 mb-4 mb-4 mt-6">
-            Grievance Redressal Details
-          </h3>
-        </div>
+<div className="md:col-span-2 mt-6">
+<h3 className="text-lg font-semibold text-gray-700 mb-4">
+Chief Information Security Officer (CISO)
+</h3>
+</div>
 
-        <div>
-          <label className="block text-sm font-medium mb-1">Website URL</label>
-          <input
-            required
-            type="url"
-            placeholder="Website URL"
-            className="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 focus:outline-none transition-all duration-200 focus:outline-none"
-          />
-        </div>
+<div>
+<label className="block text-sm font-medium mb-1">
+CISO Name <span className="text-red-500 font-bold">*</span>
+</label>
 
-        <div>
-          <label className="block text-sm font-medium mb-1">Email Address</label>
-          <input
-            required
-            type="email"
-            placeholder="Grievance email"
-            className="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 focus:outline-none transition-all duration-200 focus:outline-none"
-          />
-        </div>
+<input
+required
+type="text"
+placeholder="Name"
+className="w-full border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-yellow-400"
+/>
+</div>
 
-        <div>
-          <label className="block text-sm font-medium mb-1">
-            Helpdesk Number
-          </label>
-          <input
-            type="tel"
-            placeholder="Helpdesk number"
-            className="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 focus:outline-none transition-all duration-200 focus:outline-none"
-          />
-        </div>
 
-        <div>
-          <label className="block text-sm font-medium mb-1">
-            Designated Grievance Officer Name
-          </label>
-          <input
-            required
-            type="text"
-            placeholder="Officer name"
-            className="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 focus:outline-none transition-all duration-200 focus:outline-none"
-          />
-        </div>
+<div>
+<label className="block text-sm font-medium mb-1">
+Full Designation <span className="text-red-500 font-bold">*</span>
+</label>
 
-        <div>
-          <label className="block text-sm font-medium mb-1">
-            Grievance Officer Mobile No. *
-          </label>
-          <input
-            required
-            type="tel"
-            inputMode="numeric"
-            placeholder="Officer mobile (numbers only)"
-            className="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 focus:outline-none transition-all duration-200 focus:outline-none"
-          />
-        </div>
+<input
+required
+type="text"
+placeholder="Full designation"
+className="w-full border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-yellow-400"
+/>
+</div>
 
-        <div>
-          <label className="block text-sm font-medium mb-1">
-            Grievance Officer E-Mail ID
-          </label>
-          <input
-            required
-            type="email"
-            placeholder="Officer email"
-            className="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 focus:outline-none transition-all duration-200 focus:outline-none"
-          />
-        </div>
-      </div>
-    {/* Navigation Buttons */}
-<div className="flex justify-between mt-10 pt-6 border-t border-gray-200">
 
-  <button
-    type="button"
-    onClick={() =>
-      window.dispatchEvent(
-        new CustomEvent("changeStep", { detail: activeStep - 1 })
-      )
-    }
-    className="px-8 py-3 bg-gray-400 text-white rounded-lg font-semibold hover:bg-gray-500 transition"
-  >
-    Previous
-  </button>
+<div>
+<label className="block text-sm font-medium mb-1">
+Official Email Address <span className="text-red-500 font-bold">*</span>
+</label>
 
-  <button
-    type="button"
-    onClick={() =>
-      window.dispatchEvent(
-        new CustomEvent("changeStep", { detail: activeStep + 1 })
-      )
-    }
-    className="px-8 py-3 text-white rounded-lg font-semibold bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 shadow-md hover:shadow-lg transition"
-  >
-    Next
-  </button>
+<input
+required
+type="email"
+pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$"
+placeholder="Email address"
+className="w-full border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-yellow-400"
+/>
+</div>
 
-    </div>
-    </div>
-  );
-}
 
-/* Navigation Buttons */
-<div className="flex justify-between mt-10 pt-6 border-t border-gray-200">
+<div>
+<label className="block text-sm font-medium mb-1">
+Mobile Number <span className="text-red-500 font-bold">*</span>
+</label>
 
-  <button
-    type="button"
-    onClick={() =>
-      window.dispatchEvent(
-        new CustomEvent("changeStep", { detail: activeStep - 1 })
-      )
-    }
-    className="px-8 py-3 bg-gray-400 text-white rounded-lg font-semibold hover:bg-gray-500 transition"
-  >
-    Previous
-  </button>
+<input
+required
+type="tel"
+pattern="[0-9]{10}"
+maxLength="10"
+inputMode="numeric"
+placeholder="10 digit mobile number"
+className="w-full border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-yellow-400"
+/>
+</div>
 
-  <button
-    type="button"
-    onClick={() =>
-      window.dispatchEvent(
-        new CustomEvent("changeStep", { detail: activeStep + 1 })
-      )
-    }
-    className="px-8 py-3 text-white rounded-lg font-semibold bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 shadow-md hover:shadow-lg transition"
-  >
-    Next
-  </button>
+
+{/* MPOC */}
+
+<div className="md:col-span-2 mt-6">
+<h3 className="text-lg font-semibold text-gray-700 mb-4">
+Management Point of Contact (MPOC)
+</h3>
+</div>
+
+<div>
+<label className="block text-sm font-medium mb-1">
+MPOC Name <span className="text-red-500 font-bold">*</span>
+</label>
+
+<input
+required
+type="text"
+placeholder="Name"
+className="w-full border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-yellow-400"
+/>
+</div>
+
+
+<div>
+<label className="block text-sm font-medium mb-1">
+Full Designation <span className="text-red-500 font-bold">*</span>
+</label>
+
+<input
+required
+type="text"
+placeholder="Full designation"
+className="w-full border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-yellow-400"
+/>
+</div>
+
+
+<div>
+<label className="block text-sm font-medium mb-1">
+Official Email Address <span className="text-red-500 font-bold">*</span>
+</label>
+
+<input
+required
+type="email"
+pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$"
+placeholder="Email address"
+className="w-full border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-yellow-400"
+/>
+</div>
+
+
+<div>
+<label className="block text-sm font-medium mb-1">
+Mobile Number <span className="text-red-500 font-bold">*</span>
+</label>
+
+<input
+required
+type="tel"
+pattern="[0-9]{10}"
+maxLength="10"
+inputMode="numeric"
+placeholder="10 digit mobile number"
+className="w-full border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-yellow-400"
+/>
+</div>
+
+
+{/* Grievance */}
+
+<div className="md:col-span-2 mt-6">
+<h3 className="text-lg font-semibold text-gray-700 mb-4">
+Grievance Redressal Details
+</h3>
+</div>
+
+
+<div>
+<label className="block text-sm font-medium mb-1">
+Website URL <span className="text-red-500 font-bold">*</span>
+</label>
+
+<input
+required
+type="url"
+placeholder="Website URL"
+className="w-full border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-yellow-400"
+/>
+</div>
+
+
+<div>
+<label className="block text-sm font-medium mb-1">
+Email Address <span className="text-red-500 font-bold">*</span>
+</label>
+
+<input
+required
+type="email"
+pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$"
+placeholder="Grievance email"
+className="w-full border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-yellow-400"
+/>
+</div>
+
+
+<div>
+<label className="block text-sm font-medium mb-1">
+Helpdesk Number <span className="text-red-500 font-bold">*</span>
+</label>
+
+<input
+required
+type="tel"
+pattern="[0-9]{10}"
+maxLength="10"
+inputMode="numeric"
+placeholder="10 digit helpdesk number"
+className="w-full border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-yellow-400"
+/>
+</div>
+
+
+<div>
+<label className="block text-sm font-medium mb-1">
+Grievance Officer Name <span className="text-red-500 font-bold">*</span>
+</label>
+
+<input
+required
+type="text"
+placeholder="Officer name"
+className="w-full border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-yellow-400"
+/>
+</div>
 
 </div>
+
+
+{/* Buttons */}
+
+<div className="flex justify-between mt-10">
+
+<button
+type="button"
+onClick={()=>setActiveStep(1)}
+className="px-6 py-2 bg-yellow-500 text-black rounded-md hover:bg-yellow-600"
+>
+Previous
+</button>
+
+<button
+type="submit"
+className="px-6 py-2 bg-yellow-500 text-black font-semibold rounded-md hover:bg-yellow-600"
+>
+Next
+</button>
+
+</div>
+
+</form>
+
+  );
+}
 
 export default ContactDetails;
