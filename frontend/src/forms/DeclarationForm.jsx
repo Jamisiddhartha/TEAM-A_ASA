@@ -1,4 +1,8 @@
+import { useNavigate } from "react-router-dom";
+
 function DeclarationForm({ activeStep, setActiveStep }) {
+
+  const navigate = useNavigate();
 
   if (activeStep !== 5) return null;
 
@@ -8,6 +12,7 @@ function DeclarationForm({ activeStep, setActiveStep }) {
 onSubmit={(e)=>{
 e.preventDefault();
 alert("Application Submitted Successfully");
+navigate("/");
 }}
 className="max-w-5xl mx-auto bg-white p-8 rounded-lg shadow-md"
 >

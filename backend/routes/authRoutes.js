@@ -4,6 +4,7 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import nodemailer from "nodemailer";
 import axios from "axios";
+import https from "https";
 
 import { Verification_Email_Template, Welcome_Email_Template } 
 from "../utils/emailTemplates.js";
@@ -13,7 +14,12 @@ const router = express.Router();
 
 // EMAIL TRANSPORTER
 const transporter = nodemailer.createTransport({
-  service: "gmail",
+  host: "smtp.gmail.com",
+  port: 587,
+  secure: false,
+  pool: true,
+  maxConnections: 5,
+  maxMessages: 100,
   auth: {
     user: "teamasaproject54@gmail.com",
     pass: "jwec oncv vffv ibhn"
@@ -22,6 +28,7 @@ const transporter = nodemailer.createTransport({
 
 // SEND OTP
 router.post("/send-otp", async (req, res) => {
+  console.log("send otp route hit");
 
   try {
 
@@ -49,13 +56,26 @@ router.post("/send-otp", async (req, res) => {
       "INSERT INTO otp_verification(email, otp, expires_at) VALUES($1,$2,$3)",
       [email, otp, expiry]
     );
+     console.log("OTP generated and stored in DB:", otp);
 
-    await transporter.sendMail({
-      from: '"ASA Onboarding Team" <teamasaproject54@gmail.com>',
-      to: email,
-      subject: "ASA Portal Email Verification OTP",
-      html: Verification_Email_Template(otp)
-    });
+     try {
+
+  const info = await transporter.sendMail({
+    from: '"ASA Onboarding Team" <teamasaproject54@gmail.com>',
+    to: email,
+    subject: "ASA Portal Email Verification OTP",
+    html: Verification_Email_Template(otp)
+  });
+
+  console.log("Email sent:", info.response);
+
+} catch (error) {
+
+  console.log("Email error:", error);
+
+}
+
+    console.log("OTP email sent to:", email);
 
     res.json({
       success:true,
@@ -158,7 +178,15 @@ router.post("/login", async (req, res) => {
     const verifyURL =
       `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${captcha}`;
 
-    const response = await axios.post(verifyURL);
+    const response = await axios.post(
+  verifyURL,
+  {},
+  {
+    httpsAgent: new https.Agent({
+      rejectUnauthorized: false
+    })
+  }
+);
 
     if (!response.data.success) {
       return res.json({ message: "Captcha verification failed" });

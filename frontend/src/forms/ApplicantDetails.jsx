@@ -55,7 +55,8 @@ function ApplicationForm() {
 
       {/* MAIN */}
 
-      <div className="flex flex-1 pt-16 pb-12">
+
+      <div className="flex flex-1 pt-10 pb-12">
 
 
         {/* SIDEBAR */}

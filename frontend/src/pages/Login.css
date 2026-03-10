@@ -63,7 +63,7 @@ html, body {
 }
 
 .uidai-text {
-  color: #e88a0c;
+  color:  #FFE600;
 }
 
 .navbar-subtitle {
@@ -87,7 +87,7 @@ html, body {
 }
 
 .navbar-links a:hover {
-  color: #e88a0c;
+  color:  #FFE600;
 }
 
 /* ===== BUTTONS ===== */
@@ -109,13 +109,13 @@ html, body {
 }
 
 .btn-primary {
-  background: #e88a0c;
-  color: #ffffff;
+  background: #FFE600;   
+  color: #161D23;       
+  font-weight: 600;
 }
 
 .btn-primary:hover {
-  background: #d07a0a;
-}
+  background: #f5dc00;  }
 
 .btn-primary:disabled {
   opacity: 0.5;
@@ -231,7 +231,7 @@ html, body {
 }
 
 .register-link-anchor {
-  color: #e88a0c;
+  color:  #FFE600;
   font-weight: 500;
   text-decoration: none;
 }
@@ -257,8 +257,7 @@ html, body {
 
 .footer-brand {
   font-size: 0.875rem;
-  font-weight: 600;
-  color: #1a2332;
+  color:gray;
 }
 
 .footer-links {

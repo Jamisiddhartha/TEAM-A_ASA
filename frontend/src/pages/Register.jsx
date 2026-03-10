@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import "./Register.css";
 import aadhaarBg from "../assets/aadhaar.png";
-
+import uidaiLogo from "../assets/uidai-logo.jpg";
 export default function Register() {
 
   const [form, setForm] = useState({
@@ -163,7 +163,7 @@ const validateForm = () => {
     }
 
   } catch (err) {
-
+    console.log(err);
     alert("Error sending OTP");
 
   }
@@ -201,9 +201,13 @@ const validateForm = () => {
       );
 
       alert(res.data.message);
+      if(res.data.message === "User Registered Successfully"){
+  setOtpSent(false);
+  setOtp("");
+}
 
     } catch (err) {
-
+      console.log(err);
       alert("Verification failed");
 
     }
@@ -216,30 +220,62 @@ const validateForm = () => {
 
 {/* NAVBAR */}
 
-<nav className="register-navbar">
-
-<div className="navbar-brand">
-<span className="navbar-title">UIDAI Portal</span>
-<span className="navbar-subtitle">ASA Onboarding</span>
-</div>
-
-<div className="navbar-links">
-<a href="#">Home</a>
-<a href="#">About</a>
-<a href="#">Onboarding Process</a>
-<a href="#">Guidelines</a>
-
-<Link to="/register">
-<button className="register-btn">Register</button>
-</Link>
-
-<Link to="/">
-<button className="login-btn">Login</button>
-</Link>
-
-</div>
-
-</nav>
+<header className="w-full bg-white border-b shadow-sm fixed top-0 left-0 z-50"  >
+      
+              <div className="max-w-screen-xl mx-auto px-8 py-3 flex items-center" >
+      
+       
+      
+                <div className="flex items-center gap-3">
+      
+                  <img src={uidaiLogo} className="h-10" />
+      
+                  <div>
+      
+                    <h1 className="text-xl font-semibold">
+      
+                      <span style={{color:"#FFE600"}}>UIDAI</span> PortalPortal
+      
+                    </h1>
+      
+                    <p className="text-xs text-gray-500">ASA Onboarding</p>
+      
+                  </div>
+      
+                </div>
+      
+       
+      
+                <nav className="hidden md:flex items-center ml-auto gap-6 text-sm text-gray-700">
+      
+                  <a href="/" className="hover:text-orange-500 cursor-pointer">Home</a>
+      
+                  <a href="#" className="hover:text-orange-500 cursor-pointer">About</a>
+      
+                  <a href="#" className="hover:text-orange-500 cursor-pointer">Onboarding Process</a>
+                  <a href="#" className="hover:text-orange-500 cursor-pointer">Guidelines</a>
+                 
+      
+                </nav>
+      
+       
+      
+                <div className="hidden md:flex items-center gap-4 ml-6">
+      
+                <Link to="/register" className="px-4 py-2 border bg-gray-300 border-gray-400 rounded-md hover:bg-gray-100">
+        Register
+      </Link>
+      
+      <Link to="/login" className="px-4 py-2 bg-yellow-500 text-white rounded-md hover:bg-yellow-500">
+        Login
+      </Link>
+                </div>
+      
+       
+      
+              </div>
+      
+            </header>
 
 
 {/* REGISTER SECTION */}
@@ -439,7 +475,7 @@ Resend OTP
 
 
 <p className="register-link">
-Already have account? <Link to="/">Login</Link>
+Already have account? <Link to="/login">Login</Link>
 </p>
 
 </div>
@@ -449,17 +485,37 @@ Already have account? <Link to="/">Login</Link>
 
 {/* FOOTER */}
 
-<footer className="register-footer">
-
-<span className="footer-brand">UIDAI ASA Portal</span>
-
-<div className="footer-links">
-<a href="#">Contact</a>
-<a href="#">Privacy</a>
-<a href="#">Terms</a>
-</div>
-
-</footer>
+ <footer className="bg-white border-t py-4 fixed bottom-0 left-0 w-full z-50">
+      
+              <div className="max-w-screen-xl mx-auto px-8 flex items-center justify-between text-sm text-gray-500">
+      
+       
+      
+                <div className="flex items-center gap-2">
+      
+                  <img src={uidaiLogo} className="h-6" />
+      
+                  <span>UIDAI ASA Portal</span>
+      
+                </div>
+      
+       
+      
+                <div className="flex gap-6">
+      
+                  <a href="#">Contact</a>
+      
+                  <a href="#">Privacy</a>
+      
+                  <a href="#">Terms</a>
+      
+                </div>
+      
+       
+      
+              </div>
+      
+            </footer>
 
 </div>
 
