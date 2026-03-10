@@ -60,6 +60,8 @@ router.post("/send-otp", async (req, res) => {
 
      try {
 
+ try {
+
   const info = await transporter.sendMail({
     from: '"ASA Onboarding Team" <teamasaproject54@gmail.com>',
     to: email,
@@ -67,6 +69,18 @@ router.post("/send-otp", async (req, res) => {
     html: Verification_Email_Template(otp)
   });
 
+  console.log("Email sent:", info.response);
+
+} catch (error) {
+
+  console.log("Email error:", error);
+
+  return res.json({
+    success:false,
+    message:"Failed to send OTP email"
+  });
+
+}
   console.log("Email sent:", info.response);
 
 } catch (error) {
