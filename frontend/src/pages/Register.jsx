@@ -202,7 +202,7 @@ const validateForm = () => {
       );
 
       alert(res.data.message);
-      if(res.data.message === "Email verified successfully. You can now login."){
+      if(res.data.message === "User Registered Successfully"){
         setOtpSent(false);
         setOtp("");
         navigate("/login");
