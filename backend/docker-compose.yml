@@ -1,7 +1,6 @@
 services:
-
   postgres:
-    image: postgres
+    image: postgres:18
     container_name: asa_postgres
     restart: always
     env_file:
@@ -25,6 +24,8 @@ services:
       - postgres
     env_file:
       - .env
+    environment:
+      DB_HOST: postgres
 
 volumes:
   postgres_data:

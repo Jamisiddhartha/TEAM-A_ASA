@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<cp:coreProperties xmlns:cp="http://schemas.openxmlformats.org/package/2006/metadata/core-properties" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:dcmitype="http://purl.org/dc/dcmitype/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dc:title>core.xml</dc:title>
+	<dc:creator>SIA Webby</dc:creator>
+	<cp:lastModifiedBy>f42bc354cea1542f0644375b79e4329a</cp:lastModifiedBy>
+	<cp:revision>3</cp:revision>
+	<dcterms:created xsi:type="dcterms:W3CDTF">2026-03-10T17:06:44Z</dcterms:created>
+	<dcterms:modified xsi:type="dcterms:W3CDTF">2026-03-10T17:06:44Z</dcterms:modified>
+</cp:coreProperties>

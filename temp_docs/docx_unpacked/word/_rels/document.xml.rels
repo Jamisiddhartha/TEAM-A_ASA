@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
+	<Relationship Id="rId_1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/>
+	<Relationship Id="rId_2" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/fontTable" Target="fontTable.xml"/>
+	<Relationship Id="rId_3" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/theme" Target="theme/theme1.xml"/>
+	<Relationship Id="rId_4" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/settings" Target="settings.xml"/>
+	<Relationship Id="rId_5" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/webSettings" Target="webSettings.xml"/>
+	<Relationship Id="rId_I6GG" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="media/IMG_X1_uMIayyHYzgufqryb4tKaefoSOBLsqxpi.JPEG"/>
+	<Relationship Id="rId_PApb" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="media/IMG_X1_4Ym3Ehg4WfdbYx9Aavcy6wqutedBktPo.JPEG"/>
+	<Relationship Id="rId_236C" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="media/IMG_X1_rVdLAGugE2qmxRl2NbwEDXOxPljovWQk.JPEG"/>
+</Relationships>

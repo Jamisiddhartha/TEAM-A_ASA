@@ -1,29 +1,23 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Header from "./components/Header";
-
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import LandingPage from "./pages/LandingPage";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import LandingPage from "./pages/LandingPage";
 import FormPage from "./pages/FormPage";
+import UserDashboard from "./pages/UserDashboard";
+import ApplicationSuccess from "./pages/ApplicationSuccess";
 
 function App() {
   return (
     <BrowserRouter>
-
-
-
       <Routes>
-
         <Route path="/" element={<LandingPage />} />
-
         <Route path="/login" element={<Login />} />
-
         <Route path="/register" element={<Register />} />
-
         <Route path="/form" element={<FormPage />} />
-
+        <Route path="/dashboard" element={<UserDashboard />} />
+        <Route path="/application-success" element={<ApplicationSuccess />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
-
     </BrowserRouter>
   );
 }
