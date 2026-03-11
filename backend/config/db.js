@@ -5,8 +5,8 @@ const pool = new Pool({
   user: "postgres",
   host: "localhost",
   database: "asadb",
-  password: "rishi04",
-  port: 5432,
+  password: "Team2026",
+  port: 5433,
 });
 
 export default pool;

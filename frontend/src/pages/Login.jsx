@@ -34,7 +34,7 @@ export default function Login() {
       setLoading(true);
 
       const res = await axios.post(
-        "http://localhost:5000/api/auth/login",
+        "http://localhost:5001/api/auth/login",
         {
           ...form,
           captcha: captchaToken

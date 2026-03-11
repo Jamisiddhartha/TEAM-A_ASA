@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import "./Register.css";
 import aadhaarBg from "../assets/aadhaar.png";
@@ -18,7 +18,8 @@ export default function Register() {
   const [otp, setOtp] = useState("");
   const [otpSent, setOtpSent] = useState(false);
   const [otpExpired, setOtpExpired] = useState(false);
-  const [timerKey, setTimerKey] = useState(0);
+  const timerKey = 0; // Keeping structure clean
+  const navigate = useNavigate();
   const [errors, setErrors] = useState({});
 const [passwordChecks, setPasswordChecks] = useState({
   length: false,
@@ -150,7 +151,7 @@ const validateForm = () => {
   try {
 
     const res = await axios.post(
-      "http://localhost:5000/api/auth/send-otp",
+      "http://localhost:5001/api/auth/send-otp",
       { email: form.email }
     );
 
@@ -159,7 +160,7 @@ const validateForm = () => {
     if(res.data.success){
       setOtpSent(true);
       setOtpExpired(false);
-      setTimerKey(prev => prev + 1);
+      // Removed setTimerKey, not needed for basic redirect usage
     }
 
   } catch (err) {
@@ -196,15 +197,16 @@ const validateForm = () => {
     try {
 
       const res = await axios.post(
-        "http://localhost:5000/api/auth/verify-otp",
+        "http://localhost:5001/api/auth/verify-otp",
         { ...form, otp }
       );
 
       alert(res.data.message);
-      if(res.data.message === "User Registered Successfully"){
-  setOtpSent(false);
-  setOtp("");
-}
+      if(res.data.message === "Email verified successfully. You can now login."){
+        setOtpSent(false);
+        setOtp("");
+        navigate("/login");
+      }
 
     } catch (err) {
       console.log(err);
