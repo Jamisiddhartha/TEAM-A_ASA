@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 import "./Register.css";
 import aadhaarBg from "../assets/aadhaar.png";
 import uidaiLogo from "../assets/uidai-logo.jpg";
@@ -29,6 +31,22 @@ const [passwordChecks, setPasswordChecks] = useState({
   special: false
 });
 const [showPasswordRules, setShowPasswordRules] = useState(false);
+
+const container = useRef();
+
+useGSAP(() => {
+  gsap.fromTo(".register-card", 
+    { y: 50, opacity: 0 },
+    {
+      y: 0,
+      opacity: 1,
+      duration: 0.8,
+      ease: "back.out(1.5)",
+      delay: 0.1
+    }
+  );
+}, { scope: container });
+
 const handleChange = (e) => {
 
   const { name, value } = e.target;
@@ -218,7 +236,7 @@ const validateForm = () => {
 
   return (
 
-<div className="register-page" style={{ backgroundImage: `url(${aadhaarBg})` }}>
+<div ref={container} className="register-page" style={{ backgroundImage: `url(${aadhaarBg})` }}>
 
 {/* NAVBAR */}
 

@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import ReCAPTCHA from "react-google-recaptcha";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 import "./Login.css";
 import { Mail, Lock, Eye, EyeOff } from "lucide-react";
 import aadhaarBg from "../assets/aadhaar.png";
@@ -18,6 +20,21 @@ export default function Login() {
   const [captchaToken, setCaptchaToken] = useState(null);
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+
+  const container = useRef();
+
+  useGSAP(() => {
+    gsap.fromTo(".login-card", 
+      { y: 50, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 0.8,
+        ease: "back.out(1.5)",
+        delay: 0.1
+      }
+    );
+  }, { scope: container });
 
   const handleChange = (e) =>
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -62,7 +79,7 @@ if (res.data.token) {
   };
 
   return (
-  <div className="login-page" style={{ backgroundImage: `url(${aadhaarBg})` }}>
+  <div ref={container} className="login-page" style={{ backgroundImage: `url(${aadhaarBg})` }}>
       {/* NAVBAR */}
        <header className="w-full bg-white border-b shadow-sm fixed top-0 left-0 z-50"  >
       

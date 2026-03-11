@@ -1,5 +1,10 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Link } from "react-router-dom";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 import uidaiLogo from "../assets/uidai-logo.jpg";
 
@@ -15,9 +20,43 @@ import secureIcon from "../assets/secure.jpeg";
 
 const LandingPage = () => {
 
+  const container = useRef();
+
+  useGSAP(() => {
+    // Hero Section animation
+    gsap.fromTo(".hero-anim", 
+      { y: 30, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 1,
+        stagger: 0.2,
+        ease: "power3.out",
+        delay: 0.2
+      }
+    );
+
+    // Features Section animation (ScrollTrigger)
+    gsap.fromTo(".feature-card", 
+      { y: 50, opacity: 0 },
+      {
+        scrollTrigger: {
+          trigger: ".features-section",
+          start: "top 80%",
+          toggleActions: "play none none reverse"
+        },
+        y: 0,
+        opacity: 1,
+        duration: 1,
+        stagger: 0.2,
+        ease: "power3.out"
+      }
+    );
+  }, { scope: container });
+
   return (
 
-    <div className="min-h-screen bg-gray-100 flex flex-col">
+    <div ref={container} className="min-h-screen bg-gray-100 flex flex-col">
 
  
 
@@ -87,7 +126,7 @@ Login
 
         <div className="pl-4 md:pl-8">
 
-          <h2 className="text-3xl md:text-5xl font-bold text-gray-800 leading-tight">
+          <h2 className="hero-anim text-3xl md:text-5xl font-bold text-gray-800 leading-tight">
 
             Authentication Service
 
@@ -99,7 +138,7 @@ Login
 
  
 
-          <p className="mt-6 text-lg text-gray-600 max-w-md">
+          <p className="hero-anim mt-6 text-lg text-gray-600 max-w-md">
 
             Secure platform to apply & manage ASA onboarding and access services in a transparent manner.
 
@@ -107,7 +146,7 @@ Login
 
  
 
-          <div className="mt-8 flex flex-col md:flex-row gap-4">
+          <div className="hero-anim mt-8 flex flex-col md:flex-row gap-4">
                 <Link
 to="/login"
 className="px-6 py-3 text-center text-black bg-[#FFE600] rounded-lg font-medium hover:bg-[#e6cf00] active:scale-95 transition-all duration-200 shadow-md"
@@ -139,13 +178,13 @@ Apply Now
 
  
 
-      <section className="bg-gray-100 py-5 pb-20">
+      <section className="features-section bg-gray-100 py-5 pb-20">
 
         <div className="max-w-screen-xl mx-auto px-2 text-center">
 
  
 
-          <h3 className="text-3xl font-semibold text-gray-800">
+          <h3 className="hero-anim text-3xl font-semibold text-gray-800">
 
            Key <span style={{color:"#FFE600"}}>Features</span>
 
@@ -157,7 +196,7 @@ Apply Now
 
  
 
-            <div className="bg-white p-8 rounded-xl shadow-lg
+            <div className="feature-card bg-white p-8 rounded-xl shadow-lg
 
             hover:scale-110 transition duration-300">
 
@@ -175,7 +214,7 @@ Apply Now
 
  
 
-            <div className="bg-white p-8 rounded-xl shadow-lg
+            <div className="feature-card bg-white p-8 rounded-xl shadow-lg
 
             hover:scale-110 transition duration-300">
 
@@ -193,7 +232,7 @@ Apply Now
 
  
 
-            <div className="bg-white p-8 rounded-xl shadow-lg
+            <div className="feature-card bg-white p-8 rounded-xl shadow-lg
 
             hover:scale-110 transition duration-300">
 
