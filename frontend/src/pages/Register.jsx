@@ -262,13 +262,13 @@ const validateForm = () => {
       
        
       
-                <div className="hidden md:flex items-center gap-4 ml-6">
+                <div className="flex items-center gap-2 md:gap-4 ml-auto md:ml-6">
       
-                <Link to="/register" className="px-4 py-2 border bg-gray-300 border-gray-400 rounded-md hover:bg-gray-100">
+                <Link to="/register" className="px-3 md:px-4 py-2 border bg-gray-100 border-gray-400 rounded-md hover:bg-gray-200 active:scale-95 transition-all duration-200 shadow-sm">
         Register
       </Link>
       
-      <Link to="/login" className="px-4 py-2 bg-yellow-500 text-white rounded-md hover:bg-yellow-500">
+      <Link to="/login" className="px-3 md:px-4 py-2 font-semibold bg-[#FFE600] text-[#161D23] rounded-md hover:bg-[#e6cf00] active:scale-95 transition-all duration-200 shadow-sm">
         Login
       </Link>
                 </div>

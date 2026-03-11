@@ -59,26 +59,20 @@ const LandingPage = () => {
 
           </nav>
 
- 
-
-          <div className="hidden md:flex items-center gap-4 ml-6">
+          <div className="flex items-center gap-2 md:gap-4 ml-auto md:ml-6">
            <Link 
 to="/register"
-className="px-4 py-2 rounded-md font-semibold text-black"
-style={{ background:"#FFE600" }}
+className="px-3 md:px-4 py-2 rounded-md font-semibold text-black bg-[#FFE600] hover:bg-[#e6cf00] active:scale-95 transition-all duration-200 shadow-sm"
 >
 Register
 </Link>
          <Link 
 to="/login"
-className="px-4 py-2 rounded-md font-semibold text-black"
-style={{ background:"#FFE600" }}
+className="px-3 md:px-4 py-2 rounded-md font-semibold text-black bg-[#FFE600] hover:bg-[#e6cf00] active:scale-95 transition-all duration-200 shadow-sm"
 >
 Login
 </Link>
           </div>
-
- 
 
         </div>
 
@@ -91,9 +85,9 @@ Login
 
  
 
-        <div className="pl-8">
+        <div className="pl-4 md:pl-8">
 
-          <h2 className="text-5xl font-bold text-gray-800 leading-tight">
+          <h2 className="text-3xl md:text-5xl font-bold text-gray-800 leading-tight">
 
             Authentication Service
 
@@ -113,11 +107,10 @@ Login
 
  
 
-          <div className="mt-8 flex gap-4">
+          <div className="mt-8 flex flex-col md:flex-row gap-4">
                 <Link
 to="/login"
-className="px-6 py-3 text-black rounded-lg font-medium hover:opacity-90"
-style={{background:"#FFE600"}}
+className="px-6 py-3 text-center text-black bg-[#FFE600] rounded-lg font-medium hover:bg-[#e6cf00] active:scale-95 transition-all duration-200 shadow-md"
 >
 Apply Now
 </Link>
@@ -128,7 +121,7 @@ Apply Now
 
               href="#"
 
-              className="px-6 py-3 border border-gray-300 rounded-lg hover:bg-gray-100 font-medium"
+              className="px-6 py-3 text-center border border-gray-300 rounded-lg hover:bg-gray-100 font-medium active:scale-95 transition-all duration-200"
 
             >
 
