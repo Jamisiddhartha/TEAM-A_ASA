@@ -1,4 +1,4 @@
-import { useState } from "react";
+﻿import { useState } from "react";
 import { CheckCircle2, ClipboardList, Download, FileText, Mail, LogOut, Shield, User } from "lucide-react";
 import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { getDeclarationPdfUrl } from "../services/portalApi";
@@ -45,7 +45,7 @@ function ApplicationSuccess() {
 
   return (
     <div className="asa-success-page min-h-screen">
-      <header className="asa-dash-topbar">
+      <header className="asa-success-topbar">
         <div className="asa-dash-top-title">
           <div className="asa-dash-brand-icon"><Shield size={18} /></div>
           <div>
@@ -126,7 +126,7 @@ function InfoTile({ icon: Icon, label, value }) {
         </div>
         <div>
           <p className="text-xs uppercase tracking-[0.18em] text-[#6c6c73]">{label}</p>
-          <p className="mt-1 text-sm font-semibold text-[#1f1f1f]">{value || "Not available"}</p>
+          <p className="asa-success-tile-value mt-1 text-sm font-semibold text-[#1f1f1f]">{value || "Not available"}</p>
         </div>
       </div>
     </div>
@@ -134,4 +134,5 @@ function InfoTile({ icon: Icon, label, value }) {
 }
 
 export default ApplicationSuccess;
+
 

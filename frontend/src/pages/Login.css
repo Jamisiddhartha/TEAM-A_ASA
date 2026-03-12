@@ -14,7 +14,7 @@ html, body, #root {
   flex-direction: column;
   width: 100%;
   background-size: cover;
-  background-position: center;
+  background-position: center -60px;
   background-repeat: no-repeat;
   background-attachment: fixed;
   position: relative;
@@ -24,7 +24,9 @@ html, body, #root {
   content: "";
   position: fixed;
   inset: 0;
-  background: linear-gradient(180deg, rgba(10, 10, 12, 0.88) 0%, rgba(18, 18, 24, 0.9) 100%);
+  background:
+    radial-gradient(circle at 18% 24%, rgba(255, 230, 0, 0.14) 0%, rgba(255, 230, 0, 0) 34%),
+    linear-gradient(180deg, rgba(9, 9, 12, 0.66) 0%, rgba(14, 14, 20, 0.76) 100%);
   pointer-events: none;
   z-index: 0;
 }
@@ -397,6 +399,9 @@ html, body, #root {
     align-items: flex-start;
   }
 }
+
+
+
 
 
 

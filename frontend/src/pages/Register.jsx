@@ -1,9 +1,9 @@
-import { useState } from "react";
+ï»¿import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
+import { Shield } from "lucide-react";
 import "./Register.css";
 import aadhaarBg from "../assets/aadhaar.png";
-import uidaiLogo from "../assets/uidai-logo.jpg";
 import { sendOtp, verifyOtp } from "../services/portalApi";
 
 export default function Register() {
@@ -113,11 +113,11 @@ export default function Register() {
     if (!passwordRegex.test(form.password)) {
       alert(
         "Password must contain:\n\n" +
-          "• Minimum 8 characters\n" +
-          "• One uppercase letter\n" +
-          "• One lowercase letter\n" +
-          "• One number\n" +
-          "• One special character"
+          "â€¢ Minimum 8 characters\n" +
+          "â€¢ One uppercase letter\n" +
+          "â€¢ One lowercase letter\n" +
+          "â€¢ One number\n" +
+          "â€¢ One special character"
       );
       return;
     }
@@ -151,29 +151,31 @@ export default function Register() {
       <header className="register-header">
         <div className="register-header-inner">
           <div className="register-brand-wrap">
-            <img src={uidaiLogo} className="h-10" alt="UIDAI" />
+            <div className="asa-dash-brand-icon register-brand-icon">
+              <Shield size={18} />
+            </div>
             <div>
-              <h1 className="register-brand-title">
-                <span style={{ color: "#FFE600" }}>UIDAI</span> Portal
-              </h1>
+              <h1 className="register-brand-title">UIDAI Portal</h1>
               <p className="register-brand-subtitle">ASA Onboarding</p>
             </div>
           </div>
 
-          <nav className="register-nav">
-            <Link to="/" className="register-nav-link">Home</Link>
-            <a href="#" className="register-nav-link">About</a>
-            <a href="#" className="register-nav-link">Onboarding Process</a>
-            <a href="#" className="register-nav-link">Guidelines</a>
-          </nav>
+          <div className="register-header-right">
+            <nav className="register-nav">
+              <Link to="/" className="register-nav-link">Home</Link>
+              <a href="#" className="register-nav-link">About</a>
+              <a href="#" className="register-nav-link">Onboarding Process</a>
+              <a href="#" className="register-nav-link">Guidelines</a>
+            </nav>
 
-          <div className="register-nav-actions">
-            <Link to="/register" className="register-nav-btn register-nav-btn-muted">
-              Register
-            </Link>
-            <Link to="/login" className="register-nav-btn register-nav-btn-primary">
-              Login
-            </Link>
+            <div className="register-header-actions">
+              <Link to="/register" className="register-header-btn register-header-btn-primary">
+                Register
+              </Link>
+              <Link to="/login" className="register-header-btn register-header-btn-muted">
+                Login
+              </Link>
+            </div>
           </div>
         </div>
       </header>
@@ -225,11 +227,11 @@ export default function Register() {
                 >
                   Password must contain:
                 </span>
-                <span style={{ color: passwordChecks.length ? "green" : "red" }}> • Minimum 8 characters</span>
-                <span style={{ color: passwordChecks.uppercase ? "green" : "red" }}> • One uppercase letter</span>
-                <span style={{ color: passwordChecks.lowercase ? "green" : "red" }}> • One lowercase letter</span>
-                <span style={{ color: passwordChecks.number ? "green" : "red" }}> • One number</span>
-                <span style={{ color: passwordChecks.special ? "green" : "red" }}> • One special character</span>
+                <span style={{ color: passwordChecks.length ? "green" : "red" }}> â€¢ Minimum 8 characters</span>
+                <span style={{ color: passwordChecks.uppercase ? "green" : "red" }}> â€¢ One uppercase letter</span>
+                <span style={{ color: passwordChecks.lowercase ? "green" : "red" }}> â€¢ One lowercase letter</span>
+                <span style={{ color: passwordChecks.number ? "green" : "red" }}> â€¢ One number</span>
+                <span style={{ color: passwordChecks.special ? "green" : "red" }}> â€¢ One special character</span>
               </p>
             )}
           </div>
@@ -266,7 +268,7 @@ export default function Register() {
                     }}
                   >
                     {({ remainingTime }) => (
-                      <div style={{ color: "#000", fontWeight: "bold", fontSize: "14px" }}>{remainingTime}</div>
+                      <div style={{ color: "#ffe600", fontWeight: "700", fontSize: "14px", textShadow: "0 1px 2px rgba(0,0,0,0.7)" }}>{remainingTime}</div>
                     )}
                   </CountdownCircleTimer>
                 </div>
@@ -305,7 +307,9 @@ export default function Register() {
       <footer className="register-footer">
         <div className="register-footer-inner">
           <div className="register-footer-brand">
-            <img src={uidaiLogo} className="h-6" alt="UIDAI" />
+            <div className="ey-mini-logo">
+              <Shield size={12} />
+            </div>
             <span>UIDAI ASA Portal</span>
           </div>
 
@@ -319,3 +323,4 @@ export default function Register() {
     </div>
   );
 }
+
