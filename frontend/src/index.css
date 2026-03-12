@@ -149,7 +149,7 @@ a {
 .portal-form label,
 .workspace-grid label {
   display: grid;
-  gap: 10px;
+  gap: 8px;
 }
 
 .portal-form {
@@ -367,7 +367,7 @@ a {
 .checklist-form {
   display: grid;
   gap: 12px;
-  margin-top: 16px;
+  margin-top: 14px;
 }
 
 .checklist-form label {
@@ -438,7 +438,7 @@ a {
 
 .command-center-spotlight h2 {
   margin: 16px 0 6px;
-  font-size: 1.8rem;
+  font-size: 0.95rem;
 }
 
 .command-center-spotlight p {
@@ -501,7 +501,7 @@ a {
 
 .flow-selector-label {
   display: grid;
-  gap: 10px;
+  gap: 8px;
   font-weight: 600;
 }
 
@@ -584,7 +584,7 @@ a {
 
 .flow-pill-row {
   display: flex;
-  gap: 10px;
+  gap: 8px;
   flex-wrap: wrap;
   justify-content: flex-end;
 }
@@ -842,7 +842,7 @@ a {
   display: grid;
   grid-template-columns: 1fr 1.2fr;
   gap: 20px;
-  margin-top: 24px;
+  margin-top: 18px;
 }
 
 .step3-applicant-list {
@@ -903,13 +903,13 @@ a {
 
 .step3-condition-list {
   display: grid;
-  gap: 10px;
+  gap: 8px;
   margin-top: 8px;
 }
 
 .step3-condition-item {
   display: flex;
-  gap: 10px;
+  gap: 8px;
   align-items: flex-start;
   border-radius: 14px;
   border: 1px solid rgba(31, 31, 31, 0.08);
@@ -930,7 +930,7 @@ a {
   margin-top: 18px;
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 8px;
 }
 
 .step3-cta-row .button {
@@ -941,5 +941,2748 @@ a {
   .officer-step3-grid,
   .step3-selected-meta {
     grid-template-columns: 1fr;
+  }
+}
+
+/* ASA Dashboard */
+.asa-dash-layout {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  min-height: 100vh;
+  background: #f4f5f7;
+  color: #101f3a;
+}
+
+.asa-dash-sidebar {
+  background: linear-gradient(180deg, #33251b 0%, #231811 100%);
+  color: #fff;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px 16px;
+}
+
+.asa-dash-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.asa-dash-brand-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(180deg, #ffe600 0%, #d4bf00 100%);
+  color: #111;
+}
+
+.asa-dash-brand h2 {
+  margin: 0;
+  font-size: 1.1rem;
+  line-height: 1;
+  letter-spacing: 0.02em;
+}
+
+.asa-dash-brand p {
+  margin: 4px 0 0;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+}
+
+.asa-dash-nav {
+  display: grid;
+  gap: 6px;
+}
+
+.asa-dash-nav-item {
+  border: none;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.9);
+  border-radius: 14px;
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 1rem;
+  cursor: pointer;
+  text-align: left;
+}
+
+.asa-dash-nav-item:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.asa-dash-nav-item.active {
+  background: rgba(255, 153, 0, 0.22);
+  color: #ff9f1a;
+  font-weight: 700;
+}
+
+.asa-dash-side-footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  padding-top: 14px;
+}
+
+.asa-dash-side-footer p {
+  margin: 0 0 14px;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.95rem;
+  word-break: break-word;
+}
+
+.asa-dash-logout {
+  border: none;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.9);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.05rem;
+  cursor: pointer;
+}
+
+.asa-dash-main {
+  min-width: 0;
+}
+
+.asa-dash-topbar {
+  height: 72px;
+  background: #fff;
+  border-bottom: 1px solid #e6e9ef;
+  padding: 0 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.asa-dash-top-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.asa-dash-top-title img {
+  width: 30px;
+  height: 30px;
+  object-fit: cover;
+}
+
+.asa-dash-top-title strong {
+  display: block;
+  font-size: 1.15rem;
+  line-height: 1.1;
+}
+
+.asa-dash-top-title span {
+  display: block;
+  color: #6e7c92;
+  margin-top: 2px;
+  font-size: 0.92rem;
+}
+
+.asa-dash-new-btn {
+  border: none;
+  background: linear-gradient(180deg, #ff9f1a 0%, #eb7e00 100%);
+  color: #fff;
+  border-radius: 14px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 10px 20px rgba(235, 126, 0, 0.25);
+}
+
+.asa-dash-content {
+  padding: 20px 28px 24px;
+}
+
+.asa-dash-headline h1 {
+  margin: 0;
+  font-size: 2.2rem;
+  line-height: 1.2;
+}
+
+.asa-dash-headline p {
+  margin: 8px 0 0;
+  color: #5f6f87;
+  font-size: 0.95rem;
+}
+
+.asa-dash-metrics {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.asa-metric-card {
+  background: #fff;
+  border: 1px solid #e5e9f0;
+  border-radius: 16px;
+  padding: 18px;
+}
+
+.asa-metric-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  background: #f4f1eb;
+  color: #7a4d1f;
+}
+
+.asa-metric-icon.orange {
+  background: #ff9f1a;
+  color: #fff;
+}
+
+.asa-metric-card strong {
+  margin-top: 12px;
+  display: block;
+  font-size: 1.15rem;
+  line-height: 1;
+}
+
+.asa-metric-card p {
+  margin: 8px 0 0;
+  color: #5f6f87;
+  font-size: 0.95rem;
+}
+
+.asa-dash-panels {
+  margin-top: 16px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.asa-dash-panel {
+  background: #fff;
+  border: 1px solid #e5e9f0;
+  border-radius: 16px;
+  padding: 18px;
+}
+
+.asa-panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.asa-panel-head h3,
+.asa-dash-panel h3 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.asa-recent-item {
+  border: 1px solid #edf0f4;
+  background: #fbfcfd;
+  border-radius: 12px;
+  padding: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.asa-recent-item strong {
+  display: block;
+  font-size: 1rem;
+}
+
+.asa-recent-item p {
+  margin: 5px 0 0;
+  color: #5f6f87;
+  font-size: 0.9rem;
+}
+
+.asa-recent-item span {
+  border-radius: 999px;
+  background: #f2ede6;
+  padding: 6px 10px;
+  font-size: 0.86rem;
+  color: #65574c;
+  font-weight: 600;
+}
+
+.asa-step-mini-list {
+  display: grid;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.asa-step-mini-item {
+  display: grid;
+  grid-template-columns: 34px 1fr auto;
+  align-items: center;
+  gap: 10px;
+}
+
+.asa-step-mini-item span {
+  width: 30px;
+  height: 30px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  background: #ff9f1a;
+  color: #fff;
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+.asa-step-mini-item p {
+  margin: 0;
+  color: #172a48;
+  font-size: 0.95rem;
+}
+
+.asa-step-mini-item em {
+  font-style: normal;
+  font-size: 0.9rem;
+  color: #eb7e00;
+}
+
+@media (max-width: 1200px) {
+  .asa-dash-layout {
+    grid-template-columns: 270px 1fr;
+  }
+
+  .asa-dash-metrics {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 920px) {
+  .asa-dash-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .asa-dash-sidebar {
+    display: none;
+  }
+
+  .asa-dash-topbar,
+  .asa-dash-content {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .asa-dash-top-title strong {
+    font-size: 0.95rem;
+  }
+
+  .asa-dash-headline h1 {
+    font-size: 1.1rem;
+  }
+
+  .asa-dash-headline p {
+    font-size: 1.1rem;
+  }
+
+  .asa-dash-metrics,
+  .asa-dash-panels {
+    grid-template-columns: 1fr;
+  }
+}
+.asa-app-table {
+  display: grid;
+  gap: 8px;
+}
+
+.asa-app-head,
+.asa-app-row {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr 0.6fr 0.8fr;
+  gap: 8px;
+  align-items: center;
+}
+
+.asa-app-head {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #6f7a8b;
+  padding: 8px 10px;
+}
+
+.asa-app-row {
+  border: 1px solid #edf0f4;
+  background: #fbfcfd;
+  border-radius: 12px;
+  padding: 12px 10px;
+  color: #172a48;
+  font-size: 0.78rem;
+}
+
+.asa-flow-stack {
+  display: grid;
+  gap: 12px;
+}
+
+.asa-flow-card {
+  border: 1px solid #e7ebf3;
+  border-radius: 12px;
+  padding: 12px;
+  background: #fbfcfd;
+}
+
+.asa-flow-card.current {
+  border-color: #f39d20;
+  box-shadow: 0 0 0 2px rgba(243, 157, 32, 0.16);
+}
+
+.asa-flow-card.done {
+  border-color: #9fd3b5;
+}
+
+.asa-flow-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  align-items: center;
+}
+
+.asa-flow-top h4 {
+  margin: 0;
+  font-size: 1.08rem;
+}
+
+.asa-flow-top span {
+  border-radius: 999px;
+  background: #eef2f7;
+  color: #59677f;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 6px 10px;
+}
+
+.asa-flow-card p {
+  margin: 8px 0 0;
+  color: #5f6f87;
+}
+
+.asa-flow-card small {
+  display: inline-block;
+  margin-top: 8px;
+  color: #e87900;
+  font-weight: 600;
+}
+
+.asa-profile-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.asa-profile-grid div {
+  border: 1px solid #edf0f4;
+  background: #fbfcfd;
+  border-radius: 12px;
+  padding: 12px;
+}
+
+.asa-profile-grid span {
+  display: block;
+  font-size: 0.76rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #6f7a8b;
+}
+
+.asa-profile-grid strong {
+  display: block;
+  margin-top: 8px;
+  color: #172a48;
+}
+
+@media (max-width: 920px) {
+  .asa-app-head,
+  .asa-app-row,
+  .asa-profile-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .asa-app-head {
+    display: none;
+  }
+}
+
+
+
+
+
+
+/* Dashboard Screenshot Matching Overrides */
+.asa-dash-brand h2 { font-size: 2rem; }
+.asa-dash-top-title strong { font-size: 1.1rem; }
+.asa-dash-top-title span { font-size: 0.76rem; }
+.asa-dash-headline h1 { font-size: 2.2rem; }
+.asa-dash-headline p { font-size: 0.95rem; }
+.asa-metric-card strong { font-size: 2rem; }
+.asa-inline-new-btn {
+  border: none;
+  background: linear-gradient(180deg, #ff9f1a 0%, #eb7e00 100%);
+  color: #fff;
+  border-radius: 12px;
+  padding: 10px 16px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.asa-page-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.asa-page-head h2 {
+  margin: 0;
+  font-size: 2.05rem;
+  line-height: 1.2;
+}
+
+.asa-page-head p {
+  margin: 6px 0 0;
+  color: #5f6f87;
+  font-size: 0.95rem;
+}
+
+.asa-app-list-wrap {
+  border: 1px solid #e5e9f0;
+  border-radius: 14px;
+  background: #fff;
+  padding: 10px;
+}
+
+.asa-app-list-row {
+  border: 1px solid #edf0f4;
+  background: #fbfcfd;
+  border-radius: 12px;
+  padding: 12px 14px;
+  display: grid;
+  grid-template-columns: 1fr auto auto auto;
+  align-items: center;
+  gap: 12px;
+}
+
+.asa-app-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+}
+
+.asa-app-doc {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(180deg, #ff9f1a 0%, #eb7e00 100%);
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.asa-app-left h4 {
+  margin: 0;
+  font-size: 1.9rem;
+  line-height: 1.2;
+}
+
+.asa-app-left p {
+  margin: 6px 0 0;
+  color: #5f6f87;
+  font-size: 0.95rem;
+}
+
+.asa-app-right {
+  text-align: right;
+}
+
+.asa-app-right small {
+  display: block;
+  color: #5f6f87;
+  margin-top: 5px;
+  font-size: 0.9rem;
+}
+
+.asa-status-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: #f0ebe5;
+  color: #1f2a3e;
+  font-size: 0.82rem;
+  font-weight: 700;
+  padding: 6px 12px;
+}
+
+.asa-icon-action {
+  border: none;
+  background: transparent;
+  color: #5f6f87;
+  cursor: pointer;
+  display: inline-grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+}
+
+.asa-icon-action:hover {
+  background: #eef2f6;
+  color: #1f2a3e;
+}
+
+.asa-flow-head {
+  margin-bottom: 14px;
+}
+
+.asa-flow-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.asa-light-btn {
+  border: 1px solid #d9dee7;
+  background: #fff;
+  color: #1f2a3e;
+  border-radius: 12px;
+  padding: 10px 14px;
+  font-size: 0.95rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.asa-flow-select {
+  min-width: 280px;
+  border: 1px solid #d9dee7;
+  background: #fff;
+  color: #1f2a3e;
+  border-radius: 12px;
+  padding: 10px 12px;
+  font-size: 0.95rem;
+}
+
+.asa-flow-summary {
+  border: 1px solid #e5e9f0;
+  border-radius: 14px;
+  background: #fff;
+  padding: 14px;
+  margin-bottom: 14px;
+}
+
+.asa-flow-summary-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.asa-flow-progress-numbers {
+  text-align: right;
+}
+
+.asa-flow-progress-numbers strong {
+  display: block;
+  color: #ea7e00;
+  font-size: 2.2rem;
+  line-height: 1;
+}
+
+.asa-flow-progress-numbers span {
+  color: #5f6f87;
+  font-size: 0.82rem;
+  letter-spacing: 0.06em;
+}
+
+.asa-flow-track {
+  margin-top: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: #eceff4;
+  overflow: hidden;
+}
+
+.asa-flow-track div {
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #ff9f1a 0%, #eb7e00 100%);
+}
+
+.asa-flow-summary small {
+  display: inline-block;
+  margin-top: 8px;
+  color: #5f6f87;
+  font-size: 0.88rem;
+}
+
+.asa-flow-list {
+  display: grid;
+  gap: 0;
+}
+
+.asa-flow-step {
+  border: 1px solid #e5e9f0;
+  border-radius: 14px;
+  background: #fff;
+  padding: 14px;
+}
+
+.asa-flow-step.current {
+  border-color: rgba(241, 156, 0, 0.7);
+  box-shadow: 0 0 0 2px rgba(241, 156, 0, 0.12);
+}
+
+.asa-flow-step-row {
+  display: grid;
+  grid-template-columns: 54px 1fr auto;
+  gap: 12px;
+  align-items: start;
+}
+
+.asa-flow-step-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  background: #f1f4f8;
+  color: #69778d;
+}
+
+.asa-flow-step-title-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.asa-flow-step-title-row h4 {
+  margin: 0;
+  font-size: 1.15rem;
+}
+
+.asa-flow-pill-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.asa-pill-muted,
+.asa-pill-current {
+  border-radius: 999px;
+  padding: 5px 10px;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.asa-pill-muted {
+  background: #eff2f6;
+  color: #607086;
+}
+
+.asa-pill-current {
+  background: #f39d20;
+  color: #fff;
+}
+
+.asa-flow-step-body p {
+  margin: 6px 0 0;
+  color: #5f6f87;
+  font-size: 0.95rem;
+}
+
+.asa-flow-expand {
+  border: none;
+  background: transparent;
+  color: #68778d;
+  cursor: pointer;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+}
+
+.asa-flow-expand:hover {
+  background: #eef2f6;
+}
+
+.asa-flow-expanded {
+  margin-top: 12px;
+  border-top: 1px solid #e9edf3;
+  padding-top: 12px;
+  display: grid;
+  gap: 10px;
+}
+
+.asa-flow-expanded span {
+  display: block;
+  font-size: 0.78rem;
+  color: #5f6f87;
+  letter-spacing: 0.06em;
+}
+
+.asa-flow-expanded p {
+  margin: 4px 0 0;
+  font-size: 0.95rem;
+  color: #1f2a3e;
+}
+
+.asa-flow-dates {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.asa-flow-expanded small {
+  color: #ea7e00;
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+.asa-flow-arrow {
+  text-align: center;
+  color: #9aa5b6;
+  font-size: 1.5rem;
+  line-height: 1;
+  padding: 6px 0;
+}
+
+.asa-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(18, 23, 31, 0.68);
+  z-index: 130;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+}
+
+.asa-modal {
+  width: min(620px, calc(100% - 24px));
+  border-radius: 16px;
+  background: #fff;
+  border: 1px solid #e2e7ef;
+  box-shadow: 0 28px 70px rgba(15, 20, 30, 0.35);
+  padding: 16px;
+}
+
+.asa-modal-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.asa-modal-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.asa-modal-title .asa-app-doc {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+}
+
+.asa-modal-title h3 {
+  margin: 0;
+  font-size: 1.85rem;
+}
+
+.asa-modal-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 18px;
+  margin-top: 8px;
+}
+
+.asa-modal-grid span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.78rem;
+  color: #5f6f87;
+  letter-spacing: 0.04em;
+}
+
+.asa-modal-grid p {
+  margin: 5px 0 0;
+  font-size: 0.98rem;
+  color: #172a48;
+  font-weight: 600;
+}
+
+.asa-modal-progress {
+  border-top: 1px solid #e8edf3;
+  margin-top: 12px;
+  padding-top: 12px;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.asa-modal-progress small {
+  display: block;
+  color: #5f6f87;
+  font-size: 0.78rem;
+}
+
+.asa-modal-progress .asa-status-pill {
+  margin-top: 7px;
+}
+
+.asa-modal-progress-right {
+  text-align: right;
+}
+
+.asa-modal-progress-right strong {
+  color: #ea7e00;
+  font-size: 1.85rem;
+}
+
+.asa-modal-cta {
+  margin-top: 14px;
+  width: 100%;
+  border: none;
+  border-radius: 12px;
+  padding: 11px 14px;
+  background: linear-gradient(180deg, #ff9f1a 0%, #eb7e00 100%);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+@media (max-width: 920px) {
+  .asa-page-head,
+  .asa-flow-controls,
+  .asa-flow-summary-top,
+  .asa-app-list-row {
+    grid-template-columns: 1fr;
+    display: grid;
+  }
+
+  .asa-flow-controls {
+    gap: 8px;
+  }
+
+  .asa-flow-select {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .asa-modal-grid,
+  .asa-flow-dates {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Final size correction to match screenshot proportions */
+.asa-dash-layout {
+  grid-template-columns: 315px 1fr;
+}
+
+.asa-dash-topbar {
+  height: 64px;
+  padding: 0 20px;
+}
+
+.asa-dash-content {
+  padding: 16px 20px 20px;
+}
+
+.asa-dash-brand h2 {
+  font-size: 1.8rem;
+}
+
+.asa-dash-top-title strong {
+  font-size: 1rem;
+}
+
+.asa-dash-top-title span {
+  font-size: 0.72rem;
+}
+
+.asa-dash-headline h1 {
+  font-size: 1.8rem;
+}
+
+.asa-dash-headline p {
+  font-size: 0.9rem;
+}
+
+.asa-metric-card {
+  padding: 14px;
+}
+
+.asa-metric-icon {
+  width: 42px;
+  height: 42px;
+}
+
+.asa-metric-card strong {
+  font-size: 1.65rem;
+}
+
+.asa-page-head h2 {
+  font-size: 1.65rem;
+}
+
+.asa-page-head p {
+  font-size: 0.9rem;
+}
+
+.asa-app-doc {
+  width: 44px;
+  height: 44px;
+}
+
+.asa-app-left h4 {
+  font-size: 1.45rem;
+}
+
+.asa-app-left p,
+.asa-app-right small {
+  font-size: 0.84rem;
+}
+
+.asa-flow-progress-numbers strong {
+  font-size: 1.8rem;
+}
+
+.asa-flow-progress-numbers span {
+  font-size: 0.74rem;
+}
+
+.asa-flow-step-title-row h4 {
+  font-size: 1rem;
+}
+
+.asa-flow-step-body p,
+.asa-flow-expanded p {
+  font-size: 0.88rem;
+}
+
+.asa-modal {
+  width: min(560px, calc(100% - 20px));
+  padding: 14px;
+}
+
+.asa-modal-title h3 {
+  font-size: 1.5rem;
+}
+
+.asa-modal-grid p {
+  font-size: 0.9rem;
+}
+
+.asa-modal-progress-right strong {
+  font-size: 1.55rem;
+}
+
+/* Hard lock sizing to match screenshot */
+.asa-dashboard-head {
+  margin-bottom: 12px !important;
+}
+
+.asa-dashboard-head .asa-inline-new-btn {
+  margin-left: auto !important;
+}
+
+.asa-dash-topbar {
+  height: 62px !important;
+  padding: 0 18px !important;
+}
+
+.asa-dash-content {
+  padding: 14px 18px 18px !important;
+}
+
+.asa-dash-top-title strong {
+  font-size: 0.95rem !important;
+}
+
+.asa-dash-top-title span {
+  font-size: 0.7rem !important;
+}
+
+.asa-dash-headline h1 {
+  font-size: 1.65rem !important;
+}
+
+.asa-dash-headline p {
+  font-size: 0.86rem !important;
+}
+
+.asa-page-head h2 {
+  font-size: 1.55rem !important;
+}
+
+.asa-page-head p {
+  font-size: 0.86rem !important;
+}
+
+.asa-metric-card {
+  padding: 12px !important;
+}
+
+.asa-metric-icon {
+  width: 38px !important;
+  height: 38px !important;
+}
+
+.asa-metric-card strong {
+  font-size: 1.45rem !important;
+}
+
+.asa-metric-card p {
+  font-size: 0.84rem !important;
+}
+
+.asa-panel-head h3,
+.asa-dash-panel h3 {
+  font-size: 1rem !important;
+}
+
+.asa-app-list-row {
+  padding: 10px 12px !important;
+}
+
+.asa-app-doc {
+  width: 40px !important;
+  height: 40px !important;
+}
+
+.asa-app-left h4 {
+  font-size: 1.05rem !important;
+}
+
+.asa-app-left p,
+.asa-app-right small,
+.asa-status-pill {
+  font-size: 0.8rem !important;
+}
+
+.asa-flow-progress-numbers strong {
+  font-size: 1.6rem !important;
+}
+
+.asa-flow-progress-numbers span {
+  font-size: 0.7rem !important;
+}
+
+.asa-flow-step-title-row h4 {
+  font-size: 0.96rem !important;
+}
+
+.asa-flow-step-body p,
+.asa-flow-expanded p,
+.asa-flow-expanded small {
+  font-size: 0.82rem !important;
+}
+
+.asa-modal {
+  width: min(540px, calc(100% - 20px)) !important;
+  padding: 12px !important;
+}
+
+.asa-modal-title h3 {
+  font-size: 1.2rem !important;
+}
+
+.asa-modal-grid p,
+.asa-modal-progress-right strong {
+  font-size: 0.95rem !important;
+}
+
+
+/* Screenshot-exact compact flow sizing */
+.asa-flow-step {
+  padding: 10px 12px !important;
+  border-radius: 12px !important;
+}
+
+.asa-flow-step-row {
+  grid-template-columns: 42px 1fr auto !important;
+  gap: 8px !important;
+}
+
+.asa-flow-step-icon {
+  width: 34px !important;
+  height: 34px !important;
+  border-radius: 10px !important;
+}
+
+.asa-flow-step-title-row h4 {
+  font-size: 0.9rem !important;
+}
+
+.asa-pill-muted,
+.asa-pill-current {
+  padding: 4px 8px !important;
+  font-size: 0.75rem !important;
+}
+
+.asa-flow-step-body p {
+  margin-top: 4px !important;
+  font-size: 0.8rem !important;
+  line-height: 1.35 !important;
+}
+
+.asa-flow-expanded {
+  margin-top: 8px !important;
+  padding-top: 8px !important;
+  gap: 8px !important;
+}
+
+.asa-flow-expanded span {
+  font-size: 0.7rem !important;
+  letter-spacing: 0.04em !important;
+}
+
+.asa-flow-expanded p {
+  margin-top: 2px !important;
+  font-size: 0.8rem !important;
+  line-height: 1.35 !important;
+}
+
+.asa-flow-dates {
+  gap: 8px !important;
+}
+
+.asa-flow-expanded small {
+  font-size: 0.78rem !important;
+}
+
+.asa-flow-arrow {
+  padding: 2px 0 !important;
+}
+
+
+/* Requested flow updates */
+.asa-flow-controls {
+  flex-wrap: nowrap !important;
+}
+
+.asa-light-btn {
+  white-space: nowrap;
+}
+
+.asa-flow-select {
+  min-width: 340px !important;
+}
+
+.asa-modal {
+  width: min(760px, calc(100% - 24px)) !important;
+}
+
+.asa-flow-arrow {
+  width: 100%;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.asa-flow-check-list {
+  margin: 4px 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 4px;
+}
+
+.asa-flow-check-list li {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.asa-flow-check-list li svg {
+  color: #f39d20;
+  flex-shrink: 0;
+}
+
+.asa-flow-check-list li span {
+  color: #1f2a3e !important;
+  font-size: 0.82rem !important;
+  letter-spacing: normal !important;
+  text-transform: none !important;
+}
+
+/* My Applications compact sizing */
+.asa-applications-page .asa-page-head {
+  margin-bottom: 10px !important;
+}
+
+.asa-applications-page .asa-page-head h2 {
+  font-size: 1.34rem !important;
+  line-height: 1.2 !important;
+}
+
+.asa-applications-page .asa-page-head p {
+  font-size: 0.82rem !important;
+  margin-top: 4px !important;
+}
+
+.asa-applications-page .asa-inline-new-btn {
+  padding: 8px 14px !important;
+  border-radius: 10px !important;
+  font-size: 0.86rem !important;
+}
+
+.asa-applications-page .asa-app-list-wrap {
+  border-radius: 12px !important;
+  padding: 8px !important;
+}
+
+.asa-applications-page .asa-app-list-row {
+  padding: 9px 10px !important;
+  border-radius: 10px !important;
+  gap: 8px !important;
+}
+
+.asa-applications-page .asa-app-left {
+  gap: 10px !important;
+}
+
+.asa-applications-page .asa-app-doc {
+  width: 34px !important;
+  height: 34px !important;
+  border-radius: 10px !important;
+}
+
+.asa-applications-page .asa-app-left h4 {
+  font-size: 0.96rem !important;
+  line-height: 1.15 !important;
+}
+
+.asa-applications-page .asa-app-left p {
+  margin-top: 3px !important;
+  font-size: 0.78rem !important;
+}
+
+.asa-applications-page .asa-status-pill {
+  padding: 4px 9px !important;
+  font-size: 0.74rem !important;
+}
+
+.asa-applications-page .asa-app-right small {
+  font-size: 0.74rem !important;
+  margin-top: 3px !important;
+}
+
+.asa-applications-page .asa-icon-action {
+  width: 24px !important;
+  height: 24px !important;
+}
+
+/* Fixed sidebar layout */
+.asa-dash-layout {
+  display: block !important;
+}
+
+.asa-dash-sidebar {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  width: 315px;
+  height: 100vh;
+  overflow-y: auto;
+  z-index: 120;
+}
+
+.asa-dash-main {
+  margin-left: 315px;
+  min-height: 100vh;
+}
+
+@media (max-width: 920px) {
+  .asa-dash-main {
+    margin-left: 0;
+  }
+}
+
+/* Navbar fix after fixed sidebar */
+.asa-dash-main {
+  width: calc(100% - 315px);
+}
+
+.asa-dash-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 110;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(6px);
+}
+
+.asa-dash-top-title {
+  min-width: 0;
+}
+
+.asa-dash-top-title strong,
+.asa-dash-top-title span {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (max-width: 920px) {
+  .asa-dash-main {
+    width: 100%;
+  }
+
+  .asa-dash-topbar {
+    position: static;
+    backdrop-filter: none;
+  }
+}
+
+/* EY-only color palette overrides */
+:root {
+  --ey-yellow: #ffe600;
+  --ey-yellow-deep: #f2d600;
+  --ey-charcoal: #2e2e38;
+  --ey-ink: #1f1f1f;
+  --ey-gray-1: #f7f5ef;
+  --ey-gray-2: #ece8dd;
+  --ey-gray-3: #d9d5cc;
+  --ey-muted: #6c6c73;
+  --ey-white: #ffffff;
+}
+
+.asa-dash-layout {
+  background: linear-gradient(180deg, var(--ey-gray-1) 0%, var(--ey-gray-2) 100%) !important;
+  color: var(--ey-ink) !important;
+}
+
+.asa-dash-sidebar {
+  background: linear-gradient(180deg, #33251b 0%, #231811 100%) !important;
+}
+
+.asa-dash-nav-item.active {
+  background: rgba(255, 230, 0, 0.2) !important;
+  color: var(--ey-yellow) !important;
+}
+
+.asa-dash-topbar,
+.asa-dash-panel,
+.asa-metric-card,
+.asa-app-list-wrap,
+.asa-app-list-row,
+.asa-flow-summary,
+.asa-flow-step,
+.asa-modal {
+  background: var(--ey-white) !important;
+  border-color: var(--ey-gray-3) !important;
+}
+
+.asa-dash-top-title strong,
+.asa-dash-headline h1,
+.asa-page-head h2,
+.asa-app-left h4,
+.asa-flow-step-title-row h4,
+.asa-modal-title h3 {
+  color: var(--ey-charcoal) !important;
+}
+
+.asa-dash-top-title span,
+.asa-dash-headline p,
+.asa-page-head p,
+.asa-app-left p,
+.asa-app-right small,
+.asa-flow-step-body p,
+.asa-flow-expanded span,
+.asa-flow-expanded p,
+.asa-modal-grid span,
+.asa-modal-progress small {
+  color: var(--ey-muted) !important;
+}
+
+.asa-inline-new-btn,
+.asa-modal-cta {
+  background: linear-gradient(180deg, var(--ey-yellow) 0%, var(--ey-yellow-deep) 100%) !important;
+  color: var(--ey-charcoal) !important;
+}
+
+.asa-app-doc,
+.asa-metric-icon.orange {
+  background: linear-gradient(180deg, var(--ey-yellow) 0%, var(--ey-yellow-deep) 100%) !important;
+  color: var(--ey-charcoal) !important;
+}
+
+.asa-metric-icon,
+.asa-flow-step-icon {
+  background: #f3f1ea !important;
+  color: var(--ey-charcoal) !important;
+}
+
+.asa-status-pill,
+.asa-pill-current {
+  background: var(--ey-yellow) !important;
+  color: var(--ey-charcoal) !important;
+}
+
+.asa-pill-muted {
+  background: #efede7 !important;
+  color: var(--ey-muted) !important;
+}
+
+.asa-flow-progress-numbers strong,
+.asa-modal-progress-right strong,
+.asa-flow-expanded small,
+.asa-flow-check-list li svg {
+  color: var(--ey-charcoal) !important;
+}
+
+.asa-flow-track {
+  background: #ece8dd !important;
+}
+
+.asa-flow-track div {
+  background: linear-gradient(180deg, var(--ey-yellow) 0%, var(--ey-yellow-deep) 100%) !important;
+}
+
+.asa-icon-action {
+  color: var(--ey-muted) !important;
+}
+
+.asa-icon-action:hover {
+  background: #f3f1ea !important;
+  color: var(--ey-charcoal) !important;
+}
+
+.asa-light-btn,
+.asa-flow-select {
+  border-color: var(--ey-gray-3) !important;
+  color: var(--ey-charcoal) !important;
+  background: var(--ey-white) !important;
+}
+
+.asa-modal-backdrop {
+  background: rgba(31, 31, 31, 0.65) !important;
+}
+
+/* Yellow + Black gradients only (final override) */
+:root {
+  --yb-yellow-1: #ffe600;
+  --yb-yellow-2: #d4bf00;
+  --yb-black-1: #0f0f10;
+  --yb-black-2: #242428;
+}
+
+.asa-dash-layout {
+  background: linear-gradient(180deg, var(--yb-black-1) 0%, #1a1a1d 100%) !important;
+}
+
+.asa-dash-sidebar {
+  background: linear-gradient(180deg, var(--yb-black-1) 0%, var(--yb-black-2) 100%) !important;
+  border-right: 1px solid rgba(255, 230, 0, 0.2) !important;
+}
+
+.asa-dash-nav-item {
+  color: #fff !important;
+}
+
+.asa-dash-nav-item.active {
+  background: linear-gradient(90deg, rgba(255, 230, 0, 0.22) 0%, rgba(255, 230, 0, 0.1) 100%) !important;
+  color: var(--yb-yellow-1) !important;
+}
+
+.asa-dash-topbar {
+  background: linear-gradient(90deg, #121214 0%, #1d1d21 100%) !important;
+  border-bottom: 1px solid rgba(255, 230, 0, 0.2) !important;
+}
+
+.asa-dash-top-title strong,
+.asa-dash-top-title span,
+.asa-dash-headline h1,
+.asa-dash-headline p,
+.asa-page-head h2,
+.asa-page-head p,
+.asa-app-left h4,
+.asa-app-left p,
+.asa-app-right small,
+.asa-flow-step-title-row h4,
+.asa-flow-step-body p,
+.asa-flow-expanded span,
+.asa-flow-expanded p,
+.asa-panel-head h3,
+.asa-dash-panel h3,
+.helper-text {
+  color: #fff !important;
+}
+
+.asa-dash-content,
+.asa-dash-main {
+  background: linear-gradient(180deg, #111114 0%, #1c1c20 100%) !important;
+}
+
+.asa-metric-card,
+.asa-dash-panel,
+.asa-app-list-wrap,
+.asa-app-list-row,
+.asa-flow-summary,
+.asa-flow-step,
+.asa-modal {
+  background: linear-gradient(180deg, #18181b 0%, #232328 100%) !important;
+  border: 1px solid rgba(255, 230, 0, 0.28) !important;
+}
+
+.asa-inline-new-btn,
+.asa-modal-cta,
+.asa-dash-new-btn,
+.asa-app-doc,
+.asa-metric-icon,
+.asa-metric-icon.orange,
+.asa-pill-current,
+.asa-status-pill {
+  background: linear-gradient(180deg, var(--yb-yellow-1) 0%, var(--yb-yellow-2) 100%) !important;
+  color: #111 !important;
+}
+
+.asa-pill-muted {
+  background: linear-gradient(180deg, #202024 0%, #2a2a2f 100%) !important;
+  color: #fff !important;
+  border: 1px solid rgba(255, 230, 0, 0.2) !important;
+}
+
+.asa-flow-select,
+.asa-light-btn {
+  background: linear-gradient(180deg, #141417 0%, #202025 100%) !important;
+  color: #fff !important;
+  border: 1px solid rgba(255, 230, 0, 0.3) !important;
+}
+
+.asa-flow-track {
+  background: linear-gradient(90deg, #202024 0%, #2a2a30 100%) !important;
+}
+
+.asa-flow-track div {
+  background: linear-gradient(90deg, var(--yb-yellow-1) 0%, var(--yb-yellow-2) 100%) !important;
+}
+
+.asa-icon-action {
+  color: var(--yb-yellow-1) !important;
+}
+
+.asa-icon-action:hover,
+.asa-flow-expand:hover {
+  background: linear-gradient(180deg, rgba(255, 230, 0, 0.18) 0%, rgba(255, 230, 0, 0.08) 100%) !important;
+}
+
+.asa-flow-arrow,
+.asa-flow-expanded small,
+.asa-flow-progress-numbers strong,
+.asa-modal-progress-right strong {
+  color: var(--yb-yellow-1) !important;
+}
+
+.asa-modal-backdrop {
+  background: rgba(0, 0, 0, 0.82) !important;
+}
+
+/* Remove remaining blue text tones */
+.asa-dash-main,
+.asa-dash-main p,
+.asa-dash-main small,
+.asa-dash-main span,
+.asa-dash-main h1,
+.asa-dash-main h2,
+.asa-dash-main h3,
+.asa-dash-main h4,
+.asa-dash-main strong {
+  color: #ffffff;
+}
+
+.asa-dash-main .helper-text,
+.asa-dash-main .asa-dash-headline p,
+.asa-dash-main .asa-page-head p,
+.asa-dash-main .asa-app-left p,
+.asa-dash-main .asa-app-right small,
+.asa-dash-main .asa-flow-step-body p,
+.asa-dash-main .asa-flow-expanded p,
+.asa-dash-main .asa-flow-expanded span,
+.asa-dash-main .asa-modal-grid span,
+.asa-dash-main .asa-modal-progress small,
+.asa-dash-main .asa-flow-progress-numbers span {
+  color: #d8d8d8 !important;
+}
+
+.asa-dash-main .asa-status-pill,
+.asa-dash-main .asa-pill-current,
+.asa-dash-main .asa-flow-progress-numbers strong,
+.asa-dash-main .asa-modal-progress-right strong,
+.asa-dash-main .asa-flow-expanded small,
+.asa-dash-main .asa-icon-action {
+  color: #111111 !important;
+}
+
+.asa-dash-main .asa-flow-progress-numbers strong,
+.asa-dash-main .asa-modal-progress-right strong,
+.asa-dash-main .asa-flow-expanded small {
+  color: #ffe600 !important;
+}
+
+/* Dashboard panel color refinement */
+.asa-dash-panel h3 {
+  color: #ffffff !important;
+}
+
+.asa-recent-item {
+  background: linear-gradient(180deg, #141417 0%, #1f1f24 100%) !important;
+  border: 1px solid rgba(255, 230, 0, 0.28) !important;
+}
+
+.asa-recent-item strong {
+  color: #ffffff !important;
+}
+
+.asa-recent-item p {
+  color: #d8d8d8 !important;
+}
+
+.asa-recent-item span {
+  background: linear-gradient(180deg, #2a2a30 0%, #1f1f24 100%) !important;
+  color: #ffe600 !important;
+  border: 1px solid rgba(255, 230, 0, 0.3) !important;
+}
+
+.asa-step-mini-item span {
+  background: linear-gradient(180deg, #ffe600 0%, #d4bf00 100%) !important;
+  color: #111111 !important;
+}
+
+.asa-step-mini-item p {
+  color: #ffffff !important;
+}
+
+.asa-step-mini-item em {
+  color: #ffe600 !important;
+}
+
+/* Onboarding flow tick marks in yellow */
+.asa-flow-check-list li svg,
+.asa-flow-expanded li svg,
+.asa-flow-expanded .lucide-check-circle {
+  color: #ffe600 !important;
+  stroke: #ffe600 !important;
+}
+
+/* Onboarding heading hierarchy refinement */
+.asa-flow-step-title-row h4 {
+  font-size: 1.08rem !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.01em;
+  line-height: 1.25;
+}
+
+.asa-flow-step-body > p {
+  font-size: 0.88rem !important;
+  font-weight: 400 !important;
+  color: #d2d2d2 !important;
+  line-height: 1.45 !important;
+  margin-top: 6px !important;
+}
+
+.asa-flow-expanded > div > span {
+  font-size: 0.8rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.08em !important;
+}
+
+.asa-flow-expanded > div > p {
+  font-size: 0.92rem !important;
+  font-weight: 500 !important;
+}
+
+/* My Applications action icons visibility fix */
+.asa-applications-page .asa-icon-action {
+  color: #ffe600 !important;
+  background: linear-gradient(180deg, #1a1a1d 0%, #26262b 100%) !important;
+  border: 1px solid rgba(255, 230, 0, 0.35) !important;
+}
+
+.asa-applications-page .asa-icon-action svg {
+  stroke: #ffe600 !important;
+}
+
+.asa-applications-page .asa-icon-action:hover {
+  color: #111111 !important;
+  background: linear-gradient(180deg, #ffe600 0%, #d4bf00 100%) !important;
+}
+
+.asa-applications-page .asa-icon-action:hover svg {
+  stroke: #111111 !important;
+}
+
+/* View Details modal redesign */
+.asa-modal {
+  width: min(760px, calc(100% - 28px)) !important;
+  border-radius: 20px !important;
+  padding: 20px !important;
+  background: linear-gradient(180deg, #151518 0%, #222228 100%) !important;
+  border: 1px solid rgba(255, 230, 0, 0.35) !important;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55) !important;
+}
+
+.asa-modal-head {
+  margin-bottom: 14px !important;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255, 230, 0, 0.2);
+}
+
+.asa-modal-title {
+  gap: 12px !important;
+}
+
+.asa-modal-title .asa-app-doc {
+  width: 44px !important;
+  height: 44px !important;
+  border-radius: 12px !important;
+  background: linear-gradient(180deg, #ffe600 0%, #d4bf00 100%) !important;
+  color: #111 !important;
+}
+
+.asa-modal-title h3 {
+  font-size: 1.2rem !important;
+  font-weight: 800 !important;
+  color: #fff !important;
+  letter-spacing: 0.01em;
+}
+
+.asa-modal-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 12px !important;
+  margin-top: 8px !important;
+}
+
+.asa-modal-grid > div {
+  border: 1px solid rgba(255, 230, 0, 0.22);
+  background: linear-gradient(180deg, #1a1a1f 0%, #26262d 100%);
+  border-radius: 12px;
+  padding: 10px 12px;
+}
+
+.asa-modal-grid span {
+  font-size: 0.72rem !important;
+  letter-spacing: 0.06em !important;
+  color: #d0d0d0 !important;
+  font-weight: 700;
+}
+
+.asa-modal-grid p {
+  margin-top: 6px !important;
+  font-size: 0.92rem !important;
+  color: #fff !important;
+  font-weight: 600 !important;
+}
+
+.asa-modal-progress {
+  margin-top: 14px !important;
+  padding-top: 14px !important;
+  border-top: 1px solid rgba(255, 230, 0, 0.22) !important;
+}
+
+.asa-modal-progress small {
+  color: #d0d0d0 !important;
+  font-size: 0.72rem !important;
+  letter-spacing: 0.06em;
+  font-weight: 700;
+}
+
+.asa-modal-progress .asa-status-pill {
+  margin-top: 8px !important;
+}
+
+.asa-modal-progress-right strong {
+  font-size: 1.35rem !important;
+  color: #ffe600 !important;
+  font-weight: 800;
+}
+
+.asa-modal .asa-flow-track {
+  margin-top: 10px !important;
+  height: 8px !important;
+  background: linear-gradient(90deg, #25252b 0%, #2f2f36 100%) !important;
+}
+
+.asa-modal .asa-flow-track div {
+  background: linear-gradient(90deg, #ffe600 0%, #d4bf00 100%) !important;
+}
+
+.asa-modal-cta {
+  margin-top: 14px !important;
+  border-radius: 12px !important;
+  padding: 10px 14px !important;
+  font-size: 0.92rem !important;
+  font-weight: 800 !important;
+  background: linear-gradient(180deg, #ffe600 0%, #d4bf00 100%) !important;
+  color: #111 !important;
+}
+
+@media (max-width: 700px) {
+  .asa-modal {
+    width: calc(100% - 20px) !important;
+    padding: 14px !important;
+    border-radius: 14px !important;
+  }
+
+  .asa-modal-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+
+
+/* Onboarding dropdown option content visibility fix */
+.asa-flow-select {
+  color: #ffffff !important;
+}
+
+.asa-flow-select option {
+  background-color: #1c1c22 !important;
+  color: #ffe600 !important;
+}
+
+/* Dashboard hover effects */
+.asa-metric-card,
+.asa-dash-panel,
+.asa-app-list-row,
+.asa-flow-step,
+.asa-inline-new-btn,
+.asa-modal-cta,
+.asa-light-btn,
+.asa-icon-action {
+  transition: transform 180ms ease, box-shadow 220ms ease, border-color 220ms ease, background 220ms ease;
+}
+
+.asa-metric-card:hover,
+.asa-dash-panel:hover,
+.asa-app-list-row:hover,
+.asa-flow-step:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.28);
+  border-color: rgba(255, 230, 0, 0.45) !important;
+}
+
+.asa-metric-card-click {
+  text-align: left;
+  width: 100%;
+  border: 1px solid rgba(255, 230, 0, 0.28);
+  cursor: pointer;
+}
+
+.asa-metric-card-click:hover {
+  transform: translateY(-3px) scale(1.01);
+  box-shadow: 0 18px 34px rgba(0, 0, 0, 0.34);
+  border-color: rgba(255, 230, 0, 0.58) !important;
+}
+
+.asa-inline-new-btn:hover,
+.asa-modal-cta:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 22px rgba(212, 191, 0, 0.28);
+}
+
+.asa-light-btn:hover,
+.asa-icon-action:hover {
+  transform: translateY(-1px);
+}
+
+.asa-metric-card:focus-visible,
+.asa-metric-card-click:focus-visible,
+.asa-inline-new-btn:focus-visible,
+.asa-modal-cta:focus-visible,
+.asa-light-btn:focus-visible,
+.asa-icon-action:focus-visible {
+  outline: 2px solid #ffe600;
+  outline-offset: 2px;
+}
+
+/* Profile section visibility fix */
+.asa-profile-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.asa-profile-grid div {
+  background: linear-gradient(180deg, #1a1a1f 0%, #26262d 100%) !important;
+  border: 1px solid rgba(255, 230, 0, 0.28) !important;
+  border-radius: 12px;
+  padding: 12px;
+}
+
+.asa-profile-grid span {
+  color: #d0d0d0 !important;
+  font-size: 0.74rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.asa-profile-grid strong {
+  color: #ffffff !important;
+  font-size: 0.98rem !important;
+  font-weight: 700 !important;
+  margin-top: 7px;
+  display: block;
+}
+
+@media (max-width: 920px) {
+  .asa-profile-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Recent applications card clickable behavior */
+.asa-recent-item-click {
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  border: 1px solid rgba(255, 230, 0, 0.28) !important;
+}
+
+.asa-recent-item-click:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+  border-color: rgba(255, 230, 0, 0.5) !important;
+}
+
+.asa-recent-item-click:focus-visible {
+  outline: 2px solid #ffe600;
+  outline-offset: 2px;
+}
+
+/* Form sidebar step navigation */
+.asa-form-step-nav {
+  margin-top: 10px;
+  display: grid;
+  gap: 6px;
+}
+
+.asa-form-step-item {
+  border: 1px solid rgba(255, 230, 0, 0.18);
+  background: linear-gradient(180deg, #17171a 0%, #232328 100%);
+  color: #fff;
+  border-radius: 12px;
+  padding: 8px 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.asa-form-step-item span {
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  font-size: 0.76rem;
+  font-weight: 700;
+  background: rgba(255, 230, 0, 0.18);
+  color: #ffe600;
+  flex-shrink: 0;
+}
+
+.asa-form-step-item p {
+  margin: 0;
+  font-size: 0.86rem;
+  font-weight: 600;
+}
+
+.asa-form-step-item.active {
+  border-color: rgba(255, 230, 0, 0.55);
+  background: linear-gradient(180deg, rgba(255, 230, 0, 0.25) 0%, rgba(255, 230, 0, 0.12) 100%);
+  color: #ffe600;
+}
+
+.asa-form-step-item.active span {
+  background: #ffe600;
+  color: #111;
+}
+
+.asa-form-step-item:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.22);
+}
+
+/* Form sidebar lower nav */
+.asa-form-bottom-nav {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255, 230, 0, 0.16);
+  display: grid;
+  gap: 6px;
+}
+
+/* Form sidebar visual cleanup */
+.asa-form-shell .asa-dash-nav {
+  gap: 8px;
+}
+
+.asa-form-shell .asa-dash-nav-item {
+  border: 1px solid rgba(255, 230, 0, 0.16);
+  background: linear-gradient(180deg, #16161a 0%, #222228 100%);
+  border-radius: 12px;
+  padding: 10px 12px;
+  color: #f5f5f5 !important;
+  font-weight: 600;
+}
+
+.asa-form-shell .asa-dash-nav-item:hover {
+  border-color: rgba(255, 230, 0, 0.32);
+  background: linear-gradient(180deg, #1b1b20 0%, #282830 100%);
+}
+
+.asa-form-shell .asa-dash-nav-item.active {
+  border-color: rgba(255, 230, 0, 0.58) !important;
+  background: linear-gradient(90deg, rgba(255, 230, 0, 0.3) 0%, rgba(255, 230, 0, 0.14) 100%) !important;
+  color: #ffe600 !important;
+}
+
+.asa-form-shell .asa-form-step-item {
+  border-color: rgba(255, 230, 0, 0.22);
+  border-radius: 12px;
+}
+
+.asa-form-shell .asa-form-step-item p {
+  font-size: 0.9rem;
+}
+
+.asa-form-shell .asa-form-bottom-nav {
+  margin-top: 12px;
+  padding-top: 14px;
+  display: grid;
+  gap: 8px;
+  position: relative;
+  border-top: none;
+}
+
+.asa-form-shell .asa-form-bottom-nav::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 2px;
+  right: 2px;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(255, 230, 0, 0) 0%, rgba(255, 230, 0, 0.55) 50%, rgba(255, 230, 0, 0) 100%);
+}
+
+.asa-form-shell .asa-form-bottom-nav .asa-dash-nav-item {
+  padding: 10px 12px;
+  border-color: rgba(255, 230, 0, 0.14);
+  background: linear-gradient(180deg, #141418 0%, #1d1d23 100%);
+  color: #f0f0f0 !important;
+}
+
+/* Dashboard sidebar boxed nav (match form style) */
+.asa-dash-sidebar .asa-dash-nav {
+  gap: 8px;
+}
+
+.asa-dash-sidebar .asa-dash-nav-item {
+  border: 1px solid rgba(255, 230, 0, 0.16) !important;
+  background: linear-gradient(180deg, #16161a 0%, #222228 100%) !important;
+  border-radius: 12px !important;
+  padding: 10px 12px !important;
+  color: #f5f5f5 !important;
+  font-weight: 600;
+}
+
+.asa-dash-sidebar .asa-dash-nav-item:hover {
+  border-color: rgba(255, 230, 0, 0.32) !important;
+  background: linear-gradient(180deg, #1b1b20 0%, #282830 100%) !important;
+}
+
+.asa-dash-sidebar .asa-dash-nav-item.active {
+  border-color: rgba(255, 230, 0, 0.58) !important;
+  background: linear-gradient(90deg, rgba(255, 230, 0, 0.3) 0%, rgba(255, 230, 0, 0.14) 100%) !important;
+  color: #ffe600 !important;
+}
+
+/* Slim progress bars */
+.asa-flow-track {
+  height: 6px !important;
+  border-radius: 999px;
+}
+
+.asa-flow-summary .asa-flow-track {
+  margin-top: 8px !important;
+}
+
+.asa-modal .asa-flow-track {
+  height: 5px !important;
+}
+
+/* Compact onboarding progress summary box */
+.asa-flow-summary {
+  padding: 10px 12px !important;
+  border-radius: 12px !important;
+  margin-bottom: 10px !important;
+}
+
+.asa-flow-summary-top {
+  gap: 8px !important;
+}
+
+.asa-flow-summary .asa-app-left {
+  gap: 10px !important;
+}
+
+.asa-flow-summary .asa-app-doc {
+  width: 34px !important;
+  height: 34px !important;
+  border-radius: 10px !important;
+}
+
+.asa-flow-summary .asa-app-left h4 {
+  font-size: 0.95rem !important;
+  line-height: 1.15 !important;
+}
+
+.asa-flow-summary .asa-app-left p {
+  margin-top: 3px !important;
+  font-size: 0.78rem !important;
+}
+
+.asa-flow-progress-numbers strong {
+  font-size: 1.3rem !important;
+}
+
+.asa-flow-progress-numbers span {
+  font-size: 0.66rem !important;
+}
+
+.asa-flow-summary small {
+  margin-top: 5px !important;
+  font-size: 0.74rem !important;
+}
+
+/* EY full theme for ASA form page */
+.asa-form-shell .asa-dash-content > form {
+  background: linear-gradient(180deg, #0f0f12 0%, #1b1b20 100%) !important;
+  color: #ffffff !important;
+}
+
+.asa-form-shell .asa-dash-content > form .text-\[\#1f1f1f\],
+.asa-form-shell .asa-dash-content > form .text-\[\#2e2e38\],
+.asa-form-shell .asa-dash-content > form .text-\[\#5f6368\],
+.asa-form-shell .asa-dash-content > form .text-\[\#6c6c73\],
+.asa-form-shell .asa-dash-content > form .text-black {
+  color: #ffffff !important;
+}
+
+.asa-form-shell .asa-dash-content > form .bg-white,
+.asa-form-shell .asa-dash-content > form .bg-white\/95,
+.asa-form-shell .asa-dash-content > form .bg-\[\#fbfaf6\],
+.asa-form-shell .asa-dash-content > form .bg-\[\#fcfbf7\],
+.asa-form-shell .asa-dash-content > form .bg-\[\#f7f5ef\] {
+  background: linear-gradient(180deg, #151519 0%, #24242b 100%) !important;
+}
+
+.asa-form-shell .asa-dash-content > form .border-black\/10,
+.asa-form-shell .asa-dash-content > form .border-\[\#d9d5cc\],
+.asa-form-shell .asa-dash-content > form .border-\[\#e4e0d6\] {
+  border-color: rgba(255, 230, 0, 0.24) !important;
+}
+
+.asa-form-shell .asa-dash-content > form .text-\[\#ffe600\] {
+  color: #ffe600 !important;
+}
+
+.asa-form-shell .asa-dash-content > form .bg-\[\#2e2e38\],
+.asa-form-shell .asa-dash-content > form .bg-\[\#1f1f1f\] {
+  background: linear-gradient(180deg, #ffe600 0%, #d4bf00 100%) !important;
+  color: #111111 !important;
+}
+
+.asa-form-shell .asa-dash-content > form .text-white\/70,
+.asa-form-shell .asa-dash-content > form .text-white\/60 {
+  color: #d7d7d7 !important;
+}
+
+.asa-form-shell .asa-dash-content > form input,
+.asa-form-shell .asa-dash-content > form select,
+.asa-form-shell .asa-dash-content > form textarea {
+  background: linear-gradient(180deg, #141418 0%, #212129 100%) !important;
+  color: #ffffff !important;
+  border-color: rgba(255, 230, 0, 0.35) !important;
+}
+
+.asa-form-shell .asa-dash-content > form input::placeholder,
+.asa-form-shell .asa-dash-content > form textarea::placeholder {
+  color: #c7c7c7 !important;
+}
+
+.asa-form-shell .asa-dash-content > form input:focus,
+.asa-form-shell .asa-dash-content > form select:focus,
+.asa-form-shell .asa-dash-content > form textarea:focus {
+  border-color: #ffe600 !important;
+  box-shadow: 0 0 0 2px rgba(255, 230, 0, 0.25) !important;
+}
+
+.asa-form-shell .asa-dash-content > form button {
+  transition: transform 180ms ease, box-shadow 220ms ease;
+}
+
+.asa-form-shell .asa-dash-content > form button:hover {
+  transform: translateY(-1px);
+}
+
+/* EY form hover effects */
+.asa-form-shell .asa-dash-content > form .rounded-\[30px\],
+.asa-form-shell .asa-dash-content > form .rounded-\[24px\],
+.asa-form-shell .asa-dash-content > form .rounded-\[28px\] {
+  transition: transform 180ms ease, box-shadow 220ms ease, border-color 220ms ease;
+}
+
+.asa-form-shell .asa-dash-content > form .rounded-\[24px\]:hover,
+.asa-form-shell .asa-dash-content > form .rounded-\[30px\]:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.28);
+  border-color: rgba(255, 230, 0, 0.45) !important;
+}
+
+.asa-form-shell .asa-dash-content > form input,
+.asa-form-shell .asa-dash-content > form select,
+.asa-form-shell .asa-dash-content > form textarea {
+  transition: border-color 180ms ease, box-shadow 220ms ease, background 180ms ease;
+}
+
+.asa-form-shell .asa-dash-content > form input:hover,
+.asa-form-shell .asa-dash-content > form select:hover,
+.asa-form-shell .asa-dash-content > form textarea:hover {
+  border-color: rgba(255, 230, 0, 0.55) !important;
+  box-shadow: 0 0 0 1px rgba(255, 230, 0, 0.16) inset;
+}
+
+.asa-form-shell .asa-dash-content > form button,
+.asa-form-shell .asa-inline-new-btn {
+  transition: transform 160ms ease, box-shadow 220ms ease, filter 180ms ease;
+}
+
+.asa-form-shell .asa-dash-content > form button:hover,
+.asa-form-shell .asa-inline-new-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 22px rgba(212, 191, 0, 0.28);
+  filter: brightness(1.04);
+}
+
+.asa-form-shell .asa-dash-content > form button:active,
+.asa-form-shell .asa-inline-new-btn:active {
+  transform: translateY(0);
+}
+
+.asa-form-shell .asa-dash-content > form button:focus-visible,
+.asa-form-shell .asa-inline-new-btn:focus-visible,
+.asa-form-shell .asa-dash-content > form input:focus-visible,
+.asa-form-shell .asa-dash-content > form select:focus-visible,
+.asa-form-shell .asa-dash-content > form textarea:focus-visible {
+  outline: 2px solid #ffe600;
+  outline-offset: 2px;
+}
+
+/* Compact top form hero/stepper */
+.asa-form-shell .asa-form-hero {
+  border-radius: 22px !important;
+  margin-bottom: 12px !important;
+}
+
+.asa-form-shell .asa-form-hero-inner {
+  gap: 12px !important;
+  padding: 14px 16px !important;
+}
+
+.asa-form-shell .asa-form-hero h1 {
+  margin-top: 6px !important;
+  font-size: 2rem !important;
+  line-height: 1.12 !important;
+}
+
+.asa-form-shell .asa-form-hero p {
+  margin-top: 6px !important;
+}
+
+.asa-form-shell .asa-form-stage-card {
+  padding: 10px 12px !important;
+  border-radius: 14px !important;
+  min-width: 168px;
+}
+
+.asa-form-shell .asa-form-stage-card p:nth-child(2) {
+  margin-top: 4px !important;
+  font-size: 1.25rem !important;
+}
+
+.asa-form-shell .asa-form-stepper {
+  padding: 12px 14px !important;
+  border-radius: 18px !important;
+}
+
+.asa-form-shell .asa-form-stepper .absolute.top-8 {
+  top: 26px !important;
+}
+
+.asa-form-shell .asa-form-stepper .grid.grid-cols-5.gap-4 {
+  gap: 10px !important;
+}
+
+.asa-form-shell .asa-form-stepper button > div.relative.z-10 {
+  width: 52px !important;
+  height: 52px !important;
+  border-radius: 14px !important;
+}
+
+.asa-form-shell .asa-form-stepper button svg {
+  width: 20px !important;
+  height: 20px !important;
+}
+
+.asa-form-shell .asa-form-stepper button .mt-4 {
+  margin-top: 10px !important;
+}
+
+.asa-form-shell .asa-form-stepper button span.h-7.w-7 {
+  width: 22px !important;
+  height: 22px !important;
+  font-size: 0.72rem !important;
+}
+
+.asa-form-shell .asa-form-stepper button span.text-sm {
+  font-size: 0.82rem !important;
+}
+
+
+
+
+/* Smaller top hero box */
+.asa-form-shell .asa-form-hero {
+  border-radius: 18px !important;
+  margin-bottom: 8px !important;
+}
+
+.asa-form-shell .asa-form-hero-inner {
+  gap: 10px !important;
+  padding: 12px 14px !important;
+}
+
+.asa-form-shell .asa-form-hero h1 {
+  margin-top: 2px !important;
+  font-size: 1.75rem !important;
+}
+
+.asa-form-shell .asa-form-hero p {
+  margin-top: 4px !important;
+  font-size: 0.92rem !important;
+}
+
+.asa-form-shell .asa-form-stage-card {
+  padding: 8px 10px !important;
+  min-width: 150px;
+}
+
+.asa-form-shell .asa-form-stage-card p:nth-child(2) {
+  font-size: 1.1rem !important;
+  margin-top: 4px !important;
+}
+
+.asa-form-shell .asa-form-stepper {
+  padding: 10px 12px !important;
+  border-radius: 16px !important;
+}
+
+/* Hover effects: current stage + completion cards */
+.asa-form-stage-card,
+.asa-form-completion-card {
+  transition: transform 180ms ease, box-shadow 220ms ease, border-color 220ms ease;
+}
+
+.asa-form-stage-card:hover,
+.asa-form-completion-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.28);
+  border-color: rgba(255, 230, 0, 0.55) !important;
+}
+
+.asa-form-stage-card:focus-within,
+.asa-form-completion-card:focus-within {
+  box-shadow: 0 0 0 2px rgba(255, 230, 0, 0.24), 0 14px 28px rgba(0, 0, 0, 0.22);
+}
+
+/* Form dropdown list text visibility */
+.asa-form-shell .asa-dash-content > form select {
+  color: #ffffff !important;
+}
+
+.asa-form-shell .asa-dash-content > form select option {
+  background: #16161a !important;
+  color: #ffe600 !important;
+}
+
+.asa-form-shell .asa-dash-content > form select option:checked,
+.asa-form-shell .asa-dash-content > form select option:hover {
+  background: #2a2a30 !important;
+  color: #ffffff !important;
+}
+
+/* Prevent white edges on full-page scroll */
+html, body, #root {
+  background: #0f0f12 !important;
+  min-height: 100%;
+}
+
+body {
+  overscroll-behavior: auto;
+}
+
+.asa-dash-layout {
+  min-height: 100dvh !important;
+  background: linear-gradient(180deg, #0f0f12 0%, #1b1b20 100%) !important;
+}
+
+/* EY theme + hover for success page */
+.asa-success-page {
+  background: linear-gradient(180deg, #0f0f12 0%, #1b1b20 100%) !important;
+  color: #ffffff;
+}
+
+.asa-success-page .site-header,
+.asa-success-page header {
+  background: transparent;
+}
+
+.asa-success-page section {
+  border-color: rgba(255, 230, 0, 0.24) !important;
+}
+
+.asa-success-page .rounded-\[36px\] {
+  background: linear-gradient(135deg, #17171b 0%, #25252c 100%) !important;
+  border-color: rgba(255, 230, 0, 0.28) !important;
+}
+
+.asa-success-page .inline-flex.items-center.gap-2.rounded-full {
+  border-color: rgba(255, 230, 0, 0.5) !important;
+  background: rgba(255, 230, 0, 0.14) !important;
+  color: #ffe600 !important;
+}
+
+.asa-success-page h1,
+.asa-success-page h2,
+.asa-success-page p,
+.asa-success-page a,
+.asa-success-page span,
+.asa-success-page strong {
+  color: #ffffff;
+}
+
+.asa-success-page .text-white\/75,
+.asa-success-page .text-\[\#5f6368\],
+.asa-success-page .text-\[\#6c6c73\],
+.asa-success-page .text-\[\#1f1f1f\] {
+  color: #d7d7d7 !important;
+}
+
+.asa-success-page .rounded-\[28px\].border.border-white\/10.bg-white\/5 {
+  background: linear-gradient(180deg, #16161b 0%, #23232a 100%) !important;
+  border-color: rgba(255, 230, 0, 0.26) !important;
+}
+
+.asa-success-page .rounded-2xl.bg-white {
+  background: linear-gradient(180deg, #1a1a20 0%, #27272f 100%) !important;
+  border: 1px solid rgba(255, 230, 0, 0.24);
+}
+
+.asa-success-page .rounded-\[28px\].border.border-black\/10.bg-white {
+  background: linear-gradient(180deg, #17171d 0%, #23232b 100%) !important;
+  border-color: rgba(255, 230, 0, 0.26) !important;
+}
+
+.asa-success-page .asa-success-info-tile {
+  background: linear-gradient(180deg, #17171d 0%, #24242c 100%) !important;
+  border: 1px solid rgba(255, 230, 0, 0.24);
+}
+
+.asa-success-page .asa-success-info-tile .rounded-xl {
+  background: linear-gradient(180deg, #ffe600 0%, #d4bf00 100%) !important;
+  color: #111 !important;
+}
+
+.asa-success-page a.rounded-2xl.bg-\[\#ffe600\],
+.asa-success-page a.inline-flex.items-center.gap-2.rounded-2xl {
+  transition: transform 170ms ease, box-shadow 220ms ease, filter 180ms ease;
+}
+
+.asa-success-page a.rounded-2xl.bg-\[\#ffe600\] {
+  background: linear-gradient(180deg, #ffe600 0%, #d4bf00 100%) !important;
+  color: #111 !important;
+}
+
+.asa-success-page a.inline-flex.items-center.gap-2.rounded-2xl {
+  border-color: rgba(255, 230, 0, 0.42) !important;
+  background: rgba(255, 230, 0, 0.13) !important;
+  color: #ffe600 !important;
+}
+
+.asa-success-page a.rounded-2xl.bg-\[\#ffe600\]:hover,
+.asa-success-page a.inline-flex.items-center.gap-2.rounded-2xl:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.28);
+  filter: brightness(1.04);
+}
+
+.asa-success-page .rounded-\[28px\].border.border-black\/10.bg-white,
+.asa-success-page .asa-success-info-tile,
+.asa-success-page .rounded-2xl.bg-white {
+  transition: transform 180ms ease, box-shadow 220ms ease, border-color 220ms ease;
+}
+
+.asa-success-page .rounded-\[28px\].border.border-black\/10.bg-white:hover,
+.asa-success-page .asa-success-info-tile:hover,
+.asa-success-page .rounded-2xl.bg-white:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 26px rgba(0, 0, 0, 0.3);
+  border-color: rgba(255, 230, 0, 0.45) !important;
+}
+
+
+
+
+
+/* Global scroll unlock (prevents route-wide scroll freeze) */
+html,
+body,
+#root {
+  height: auto !important;
+  min-height: 100% !important;
+  overflow-y: auto !important;
+}
+
+body {
+  overflow-x: hidden !important;
+}
+
+body[style*="overflow: hidden"] {
+  overflow-y: auto !important;
+  padding-right: 0 !important;
+}
+
+/* Hard scroll fix across all routes */
+html,
+body,
+#root {
+  height: auto !important;
+  min-height: 100% !important;
+  overflow: auto !important;
+}
+
+body,
+body[style],
+body[style*="overflow"],
+body[style*="position"] {
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  position: static !important;
+  top: auto !important;
+  width: 100% !important;
+}
+
+.asa-dash-main,
+.asa-dash-content,
+main {
+  overflow: visible !important;
+}
+
+/* Final fixed navbar override */
+.asa-dash-topbar {
+  position: fixed !important;
+  top: 0 !important;
+  left: 315px !important;
+  width: calc(100% - 315px) !important;
+  z-index: 210 !important;
+}
+
+.asa-dash-main {
+  padding-top: 72px !important;
+}
+
+@media (max-width: 920px) {
+  .asa-dash-topbar {
+    left: 0 !important;
+    width: 100% !important;
+  }
+
+  .asa-dash-main {
+    padding-top: 72px !important;
+  }
+}
+
+/* Prevent horizontal page shift */
+html,
+body,
+#root {
+  max-width: 100%;
+  overflow-x: hidden !important;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* Safer fixed topbar sizing to avoid horizontal overflow */
+.asa-dash-topbar {
+  left: 315px !important;
+  right: 0 !important;
+  width: auto !important;
+  max-width: calc(100vw - 315px) !important;
+}
+
+.asa-dash-main {
+  width: auto !important;
+  max-width: calc(100vw - 315px) !important;
+}
+
+@media (max-width: 920px) {
+  .asa-dash-topbar {
+    left: 0 !important;
+    right: 0 !important;
+    width: auto !important;
+    max-width: 100vw !important;
+  }
+
+  .asa-dash-main {
+    max-width: 100vw !important;
   }
 }

@@ -1,12 +1,23 @@
-import { CheckCircle2, ClipboardList, Download, FileText, Mail, User } from "lucide-react";
-import { Link, Navigate, useLocation } from "react-router-dom";
-import Header from "../components/Header";
+import { useState } from "react";
+import { CheckCircle2, ClipboardList, Download, FileText, Mail, LogOut, Shield, User } from "lucide-react";
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { getDeclarationPdfUrl } from "../services/portalApi";
 
 const STORAGE_KEY = "lastSubmittedApplication";
 
 function ApplicationSuccess() {
+  const navigate = useNavigate();
   const location = useLocation();
+
+  const [user] = useState(() => {
+    try {
+      const storedUser = localStorage.getItem("user");
+      return storedUser ? JSON.parse(storedUser) : null;
+    } catch {
+      return null;
+    }
+  });
+
   const storedApplication = (() => {
     try {
       const raw = sessionStorage.getItem(STORAGE_KEY);
@@ -18,14 +29,40 @@ function ApplicationSuccess() {
 
   const application = location.state?.application || storedApplication;
 
+  function handleLogout() {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    navigate("/login");
+  }
+
+  if (!user) {
+    return <Navigate to="/login" replace />;
+  }
+
   if (!application) {
     return <Navigate to="/form" replace />;
   }
 
   return (
-    <div className="min-h-screen bg-[linear-gradient(180deg,#f7f5ef_0%,#ece8dd_100%)]">
-      <Header />
-      <main className="mx-auto max-w-6xl px-6 pb-16 pt-28">
+    <div className="asa-success-page min-h-screen">
+      <header className="asa-dash-topbar">
+        <div className="asa-dash-top-title">
+          <div className="asa-dash-brand-icon"><Shield size={18} /></div>
+          <div>
+            <strong>UIDAI ASA Onboarding Portal</strong>
+            <span>Unique Identification Authority of India</span>
+          </div>
+        </div>
+        <div className="flex items-center gap-3">
+          <Link to="/dashboard" className="asa-inline-new-btn">Open Dashboard</Link>
+          <button type="button" onClick={handleLogout} className="asa-inline-new-btn">
+            <LogOut size={16} />
+            Logout
+          </button>
+        </div>
+      </header>
+
+      <main className="asa-success-main mx-auto max-w-6xl px-6 pb-16 pt-8">
         <section className="overflow-hidden rounded-[36px] border border-black/10 bg-[linear-gradient(135deg,#2e2e38_0%,#1f1f1f_100%)] shadow-2xl">
           <div className="grid gap-8 px-6 py-10 md:grid-cols-[1.1fr_0.9fr] md:px-10">
             <div>
@@ -45,7 +82,7 @@ function ApplicationSuccess() {
                 >
                   Open Dashboard
                 </Link>
-                
+
                 <a
                   href={getDeclarationPdfUrl(application.id)}
                   target="_blank"
@@ -75,30 +112,6 @@ function ApplicationSuccess() {
             </div>
           </div>
         </section>
-
-        <section className="mt-8 grid gap-6 md:grid-cols-3">
-          <div className="rounded-[28px] border border-black/10 bg-white p-6 shadow-lg">
-            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#6c6c73]">Next Action</p>
-            <h2 className="mt-3 text-xl font-bold text-[#1f1f1f]">Review progress</h2>
-            <p className="mt-3 text-sm leading-6 text-[#5f6368]">
-              Use the dashboard to follow UIDAI onboarding checkpoints for Step 1 and Step 2.
-            </p>
-          </div>
-          <div className="rounded-[28px] border border-black/10 bg-white p-6 shadow-lg">
-            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#6c6c73]">Saved Record</p>
-            <h2 className="mt-3 text-xl font-bold text-[#1f1f1f]">Stored in PostgreSQL</h2>
-            <p className="mt-3 text-sm leading-6 text-[#5f6368]">
-              Your submitted form, application summary, stage records, and signature-backed declaration details are available in the portal data.
-            </p>
-          </div>
-          <div className="rounded-[28px] border border-black/10 bg-white p-6 shadow-lg">
-            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#6c6c73]">Output</p>
-            <h2 className="mt-3 text-xl font-bold text-[#1f1f1f]">Signed PDF Ready</h2>
-            <p className="mt-3 text-sm leading-6 text-[#5f6368]">
-              Download the declaration PDF to see the UIDAI wording, applicant details, authenticated signatory block, and captured signature image in one document.
-            </p>
-          </div>
-        </section>
       </main>
     </div>
   );
@@ -106,7 +119,7 @@ function ApplicationSuccess() {
 
 function InfoTile({ icon: Icon, label, value }) {
   return (
-    <div className="rounded-2xl bg-[#f7f5ef] px-4 py-4">
+    <div className="asa-success-info-tile rounded-2xl bg-[#f7f5ef] px-4 py-4">
       <div className="flex items-center gap-3">
         <div className="rounded-xl bg-[#ffe600] p-2 text-[#1f1f1f]">
           <Icon size={18} />
@@ -121,7 +134,4 @@ function InfoTile({ icon: Icon, label, value }) {
 }
 
 export default ApplicationSuccess;
-
-
-
 

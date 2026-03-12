@@ -2,9 +2,8 @@ import { useMemo, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import ReCAPTCHA from "react-google-recaptcha";
 import "./Login.css";
-import { Mail, Lock, Eye, EyeOff } from "lucide-react";
+import { Mail, Lock, Eye, EyeOff, Shield } from "lucide-react";
 import aadhaarBg from "../assets/aadhaar.png";
-import uidaiLogo from "../assets/uidai-logo.jpg";
 import { loginUser } from "../services/portalApi";
 
 export default function Login() {
@@ -65,32 +64,28 @@ export default function Login() {
 
   return (
     <div className="login-page" style={{ backgroundImage: `url(${aadhaarBg})` }}>
-      <header className="w-full bg-white border-b shadow-sm fixed top-0 left-0 z-50">
-        <div className="max-w-screen-xl mx-auto px-8 py-3 flex items-center">
-          <div className="flex items-center gap-3">
-            <img src={uidaiLogo} className="h-10" />
+      <header className="login-header">
+        <div className="login-header-inner">
+          <div className="login-brand-wrap">
+            <div className="asa-dash-brand-icon login-brand-icon"><Shield size={18} /></div>
             <div>
-              <h1 className="text-xl font-semibold">
-                <span style={{ color: "#FFE600" }}>UIDAI</span> Portal
-              </h1>
-              <p className="text-xs text-gray-500">ASA Onboarding</p>
+              <h1 className="login-brand-title">UIDAI Portal</h1>
+              <p className="login-brand-subtitle">ASA Onboarding</p>
             </div>
           </div>
 
-          <nav className="hidden md:flex items-center ml-auto gap-6 text-sm text-gray-700">
-            <a href="/" className="hover:text-yellow-400 cursor-pointer">Home</a>
-            <a href="#" className="hover:text-orange-500 cursor-pointer">About</a>
-            <a href="#" className="hover:text-orange-500 cursor-pointer">Onboarding Process</a>
-            <a href="#" className="hover:text-orange-500 cursor-pointer">Guidelines</a>
-          </nav>
+          <div className="login-header-right">
+            <nav className="login-links">
+              <Link to="/" className="login-link">Home</Link>
+              <a href="#" className="login-link">About</a>
+              <a href="#" className="login-link">Onboarding Process</a>
+              <a href="#" className="login-link">Guidelines</a>
+            </nav>
 
-          <div className="hidden md:flex items-center gap-4 ml-6">
-            <Link to="/register" className="px-4 py-2 rounded-md font-semibold" style={{ background: "#FFE600", color: "#161D23" }}>
-              Register
-            </Link>
-            <Link to="/login" className="px-4 py-2 border bg-gray-300 border-gray-400 rounded-md hover:bg-gray-100">
-              Login
-            </Link>
+            <div className="login-header-actions">
+              <Link to="/register" className="login-header-btn login-header-btn-primary">Register</Link>
+              <Link to="/login" className="login-header-btn login-header-btn-muted">Login</Link>
+            </div>
           </div>
         </div>
       </header>
@@ -153,14 +148,14 @@ export default function Login() {
         </div>
       </main>
 
-      <footer className="bg-white border-t py-4 fixed bottom-0 left-0 w-full z-50">
-        <div className="max-w-screen-xl mx-auto px-8 flex items-center justify-between text-sm text-gray-500">
-          <div className="flex items-center gap-2">
-            <img src={uidaiLogo} className="h-6" />
+      <footer className="login-footer">
+        <div className="login-footer-inner">
+          <div className="footer-brand-wrap">
+            <div className="ey-mini-logo"><Shield size={12} /></div>
             <span>UIDAI ASA Portal</span>
           </div>
 
-          <div className="flex gap-6">
+          <div className="footer-links">
             <a href="#">Contact</a>
             <a href="#">Privacy</a>
             <a href="#">Terms</a>
@@ -170,3 +165,5 @@ export default function Login() {
     </div>
   );
 }
+
+

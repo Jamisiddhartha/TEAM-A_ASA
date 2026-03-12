@@ -75,6 +75,10 @@ function ApplicationForm() {
     return () => window.removeEventListener("changeStep", handler);
   }, [activeStep]);
 
+  useEffect(() => {
+    window.dispatchEvent(new CustomEvent("formStepChanged", { detail: activeStep }));
+  }, [activeStep]);
+
   async function handleSubmitApplication(event) {
     event.preventDefault();
     const missing = validateStep(5);
@@ -103,7 +107,7 @@ function ApplicationForm() {
         },
       });
     } catch (error) {
-      alert(error.response?.data?.message || "Failed to submit ASA application form");
+      alert(error.response?.data?.message || "Failed to submit ASA Application Portal");
     } finally {
       setSubmitting(false);
     }
@@ -114,24 +118,13 @@ function ApplicationForm() {
   return (
     <form onSubmit={handleSubmitApplication} className="min-h-screen bg-[linear-gradient(180deg,#f7f5ef_0%,#ece8dd_100%)] px-4 py-8 md:px-6">
       <div className="mx-auto w-full max-w-7xl">
-        <div className="mb-6 overflow-hidden rounded-[32px] border border-black/10 bg-[linear-gradient(135deg,#2e2e38_0%,#1f1f1f_100%)] shadow-2xl">
-          <div className="flex flex-col gap-6 px-6 py-8 md:px-10">
-            <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#ffe600]">EY Styled Application Flow</p>
-                <h1 className="mt-3 text-3xl font-bold text-white md:text-4xl">ASA Application Form</h1>
-                <p className="mt-3 max-w-2xl text-sm text-white/70 md:text-base">
-                  Complete the onboarding application through five guided stages. Each step is saved in one continuous workflow before being pushed into the ASA portal dashboard.
-                </p>
-              </div>
-              <div className="rounded-2xl border border-white/10 bg-white/5 px-5 py-4 text-white">
-                <p className="text-xs uppercase tracking-[0.24em] text-white/60">Current Stage</p>
-                <p className="mt-2 text-lg font-semibold">Step {activeStep} of {steps.length}</p>
-                <p className="text-sm text-[#ffe600]">{steps[activeStep - 1].label}</p>
-              </div>
+        <div className="asa-form-hero mb-6 overflow-hidden rounded-[32px] border border-black/10 bg-[linear-gradient(135deg,#2e2e38_0%,#1f1f1f_100%)] shadow-2xl">
+          <div className="asa-form-hero-inner flex flex-col gap-6 px-6 py-8 md:px-10">            <div className="flex items-center justify-between">
+              <h1 className="mt-1 text-3xl font-bold text-white md:text-4xl">ASA Application Portal</h1>
             </div>
 
-            <div className="rounded-[28px] bg-white px-4 py-6 shadow-xl md:px-8">
+            <div className="asa-form-progress-row flex flex-col gap-3 md:flex-row md:items-stretch">
+              <div className="asa-form-stepper rounded-[28px] bg-white px-4 py-6 shadow-xl md:flex-1 md:px-8">
               <div className="relative hidden md:block">
                 <div className="absolute left-[6%] right-[6%] top-8 h-1 rounded-full bg-[#d9d5cc]"></div>
                 <div className="absolute left-[6%] top-8 h-1 rounded-full bg-[#ffe600] transition-all duration-500" style={{ width: `calc(${progressWidth} * 0.88)` }}></div>
@@ -194,6 +187,12 @@ function ApplicationForm() {
                     <p className="text-sm font-semibold text-[#1f1f1f]">{steps[activeStep - 1].label}</p>
                   </div>
                 </div>
+              </div>              </div>
+
+              <div className="asa-form-stage-card rounded-2xl border border-white/10 bg-white/5 px-5 py-4 text-white md:w-[220px]">
+                <p className="text-xs uppercase tracking-[0.24em] text-white/60">Current Stage</p>
+                <p className="mt-2 text-lg font-semibold">Step {activeStep} of {steps.length}</p>
+                <p className="text-sm text-[#ffe600]">{steps[activeStep - 1].label}</p>
               </div>
             </div>
           </div>
@@ -204,7 +203,7 @@ function ApplicationForm() {
             <h2 className="text-3xl font-bold text-[#1f1f1f]">{steps[activeStep - 1].label}</h2>
             <p className="mt-2 text-sm text-[#5f6368]">Fill in the required details carefully. EY colors are used across the form for a cleaner enterprise application experience.</p>
           </div>
-          <div className="rounded-2xl border border-black/10 bg-white px-4 py-3 shadow-sm">
+          <div className="asa-form-completion-card rounded-2xl border border-black/10 bg-white px-4 py-3 shadow-sm">
             <p className="text-xs uppercase tracking-[0.22em] text-[#6c6c73]">Completion</p>
             <p className="mt-1 text-lg font-bold text-[#1f1f1f]">{Math.round((activeStep / steps.length) * 100)}%</p>
           </div>
@@ -283,3 +282,17 @@ function ApplicationForm() {
 }
 
 export default ApplicationForm;
+
+
+
+
+
+
+
+
+
+
+
+
+
+

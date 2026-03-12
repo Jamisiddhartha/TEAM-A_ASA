@@ -1,114 +1,94 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
-import uidaiLogo from "../assets/uidai-logo.jpg";
+import { Shield } from "lucide-react";
+import "./Landing.css";
 import heroImage from "../assets/aadhaar.png";
 import securityIcon from "../assets/security.png";
 import secureIcon from "../assets/secure.jpeg";
 
 const LandingPage = () => {
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col">
-      <header className="w-full bg-white border-b shadow-sm fixed top-0 left-0 z-50">
-        <div className="max-w-screen-xl mx-auto px-8 py-3 flex items-center">
-          <div className="flex items-center gap-3">
-            <img src={uidaiLogo} className="h-10" />
+    <div className="landing-page" style={{ backgroundImage: `url(${heroImage})` }}>
+      <header className="landing-header">
+        <div className="landing-header-inner">
+          <div className="landing-brand-wrap">
+            <div className="asa-dash-brand-icon landing-brand-icon"><Shield size={18} /></div>
             <div>
-              <h1 className="text-xl font-semibold">
-                <span style={{ color: "#FFE600" }}>UIDAI</span>
-              </h1>
-              <p className="text-xs text-gray-500">ASA Onboarding</p>
+              <h1 className="landing-brand-title">UIDAI Portal</h1>
+              <p className="landing-brand-subtitle">ASA Onboarding</p>
             </div>
           </div>
 
-          <nav className="hidden md:flex items-center ml-auto gap-6 text-sm text-gray-700">
-            <a href="#" className="hover:text-orange-500 cursor-pointer">Home</a>
-            <a href="#" className="hover:text-orange-500 cursor-pointer">About</a>
-            <a href="#" className="hover:text-orange-500 cursor-pointer">Onboarding Process</a>
-            <a href="#" className="hover:text-orange-500 cursor-pointer">Guidelines</a>
-          </nav>
+          <div className="landing-header-right">
+            <nav className="landing-links">
+              <Link to="/" className="landing-link">Home</Link>
+              <a href="#" className="landing-link">About</a>
+              <a href="#" className="landing-link">Onboarding Process</a>
+              <a href="#" className="landing-link">Guidelines</a>
+            </nav>
 
-          <div className="hidden md:flex items-center gap-4 ml-6">
-            <Link
-              to="/register"
-              className="px-4 py-2 rounded-md font-semibold text-black"
-              style={{ background: "#FFE600" }}
-            >
-              Register
-            </Link>
-            <Link
-              to="/login"
-              className="px-4 py-2 rounded-md font-semibold text-black"
-              style={{ background: "#FFE600" }}
-            >
-              Login
-            </Link>
+            <div className="landing-header-actions">
+              <Link to="/register" className="landing-header-btn landing-header-btn-primary">Register</Link>
+              <Link to="/login" className="landing-header-btn landing-header-btn-muted">Login</Link>
+            </div>
           </div>
         </div>
       </header>
 
-      <section
-        className="w-full min-h-screen bg-center bg-cover bg-no-repeat flex items-center"
-        style={{ backgroundImage: `url(${heroImage})` }}
-      >
-        <div className="pl-8">
-          <h2 className="text-5xl font-bold text-gray-800 leading-tight">
-            Authentication Service
-            <br />
-            <span style={{ color: "#FFE600" }}>Agency Portal</span>
-          </h2>
+      <main className="landing-main">
+        <section className="landing-hero">
+          <div className="landing-hero-content">
+            <h2>
+              Authentication Service
+              <br />
+              <span>Agency Portal</span>
+            </h2>
 
-          <p className="mt-6 text-lg text-gray-600 max-w-md">
-            Secure platform to apply &amp; manage ASA onboarding and access services in a transparent manner.
-          </p>
+            <p>
+              Secure platform to apply and manage ASA onboarding and access services in a transparent manner.
+            </p>
 
-          <div className="mt-8 flex gap-4">
-            <Link
-              to="/login"
-              className="px-6 py-3 text-black rounded-lg font-medium hover:opacity-90"
-              style={{ background: "#FFE600" }}
-            >
-              Apply Now
-            </Link></div>
-        </div>
-      </section>
-
-      <section className="bg-gray-100 py-5">
-        <div className="max-w-screen-xl mx-auto px-2 text-center">
-          <h3 className="text-3xl font-semibold text-gray-800">
-            Key <span style={{ color: "#FFE600" }}>Features</span>
-          </h3>
-
-          <div className="grid md:grid-cols-3 gap-8 mt-12">
-            <div className="bg-white p-8 rounded-xl shadow-lg hover:scale-110 transition duration-300">
-              <img src={securityIcon} className="h-16 mx-auto mb-4" />
-              <h4 className="text-lg font-semibold">Security Authentication</h4>
-              <p className="text-gray-500 mt-2 text-sm">
-                Robust security measures to protect your data and privacy
-              </p>
-            </div>
-
-            <div className="bg-white p-8 rounded-xl shadow-lg hover:scale-110 transition duration-300"><img src={secureIcon} className="h-16 mx-auto mb-4" /><h4 className="text-lg font-semibold">Officer Review Ready</h4><p className="text-gray-500 mt-2 text-sm">Step 3 approval and condition verification are available from the dashboard.</p></div>
-
-            <div className="bg-white p-8 rounded-xl shadow-lg hover:scale-110 transition duration-300">
-              <img src={secureIcon} className="h-16 mx-auto mb-4" />
-              <h4 className="text-lg font-semibold">Transparent Process</h4>
-              <p className="text-gray-500 mt-2 text-sm">
-                Experience a fully digital and transparent onboarding process
-              </p>
+            <div className="landing-hero-actions">
+              <Link to="/login" className="landing-cta">Apply Now</Link>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <footer className="bg-white border-t py-4 fixed bottom-0 left-0 w-full z-50">
-        <div className="max-w-screen-xl mx-auto px-8 flex items-center justify-between text-sm text-gray-500">
-          <div className="flex items-center gap-2">
-            <img src={uidaiLogo} className="h-6" />
+        <section className="landing-features">
+          <div className="landing-features-inner">
+            <h3>Key <span>Features</span></h3>
+
+            <div className="landing-feature-grid">
+              <article className="landing-feature-card">
+                <img src={securityIcon} className="h-16 mx-auto mb-4" alt="Security" />
+                <h4>Security Authentication</h4>
+                <p>Robust security measures to protect your data and privacy</p>
+              </article>
+
+              <article className="landing-feature-card">
+                <img src={secureIcon} className="h-16 mx-auto mb-4" alt="Review" />
+                <h4>Officer Review Ready</h4>
+                <p>Step 3 approval and condition verification are available from the dashboard.</p>
+              </article>
+
+              <article className="landing-feature-card">
+                <img src={secureIcon} className="h-16 mx-auto mb-4" alt="Process" />
+                <h4>Transparent Process</h4>
+                <p>Experience a fully digital and transparent onboarding process</p>
+              </article>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer className="landing-footer">
+        <div className="landing-footer-inner">
+          <div className="landing-footer-brand">
+            <div className="ey-mini-logo"><Shield size={12} /></div>
             <span>UIDAI ASA Portal</span>
           </div>
 
-          <div className="flex gap-6">
+          <div className="landing-footer-links">
             <a href="#">Contact</a>
             <a href="#">Privacy</a>
             <a href="#">Terms</a>
@@ -120,6 +100,3 @@ const LandingPage = () => {
 };
 
 export default LandingPage;
-
-
-

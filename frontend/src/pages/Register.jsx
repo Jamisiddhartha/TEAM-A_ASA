@@ -148,30 +148,30 @@ export default function Register() {
 
   return (
     <div className="register-page" style={{ backgroundImage: `url(${aadhaarBg})` }}>
-      <header className="w-full bg-white border-b shadow-sm fixed top-0 left-0 z-50">
-        <div className="max-w-screen-xl mx-auto px-8 py-3 flex items-center">
-          <div className="flex items-center gap-3">
-            <img src={uidaiLogo} className="h-10" />
+      <header className="register-header">
+        <div className="register-header-inner">
+          <div className="register-brand-wrap">
+            <img src={uidaiLogo} className="h-10" alt="UIDAI" />
             <div>
-              <h1 className="text-xl font-semibold">
-                <span style={{ color: "#FFE600" }}>UIDAI</span> PortalPortal
+              <h1 className="register-brand-title">
+                <span style={{ color: "#FFE600" }}>UIDAI</span> Portal
               </h1>
-              <p className="text-xs text-gray-500">ASA Onboarding</p>
+              <p className="register-brand-subtitle">ASA Onboarding</p>
             </div>
           </div>
 
-          <nav className="hidden md:flex items-center ml-auto gap-6 text-sm text-gray-700">
-            <a href="/" className="hover:text-orange-500 cursor-pointer">Home</a>
-            <a href="#" className="hover:text-orange-500 cursor-pointer">About</a>
-            <a href="#" className="hover:text-orange-500 cursor-pointer">Onboarding Process</a>
-            <a href="#" className="hover:text-orange-500 cursor-pointer">Guidelines</a>
+          <nav className="register-nav">
+            <Link to="/" className="register-nav-link">Home</Link>
+            <a href="#" className="register-nav-link">About</a>
+            <a href="#" className="register-nav-link">Onboarding Process</a>
+            <a href="#" className="register-nav-link">Guidelines</a>
           </nav>
 
-          <div className="hidden md:flex items-center gap-4 ml-6">
-            <Link to="/register" className="px-4 py-2 border bg-gray-300 border-gray-400 rounded-md hover:bg-gray-100">
+          <div className="register-nav-actions">
+            <Link to="/register" className="register-nav-btn register-nav-btn-muted">
               Register
             </Link>
-            <Link to="/login" className="px-4 py-2 bg-yellow-500 text-white rounded-md hover:bg-yellow-500">
+            <Link to="/login" className="register-nav-btn register-nav-btn-primary">
               Login
             </Link>
           </div>
@@ -302,14 +302,14 @@ export default function Register() {
         </div>
       </div>
 
-      <footer className="bg-white border-t py-4 fixed bottom-0 left-0 w-full z-50">
-        <div className="max-w-screen-xl mx-auto px-8 flex items-center justify-between text-sm text-gray-500">
-          <div className="flex items-center gap-2">
-            <img src={uidaiLogo} className="h-6" />
+      <footer className="register-footer">
+        <div className="register-footer-inner">
+          <div className="register-footer-brand">
+            <img src={uidaiLogo} className="h-6" alt="UIDAI" />
             <span>UIDAI ASA Portal</span>
           </div>
 
-          <div className="flex gap-6">
+          <div className="register-footer-links">
             <a href="#">Contact</a>
             <a href="#">Privacy</a>
             <a href="#">Terms</a>
