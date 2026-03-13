@@ -1,10 +1,11 @@
-import { useMemo, useState } from "react";
+﻿import { useMemo, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import ReCAPTCHA from "react-google-recaptcha";
 import "./Login.css";
 import { Mail, Lock, Eye, EyeOff, Shield } from "lucide-react";
 import aadhaarBg from "../assets/aadhaar.png";
 import { loginUser } from "../services/portalApi";
+import { getDashboardPathByRole } from "../utils/roleRoutes";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -51,7 +52,7 @@ export default function Login() {
       if (res.token) {
         localStorage.setItem("token", res.token);
         localStorage.setItem("user", JSON.stringify(res.user));
-        navigate("/dashboard");
+        navigate(getDashboardPathByRole(res.user?.role));
       } else {
         setFeedback(res.message || "Login failed.");
       }
@@ -165,5 +166,3 @@ export default function Login() {
     </div>
   );
 }
-
-

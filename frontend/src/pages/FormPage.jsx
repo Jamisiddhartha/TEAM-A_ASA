@@ -3,6 +3,7 @@ import { Link, Navigate, useNavigate } from "react-router-dom";
 import { FileText, GitBranch, LayoutDashboard, LogOut, Shield, User } from "lucide-react";
 import ApplicantDetails from "../forms/ApplicantDetails.jsx";
 import uidaiLogo from "../assets/uidai-logo.jpg";
+import { fetchApplications } from "../services/portalApi";
 
 const formSteps = [
   { id: 1, label: "Applicant Details" },
@@ -34,6 +35,18 @@ function FormPage() {
     window.addEventListener("formStepChanged", handler);
     return () => window.removeEventListener("formStepChanged", handler);
   }, []);
+
+  useEffect(() => {
+    if (!user?.id) return;
+
+    fetchApplications(user)
+      .then((rows) => {
+        if ((rows || []).length > 0) {
+          navigate("/dashboard", { replace: true });
+        }
+      })
+      .catch(() => {});
+  }, [navigate, user]);
 
   function handleLogout() {
     localStorage.removeItem("token");

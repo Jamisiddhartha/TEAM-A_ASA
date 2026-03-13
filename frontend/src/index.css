@@ -3723,3 +3723,39 @@ body,
     padding-top: 124px !important;
   }
 }
+
+/* Admin details modal: fix topbar overlap + scrolling */
+.asa-modal-backdrop {
+  z-index: 500 !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: flex-start !important;
+  overflow-y: auto !important;
+  padding: 18px 14px !important;
+}
+
+.asa-admin-modal {
+  width: min(920px, calc(100% - 28px)) !important;
+  max-height: calc(100vh - 36px) !important;
+  overflow-y: auto !important;
+  margin: 0 auto !important;
+}
+
+.asa-admin-modal .asa-modal-grid p,
+.asa-admin-modal .asa-profile-grid strong,
+.asa-admin-modal .helper-text {
+  overflow-wrap: anywhere !important;
+  word-break: break-word !important;
+}
+
+@media (max-width: 920px) {
+  .asa-modal-backdrop {
+    padding: 10px !important;
+  }
+
+  .asa-admin-modal {
+    width: calc(100% - 10px) !important;
+    max-height: calc(100vh - 20px) !important;
+    border-radius: 12px !important;
+  }
+}

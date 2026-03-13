@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+﻿import { useEffect, useMemo, useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import {
   Activity,
@@ -24,8 +24,9 @@ import {
   ArrowRight,
   ArrowDown,
 } from "lucide-react";
-import { fetchApplications } from "../services/portalApi";
+import { fetchApplications, getInPrincipleApprovalLetterPdfUrl } from "../services/portalApi";
 import uidaiLogo from "../assets/uidai-logo.jpg";
+import { getDashboardPathByRole, normalizeRole } from "../utils/roleRoutes";
 
 const onboardingSteps = [
   {
@@ -121,10 +122,16 @@ const onboardingSteps = [
 
 function getScopedApplications(applications, user) {
   if (!user) return [];
-  if (user.role === "Applicant") {
-    return applications.filter(
+  if (String(user.role || "").toLowerCase() === "applicant") {
+    const mine = applications.filter(
       (application) => application.createdByUserId === user.id || application.email?.toLowerCase() === user.email?.toLowerCase()
     );
+
+    if (mine.length <= 1) return mine;
+
+    return [...mine]
+      .sort((a, b) => new Date(b.updatedAt || b.createdAt) - new Date(a.updatedAt || a.createdAt))
+      .slice(0, 1);
   }
   return applications;
 }
@@ -171,11 +178,11 @@ export default function UserDashboard() {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    fetchApplications()
+    fetchApplications(user)
       .then((rows) => setApplications(rows || []))
       .catch(() => setError("Unable to load dashboard data right now."))
       .finally(() => setLoading(false));
-  }, []);
+  }, [user]);
 
   const scoped = useMemo(() => getScopedApplications(applications, user), [applications, user]);
 
@@ -204,7 +211,12 @@ export default function UserDashboard() {
   }, [scoped]);
 
   const completionCount = selectedApplication?.currentStep || 1;
-  const displayName = user?.fullname || user?.email?.split("@")?.[0] || "Applicant";
+  const displayName = user?.fullname || user?.email?.split("@")?.[0] || "User";
+  const roleNormalized = normalizeRole(user?.role || "Applicant");
+  const isApplicant = roleNormalized === "applicant";
+  const appListTitle = isApplicant ? "My Applications" : "All Applications";
+  const appListSubtitle = isApplicant ? "Manage your ASA onboarding applications" : "Monitor and review submitted ASA onboarding applications";
+  const hasExistingApplication = isApplicant && scoped.length > 0;
 
   function handleLogout() {
     localStorage.removeItem("token");
@@ -214,6 +226,10 @@ export default function UserDashboard() {
 
   if (!user) {
     return <Navigate to="/login" replace />;
+  }
+
+  if (roleNormalized !== "applicant") {
+    return <Navigate to={getDashboardPathByRole(user?.role)} replace />;
   }
 
   return (
@@ -234,7 +250,7 @@ export default function UserDashboard() {
                 <LayoutDashboard size={19} />Dashboard
               </button>
               <button type="button" className={`asa-dash-nav-item ${activeTab === "applications" ? "active" : ""}`} onClick={() => setActiveTab("applications")}>
-                <FileText size={19} />My Applications
+                <FileText size={19} />{appListTitle}
               </button>
               <button type="button" className={`asa-dash-nav-item ${activeTab === "flow" ? "active" : ""}`} onClick={() => setActiveTab("flow")}>
                 <GitBranch size={19} />Onboarding Flow
@@ -271,11 +287,27 @@ export default function UserDashboard() {
                 <div className="asa-page-head asa-dashboard-head">
                   <div className="asa-dash-headline">
                     <h1>Welcome back, {displayName}</h1>
-                    <p>Here&apos;s your ASA onboarding overview</p>
+                    <p>{isApplicant ? "ASA onboarding overview" : "Review and manage ASA onboarding progress"}</p>
                   </div>
-                  <button type="button" className="asa-inline-new-btn" onClick={() => navigate("/form")}>
+                  <button
+                    type="button"
+                    className="asa-inline-new-btn"
+                    onClick={() => {
+                      if (!isApplicant) {
+                        setActiveTab("applications");
+                        return;
+                      }
+                      if (hasExistingApplication) {
+                        setActiveTab("applications");
+                        return;
+                      }
+                      navigate("/form");
+                    }}
+                    disabled={isApplicant && hasExistingApplication}
+                    title={isApplicant && hasExistingApplication ? "One user can apply for only one application" : undefined}
+                  >
                     <Plus size={16} />
-                    New Application
+                    {isApplicant ? (hasExistingApplication ? "Application Submitted" : "New Application") : "Review Applications"}
                   </button>
                 </div>
 
@@ -284,7 +316,7 @@ export default function UserDashboard() {
                     type="button"
                     className="asa-metric-card asa-metric-card-click"
                     onClick={() => setActiveTab("applications")}
-                    aria-label="Open My Applications"
+                    aria-label="Open applications"
                   >
                     <div className="asa-metric-icon orange"><ClipboardList size={20} /></div>
                     <strong>{metrics.total}</strong>
@@ -331,7 +363,7 @@ export default function UserDashboard() {
                         <span>Step {latestApplication.currentStep || 1}/11</span>
                       </button>
                     ) : (
-                      <p className="helper-text">No application found. Click New Application to create one.</p>
+                      <p className="helper-text">{isApplicant ? "No application found." : "No applications found to review right now."}</p>
                     )}
                   </article>
 
@@ -355,18 +387,34 @@ export default function UserDashboard() {
               <section className="asa-applications-page">
                 <div className="asa-page-head">
                   <div>
-                    <h2>My Applications</h2>
-                    <p>Manage your ASA onboarding applications</p>
+                    <h2>{appListTitle}</h2>
+                    <p>{appListSubtitle}</p>
                   </div>
-                  <button type="button" className="asa-inline-new-btn" onClick={() => navigate("/form")}>
+                  <button
+                    type="button"
+                    className="asa-inline-new-btn"
+                    onClick={() => {
+                      if (!isApplicant) {
+                        setActiveTab("applications");
+                        return;
+                      }
+                      if (hasExistingApplication) {
+                        setActiveTab("applications");
+                        return;
+                      }
+                      navigate("/form");
+                    }}
+                    disabled={isApplicant && hasExistingApplication}
+                    title={isApplicant && hasExistingApplication ? "One user can apply for only one application" : undefined}
+                  >
                     <Plus size={16} />
-                    New Application
+                    {isApplicant ? (hasExistingApplication ? "Application Submitted" : "New Application") : "Review Applications"}
                   </button>
                 </div>
 
                 <div className="asa-app-list-wrap">
                   {scoped.length === 0 ? (
-                    <p className="helper-text">No applications found. Create your first one from New Application.</p>
+                    <p className="helper-text">{isApplicant ? "No applications found." : "No applications are available right now."}</p>
                   ) : (
                     scoped.map((item) => (
                       <article key={item.id} className="asa-app-list-row">
@@ -374,7 +422,7 @@ export default function UserDashboard() {
                           <div className="asa-app-doc"><FileText size={22} /></div>
                           <div>
                             <h4>{item.organizationName || "Organization"}</h4>
-                            <p>{item.applicationId || "-"} � {item.applicantName || "Applicant"}</p>
+                            <p>{item.applicationId || "-"} • {item.applicantName || "Applicant"}</p>
                           </div>
                         </div>
 
@@ -418,7 +466,7 @@ export default function UserDashboard() {
                 <div className="asa-page-head asa-flow-head">
                   <div>
                     <h2>Onboarding Flow</h2>
-                    <p>Track your ASA onboarding through all 11 steps</p>
+                    <p>{isApplicant ? "Track your ASA onboarding through all 11 steps" : "Track and review onboarding progress across all 11 steps"}</p>
                   </div>
                   <div className="asa-flow-controls">
                     <button type="button" className="asa-light-btn" onClick={() => setShowDetailsModal(true)}>
@@ -465,6 +513,12 @@ export default function UserDashboard() {
                   {onboardingSteps.map((step, idx) => {
                     const isCurrent = step.id === (selectedApplication?.currentStep || 1);
                     const isDone = step.id < (selectedApplication?.currentStep || 1);
+                    const isStep2Generated =
+                      step.id === 2 &&
+                      String(selectedApplication?.overallStatus || "")
+                        .toLowerCase()
+                        .includes("application id generated");
+                    const isCompletedStep = isDone || isStep2Generated;
                     const isExpanded = expandedStep === step.id;
 
                     return (
@@ -476,7 +530,7 @@ export default function UserDashboard() {
                               <div className="asa-flow-step-title-row">
                                 <h4>Step {step.id}: {step.title}</h4>
                                 <div className="asa-flow-pill-row">
-                                  <span className="asa-pill-muted">{isDone ? "Completed" : "Pending"}</span>
+                                  <span className="asa-pill-muted">{isCompletedStep ? "Completed" : "Pending"}</span>
                                   {isCurrent ? <span className="asa-pill-current">Current</span> : null}
                                 </div>
                               </div>
@@ -508,14 +562,26 @@ export default function UserDashboard() {
                                   ))}
                                 </ul>
                               </div>
+                              {step.id === 3 && Number(selectedApplication?.currentStep || 0) >= 4 ? (
+                                <a
+                                  href={getInPrincipleApprovalLetterPdfUrl(selectedApplication.id)}
+                                  target="_blank"
+                                  rel="noreferrer"
+                                  className="asa-inline-new-btn"
+                                  style={{ width: "fit-content" }}
+                                >
+                                  <FileText size={14} />
+                                  Download In-Principle Approval Letter
+                                </a>
+                              ) : null}
                               <div className="asa-flow-dates">
                                 <div>
                                   <span>STARTED</span>
-                                  <p>{isDone || isCurrent ? "Started" : "Not started"}</p>
+                                  <p>{isCompletedStep || isCurrent ? "Started" : "Not started"}</p>
                                 </div>
                                 <div>
                                   <span>COMPLETED</span>
-                                  <p>{isDone ? "Completed" : "Pending"}</p>
+                                  <p>{isCompletedStep ? "Completed" : "Pending"}</p>
                                 </div>
                               </div>
                               {step.timeline ? <small>Timeline: {step.timeline}</small> : null}
@@ -628,6 +694,23 @@ export default function UserDashboard() {
     </>
   );
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
