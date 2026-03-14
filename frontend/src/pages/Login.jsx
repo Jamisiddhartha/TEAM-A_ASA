@@ -1,6 +1,5 @@
-﻿import { useMemo, useState } from "react";
+﻿import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import ReCAPTCHA from "react-google-recaptcha";
 import "./Login.css";
 import { Mail, Lock, Eye, EyeOff, Shield } from "lucide-react";
 import aadhaarBg from "../assets/aadhaar.png";
@@ -15,15 +14,9 @@ export default function Login() {
     password: "",
   });
 
-  const [captchaToken, setCaptchaToken] = useState(null);
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [feedback, setFeedback] = useState("");
-
-  const isLocalDev = useMemo(() => {
-    if (typeof window === "undefined") return false;
-    return ["localhost", "127.0.0.1"].includes(window.location.hostname);
-  }, []);
 
   const handleChange = (e) => {
     setFeedback("");
@@ -39,14 +32,9 @@ export default function Login() {
       return;
     }
 
-    if (!captchaToken && !isLocalDev) {
-      setFeedback("Please verify captcha before login.");
-      return;
-    }
-
     try {
       setLoading(true);
-      setFeedback(isLocalDev && !captchaToken ? "Captcha bypassed for local development." : "");
+      setFeedback("");
       const res = await loginUser({ email, password });
 
       if (res.token) {
@@ -122,18 +110,7 @@ export default function Login() {
               </button>
             </div>
 
-            <div className="captcha-box">
-              <ReCAPTCHA
-                sitekey="6Lc20X8sAAAAAGzkMW7hsJ8Q3bq2l4c-f9yIfLYM"
-                onChange={(token) => {
-                  setCaptchaToken(token);
-                  setFeedback("");
-                }}
-              />
-            </div>
-
             {feedback ? <p className="login-feedback">{feedback}</p> : null}
-            {isLocalDev ? <p className="login-dev-note">Local development mode: captcha can be bypassed for testing.</p> : null}
 
             <button type="button" onClick={handleLogin} className="btn btn-primary btn-login" disabled={loading}>
               {loading ? "Logging in..." : "Login"}

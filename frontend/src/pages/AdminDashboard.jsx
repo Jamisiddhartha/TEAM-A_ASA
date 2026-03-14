@@ -1,4 +1,4 @@
-﻿import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import {
   Activity,
@@ -19,6 +19,11 @@ import {
   fetchInPrincipleApproval,
   issueInPrincipleApproval,
   getInPrincipleApprovalLetterPdfUrl,
+  fetchStep4Details,
+  reviewStep4Details,
+  fetchStep6Details,
+  reviewStep6Details,
+  fetchAuditors,
 } from "../services/portalApi";
 import uidaiLogo from "../assets/uidai-logo.jpg";
 import { getDashboardPathByRole, normalizeRole } from "../utils/roleRoutes";
@@ -29,6 +34,46 @@ const STEP3_APPENDICES = [
   "Performance Bank Guarantee",
   "Pre-onboarding Audit Compliance Checklist",
   "Onboarding Audit Compliance Checklist",
+];
+
+
+const FORM_PAYLOAD_SECTIONS = [
+  {
+    title: "Applicant Details",
+    fields: [["typeOfApplicant", "Type of Applicant"], ["applicantName", "Applicant Name"], ["registrationNumber", "Registration / Incorporation No."], ["licenseNumber", "License Number"], ["registeredOfficeAddress", "Registered Office Address"], ["correspondenceAddress", "Correspondence Address"], ["gstnNumber", "GSTN Number"], ["tanNumber", "TAN Number"], ["applicantCategory", "Applicant Category"]],
+  },
+  {
+    title: "Contact And Governance Details",
+    groups: [
+      { title: "Key Managerial Personnel (KMP)", fields: [["kmpName", "KMP Name"], ["kmpDesignation", "Full Designation"], ["officialEmail", "Official Email Address"], ["mobileNumber", "Mobile Number"]] },
+      { title: "Chief Information Security Officer (CISO)", fields: [["cisoName", "CISO Name"], ["cisoDesignation", "Full Designation"], ["cisoEmail", "Official Email Address"], ["cisoMobile", "Mobile Number"]] },
+      { title: "Management And Technical Contacts", fields: [["mpocName", "MPOC Name"], ["mpocDesignation", "MPOC Designation"], ["mpocEmail", "MPOC Email"], ["mpocMobile", "MPOC Mobile"], ["tpocName", "TPOC Name"], ["tpocDesignation", "TPOC Designation"], ["tpocEmail", "TPOC Email"], ["tpocMobile", "TPOC Mobile"]] },
+      { title: "Grievance Redressal Details", fields: [["websiteUrl", "Website URL"], ["grievanceEmail", "Email Address"], ["helpdeskNumber", "Helpdesk Number"], ["grievanceOfficerName", "Grievance Officer Name"], ["grievanceOfficerMobile", "Officer Mobile"], ["grievanceOfficerEmail", "Officer Email ID"]] },
+    ],
+  },
+  {
+    title: "ASA Infrastructure And Connectivity",
+    groups: [
+      { title: "Proposed ASA Server Location(s)", fields: [["primaryDistrict", "District (Primary DC)"], ["primaryState", "State"], ["primaryCountry", "Country"]] },
+      { title: "Primary And DR Data Centres", fields: [["primaryDcContactName", "Primary MPOC/TPOC Name"], ["primaryDcEmail", "Primary Email Address"], ["primaryDcPhone", "Primary Telephone / Mobile No."], ["primaryDcAddress", "Primary Address"], ["drDistrict", "DR District"], ["drContactName", "DR MPOC/TPOC Name"], ["drEmail", "DR Email Address"], ["drPhone", "DR Telephone / Mobile No."], ["drAddress", "DR Address"]] },
+      { title: "Leased Lines And Routing", fields: [["leasedLineCount", "Leased Lines at UIDAI DC"], ["connectivityType", "Connectivity Type"], ["serviceProvider", "Service Provider"], ["leasedLineCapacity", "Leased Line Capacity (Mbps)"], ["whitelistedIps", "Whitelisted IP Address(es)"], ["expectedAuthVolume", "Expected Authentication Volume"], ["routerMakeModel", "Router Make & Model"], ["redundantRouterLocation", "Redundant Router Location"]] },
+      { title: "AUA/KUA Information", fields: [["geographiesCatered", "Geographies Catered"], ["auaKuaSupportType", "AUA/KUA Support Type"]] },
+    ],
+  },
+  {
+    title: "Authentication And Authorization",
+    groups: [
+      { title: "Authentication Requirements", fields: [["declarationAuthorized", "Applicant is authorized to submit this application"], ["declarationAccurate", "All information provided is accurate and true"], ["declarationCompliant", "Organization complies with data protection regulations"], ["declarationSecurity", "Organization has adequate security infrastructure"], ["declarationTerms", "Organization understands the terms and conditions"]] },
+      { title: "Authorized Officer Details", fields: [["officerName", "Officer Name"], ["officerDesignation", "Officer Designation"], ["officerEmail", "Officer Email"], ["officerPhone", "Officer Phone"]] },
+    ],
+  },
+  {
+    title: "Declaration",
+    groups: [
+      { title: "Declaration Checklist", fields: [["declarationTruthful", "Information furnished is true and correct"], ["declarationCapacity", "Applicant will fulfil operational and audit obligations"], ["declarationLawCompliance", "Applicant will abide by Aadhaar Act and UIDAI directions"], ["declarationFalseInfo", "False information may lead to rejection or legal action"], ["declarationTermsPrivacy", "UIDAI may rely on the digitally authenticated signature"], ["declarationDataSecurity", "Applicant will maintain infrastructure and security safeguards"]] },
+      { title: "Signatory Details", fields: [["declarantName", "Declarant Name"], ["declarantDesignation", "Full Designation"], ["declarantEmail", "Declarant Email"], ["declarantPhone", "Declarant Phone"], ["declarationDate", "Declaration Date"], ["declarationPlace", "Declaration Place"], ["signatureTypedName", "Typed Signature Name"], ["authorizedSignatoryName", "Authorized Signatory Name"], ["signatureDescription", "Signature Description"], ["signatureAuthenticated", "Signature Authenticated"], ["signatureAuthenticatedAt", "Authenticated At"], ["signatureAuthMode", "Authentication Mode"], ["signatureDataUrl", "Signature"]] },
+    ],
+  },
 ];
 
 export default function AdminDashboard() {
@@ -47,6 +92,21 @@ export default function AdminDashboard() {
   const [step3Error, setStep3Error] = useState("");
   const [step3Remarks, setStep3Remarks] = useState("");
   const [step3Appendices, setStep3Appendices] = useState(STEP3_APPENDICES);
+
+  const [step4Loading, setStep4Loading] = useState(false);
+  const [step4Saving, setStep4Saving] = useState(false);
+  const [step4Error, setStep4Error] = useState("");
+  const [step4Details, setStep4Details] = useState(null);
+  const [step4Decision, setStep4Decision] = useState("approved");
+  const [step4ReviewRemarks, setStep4ReviewRemarks] = useState("");
+  const [auditors, setAuditors] = useState([]);
+  const [step5AssignedAuditorId, setStep5AssignedAuditorId] = useState("");
+  const [step6Loading, setStep6Loading] = useState(false);
+  const [step6Saving, setStep6Saving] = useState(false);
+  const [step6Error, setStep6Error] = useState("");
+  const [step6Details, setStep6Details] = useState(null);
+  const [step6Decision, setStep6Decision] = useState("approved");
+  const [step6ReviewRemarks, setStep6ReviewRemarks] = useState("");
 
   const [user] = useState(() => {
     try {
@@ -74,6 +134,7 @@ export default function AdminDashboard() {
 
   useEffect(() => {
     loadAdminApplications();
+    fetchAuditors().then((rows) => setAuditors(rows || [])).catch(() => setAuditors([]));
   }, []);
 
   const step2Ready = useMemo(() => applications.filter((app) => Number(app.currentStep || 0) >= 2), [applications]);
@@ -107,6 +168,55 @@ export default function AdminDashboard() {
       setStep3Error("Unable to load Step 3 details right now.");
     } finally {
       setStep3Loading(false);
+    }
+  }
+
+  async function openStep4Workflow(app) {
+    setModalMode("step4");
+    setShowIssueViewDetails(false);
+    setSelectedApplication(app);
+    setStep4Loading(true);
+    setStep4Error("");
+    setStep4Details(null);
+    setStep4Decision("approved");
+    setStep4ReviewRemarks("");
+    setStep5AssignedAuditorId("");
+
+    try {
+      const appId = Number(app.id);
+      if (!Number.isFinite(appId)) {
+        setStep4Error("Invalid application id for Step 4.");
+        return;
+      }
+
+      const details = await fetchStep4Details(appId);
+      setStep4Details(details || null);
+      setStep4ReviewRemarks(details?.reviewRemarks || "");
+      setStep5AssignedAuditorId(details?.assignedAuditorUserId ? String(details.assignedAuditorUserId) : "");
+    } catch {
+      setStep4Error("Unable to load Step 4 details right now.");
+    } finally {
+      setStep4Loading(false);
+    }
+  }
+  async function openStep6Workflow(app) {
+    setModalMode("step6");
+    setShowIssueViewDetails(false);
+    setSelectedApplication(app);
+    setStep6Loading(true);
+    setStep6Error("");
+    setStep6Details(null);
+    setStep6Decision("approved");
+    setStep6ReviewRemarks("");
+
+    try {
+      const details = await fetchStep6Details(app.id);
+      setStep6Details(details || null);
+      setStep6ReviewRemarks(details?.reviewRemarks || "");
+    } catch {
+      setStep6Error("Unable to load Step 6 details right now.");
+    } finally {
+      setStep6Loading(false);
     }
   }
 
@@ -151,6 +261,82 @@ export default function AdminDashboard() {
     }
   }
 
+  async function handleStep4Review() {
+    if (!selectedApplication) return;
+    if (!step4Details?.submittedAt) {
+      setStep4Error("Applicant has not submitted Step 4 yet.");
+      return;
+    }
+
+    try {
+      setStep4Saving(true);
+      setStep4Error("");
+
+      const appId = Number(selectedApplication.id);
+      if (!Number.isFinite(appId)) {
+        setStep4Error("Invalid application id for Step 4 review.");
+        return;
+      }
+
+      const response = await reviewStep4Details(appId, {
+        reviewedByUserId: user?.id || null,
+        decision: step4Decision,
+        reviewRemarks: step4ReviewRemarks.trim() || null,
+        assignedAuditorUserId: step4Decision === "approved" && step5AssignedAuditorId ? Number(step5AssignedAuditorId) : null,
+      });
+
+      await loadAdminApplications();
+      const updated = response?.application;
+      if (updated) {
+        setSelectedApplication((prev) => (prev ? { ...prev, ...updated } : prev));
+      }
+
+      const details = await fetchStep4Details(appId);
+      setStep4Details(details || null);
+    } catch (err) {
+      setStep4Error(err?.response?.data?.message || "Failed to review Step 4.");
+    } finally {
+      setStep4Saving(false);
+    }
+  }
+  async function handleStep6Review() {
+    if (!selectedApplication) return;
+    if (!step6Details?.submittedAt) {
+      setStep6Error("Auditor has not submitted Step 6 yet.");
+      return;
+    }
+
+    try {
+      setStep6Saving(true);
+      setStep6Error("");
+
+      const appId = Number(selectedApplication.id);
+      if (!Number.isFinite(appId)) {
+        setStep6Error("Invalid application id for Step 6 review.");
+        return;
+      }
+
+      const response = await reviewStep6Details(appId, {
+        reviewedByUserId: user?.id || null,
+        decision: step6Decision,
+        reviewRemarks: step6ReviewRemarks.trim() || null,
+      });
+
+      await loadAdminApplications();
+      const updated = response?.application;
+      if (updated) {
+        setSelectedApplication((prev) => (prev ? { ...prev, ...updated } : prev));
+      }
+
+      const details = await fetchStep6Details(appId);
+      setStep6Details(details || null);
+    } catch (err) {
+      setStep6Error(err?.response?.data?.message || "Failed to review Step 6.");
+    } finally {
+      setStep6Saving(false);
+    }
+  }
+
   function handleLogout() {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
@@ -164,6 +350,11 @@ export default function AdminDashboard() {
     setStep3Error("");
     setStep3Remarks("");
     setStep3Appendices(STEP3_APPENDICES);
+    setStep4Error("");
+    setStep4Details(null);
+    setStep4Decision("approved");
+    setStep4ReviewRemarks("");
+    setStep5AssignedAuditorId("");
   }
 
   if (!user) return <Navigate to="/login" replace />;
@@ -200,6 +391,59 @@ export default function AdminDashboard() {
 
     return <strong style={{ wordBreak: "break-word" }}>{text}</strong>;
   };
+
+
+  const renderPayloadFields = (payload, fields = []) => {
+      const available = fields.filter(([key]) => payload && Object.prototype.hasOwnProperty.call(payload, key));
+      if (available.length === 0) return null;
+  
+      return (
+        <div className="asa-profile-grid">
+          {available.map(([key, label]) => (
+            <div key={key}>
+              <span>{label}</span>
+              {renderPayloadValue(key, payload[key])}
+            </div>
+          ))}
+        </div>
+      );
+    };
+  
+    const renderPayloadSections = (payload) => {
+      if (!payload || Object.keys(payload).length === 0) {
+        return <p className="helper-text">No detailed form payload found for this application.</p>;
+      }
+  
+      return (
+        <div style={{ display: "grid", gap: 14 }}>
+          {FORM_PAYLOAD_SECTIONS.map((section) => {
+            const hasDirectFields = section.fields?.some(([key]) => Object.prototype.hasOwnProperty.call(payload, key));
+            const hasGroups = section.groups?.some((group) => group.fields.some(([key]) => Object.prototype.hasOwnProperty.call(payload, key)));
+            if (!hasDirectFields && !hasGroups) return null;
+  
+            return (
+              <section key={section.title} className="asa-dash-panel" style={{ marginTop: 0 }}>
+                <div className="asa-panel-head">
+                  <h3>{section.title}</h3>
+                </div>
+                {hasDirectFields ? renderPayloadFields(payload, section.fields) : null}
+                {hasGroups ? section.groups.map((group) => {
+                  const groupContent = renderPayloadFields(payload, group.fields);
+                  if (!groupContent) return null;
+                  return (
+                    <div key={group.title} style={{ marginTop: 12 }}>
+                      <h4 style={{ margin: "0 0 10px", color: "#f5f5f5", fontSize: 16 }}>{group.title}</h4>
+                      {groupContent}
+                    </div>
+                  );
+                }) : null}
+              </section>
+            );
+          })}
+        </div>
+      );
+    };
+
 
   return (
     <>
@@ -287,7 +531,7 @@ export default function AdminDashboard() {
                 <div className="asa-page-head">
                   <div>
                     <h2>Applications</h2>
-                    <p>Open an application and issue the In-Principle Approval Letter.</p>
+                    <p>Open an application and move it through Step 3, Step 4, or Step 6 review depending on its current stage.</p>
                   </div>
                 </div>
 
@@ -321,10 +565,10 @@ export default function AdminDashboard() {
                         <button
                           type="button"
                           className="asa-inline-new-btn"
-                          onClick={() => openStep3Workflow(item)}
+                          onClick={() => (Number(item.currentStep || 0) >= 6 ? openStep6Workflow(item) : Number(item.currentStep || 0) >= 4 ? openStep4Workflow(item) : openStep3Workflow(item))}
                         >
                           <Send size={15} />
-                          {Number(item.currentStep || 0) >= 4 ? "Issued" : "Issue"}
+                          {Number(item.currentStep || 0) >= 7 ? "Step 6 Reviewed" : Number(item.currentStep || 0) >= 6 ? "Review Step 6" : Number(item.currentStep || 0) >= 5 ? "Step 4 Reviewed" : Number(item.currentStep || 0) >= 4 ? "Review Step 4" : "Issue Step 3"}
                         </button>
                       </article>
                     ))
@@ -364,7 +608,7 @@ export default function AdminDashboard() {
             <div className="asa-modal-head">
               <div className="asa-modal-title">
                 <div className="asa-app-doc"><FileText size={20} /></div>
-                <h3>{modalMode === "issue" ? "Issue Step 3: In-Principle Approval Letter" : "Applicant Full Details"}</h3>
+                <h3>{modalMode === "issue" ? "Issue Step 3: In-Principle Approval Letter" : modalMode === "step4" ? "Review Step 4 Submission" : modalMode === "step6" ? "Review Step 6 Submission" : "Applicant Full Details"}</h3>
               </div>
               <button type="button" className="asa-icon-action" onClick={closeStep3Workflow}>
                 <X size={18} />
@@ -386,18 +630,332 @@ export default function AdminDashboard() {
                   <div className="asa-panel-head">
                     <h3>Submitted Form Payload</h3>
                   </div>
-                  <div className="asa-profile-grid">
-                    {selectedApplication.submittedForm && Object.keys(selectedApplication.submittedForm).length > 0 ? (
-                      Object.entries(selectedApplication.submittedForm).map(([key, value]) => (
-                        <div key={key}>
-                          <span>{key}</span>
-                          {renderPayloadValue(key, value)}
-                        </div>
-                      ))
-                    ) : (
-                      <p className="helper-text">No detailed form payload found for this application.</p>
-                    )}
+                  {renderPayloadSections(selectedApplication.submittedForm)}
+                </div>
+              </>
+            ) : modalMode === "step4" ? (
+              <>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 10, flexWrap: "wrap" }}>
+                  <p className="helper-text" style={{ marginTop: 0 }}>
+                    Review the Step 4 submission and open full applicant details when needed.
+                  </p>
+                  <button
+                    type="button"
+                    className="asa-inline-new-btn"
+                    onClick={() => setShowIssueViewDetails((prev) => !prev)}
+                  >
+                    <Eye size={15} />
+                    {showIssueViewDetails ? "Hide Details" : "View Details"}
+                  </button>
+                </div>
+
+                {showIssueViewDetails ? (
+                  <div className="asa-dash-panel" style={{ marginTop: 12 }}>
+                    <div className="asa-panel-head">
+                      <h3>Applicant Full Details</h3>
+                    </div>
+                    <div className="asa-modal-grid">
+                      <div><span>APPLICATION ID</span><p>{selectedApplication.applicationId || "-"}</p></div>
+                      <div><span>CURRENT STEP</span><p>{selectedApplication.currentStep || "-"}</p></div>
+                      <div><span>ORGANIZATION</span><p>{selectedApplication.organizationName || "-"}</p></div>
+                      <div><span>APPLICANT NAME</span><p>{selectedApplication.applicantName || "-"}</p></div>
+                      <div><span>EMAIL</span><p>{selectedApplication.email || "-"}</p></div>
+                      <div><span>MOBILE</span><p>{selectedApplication.mobile || "-"}</p></div>
+                    </div>
+
+                    <div className="asa-dash-panel" style={{ marginTop: 12 }}>
+                      <div className="asa-panel-head">
+                        <h3>Submitted Form Payload</h3>
+                      </div>
+                      {renderPayloadSections(selectedApplication.submittedForm)}
+                    </div>
                   </div>
+                ) : (
+                  <div className="asa-modal-grid">
+                    <div><span>APPLICATION ID</span><p>{selectedApplication.applicationId || "-"}</p></div>
+                    <div><span>CURRENT STEP</span><p>{selectedApplication.currentStep || "-"}</p></div>
+                    <div><span>ORGANIZATION</span><p>{selectedApplication.organizationName || "-"}</p></div>
+                    <div><span>APPLICANT NAME</span><p>{selectedApplication.applicantName || "-"}</p></div>
+                    <div><span>EMAIL</span><p>{selectedApplication.email || "-"}</p></div>
+                    <div><span>MOBILE</span><p>{selectedApplication.mobile || "-"}</p></div>
+                  </div>
+                )}
+
+                <div className="asa-dash-panel" style={{ marginTop: 14 }}>
+                  <div className="asa-panel-head">
+                    <h3>Step 4 Submission Details</h3>
+                  </div>
+
+                  {step4Loading ? (
+                    <p className="helper-text">Loading Step 4 details...</p>
+                  ) : (
+                    <>
+                      <div className="asa-profile-grid">
+                        <div>
+                          <span>ASA Agreement Ref</span>
+                          <strong>{step4Details?.asaAgreementRef || "-"}</strong>
+                        </div>
+                        <div>
+                          <span>Signed ASA Agreement</span>
+                          <strong>
+                            {step4Details?.asaAgreementFileUrl ? (
+                              <a href={step4Details.asaAgreementFileUrl} target="_blank" rel="noreferrer">Download PDF</a>
+                            ) : "-"}
+                          </strong>
+                        </div>
+                        <div>
+                          <span>PBG Ref</span>
+                          <strong>{step4Details?.pbgRef || "-"}</strong>
+                        </div>
+                        <div>
+                          <span>Performance Bank Guarantee</span>
+                          <strong>
+                            {step4Details?.pbgFileUrl ? (
+                              <a href={step4Details.pbgFileUrl} target="_blank" rel="noreferrer">Download PDF</a>
+                            ) : "-"}
+                          </strong>
+                        </div>
+                        <div>
+                          <span>Applicant Remarks</span>
+                          <strong>{step4Details?.remarks || "-"}</strong>
+                        </div>
+                        <div>
+                          <span>Submitted At</span>
+                          <strong>{step4Details?.submittedAt ? new Date(step4Details.submittedAt).toLocaleString("en-IN") : "-"}</strong>
+                        </div>
+                        <div>
+                          <span>Current Review Status</span>
+                          <strong>{step4Details?.reviewStatus || "pending"}</strong>
+                        </div>
+                        <div>
+                          <span>Previous Review Remarks</span>
+                          <strong>{step4Details?.reviewRemarks || "-"}</strong>
+                        </div>
+                      </div>
+
+                      {!step4Details?.submittedAt ? (
+                        <p className="helper-text" style={{ marginTop: 12 }}>Applicant has not submitted Step 4 yet.</p>
+                      ) : (
+                        <>
+                          <div style={{ marginTop: 14, display: "grid", gap: 10 }}>
+                            <label style={{ display: "grid", gap: 8 }}>
+                              <span style={{ fontSize: 12, letterSpacing: "0.08em", textTransform: "uppercase", color: "#c9c9c9" }}>Decision</span>
+                              <select
+                                value={step4Decision}
+                                onChange={(e) => setStep4Decision(e.target.value)}
+                                className="asa-flow-select"
+                                disabled={step4Saving}
+                              >
+                                <option value="approved">Approve (move to Step 5)</option>
+                                <option value="rejected">Reject (send for resubmission)</option>
+                              </select>
+                            </label>
+
+                            {step4Decision === "approved" ? (
+                              <label style={{ display: "grid", gap: 8 }}>
+                                <span style={{ fontSize: 12, letterSpacing: "0.08em", textTransform: "uppercase", color: "#c9c9c9" }}>Assign Auditor For Step 5</span>
+                                <select
+                                  value={step5AssignedAuditorId}
+                                  onChange={(e) => setStep5AssignedAuditorId(e.target.value)}
+                                  className="asa-flow-select"
+                                  disabled={step4Saving}
+                                >
+                                  <option value="">Keep unassigned for now</option>
+                                  {auditors.map((auditor) => (
+                                    <option key={auditor.id} value={auditor.id}>
+                                      {auditor.fullname} ({auditor.email})
+                                    </option>
+                                  ))}
+                                </select>
+                              </label>
+                            ) : null}
+
+                            <label style={{ display: "grid", gap: 8 }}>
+                              <span style={{ fontSize: 12, letterSpacing: "0.08em", textTransform: "uppercase", color: "#c9c9c9" }}>Review Remarks</span>
+                              <textarea
+                                value={step4ReviewRemarks}
+                                onChange={(e) => setStep4ReviewRemarks(e.target.value)}
+                                placeholder="Add Step 4 review remarks"
+                                style={{
+                                  width: "100%",
+                                  minHeight: 96,
+                                  borderRadius: 12,
+                                  padding: 12,
+                                  border: "1px solid rgba(255,230,0,0.25)",
+                                  background: "#121218",
+                                  color: "#fff",
+                                }}
+                                disabled={step4Saving}
+                              />
+                            </label>
+                          </div>
+
+                          {step4Error ? <p className="error-banner" style={{ marginTop: 12 }}>{step4Error}</p> : null}
+
+                          <div style={{ display: "flex", justifyContent: "flex-end", marginTop: 14 }}>
+                            <button
+                              type="button"
+                              className="asa-inline-new-btn"
+                              onClick={handleStep4Review}
+                              disabled={step4Saving}
+                            >
+                              {step4Saving ? "Submitting Review..." : "Submit Step 4 Review"}
+                            </button>
+                          </div>
+                        </>
+                      )}
+                    </>
+                  )}
+                </div>
+              </>
+            ) : modalMode === "step6" ? (
+              <>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 10, flexWrap: "wrap" }}>
+                  <p className="helper-text" style={{ marginTop: 0 }}>
+                    Review the Step 6 audit report and artefacts, then approve or reject the submission.
+                  </p>
+                  <button
+                    type="button"
+                    className="asa-inline-new-btn"
+                    onClick={() => setShowIssueViewDetails((prev) => !prev)}
+                  >
+                    <Eye size={15} />
+                    {showIssueViewDetails ? "Hide Details" : "View Details"}
+                  </button>
+                </div>
+
+                {showIssueViewDetails ? (
+                  <div className="asa-dash-panel" style={{ marginTop: 12 }}>
+                    <div className="asa-panel-head">
+                      <h3>Applicant Full Details</h3>
+                    </div>
+                    <div className="asa-modal-grid">
+                      <div><span>APPLICATION ID</span><p>{selectedApplication.applicationId || "-"}</p></div>
+                      <div><span>CURRENT STEP</span><p>{selectedApplication.currentStep || "-"}</p></div>
+                      <div><span>ORGANIZATION</span><p>{selectedApplication.organizationName || "-"}</p></div>
+                      <div><span>APPLICANT NAME</span><p>{selectedApplication.applicantName || "-"}</p></div>
+                      <div><span>EMAIL</span><p>{selectedApplication.email || "-"}</p></div>
+                      <div><span>MOBILE</span><p>{selectedApplication.mobile || "-"}</p></div>
+                    </div>
+
+                    <div className="asa-dash-panel" style={{ marginTop: 12 }}>
+                      <div className="asa-panel-head">
+                        <h3>Submitted Form Payload</h3>
+                      </div>
+                      {renderPayloadSections(selectedApplication.submittedForm)}
+                    </div>
+                  </div>
+                ) : (
+                  <div className="asa-modal-grid">
+                    <div><span>APPLICATION ID</span><p>{selectedApplication.applicationId || "-"}</p></div>
+                    <div><span>CURRENT STEP</span><p>{selectedApplication.currentStep || "-"}</p></div>
+                    <div><span>ORGANIZATION</span><p>{selectedApplication.organizationName || "-"}</p></div>
+                    <div><span>APPLICANT NAME</span><p>{selectedApplication.applicantName || "-"}</p></div>
+                    <div><span>EMAIL</span><p>{selectedApplication.email || "-"}</p></div>
+                    <div><span>MOBILE</span><p>{selectedApplication.mobile || "-"}</p></div>
+                  </div>
+                )}
+
+                <div className="asa-dash-panel" style={{ marginTop: 14 }}>
+                  <div className="asa-panel-head">
+                    <h3>Step 6 Submission Details</h3>
+                  </div>
+
+                  {step6Loading ? (
+                    <p className="helper-text">Loading Step 6 details...</p>
+                  ) : (
+                    <>
+                      <div className="asa-profile-grid">
+                        <div>
+                          <span>Audit Report Ref</span>
+                          <strong>{step6Details?.auditReportRef || "-"}</strong>
+                        </div>
+                        <div>
+                          <span>Audit Report PDF</span>
+                          <strong>{step6Details?.auditReportFileUrl ? <a href={step6Details.auditReportFileUrl} target="_blank" rel="noreferrer">Download PDF</a> : "-"}</strong>
+                        </div>
+                        <div>
+                          <span>Artefacts Ref</span>
+                          <strong>{step6Details?.artefactsRef || "-"}</strong>
+                        </div>
+                        <div>
+                          <span>Artefacts PDF</span>
+                          <strong>{step6Details?.artefactsFileUrl ? <a href={step6Details.artefactsFileUrl} target="_blank" rel="noreferrer">Download PDF</a> : "-"}</strong>
+                        </div>
+                        <div>
+                          <span>Submission Remarks</span>
+                          <strong>{step6Details?.submissionRemarks || "-"}</strong>
+                        </div>
+                        <div>
+                          <span>Submitted At</span>
+                          <strong>{step6Details?.submittedAt ? new Date(step6Details.submittedAt).toLocaleString("en-IN") : "-"}</strong>
+                        </div>
+                        <div>
+                          <span>Current Review Status</span>
+                          <strong>{step6Details?.reviewStatus || "pending"}</strong>
+                        </div>
+                        <div>
+                          <span>Previous Review Remarks</span>
+                          <strong>{step6Details?.reviewRemarks || "-"}</strong>
+                        </div>
+                      </div>
+
+                      {!step6Details?.submittedAt ? (
+                        <p className="helper-text" style={{ marginTop: 12 }}>Auditor has not submitted Step 6 yet.</p>
+                      ) : step6Details?.reviewStatus === "approved" ? (
+                        <p className="helper-text" style={{ marginTop: 12 }}>Step 6 has already been approved and the application is ready for Step 7.</p>
+                      ) : (
+                        <>
+                          <div style={{ marginTop: 14, display: "grid", gap: 10 }}>
+                            <label style={{ display: "grid", gap: 8 }}>
+                              <span style={{ fontSize: 12, letterSpacing: "0.08em", textTransform: "uppercase", color: "#c9c9c9" }}>Decision</span>
+                              <select
+                                value={step6Decision}
+                                onChange={(e) => setStep6Decision(e.target.value)}
+                                className="asa-flow-select"
+                                disabled={step6Saving}
+                              >
+                                <option value="approved">Approve (move to Step 7)</option>
+                                <option value="rejected">Reject (send for resubmission)</option>
+                              </select>
+                            </label>
+
+                            <label style={{ display: "grid", gap: 8 }}>
+                              <span style={{ fontSize: 12, letterSpacing: "0.08em", textTransform: "uppercase", color: "#c9c9c9" }}>Review Remarks</span>
+                              <textarea
+                                value={step6ReviewRemarks}
+                                onChange={(e) => setStep6ReviewRemarks(e.target.value)}
+                                placeholder="Add Step 6 review remarks"
+                                style={{
+                                  width: "100%",
+                                  minHeight: 96,
+                                  borderRadius: 12,
+                                  padding: 12,
+                                  border: "1px solid rgba(255,230,0,0.25)",
+                                  background: "#121218",
+                                  color: "#fff",
+                                }}
+                                disabled={step6Saving}
+                              />
+                            </label>
+                          </div>
+
+                          {step6Error ? <p className="error-banner" style={{ marginTop: 12 }}>{step6Error}</p> : null}
+
+                          <div style={{ display: "flex", justifyContent: "flex-end", marginTop: 14 }}>
+                            <button
+                              type="button"
+                              className="asa-inline-new-btn"
+                              onClick={handleStep6Review}
+                              disabled={step6Saving}
+                            >
+                              {step6Saving ? "Submitting Review..." : "Submit Step 6 Review"}
+                            </button>
+                          </div>
+                        </>
+                      )}
+                    </>
+                  )}
                 </div>
               </>
             ) : (
@@ -434,18 +992,7 @@ export default function AdminDashboard() {
                       <div className="asa-panel-head">
                         <h3>Submitted Form Payload</h3>
                       </div>
-                      <div className="asa-profile-grid">
-                        {selectedApplication.submittedForm && Object.keys(selectedApplication.submittedForm).length > 0 ? (
-                          Object.entries(selectedApplication.submittedForm).map(([key, value]) => (
-                            <div key={key}>
-                              <span>{key}</span>
-                              {renderPayloadValue(key, value)}
-                            </div>
-                          ))
-                        ) : (
-                          <p className="helper-text">No detailed form payload found for this application.</p>
-                        )}
-                      </div>
+                      {renderPayloadSections(selectedApplication.submittedForm)}
                     </div>
                   </div>
                 ) : null}
@@ -542,4 +1089,9 @@ export default function AdminDashboard() {
     </>
   );
 }
+
+
+
+
+
 

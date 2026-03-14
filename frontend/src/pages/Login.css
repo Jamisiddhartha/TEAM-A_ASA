@@ -231,12 +231,6 @@ html, body, #root {
   color: #fff08a;
 }
 
-.captcha-box {
-  margin-bottom: 15px;
-  transform: scale(1.02);
-  transform-origin: left top;
-}
-
 .btn {
   display: inline-flex;
   align-items: center;
@@ -295,12 +289,6 @@ html, body, #root {
   border: 1px solid rgba(255, 130, 130, 0.35);
   color: #ffd0d0;
   font-size: 0.9rem;
-}
-
-.login-dev-note {
-  margin: 0 0 12px;
-  color: rgba(255, 255, 255, 0.74);
-  font-size: 0.83rem;
 }
 
 .login-footer {

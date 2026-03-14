@@ -1,4 +1,4 @@
-﻿import axios from "axios";
+import axios from "axios";
 
 const api = axios.create({
   baseURL: "http://localhost:5000/api",
@@ -63,6 +63,60 @@ export async function fetchInPrincipleApproval(applicationId) {
   return response.data.step3;
 }
 
+export async function fetchStep4Details(applicationId) {
+  const response = await api.get(`/applications/${applicationId}/step4`);
+  return response.data.step4;
+}
+
+export async function submitStep4Details(applicationId, payload = {}) {
+  const response = await api.post(`/applications/${applicationId}/step4/submit`, payload);
+  return response.data;
+}
+
+export async function reviewStep4Details(applicationId, payload = {}) {
+  const response = await api.post(`/applications/${applicationId}/step4/review`, payload);
+  return response.data;
+}
+
+export async function fetchAuditors() {
+  const response = await api.get("/applications/meta/auditors");
+  return response.data.auditors;
+}
+
+export async function fetchStep5Details(applicationId) {
+  const response = await api.get(`/applications/${applicationId}/step5`);
+  return response.data.step5;
+}
+
+export async function assignStep5Auditor(applicationId, payload = {}) {
+  const response = await api.post(`/applications/${applicationId}/step5/assign`, payload);
+  return response.data;
+}
+
+export async function saveStep5Progress(applicationId, payload = {}) {
+  const response = await api.post(`/applications/${applicationId}/step5/save`, payload);
+  return response.data;
+}
+
+export async function submitStep5Audit(applicationId, payload = {}) {
+  const response = await api.post(`/applications/${applicationId}/step5/submit`, payload);
+  return response.data;
+}
+
+export async function fetchStep6Details(applicationId) {
+  const response = await api.get(`/applications/${applicationId}/step6`);
+  return response.data.step6;
+}
+
+export async function submitStep6Details(applicationId, payload = {}) {
+  const response = await api.post(`/applications/${applicationId}/step6/submit`, payload);
+  return response.data;
+}
+
+export async function reviewStep6Details(applicationId, payload = {}) {
+  const response = await api.post(`/applications/${applicationId}/step6/review`, payload);
+  return response.data;
+}
 
 export function getInPrincipleApprovalLetterPdfUrl(id) {
   return `${api.defaults.baseURL}/applications/${id}/in-principle-approval-letter-pdf`;

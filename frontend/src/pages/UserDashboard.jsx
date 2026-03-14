@@ -1,4 +1,4 @@
-﻿import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import {
   Activity,
@@ -24,7 +24,7 @@ import {
   ArrowRight,
   ArrowDown,
 } from "lucide-react";
-import { fetchApplications, getInPrincipleApprovalLetterPdfUrl } from "../services/portalApi";
+import { fetchApplications, getInPrincipleApprovalLetterPdfUrl, fetchStep4Details, submitStep4Details } from "../services/portalApi";
 import uidaiLogo from "../assets/uidai-logo.jpg";
 import { getDashboardPathByRole, normalizeRole } from "../utils/roleRoutes";
 
@@ -120,6 +120,9 @@ const onboardingSteps = [
   },
 ];
 
+const ASA_AGREEMENT_TEMPLATE_URL = "/ASA_Agreement_UIDAI_Template.pdf";
+const PBG_TEMPLATE_URL = "/Performance_Bank_Guarantee_ASA_Template.pdf";
+
 function getScopedApplications(applications, user) {
   if (!user) return [];
   if (String(user.role || "").toLowerCase() === "applicant") {
@@ -163,6 +166,7 @@ export default function UserDashboard() {
   const [selectedAppId, setSelectedAppId] = useState("");
   const [expandedStep, setExpandedStep] = useState(2);
   const [showDetailsModal, setShowDetailsModal] = useState(false);
+  const [showStep4Modal, setShowStep4Modal] = useState(false);
 
   const [user] = useState(() => {
     try {
@@ -176,6 +180,18 @@ export default function UserDashboard() {
   const [applications, setApplications] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [step4Details, setStep4Details] = useState(null);
+  const [step4Loading, setStep4Loading] = useState(false);
+  const [step4Submitting, setStep4Submitting] = useState(false);
+  const [step4Error, setStep4Error] = useState("");
+  const [step4Success, setStep4Success] = useState("");
+  const [step4Form, setStep4Form] = useState({ asaAgreementRef: "", pbgRef: "", remarks: "" });
+  const [step4Files, setStep4Files] = useState({
+    asaAgreementFileData: "",
+    asaAgreementFileName: "",
+    pbgFileData: "",
+    pbgFileName: "",
+  });
 
   useEffect(() => {
     fetchApplications(user)
@@ -192,10 +208,62 @@ export default function UserDashboard() {
     }
   }, [scoped, selectedAppId]);
 
+
+  useEffect(() => {
+    setShowStep4Modal(false);
+  }, [selectedAppId]);
   const selectedApplication = useMemo(() => {
     if (!selectedAppId) return scoped[0] || null;
     return scoped.find((app) => String(app.id) === String(selectedAppId)) || scoped[0] || null;
   }, [scoped, selectedAppId]);
+  useEffect(() => {
+    if (!selectedApplication || Number(selectedApplication.currentStep || 0) < 4) {
+      setStep4Details(null);
+      setStep4Error("");
+      setStep4Success("");
+      return;
+    }
+
+    let alive = true;
+    setStep4Loading(true);
+    setStep4Error("");
+
+    const appId = Number(selectedApplication.id);
+    if (!Number.isFinite(appId)) {
+      setStep4Loading(false);
+      setStep4Error("Invalid application id for Step 4.");
+      return;
+    }
+
+    fetchStep4Details(appId)
+      .then((details) => {
+        if (!alive) return;
+        setStep4Details(details || null);
+        setStep4Form({
+          asaAgreementRef: details?.asaAgreementRef || "",
+          pbgRef: details?.pbgRef || "",
+          remarks: details?.remarks || "",
+        });
+        setStep4Files({
+          asaAgreementFileData: "",
+          asaAgreementFileName: details?.asaAgreementFileName || "",
+          pbgFileData: "",
+          pbgFileName: details?.pbgFileName || "",
+        });
+      })
+      .catch(() => {
+        if (!alive) return;
+        setStep4Error("Unable to load Step 4 details right now.");
+      })
+      .finally(() => {
+        if (!alive) return;
+        setStep4Loading(false);
+      });
+
+    return () => {
+      alive = false;
+    };
+  }, [selectedApplication]);
 
   const metrics = useMemo(() => {
     const total = scoped.length;
@@ -205,18 +273,397 @@ export default function UserDashboard() {
     return { total, approved, inProgress, pendingReview };
   }, [scoped]);
 
-  const latestApplication = useMemo(() => {
-    if (scoped.length === 0) return null;
-    return [...scoped].sort((a, b) => new Date(b.updatedAt || b.createdAt) - new Date(a.updatedAt || a.createdAt))[0];
-  }, [scoped]);
 
-  const completionCount = selectedApplication?.currentStep || 1;
   const displayName = user?.fullname || user?.email?.split("@")?.[0] || "User";
   const roleNormalized = normalizeRole(user?.role || "Applicant");
   const isApplicant = roleNormalized === "applicant";
   const appListTitle = isApplicant ? "My Applications" : "All Applications";
   const appListSubtitle = isApplicant ? "Manage your ASA onboarding applications" : "Monitor and review submitted ASA onboarding applications";
   const hasExistingApplication = isApplicant && scoped.length > 0;
+  const hasStep4Submission = Boolean(step4Details?.submittedAt);
+  const step4ReviewStatus = step4Details?.reviewStatus || "pending";
+  const startedSteps = useMemo(() => {
+    if (!selectedApplication) return [];
+    const currentStep = Number(selectedApplication.currentStep || 0);
+    const overallStatus = String(selectedApplication.overallStatus || "").toLowerCase();
+    const effectiveStep = overallStatus.includes("application id generated") && currentStep <= 2 ? 3 : currentStep;
+    return onboardingSteps.filter((step) => step.id <= effectiveStep);
+  }, [selectedApplication]);
+
+  const dashboardUpdates = useMemo(() => {
+    if (!selectedApplication) {
+      return [
+        {
+          title: "Application Pending",
+          status: "No Application",
+          tone: "pending",
+          message: "Start your ASA onboarding application to receive step-by-step updates here.",
+        },
+      ];
+    }
+
+    const currentStep = Number(selectedApplication.currentStep || 0);
+    const overallStatus = String(selectedApplication.overallStatus || "");
+    const applicationIdGenerated = overallStatus.toLowerCase().includes("application id generated");
+    const effectiveStep = applicationIdGenerated && currentStep <= 2 ? 3 : currentStep;
+    const updates = [
+      {
+        title: "Latest Update",
+        status: effectiveStep >= 11 ? "Approved" : "In Progress",
+        tone: effectiveStep >= 11 ? "success" : "progress",
+        message:
+          effectiveStep >= 11
+            ? "Your application has completed the ASA onboarding journey."
+            : `Your application is currently moving through Step ${effectiveStep || 1}.`,
+      },
+    ];
+
+    if (effectiveStep < 3) {
+      updates.push({
+        title: "Step 3: In-Principle Approval",
+        status: "Queued",
+        tone: "pending",
+        message: "Step 3 will begin after the application ID is generated.",
+      });
+    } else if (effectiveStep === 3) {
+      updates.push({
+        title: "Step 3: In-Principle Approval",
+        status: "Under Process",
+        tone: "review",
+        message: "UIDAI is currently processing your in-principle approval.",
+      });
+    } else {
+      updates.push({
+        title: "Step 3: In-Principle Approval",
+        status: "Approved",
+        tone: "success",
+        message: "Your in-principle approval has been completed and the next step is active.",
+      });
+    }
+
+    if (currentStep >= 4) {
+      let step4Status = "Action Needed";
+      let step4Tone = "warning";
+      let step4Message = "Upload the signed ASA Agreement and Performance Bank Guarantee documents.";
+
+      if (step4ReviewStatus === "approved") {
+        step4Status = "Approved";
+        step4Tone = "success";
+        step4Message = "Step 4 has been reviewed and approved by UIDAI.";
+      } else if (step4ReviewStatus === "rejected") {
+        step4Status = "Rejected";
+        step4Tone = "warning";
+        step4Message = "Step 4 was rejected. Please review the remarks and resubmit the required files.";
+      } else if (step4Details?.submittedAt) {
+        step4Status = "Under Review";
+        step4Tone = "review";
+        step4Message = "Your Step 4 submission is under review by the admin team.";
+      }
+
+      updates.push({
+        title: "Step 4: ASA Agreement + PBG",
+        status: step4Status,
+        tone: step4Tone,
+        message: step4Message,
+      });
+    }
+
+    if (overallStatus) {
+      updates.push({
+        title: "Portal Status",
+        status: "Live Update",
+        tone: "progress",
+        message: overallStatus,
+      });
+    }
+
+    return updates;
+  }, [selectedApplication, step4Details, step4ReviewStatus]);
+
+
+  useEffect(() => {
+    if (showStep4Modal && Number(selectedApplication?.currentStep || 0) < 4) {
+      setShowStep4Modal(false);
+    }
+  }, [showStep4Modal, selectedApplication]);
+
+  async function readFileAsDataUrl(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(String(reader.result || ""));
+      reader.onerror = () => reject(new Error("Failed to read file"));
+      reader.readAsDataURL(file);
+    });
+  }
+
+  async function handleStep4FileChange(event, kind) {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    if (file.type !== "application/pdf") {
+      setStep4Error("Only PDF files are allowed for Step 4.");
+      return;
+    }
+
+    try {
+      setStep4Error("");
+      const dataUrl = await readFileAsDataUrl(file);
+      if (kind === "asa") {
+        setStep4Files((prev) => ({ ...prev, asaAgreementFileData: dataUrl, asaAgreementFileName: file.name }));
+      } else {
+        setStep4Files((prev) => ({ ...prev, pbgFileData: dataUrl, pbgFileName: file.name }));
+      }
+    } catch {
+      setStep4Error("Unable to read selected PDF file.");
+    }
+  }
+
+  async function handleSubmitStep4() {
+    if (!selectedApplication || !user?.id) return;
+
+    const hasAgreementPdf = Boolean(step4Files.asaAgreementFileData || step4Details?.asaAgreementFileUrl);
+    const hasPbgPdf = Boolean(step4Files.pbgFileData || step4Details?.pbgFileUrl);
+
+    if (!hasAgreementPdf || !hasPbgPdf) {
+      setStep4Error("Upload both Signed ASA Agreement PDF and Performance Bank Guarantee PDF.");
+      return;
+    }
+
+    try {
+      setStep4Submitting(true);
+      setStep4Error("");
+      setStep4Success("");
+
+      const appId = Number(selectedApplication.id);
+      if (!Number.isFinite(appId)) {
+        setStep4Error("Invalid application id for Step 4 submission.");
+        return;
+      }
+
+      const response = await submitStep4Details(appId, {
+        submittedByUserId: user.id,
+        asaAgreementRef: step4Form.asaAgreementRef.trim() || null,
+        pbgRef: step4Form.pbgRef.trim() || null,
+        remarks: step4Form.remarks.trim() || null,
+        asaAgreementFileData: step4Files.asaAgreementFileData || null,
+        asaAgreementFileName: step4Files.asaAgreementFileName || null,
+        pbgFileData: step4Files.pbgFileData || null,
+        pbgFileName: step4Files.pbgFileName || null,
+      });
+
+      const nextApplication = response?.application || null;
+      setStep4Success("Step 4 details submitted successfully. Awaiting admin review.");
+
+      if (nextApplication) {
+        setApplications((prev) =>
+          prev.map((item) => (String(item.id) === String(nextApplication.id) ? nextApplication : item))
+        );
+      }
+
+      const refreshed = await fetchStep4Details(appId);
+      setStep4Details(refreshed || null);
+      setStep4Files({
+        asaAgreementFileData: "",
+        asaAgreementFileName: refreshed?.asaAgreementFileName || step4Files.asaAgreementFileName,
+        pbgFileData: "",
+        pbgFileName: refreshed?.pbgFileName || step4Files.pbgFileName,
+      });
+    } catch (err) {
+      setStep4Error(err?.response?.data?.message || "Failed to submit Step 4 details.");
+    } finally {
+      setStep4Submitting(false);
+    }
+  }
+
+  function getStepStatus(stepId) {
+    const currentStep = Number(selectedApplication?.currentStep || 0);
+    const overallStatus = String(selectedApplication?.overallStatus || "").toLowerCase();
+    const applicationIdGenerated = overallStatus.includes("application id generated");
+
+    if (stepId === 2 && applicationIdGenerated) return "Completed";
+    if (stepId === 3 && applicationIdGenerated && currentStep <= 2) return "In Progress";
+    if (stepId < currentStep) return "Completed";
+    if (stepId === currentStep) return "In Progress";
+    return "Pending";
+  }
+
+  function getStepStatusTone(stepId) {
+    const currentStep = Number(selectedApplication?.currentStep || 0);
+    const overallStatus = String(selectedApplication?.overallStatus || "").toLowerCase();
+
+    if (stepId === 2 && (stepId < currentStep || overallStatus.includes("application id generated"))) return "success";
+    if (stepId === 3 && (stepId < currentStep || stepId === currentStep)) return stepId < currentStep ? "success" : "review";
+
+    if (stepId === 4) {
+      if (step4ReviewStatus === "approved") return "success";
+      if (step4ReviewStatus === "rejected") return "warning";
+      if (step4Details?.submittedAt) return "review";
+      if (stepId === currentStep) return "warning";
+    }
+
+    if (stepId < currentStep) return "success";
+    if (stepId === currentStep) return "progress";
+    return "pending";
+  }
+
+  function openStartedStep(stepId) {
+    if (!selectedApplication) return;
+
+    if (stepId === 2) {
+      setShowStep4Modal(false);
+      navigate("/application-success", { state: { application: selectedApplication } });
+      return;
+    }
+
+    if (stepId === 4) {
+      setShowStep4Modal(true);
+      return;
+    }
+
+    setShowStep4Modal(false);
+    setExpandedStep(stepId);
+    setActiveTab("flow");
+  }
+  function renderStep4Section() {
+    if (!selectedApplication) {
+      return <p className="helper-text">No application found.</p>;
+    }
+
+    if (Number(selectedApplication.currentStep || 1) < 4) {
+      return <p className="helper-text">Step 4 will appear here once your application reaches that stage.</p>;
+    }
+
+    return (
+      <>
+        <div className="asa-panel-head asa-step4-header">
+          <div>
+            <h3>Step 4: ASA Agreement + PBG Submission</h3>
+            <p>Download the official templates, complete both documents, and upload the signed PDFs for UIDAI review.</p>
+          </div>
+        </div>
+
+        {step4Loading ? (
+          <p className="helper-text">Loading Step 4 details...</p>
+        ) : (
+          <div className="asa-step4-card">
+            <div className="asa-step4-status-grid">
+              <div className="asa-step4-status-item">
+                <span>Review Status</span>
+                <strong>{step4ReviewStatus.toUpperCase()}</strong>
+              </div>
+              <div className="asa-step4-status-item">
+                <span>Submitted At</span>
+                <strong>{step4Details?.submittedAt ? formatDate(step4Details.submittedAt) : "-"}</strong>
+              </div>
+              <div className="asa-step4-status-item">
+                <span>Admin Remarks</span>
+                <strong>{step4Details?.reviewRemarks || "-"}</strong>
+              </div>
+            </div>
+
+            <div className="asa-step4-template-row">
+              <a href={ASA_AGREEMENT_TEMPLATE_URL} target="_blank" rel="noreferrer" className="asa-step4-template-link">
+                <FileText size={15} />
+                <span>ASA Agreement Template</span>
+              </a>
+              <a href={PBG_TEMPLATE_URL} target="_blank" rel="noreferrer" className="asa-step4-template-link">
+                <FileText size={15} />
+                <span>Bank Guarantee Template</span>
+              </a>
+            </div>
+
+            <div className="asa-step4-upload-grid">
+              <section className="asa-step4-upload-card">
+                <div className="asa-step4-upload-head">
+                  <h4>ASA Agreement</h4>
+                  <p>Upload the signed agreement PDF.</p>
+                </div>
+                <input
+                  type="text"
+                  value={step4Form.asaAgreementRef}
+                  onChange={(e) => setStep4Form((prev) => ({ ...prev, asaAgreementRef: e.target.value }))}
+                  placeholder="Reference / document number (optional)"
+                  className="asa-flow-select"
+                  disabled={step4Submitting || (hasStep4Submission && step4ReviewStatus === "approved")}
+                />
+                <input
+                  type="file"
+                  accept="application/pdf"
+                  onChange={(e) => handleStep4FileChange(e, "asa")}
+                  className="asa-flow-select"
+                  disabled={step4Submitting || (hasStep4Submission && step4ReviewStatus === "approved")}
+                />
+                <small className="asa-step4-file-note">
+                  {step4Files.asaAgreementFileName ? `Selected: ${step4Files.asaAgreementFileName}` : "PDF only, max 15 MB"}
+                </small>
+                {step4Details?.asaAgreementFileUrl ? (
+                  <a href={step4Details.asaAgreementFileUrl} target="_blank" rel="noreferrer" className="asa-step4-secondary-link">
+                    Download current ASA Agreement
+                  </a>
+                ) : null}
+              </section>
+
+              <section className="asa-step4-upload-card">
+                <div className="asa-step4-upload-head">
+                  <h4>Performance Bank Guarantee</h4>
+                  <p>Upload the final bank guarantee PDF.</p>
+                </div>
+                <input
+                  type="text"
+                  value={step4Form.pbgRef}
+                  onChange={(e) => setStep4Form((prev) => ({ ...prev, pbgRef: e.target.value }))}
+                  placeholder="Reference / guarantee number (optional)"
+                  className="asa-flow-select"
+                  disabled={step4Submitting || (hasStep4Submission && step4ReviewStatus === "approved")}
+                />
+                <input
+                  type="file"
+                  accept="application/pdf"
+                  onChange={(e) => handleStep4FileChange(e, "pbg")}
+                  className="asa-flow-select"
+                  disabled={step4Submitting || (hasStep4Submission && step4ReviewStatus === "approved")}
+                />
+                <small className="asa-step4-file-note">
+                  {step4Files.pbgFileName ? `Selected: ${step4Files.pbgFileName}` : "PDF only, max 15 MB"}
+                </small>
+                {step4Details?.pbgFileUrl ? (
+                  <a href={step4Details.pbgFileUrl} target="_blank" rel="noreferrer" className="asa-step4-secondary-link">
+                    Download current Bank Guarantee
+                  </a>
+                ) : null}
+              </section>
+            </div>
+
+            <div className="asa-step4-remarks">
+              <label className="asa-step4-remarks-label" htmlFor="step4-remarks">Remarks for admin</label>
+              <textarea
+                id="step4-remarks"
+                value={step4Form.remarks}
+                onChange={(e) => setStep4Form((prev) => ({ ...prev, remarks: e.target.value }))}
+                placeholder="Add any context, references, or submission notes (optional)"
+                className="asa-step4-remarks-input"
+                disabled={step4Submitting || (hasStep4Submission && step4ReviewStatus === "approved")}
+              />
+            </div>
+
+            {step4Error ? <p className="error-banner" style={{ marginTop: 10 }}>{step4Error}</p> : null}
+            {step4Success ? <p className="helper-text" style={{ marginTop: 10 }}>{step4Success}</p> : null}
+
+            <div className="asa-step4-actions">
+              <button
+                type="button"
+                className="asa-inline-new-btn"
+                onClick={handleSubmitStep4}
+                disabled={step4Submitting || (hasStep4Submission && step4ReviewStatus === "approved")}
+              >
+                {step4Submitting ? "Submitting Step 4..." : hasStep4Submission ? "Resubmit Step 4" : "Submit Step 4"}
+              </button>
+            </div>
+          </div>
+        )}
+      </>
+    );
+  }
 
   function handleLogout() {
     localStorage.removeItem("token");
@@ -339,36 +786,34 @@ export default function UserDashboard() {
                   </article>
                 </section>
 
-                <section className="asa-dash-panels">
-                  <article className="asa-dash-panel">
+                <section className="asa-dash-panels asa-dashboard-grid">
+                  <article className="asa-dash-panel asa-dashboard-updates">
                     <div className="asa-panel-head">
-                      <h3>Recent Applications</h3>
+                      <div>
+                        <h3>Application Updates</h3>
+                        <p className="asa-dashboard-panel-copy">Track the latest status, approvals, reviews, and rejections for your application.</p>
+                      </div>
                     </div>
-
-                    {latestApplication ? (
-                      <button
-                        type="button"
-                        className="asa-recent-item asa-recent-item-click"
-                        onClick={() => {
-                          setSelectedAppId(latestApplication.id);
-                          setExpandedStep(latestApplication.currentStep || 1);
-                          setActiveTab("flow");
-                        }}
-                        aria-label="Open recent application"
-                      >
-                        <div>
-                          <strong>{latestApplication.organizationName || "Organization"}</strong>
-                          <p>{latestApplication.applicationId}</p>
-                        </div>
-                        <span>Step {latestApplication.currentStep || 1}/11</span>
-                      </button>
-                    ) : (
-                      <p className="helper-text">{isApplicant ? "No application found." : "No applications found to review right now."}</p>
-                    )}
+                    <div className="asa-update-list">
+                      {dashboardUpdates.map((item) => (
+                        <article key={`${item.title}-${item.status}`} className={`asa-update-card ${item.tone}`}>
+                          <div className="asa-update-top">
+                            <strong>{item.title}</strong>
+                            <span className={`asa-update-pill ${item.tone}`}>{item.status}</span>
+                          </div>
+                          <p>{item.message}</p>
+                        </article>
+                      ))}
+                    </div>
                   </article>
 
-                  <article className="asa-dash-panel">
-                    <h3>11-Step Onboarding Process</h3>
+                  <article className="asa-dash-panel asa-dashboard-process">
+                    <div className="asa-panel-head">
+                      <div>
+                        <h3>11-Step Onboarding Process</h3>
+                        <p className="asa-dashboard-panel-copy">Reference the full onboarding journey and its expected timelines.</p>
+                      </div>
+                    </div>
                     <div className="asa-step-mini-list">
                       {onboardingSteps.map((step) => (
                         <div key={step.id} className="asa-step-mini-item">
@@ -417,18 +862,17 @@ export default function UserDashboard() {
                     <p className="helper-text">{isApplicant ? "No applications found." : "No applications are available right now."}</p>
                   ) : (
                     scoped.map((item) => (
-                      <article key={item.id} className="asa-app-list-row">
+                      <article key={item.id} className="asa-app-list-row" style={{ alignItems: "center" }}>
                         <div className="asa-app-left">
                           <div className="asa-app-doc"><FileText size={22} /></div>
                           <div>
                             <h4>{item.organizationName || "Organization"}</h4>
-                            <p>{item.applicationId || "-"} • {item.applicantName || "Applicant"}</p>
+                            <p>{item.applicationId || "-"} - {item.applicantName || "Applicant"}</p>
                           </div>
                         </div>
 
                         <div className="asa-app-right">
                           <span className="asa-status-pill">{toStatusLabel(item)}</span>
-                          <small>Step {item.currentStep || 1}/11</small>
                         </div>
 
                         <button
@@ -458,6 +902,50 @@ export default function UserDashboard() {
                     ))
                   )}
                 </div>
+
+                {isApplicant && selectedApplication ? (
+                  <div className="asa-applications-workspace">
+                    <article className="asa-dash-panel">
+                      <div className="asa-panel-head">
+                        <div>
+                          <h3>Started Steps</h3>
+                          <p className="asa-started-steps-copy">Only the steps already started for this application appear here.</p>
+                        </div>
+                      </div>
+
+                      <div className="asa-started-steps-grid">
+                        {startedSteps.map((step) => (
+                          <article
+                            key={step.id}
+                            className={`asa-started-step-card ${step.id === Number(selectedApplication.currentStep || 0) ? "current" : ""}`}
+                          >
+                            <button
+                              type="button"
+                              className="asa-started-step-trigger"
+                              onClick={() => openStartedStep(step.id)}
+                            >
+                              <div className="asa-started-step-top">
+                                <div>
+                                  <span className="asa-started-step-kicker">STEP {step.id}</span>
+                                  <h4>{step.title}</h4>
+                                </div>
+                                <span className={`asa-started-step-pill ${getStepStatusTone(step.id)}`}>{getStepStatus(step.id)}</span>
+                              </div>
+                              <p>{step.description}</p>
+                              <small>
+                                {step.id === 2
+                                  ? "Open success dashboard"
+                                  : step.id === 4
+                                    ? "Open ASA Agreement + PBG Submission"
+                                    : "Open this onboarding step"}
+                              </small>
+                            </button>
+                          </article>
+                        ))}
+                      </div>
+                    </article>
+                  </div>
+                ) : null}
               </section>
             ) : null}
 
@@ -511,13 +999,13 @@ export default function UserDashboard() {
 
                 <div className="asa-flow-list">
                   {onboardingSteps.map((step, idx) => {
-                    const isCurrent = step.id === (selectedApplication?.currentStep || 1);
-                    const isDone = step.id < (selectedApplication?.currentStep || 1);
-                    const isStep2Generated =
-                      step.id === 2 &&
-                      String(selectedApplication?.overallStatus || "")
-                        .toLowerCase()
-                        .includes("application id generated");
+                    const rawCurrentStep = Number(selectedApplication?.currentStep || 1);
+                    const overallStatus = String(selectedApplication?.overallStatus || "").toLowerCase();
+                    const applicationIdGenerated = overallStatus.includes("application id generated");
+                    const flowCurrentStep = applicationIdGenerated && rawCurrentStep <= 2 ? 3 : rawCurrentStep;
+                    const isCurrent = step.id === flowCurrentStep;
+                    const isDone = step.id < flowCurrentStep;
+                    const isStep2Generated = step.id === 2 && applicationIdGenerated;
                     const isCompletedStep = isDone || isStep2Generated;
                     const isExpanded = expandedStep === step.id;
 
@@ -530,13 +1018,18 @@ export default function UserDashboard() {
                               <div className="asa-flow-step-title-row">
                                 <h4>Step {step.id}: {step.title}</h4>
                                 <div className="asa-flow-pill-row">
-                                  <span className="asa-pill-muted">{isCompletedStep ? "Completed" : "Pending"}</span>
+                                  <span className={`asa-pill-muted asa-pill-progress ${getStepStatusTone(step.id)}`}>{getStepStatus(step.id)}</span>
                                   {isCurrent ? <span className="asa-pill-current">Current</span> : null}
                                 </div>
                               </div>
                               <p>{step.description}</p>
                             </div>
-                            <button type="button" className="asa-flow-expand" onClick={() => setExpandedStep(isExpanded ? null : step.id)}>
+                            <button
+                              type="button"
+                              className="asa-flow-expand"
+                              onClick={() => setExpandedStep(isExpanded ? null : step.id)}
+                              aria-label="Toggle step details"
+                            >
                               {isExpanded ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
                             </button>
                           </div>
@@ -574,6 +1067,7 @@ export default function UserDashboard() {
                                   Download In-Principle Approval Letter
                                 </a>
                               ) : null}
+
                               <div className="asa-flow-dates">
                                 <div>
                                   <span>STARTED</span>
@@ -625,6 +1119,25 @@ export default function UserDashboard() {
         </section>
       </div>
 
+      {showStep4Modal && selectedApplication && Number(selectedApplication.currentStep || 0) >= 4 ? (
+        <div className="asa-modal-backdrop" onClick={() => setShowStep4Modal(false)}>
+          <div className="asa-modal asa-step4-modal" onClick={(e) => e.stopPropagation()}>
+            <div className="asa-modal-head">
+              <div className="asa-modal-title">
+                <div className="asa-app-doc"><FileText size={20} /></div>
+                <h3>Step 4: ASA Agreement + PBG Submission</h3>
+              </div>
+              <button type="button" className="asa-icon-action" onClick={() => setShowStep4Modal(false)}>
+                <X size={18} />
+              </button>
+            </div>
+
+            <div className="asa-step4-modal-body">
+              {renderStep4Section()}
+            </div>
+          </div>
+        </div>
+      ) : null}
       {showDetailsModal && selectedApplication ? (
         <div className="asa-modal-backdrop" onClick={() => setShowDetailsModal(false)}>
           <div className="asa-modal" onClick={(e) => e.stopPropagation()}>
@@ -694,6 +1207,43 @@ export default function UserDashboard() {
     </>
   );
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

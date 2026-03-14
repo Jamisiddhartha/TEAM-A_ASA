@@ -1217,6 +1217,68 @@ a {
   font-weight: 600;
 }
 
+.asa-dashboard-grid {
+  grid-template-columns: minmax(0, 1.15fr) minmax(340px, 0.85fr);
+  align-items: start;
+}
+
+.asa-dashboard-panel-copy {
+  margin: 6px 0 0;
+  color: rgba(236, 238, 244, 0.72);
+  font-size: 0.94rem;
+  line-height: 1.5;
+}
+
+.asa-update-list {
+  display: grid;
+  gap: 14px;
+}
+
+.asa-update-card {
+  border-radius: 18px;
+  border: 1px solid rgba(255, 230, 0, 0.14);
+  background: linear-gradient(180deg, rgba(22, 23, 30, 0.98) 0%, rgba(15, 16, 22, 0.98) 100%);
+  padding: 16px 18px;
+}
+
+.asa-update-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+}
+
+.asa-update-top strong {
+  color: #fffdf2;
+  font-size: 1rem;
+}
+
+.asa-update-card p {
+  margin: 10px 0 0;
+  color: rgba(236, 238, 244, 0.72);
+  line-height: 1.55;
+}
+
+.asa-update-pill {
+  border-radius: 999px;
+  padding: 7px 11px;
+  border: 1px solid rgba(255, 230, 0, 0.22);
+  background: rgba(255, 230, 0, 0.08);
+  color: #ffe600;
+  font-size: 0.76rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.asa-update-pill.pending,
+.asa-update-pill.review,
+.asa-update-pill.progress,
+.asa-update-pill.warning,
+.asa-update-pill.success {
+  border-color: rgba(255, 230, 0, 0.22);
+  background: rgba(255, 230, 0, 0.08);
+  color: #ffe600;
+}
 .asa-step-mini-list {
   display: grid;
   gap: 10px;
@@ -3289,7 +3351,22 @@ a {
   box-shadow: 0 0 0 1px rgba(255, 230, 0, 0.16) inset;
 }
 
-.asa-form-shell .asa-dash-content > form button,
+.asa-field-invalid {
+  border-color: #f19a9a !important;
+  box-shadow: 0 0 0 1px rgba(241, 154, 154, 0.28);
+}
+
+.asa-field-invalid:focus {
+  border-color: #f19a9a !important;
+  box-shadow: 0 0 0 3px rgba(241, 154, 154, 0.16) !important;
+}
+
+.asa-field-error {
+  margin: 8px 0 0;
+  color: #f0a6a6;
+  font-size: 0.92rem;
+  line-height: 1.35;
+}
 .asa-form-shell .asa-inline-new-btn {
   transition: transform 160ms ease, box-shadow 220ms ease, filter 180ms ease;
 }
@@ -3347,11 +3424,39 @@ a {
   font-size: 1.25rem !important;
 }
 
+.asa-form-shell .asa-form-progress-row {
+  align-items: stretch;
+}
+
+.asa-form-shell .asa-form-stepper {
+  background: rgba(23, 23, 29, 0.96) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.03), 0 14px 30px rgba(0, 0, 0, 0.22) !important;
+}
+
+.asa-form-shell .asa-form-stage-card {
+  background: rgba(255, 255, 255, 0.06) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
 .asa-form-shell .asa-form-stepper {
   padding: 12px 14px !important;
   border-radius: 18px !important;
 }
 
+.asa-form-shell .asa-form-stepper button {
+  appearance: none !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+.asa-form-shell .asa-form-stepper button:hover,
+.asa-form-shell .asa-form-stepper button:active {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
 .asa-form-shell .asa-form-stepper .absolute.top-8 {
   top: 26px !important;
 }
@@ -3419,6 +3524,20 @@ a {
   margin-top: 4px !important;
 }
 
+.asa-form-shell .asa-form-progress-row {
+  align-items: stretch;
+}
+
+.asa-form-shell .asa-form-stepper {
+  background: rgba(23, 23, 29, 0.96) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.03), 0 14px 30px rgba(0, 0, 0, 0.22) !important;
+}
+
+.asa-form-shell .asa-form-stage-card {
+  background: rgba(255, 255, 255, 0.06) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
 .asa-form-shell .asa-form-stepper {
   padding: 10px 12px !important;
   border-radius: 16px !important;
@@ -3759,3 +3878,346 @@ body,
     border-radius: 12px !important;
   }
 }
+
+
+.asa-applications-workspace {
+  display: grid;
+  gap: 18px;
+  margin-top: 20px;
+}
+
+.asa-dash-panels-stack {
+  grid-template-columns: 1fr;
+}
+
+.asa-started-steps-copy {
+  margin: 6px 0 0;
+  color: rgba(236, 238, 244, 0.72);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.asa-started-steps-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.asa-started-step-card {
+  width: 100%;
+  display: grid;
+  gap: 14px;
+  padding: 20px;
+  border-radius: 22px;
+  border: 1px solid rgba(255, 230, 0, 0.16);
+  background: linear-gradient(180deg, rgba(20, 21, 28, 0.98) 0%, rgba(14, 15, 21, 0.98) 100%);
+  color: #fffdf2;
+  text-align: left;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.asa-started-step-card.expanded {
+  grid-column: 1 / -1;
+}
+
+.asa-started-step-trigger {
+  width: 100%;
+  display: grid;
+  gap: 14px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  text-align: left;
+}
+
+.asa-started-step-expanded {
+  border-top: 1px solid rgba(255, 230, 0, 0.14);
+  padding-top: 18px;
+}
+
+.asa-started-step-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255, 230, 0, 0.34);
+  box-shadow: 0 18px 38px rgba(0, 0, 0, 0.22);
+}
+
+.asa-started-step-card.current {
+  border-color: rgba(255, 230, 0, 0.48);
+  box-shadow: 0 0 0 1px rgba(255, 230, 0, 0.18);
+}
+
+.asa-started-step-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.asa-started-step-kicker {
+  display: inline-block;
+  color: rgba(255, 248, 204, 0.7);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.asa-started-step-top h4 {
+  margin: 8px 0 0;
+  color: #fffdf2;
+  font-size: 1.15rem;
+}
+
+.asa-started-step-pill {
+  align-self: flex-start;
+  border-radius: 999px;
+  padding: 8px 12px;
+  border: 1px solid rgba(255, 230, 0, 0.2);
+  background: rgba(255, 230, 0, 0.08);
+  color: #ffe600;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.asa-started-step-pill.success,
+.asa-pill-progress.success {
+  border-color: rgba(255, 230, 0, 0.24);
+  background: rgba(255, 230, 0, 0.1);
+  color: #ffe600;
+}
+
+.asa-started-step-pill.review,
+.asa-pill-progress.review {
+  border-color: rgba(90, 169, 255, 0.22);
+  background: rgba(90, 169, 255, 0.12);
+  color: #8fc8ff;
+}
+
+.asa-started-step-pill.warning,
+.asa-pill-progress.warning {
+  border-color: rgba(255, 179, 71, 0.24);
+  background: rgba(255, 179, 71, 0.12);
+  color: #ffd08a;
+}
+
+.asa-started-step-pill.progress,
+.asa-pill-progress.progress {
+  border-color: rgba(255, 230, 0, 0.24);
+  background: rgba(255, 230, 0, 0.1);
+  color: #ffe600;
+}
+
+.asa-started-step-pill.pending,
+.asa-pill-progress.pending {
+  border-color: rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(236, 238, 244, 0.76);
+}
+.asa-started-step-card p {
+  margin: 0;
+  color: rgba(236, 238, 244, 0.74);
+  line-height: 1.55;
+}
+
+.asa-started-step-card small {
+  color: #ffe600;
+  font-weight: 700;
+}
+.asa-step4-modal {
+  width: min(1180px, calc(100vw - 48px));
+  max-height: 88vh;
+  overflow: hidden;
+}
+
+.asa-step4-modal-body {
+  max-height: calc(88vh - 92px);
+  overflow: auto;
+  padding-right: 4px;
+}
+.asa-step4-panel {
+  overflow: hidden;
+}
+
+.asa-step4-header {
+  margin-bottom: 18px;
+}
+
+.asa-step4-header p {
+  margin: 6px 0 0;
+  color: rgba(236, 238, 244, 0.72);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.asa-step4-card {
+  display: grid;
+  gap: 18px;
+}
+
+.asa-step4-status-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.asa-step4-status-item {
+  padding: 16px 18px;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 230, 0, 0.18);
+  background: linear-gradient(180deg, rgba(28, 29, 36, 0.96) 0%, rgba(18, 19, 25, 0.96) 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.asa-step4-status-item span {
+  display: block;
+  color: rgba(255, 248, 204, 0.72);
+  font-size: 0.73rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.asa-step4-status-item strong {
+  display: block;
+  margin-top: 10px;
+  color: #fffdf2;
+  font-size: 1.05rem;
+  line-height: 1.35;
+}
+
+.asa-step4-template-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.asa-step4-template-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 230, 0, 0.24);
+  background: rgba(255, 230, 0, 0.08);
+  color: #ffe600;
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.asa-step4-template-link:hover {
+  transform: translateY(-1px);
+  border-color: rgba(255, 230, 0, 0.42);
+  background: rgba(255, 230, 0, 0.13);
+}
+
+.asa-step4-upload-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+  gap: 16px;
+}
+
+.asa-step4-upload-card {
+  display: grid;
+  gap: 12px;
+  min-width: 0;
+  padding: 18px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 230, 0, 0.16);
+  background: linear-gradient(180deg, rgba(20, 21, 28, 0.98) 0%, rgba(14, 15, 21, 0.98) 100%);
+}
+
+.asa-step4-upload-card .asa-flow-select,
+.asa-step4-remarks-input {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.asa-step4-upload-card input[type="file"] {
+  overflow: hidden;
+}
+
+.asa-step4-upload-head h4 {
+  margin: 0;
+  color: #fffdf2;
+  font-size: 1.02rem;
+}
+
+.asa-step4-upload-head p {
+  margin: 6px 0 0;
+  color: rgba(236, 238, 244, 0.65);
+  font-size: 0.9rem;
+}
+
+.asa-step4-file-note {
+  color: rgba(236, 238, 244, 0.72);
+  font-size: 0.88rem;
+}
+
+.asa-step4-secondary-link {
+  color: #ffe600;
+  font-size: 0.92rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.asa-step4-secondary-link:hover {
+  text-decoration: underline;
+}
+
+.asa-step4-remarks {
+  display: grid;
+  gap: 10px;
+}
+
+.asa-step4-remarks-label {
+  color: rgba(255, 248, 204, 0.76);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.asa-step4-remarks-input {
+  width: 100%;
+  min-height: 120px;
+  border-radius: 18px;
+  padding: 14px 16px;
+  border: 1px solid rgba(255, 230, 0, 0.18);
+  background: rgba(7, 10, 20, 0.92);
+  color: #f6f6f6;
+  resize: vertical;
+}
+
+.asa-step4-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+@media (max-width: 920px) {
+  .asa-step4-status-grid,
+  .asa-step4-upload-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .asa-step4-actions {
+    justify-content: stretch;
+  }
+
+  .asa-step4-actions .asa-inline-new-btn {
+    width: 100%;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
