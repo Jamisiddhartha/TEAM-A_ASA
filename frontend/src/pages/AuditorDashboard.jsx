@@ -20,9 +20,11 @@ import {
   fetchStep4Details,
   fetchStep5Details,
   fetchStep6Details,
+  fetchStep8Details,
   saveStep5Progress,
   submitStep5Audit,
   submitStep6Details,
+  submitStep8Details,
 } from "../services/portalApi";
 import uidaiLogo from "../assets/uidai-logo.jpg";
 import { getDashboardPathByRole, normalizeRole } from "../utils/roleRoutes";
@@ -37,7 +39,7 @@ const COMPLIANCE_OPTIONS = [
 const FORM_PAYLOAD_SECTIONS = [
   {
     title: "Applicant Details",
-    fields: [["typeOfApplicant", "Type of Applicant"], ["applicantName", "Applicant Name"], ["registrationNumber", "Registration / Incorporation No."], ["licenseNumber", "License Number"], ["registeredOfficeAddress", "Registered Office Address"], ["correspondenceAddress", "Correspondence Address"], ["gstnNumber", "GSTN Number"], ["tanNumber", "TAN Number"], ["applicantCategory", "Applicant Category"]],
+    fields: [["applicantName", "Applicant Name"], ["registrationNumber", "Registration / Incorporation No."], ["licenseNumber", "License Number"], ["registeredOfficeAddress", "Registered Office Address"], ["correspondenceAddress", "Correspondence Address"], ["gstnNumber", "GSTN Number"], ["tanNumber", "TAN Number"], ["applicantCategory", "Applicant Category"]],
   },
   {
     title: "Contact And Governance Details",
@@ -130,6 +132,18 @@ export default function AuditorDashboard() {
     artefactsFileData: "",
     artefactsFileName: "",
   });
+  const [step8Details, setStep8Details] = useState(null);
+  const [step8Submitting, setStep8Submitting] = useState(false);
+  const [step8Error, setStep8Error] = useState("");
+  const [step8Success, setStep8Success] = useState("");
+  const [step8Files, setStep8Files] = useState({
+    isAuditReportFileData: "",
+    isAuditReportFileName: "",
+    complianceChecklistFileData: "",
+    complianceChecklistFileName: "",
+    artefactsFileData: "",
+    artefactsFileName: "",
+  });
 
   const [user] = useState(() => {
     try {
@@ -159,7 +173,7 @@ export default function AuditorDashboard() {
 
   const role = normalizeRole(user?.role);
   const auditQueue = useMemo(
-    () => applications.filter((app) => Number(app.currentStep || 0) >= 5 && Number(app.currentStep || 0) <= 6),
+    () => applications.filter((app) => Number(app.currentStep || 0) >= 5 && Number(app.currentStep || 0) <= 8),
     [applications]
   );
 
@@ -178,6 +192,9 @@ export default function AuditorDashboard() {
   const step6ReviewStatus = step6Details?.reviewStatus || "pending";
   const isStep6ReadOnly = Boolean(isAssignedElsewhere || ["under_review", "approved"].includes(step6ReviewStatus));
   const canShowStep6 = Boolean(selectedApplication && Number(selectedApplication.currentStep || 0) >= 6);
+  const step8ReviewStatus = step8Details?.reviewStatus || "pending";
+  const isStep8ReadOnly = Boolean(isAssignedElsewhere || ["under_review", "approved"].includes(step8ReviewStatus));
+  const canShowStep8 = Boolean(selectedApplication && Number(selectedApplication.currentStep || 0) >= 8);
 
   const renderPayloadValue = (key, value) => {
     const textValue = String(value ?? "-");
@@ -276,21 +293,33 @@ export default function AuditorDashboard() {
     setStep5Success("");
     setStep6Error("");
     setStep6Success("");
+    setStep8Error("");
+    setStep8Success("");
     try {
-      const [details, adminApps, step4, step6] = await Promise.all([
+      const [details, adminApps, step4, step6, step8] = await Promise.all([
         fetchStep5Details(application.id),
         fetchAdminStep2Applications(),
         fetchStep4Details(application.id).catch(() => null),
         Number(application.currentStep || 0) >= 6 ? fetchStep6Details(application.id).catch(() => null) : Promise.resolve(null),
+        Number(application.currentStep || 0) >= 8 ? fetchStep8Details(application.id).catch(() => null) : Promise.resolve(null),
       ]);
       setStep5Details(details || null);
       setStep4Details(step4 || null);
       setStep6Details(step6 || null);
+      setStep8Details(step8 || null);
       setStep6Files({
         auditReportFileData: "",
         auditReportFileName: step6?.auditReportFileName || "",
         artefactsFileData: "",
         artefactsFileName: step6?.artefactsFileName || "",
+      });
+      setStep8Files({
+        isAuditReportFileData: "",
+        isAuditReportFileName: step8?.isAuditReportFileName || "",
+        complianceChecklistFileData: "",
+        complianceChecklistFileName: step8?.complianceChecklistFileName || "",
+        artefactsFileData: "",
+        artefactsFileName: step8?.artefactsFileName || "",
       });
       const matched = (adminApps || []).find((item) => Number(item.id) === Number(application.id));
       setSubmittedForm(matched?.submittedForm || null);
@@ -300,6 +329,7 @@ export default function AuditorDashboard() {
       setSubmittedForm(null);
       setStep4Details(null);
       setStep6Details(null);
+      setStep8Details(null);
     } finally {
       setStep5Loading(false);
     }
@@ -312,6 +342,7 @@ export default function AuditorDashboard() {
     setStep4Details(null);
     setStep5Details(null);
     setStep6Details(null);
+    setStep8Details(null);
     setStep5Loading(false);
     setStep5Saving(false);
     setStep5Error("");
@@ -319,9 +350,20 @@ export default function AuditorDashboard() {
     setStep6Submitting(false);
     setStep6Error("");
     setStep6Success("");
+    setStep8Submitting(false);
+    setStep8Error("");
+    setStep8Success("");
     setStep6Files({
       auditReportFileData: "",
       auditReportFileName: "",
+      artefactsFileData: "",
+      artefactsFileName: "",
+    });
+    setStep8Files({
+      isAuditReportFileData: "",
+      isAuditReportFileName: "",
+      complianceChecklistFileData: "",
+      complianceChecklistFileName: "",
       artefactsFileData: "",
       artefactsFileName: "",
     });
@@ -456,6 +498,71 @@ export default function AuditorDashboard() {
     }
   }
 
+  async function handleStep8FileChange(event, kind) {
+    const file = event.target.files?.[0];
+    if (!file) return;
+    if (file.type !== "application/pdf") {
+      setStep8Error("Only PDF files are allowed for Step 8.");
+      return;
+    }
+    try {
+      setStep8Error("");
+      const dataUrl = await readFileAsDataUrl(file);
+      if (kind === "report") {
+        setStep8Files((prev) => ({ ...prev, isAuditReportFileData: dataUrl, isAuditReportFileName: file.name }));
+      } else if (kind === "checklist") {
+        setStep8Files((prev) => ({ ...prev, complianceChecklistFileData: dataUrl, complianceChecklistFileName: file.name }));
+      } else {
+        setStep8Files((prev) => ({ ...prev, artefactsFileData: dataUrl, artefactsFileName: file.name }));
+      }
+    } catch {
+      setStep8Error("Unable to read selected PDF file.");
+    }
+  }
+  async function handleSubmitStep8() {
+    if (!selectedApplication || !step8Details) return;
+    const hasIsAuditReport = Boolean(step8Files.isAuditReportFileData || step8Details.isAuditReportFileUrl);
+    const hasChecklist = Boolean(step8Files.complianceChecklistFileData || step8Details.complianceChecklistFileUrl);
+    const hasArtefacts = Boolean(step8Files.artefactsFileData || step8Details.artefactsFileUrl);
+    if (!hasIsAuditReport || !hasChecklist || !hasArtefacts) {
+      setStep8Error("Upload the IS audit report PDF, compliance checklist PDF, and artefacts PDF.");
+      return;
+    }
+    try {
+      setStep8Submitting(true);
+      setStep8Error("");
+      setStep8Success("");
+      const response = await submitStep8Details(selectedApplication.id, {
+        submittedByAuditorUserId: user?.id,
+        isAuditReportRef: step8Details.isAuditReportRef?.trim() || null,
+        complianceChecklistRef: step8Details.complianceChecklistRef?.trim() || null,
+        artefactsRef: step8Details.artefactsRef?.trim() || null,
+        submissionRemarks: step8Details.submissionRemarks?.trim() || null,
+        isAuditReportFileData: step8Files.isAuditReportFileData || null,
+        isAuditReportFileName: step8Files.isAuditReportFileName || null,
+        complianceChecklistFileData: step8Files.complianceChecklistFileData || null,
+        complianceChecklistFileName: step8Files.complianceChecklistFileName || null,
+        artefactsFileData: step8Files.artefactsFileData || null,
+        artefactsFileName: step8Files.artefactsFileName || null,
+      });
+      const refreshed = response?.step8 || null;
+      setStep8Details(refreshed);
+      setStep8Files({
+        isAuditReportFileData: "",
+        isAuditReportFileName: refreshed?.isAuditReportFileName || step8Files.isAuditReportFileName,
+        complianceChecklistFileData: "",
+        complianceChecklistFileName: refreshed?.complianceChecklistFileName || step8Files.complianceChecklistFileName,
+        artefactsFileData: "",
+        artefactsFileName: refreshed?.artefactsFileName || step8Files.artefactsFileName,
+      });
+      setStep8Success(response?.message || "Step 8 submitted successfully.");
+      await loadApplications();
+    } catch (err) {
+      setStep8Error(err?.response?.data?.message || "Failed to submit Step 8.");
+    } finally {
+      setStep8Submitting(false);
+    }
+  }
   if (!user) return <Navigate to="/login" replace />;
   if (role !== "auditor") return <Navigate to={getDashboardPathByRole(user?.role)} replace />;
 
@@ -511,7 +618,7 @@ export default function AuditorDashboard() {
                 <div className="asa-page-head asa-dashboard-head">
                   <div className="asa-dash-headline">
                     <h1>Welcome, {user.fullname || "Auditor"}</h1>
-                    <p>Complete Step 5 audits and submit Step 6 reports for admin review.</p>
+                    <p>Complete Step 5 audits, submit Step 6 evidence, and file Step 8 IS audit packs when the application reaches that stage.</p>
                   </div>
                 </div>
 
@@ -529,7 +636,7 @@ export default function AuditorDashboard() {
                   <article className="asa-metric-card">
                     <div className="asa-metric-icon"><Activity size={20} /></div>
                     <strong>{stats.movedToStep6}</strong>
-                    <p>Step 6 Pending</p>
+                    <p>Step 6 Or Higher</p>
                   </article>
                 </section>
               </>
@@ -539,14 +646,14 @@ export default function AuditorDashboard() {
               <section className="asa-applications-page">
                 <div className="asa-page-head">
                   <div>
-                    <h2>Step 5 And Step 6 Queue</h2>
-                    <p>Open an application, complete the checklist, then submit the final audit report and artefacts.</p>
+                    <h2>Auditor Workflow Queue</h2>
+                    <p>Open an application, complete the checklist, submit Step 6, and continue with Step 8 IS audit evidence when available.</p>
                   </div>
                 </div>
 
                 <div className="asa-app-list-wrap">
                   {auditQueue.length === 0 ? (
-                    <p className="helper-text">No applications are currently available in Step 5 or Step 6.</p>
+                    <p className="helper-text">No applications are currently available in the auditor workflow.</p>
                   ) : (
                     auditQueue.map((item) => (
                       <article key={item.id} className="asa-app-list-row">
@@ -609,7 +716,7 @@ export default function AuditorDashboard() {
             <div className="asa-modal-head">
               <div className="asa-modal-title">
                 <div className="asa-app-doc"><FileText size={20} /></div>
-                <h3>{canShowStep6 ? "Step 6: Audit Report Submission & Approval" : "Step 5: Pre-onboarding Audit"}</h3>
+                <h3>{canShowStep8 ? "Step 8: IS Audit Submission" : canShowStep6 ? "Step 6: Audit Report Submission & Approval" : "Step 5: Pre-onboarding Audit"}</h3>
               </div>
               <button type="button" className="asa-icon-action" onClick={closeStep5Workspace}>
                 <X size={18} />
@@ -971,6 +1078,99 @@ export default function AuditorDashboard() {
                     </div>
                   </section>
                 ) : null}
+
+                {canShowStep8 && step8Details ? (
+                  <section className="asa-dash-panel" style={{ marginTop: 0 }}>
+                    <div className="asa-panel-head">
+                      <h3>Step 8 IS Audit Submission Workspace</h3>
+                    </div>
+                    <div className="asa-profile-grid">
+                      <div>
+                        <span>Review Status</span>
+                        <strong>{step8ReviewStatus.replace(/_/g, " ")}</strong>
+                      </div>
+                      <div>
+                        <span>Assigned Auditor</span>
+                        <strong>{step8Details.assignedAuditorName || step5Details.assignedAuditorName || "Not assigned"}</strong>
+                      </div>
+                      <div>
+                        <span>Submitted At</span>
+                        <strong>{formatDateTime(step8Details.submittedAt)}</strong>
+                      </div>
+                      <div>
+                        <span>Reviewed At</span>
+                        <strong>{formatDateTime(step8Details.reviewedAt)}</strong>
+                      </div>
+                    </div>
+
+                    {step8ReviewStatus === "rejected" ? <p className="helper-text" style={{ marginTop: 12 }}>IS division has rejected the previous Step 8 submission. Update the files or remarks below and resubmit.</p> : null}
+                    {isStep8ReadOnly ? <p className="helper-text" style={{ marginTop: 12 }}>Step 8 is currently read-only while it is under review or already approved.</p> : null}
+
+                    <div style={{ display: "grid", gap: 12, marginTop: 14 }}>
+                      <label style={{ display: "grid", gap: 8 }}>
+                        <span style={{ fontSize: 12, letterSpacing: "0.08em", textTransform: "uppercase", color: "#c9c9c9" }}>IS Audit Report Reference</span>
+                        <input type="text" className="asa-flow-select" value={step8Details.isAuditReportRef || ""} disabled={isStep8ReadOnly || step8Submitting} onChange={(event) => setStep8Details((current) => ({ ...current, isAuditReportRef: event.target.value }))} placeholder="Enter the IS audit report reference or version." />
+                      </label>
+
+                      <label style={{ display: "grid", gap: 8 }}>
+                        <span style={{ fontSize: 12, letterSpacing: "0.08em", textTransform: "uppercase", color: "#c9c9c9" }}>IS Audit Report PDF</span>
+                        <input type="file" accept="application/pdf" disabled={isStep8ReadOnly || step8Submitting} onChange={(event) => handleStep8FileChange(event, "report")} />
+                        <small className="helper-text" style={{ marginTop: 0 }}>{step8Files.isAuditReportFileName ? `Selected: ${step8Files.isAuditReportFileName}` : "PDF only, max 15 MB"}</small>
+                        {step8Details.isAuditReportFileUrl ? <a href={step8Details.isAuditReportFileUrl} target="_blank" rel="noreferrer" className="asa-step4-secondary-link">Download current IS audit report</a> : null}
+                      </label>
+
+                      <label style={{ display: "grid", gap: 8 }}>
+                        <span style={{ fontSize: 12, letterSpacing: "0.08em", textTransform: "uppercase", color: "#c9c9c9" }}>Compliance Checklist Reference</span>
+                        <input type="text" className="asa-flow-select" value={step8Details.complianceChecklistRef || ""} disabled={isStep8ReadOnly || step8Submitting} onChange={(event) => setStep8Details((current) => ({ ...current, complianceChecklistRef: event.target.value }))} placeholder="Enter the compliance checklist pack reference." />
+                      </label>
+
+                      <label style={{ display: "grid", gap: 8 }}>
+                        <span style={{ fontSize: 12, letterSpacing: "0.08em", textTransform: "uppercase", color: "#c9c9c9" }}>Compliance Checklist PDF</span>
+                        <input type="file" accept="application/pdf" disabled={isStep8ReadOnly || step8Submitting} onChange={(event) => handleStep8FileChange(event, "checklist")} />
+                        <small className="helper-text" style={{ marginTop: 0 }}>{step8Files.complianceChecklistFileName ? `Selected: ${step8Files.complianceChecklistFileName}` : "PDF only, max 15 MB"}</small>
+                        {step8Details.complianceChecklistFileUrl ? <a href={step8Details.complianceChecklistFileUrl} target="_blank" rel="noreferrer" className="asa-step4-secondary-link">Download current compliance checklist</a> : null}
+                      </label>
+
+                      <label style={{ display: "grid", gap: 8 }}>
+                        <span style={{ fontSize: 12, letterSpacing: "0.08em", textTransform: "uppercase", color: "#c9c9c9" }}>Artefacts Reference</span>
+                        <input type="text" className="asa-flow-select" value={step8Details.artefactsRef || ""} disabled={isStep8ReadOnly || step8Submitting} onChange={(event) => setStep8Details((current) => ({ ...current, artefactsRef: event.target.value }))} placeholder="Enter the audit artefacts reference." />
+                      </label>
+
+                      <label style={{ display: "grid", gap: 8 }}>
+                        <span style={{ fontSize: 12, letterSpacing: "0.08em", textTransform: "uppercase", color: "#c9c9c9" }}>Artefacts PDF</span>
+                        <input type="file" accept="application/pdf" disabled={isStep8ReadOnly || step8Submitting} onChange={(event) => handleStep8FileChange(event, "artefacts")} />
+                        <small className="helper-text" style={{ marginTop: 0 }}>{step8Files.artefactsFileName ? `Selected: ${step8Files.artefactsFileName}` : "PDF only, max 15 MB"}</small>
+                        {step8Details.artefactsFileUrl ? <a href={step8Details.artefactsFileUrl} target="_blank" rel="noreferrer" className="asa-step4-secondary-link">Download current artefacts pack</a> : null}
+                      </label>
+
+                      <label style={{ display: "grid", gap: 8 }}>
+                        <span style={{ fontSize: 12, letterSpacing: "0.08em", textTransform: "uppercase", color: "#c9c9c9" }}>Submission Remarks</span>
+                        <textarea value={step8Details.submissionRemarks || ""} disabled={isStep8ReadOnly || step8Submitting} onChange={(event) => setStep8Details((current) => ({ ...current, submissionRemarks: event.target.value }))} placeholder="Summarize the IS audit coverage, major findings, and attached evidence." style={{ width: "100%", minHeight: 110, borderRadius: 12, padding: 12, border: "1px solid rgba(255,230,0,0.2)", background: "#121218", color: "#fff" }} />
+                      </label>
+
+                      <div className="asa-profile-grid">
+                        <div>
+                          <span>IS Division Review Remarks</span>
+                          <strong>{step8Details.reviewRemarks || "-"}</strong>
+                        </div>
+                        <div>
+                          <span>Reviewed By</span>
+                          <strong>{step8Details.reviewedByName || "-"}</strong>
+                        </div>
+                      </div>
+                    </div>
+
+                    {step8Error ? <p className="error-banner" style={{ marginTop: 12 }}>{step8Error}</p> : null}
+                    {step8Success ? <p className="helper-text" style={{ marginTop: 12 }}>{step8Success}</p> : null}
+
+                    <div style={{ display: "flex", justifyContent: "flex-end", marginTop: 14 }}>
+                      <button type="button" className="asa-inline-new-btn" onClick={handleSubmitStep8} disabled={isStep8ReadOnly || step8Submitting}>
+                        <Send size={15} />
+                        {step8Submitting ? "Submitting..." : step8ReviewStatus === "rejected" ? "Resubmit Step 8" : "Submit Step 8"}
+                      </button>
+                    </div>
+                  </section>
+                ) : null}
               </div>
             ) : null}
           </div>
@@ -979,4 +1179,18 @@ export default function AuditorDashboard() {
     </>
   );
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

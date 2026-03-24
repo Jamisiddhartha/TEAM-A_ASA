@@ -118,6 +118,77 @@ export async function reviewStep6Details(applicationId, payload = {}) {
   return response.data;
 }
 
+export async function fetchStep7Details(applicationId) {
+  const response = await api.get(`/applications/${applicationId}/step7`);
+  return response.data.step7;
+}
+
+export async function issueStep7Details(applicationId, payload = {}) {
+  const response = await api.post(`/applications/${applicationId}/step7/issue`, payload);
+  return response.data;
+}
+
+export async function completeStep7Details(applicationId, payload = {}) {
+  const response = await api.post(`/applications/${applicationId}/step7/complete`, payload);
+  return response.data;
+}
+
+export async function fetchStep8Details(applicationId) {
+  const response = await api.get(`/applications/${applicationId}/step8`);
+  return response.data.step8;
+}
+
+export async function submitStep8Details(applicationId, payload = {}) {
+  const response = await api.post(`/applications/${applicationId}/step8/submit`, payload);
+  return response.data;
+}
+
+export async function reviewStep8Details(applicationId, payload = {}) {
+  const response = await api.post(`/applications/${applicationId}/step8/review`, payload);
+  return response.data;
+}
+
+export async function fetchStep9Details(applicationId) {
+  const response = await api.get(`/applications/${applicationId}/step9`);
+  return response.data.step9;
+}
+
+export async function issueStep9Details(applicationId, payload = {}) {
+  const response = await api.post(`/applications/${applicationId}/step9/issue`, payload);
+  return response.data;
+}
+
+
+export async function updateStep9TechCentreDetails(applicationId, payload = {}) {
+  const response = await api.post(`/applications/${applicationId}/step9/tech-centre-update`, payload);
+  return response.data;
+}
+export async function fetchStep10Details(applicationId) {
+  const response = await api.get(`/applications/${applicationId}/step10`);
+  return response.data.step10;
+}
+
+export async function submitStep10Details(applicationId, payload = {}) {
+  const response = await api.post(`/applications/${applicationId}/step10/submit`, payload);
+  return response.data;
+}
+
+export async function reviewStep10Details(applicationId, payload = {}) {
+  const response = await api.post(`/applications/${applicationId}/step10/review`, payload);
+  return response.data;
+}
+
+export async function fetchStep11Details(applicationId) {
+  const response = await api.get(`/applications/${applicationId}/step11`);
+  return response.data.step11;
+}
+
+export async function issueStep11Details(applicationId, payload = {}) {
+  const response = await api.post(`/applications/${applicationId}/step11/issue`, payload);
+  return response.data;
+}
+
 export function getInPrincipleApprovalLetterPdfUrl(id) {
   return `${api.defaults.baseURL}/applications/${id}/in-principle-approval-letter-pdf`;
 }
+

@@ -1,4 +1,4 @@
-ï»¿import { useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import { Shield } from "lucide-react";
@@ -113,11 +113,11 @@ export default function Register() {
     if (!passwordRegex.test(form.password)) {
       alert(
         "Password must contain:\n\n" +
-          "â€¢ Minimum 8 characters\n" +
-          "â€¢ One uppercase letter\n" +
-          "â€¢ One lowercase letter\n" +
-          "â€¢ One number\n" +
-          "â€¢ One special character"
+          "• Minimum 8 characters\n" +
+          "• One uppercase letter\n" +
+          "• One lowercase letter\n" +
+          "• One number\n" +
+          "• One special character"
       );
       return;
     }
@@ -194,6 +194,8 @@ export default function Register() {
             <option value="">Select Role</option>
             <option>Auditor</option>
             <option>Admin</option>
+            <option>IS Division</option>
+            <option>Tech Centre</option>
             <option>Applicant</option>
           </select>
           {errors.role && <p className="error-text">{errors.role}</p>}
@@ -227,11 +229,11 @@ export default function Register() {
                 >
                   Password must contain:
                 </span>
-                <span style={{ color: passwordChecks.length ? "green" : "red" }}> â€¢ Minimum 8 characters</span>
-                <span style={{ color: passwordChecks.uppercase ? "green" : "red" }}> â€¢ One uppercase letter</span>
-                <span style={{ color: passwordChecks.lowercase ? "green" : "red" }}> â€¢ One lowercase letter</span>
-                <span style={{ color: passwordChecks.number ? "green" : "red" }}> â€¢ One number</span>
-                <span style={{ color: passwordChecks.special ? "green" : "red" }}> â€¢ One special character</span>
+                <span style={{ color: passwordChecks.length ? "green" : "red" }}> • Minimum 8 characters</span>
+                <span style={{ color: passwordChecks.uppercase ? "green" : "red" }}> • One uppercase letter</span>
+                <span style={{ color: passwordChecks.lowercase ? "green" : "red" }}> • One lowercase letter</span>
+                <span style={{ color: passwordChecks.number ? "green" : "red" }}> • One number</span>
+                <span style={{ color: passwordChecks.special ? "green" : "red" }}> • One special character</span>
               </p>
             )}
           </div>
@@ -323,4 +325,8 @@ export default function Register() {
     </div>
   );
 }
+
+
+
+
 

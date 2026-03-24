@@ -1,4 +1,4 @@
-import { ClipboardList, FileCheck, Fingerprint, Landmark, ShieldCheck } from "lucide-react";
+import { ClipboardList, FileCheck, Fingerprint, Landmark, Paperclip, ShieldCheck, Trash2 } from "lucide-react";
 import ContactDetails from "./ContactDetails";
 import ASADetailsForm from "./ASADetailsForm";
 import AuthenticationForm from "./AuthenticationForm";
@@ -24,8 +24,85 @@ function ApplicationForm() {
   const [formData, setFormData] = useState(initialApplicationFormData);
   const [submitting, setSubmitting] = useState(false);
 
+  const [activeUploadField, setActiveUploadField] = useState("");
   function updateField(name, value) {
     setFormData((current) => ({ ...current, [name]: value }));
+  }
+  async function readFileAsDataUrl(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(String(reader.result || ""));
+      reader.onerror = () => reject(new Error("Failed to read file"));
+      reader.readAsDataURL(file);
+    });
+  }
+
+  function showUploadField(fieldName) {
+    setActiveUploadField(fieldName);
+  }
+
+  function renderUploadField({ isVisible, fileName, fileDataUrl, helperText, onChange, onDelete }) {
+    if (!isVisible && !fileName) {
+      return null;
+    }
+
+    return (
+      <div className="mt-1">
+        {fileName ? (
+          <div className="flex items-center gap-2">
+            <a
+              href={fileDataUrl || "#"}
+              download={fileName}
+              className="inline-flex min-w-0 max-w-full items-center gap-1.5 text-[12px] font-semibold leading-none text-[#ffe600] transition hover:text-[#fff3a0]"
+              title={fileName}
+            >
+              <Paperclip size={12} />
+              <span className="truncate">{fileName}</span>
+            </a>
+            <button
+              type="button"
+              onClick={onDelete}
+              className="inline-flex items-center justify-center text-[#ffe600] transition hover:text-[#fff3a0]"
+              aria-label={`Delete ${fileName}`}
+              title="Remove file"
+            >
+              <Trash2 size={15} />
+            </button>
+          </div>
+        ) : (
+          <>
+            <label className="inline-flex cursor-pointer items-center gap-2 rounded-full border border-[#d9d5cc] bg-[#fcfbf7] px-4 py-2 text-xs font-bold uppercase tracking-[0.16em] text-[#2e2e38] transition hover:border-[#ffe600] hover:bg-[#fffce0]">
+              <Paperclip size={14} />
+              <span>Upload Document</span>
+              <input type="file" accept=".pdf,.png,.jpg,.jpeg" onChange={onChange} className="sr-only" />
+            </label>
+            <p className="mt-2 text-[11px] leading-5 text-[#5f6368]">{helperText}</p>
+          </>
+        )}
+      </div>
+    );
+  }
+  async function handleFileUpload(event, nameField, dataField) {
+    const file = event.target.files?.[0];
+    if (!file) {
+      updateField(nameField, "");
+      updateField(dataField, "");
+      return;
+    }
+
+    try {
+      const dataUrl = await readFileAsDataUrl(file);
+      setFormData((current) => ({
+        ...current,
+        [nameField]: file.name,
+        [dataField]: dataUrl,
+      }));
+    } catch {
+      alert("Unable to read the selected file. Please try again.");
+      event.target.value = "";
+      updateField(nameField, "");
+      updateField(dataField, "");
+    }
   }
 
   function getFieldLabel(element) {
@@ -45,6 +122,13 @@ function ApplicationForm() {
   function getValidationMessage(element, options = {}) {
     const { enforceRequired = false } = options;
     const label = getFieldLabel(element).toLowerCase();
+    if (element.type === "file") {
+      if (enforceRequired && element.required && !element.files?.length) {
+        return "Please attach a file.";
+      }
+      return "";
+    }
+
 
     if (element.disabled || element.readOnly || element.type === "hidden" || element.classList.contains("sr-only")) {
       return "";
@@ -239,10 +323,13 @@ function ApplicationForm() {
 
   async function handleSubmitApplication(event) {
     event.preventDefault();
-    const missing = validateStep(5);
-    if (missing.length > 0) {
-      alert(`Please fill the following required fields before submitting:\n- ${missing.join("\n- ")}`);
-      return;
+    for (let step = 1; step <= steps.length; step += 1) {
+      const missing = validateStep(step);
+      if (missing.length > 0) {
+        setActiveStep(step);
+        alert(`Please fill the following required fields before submitting:\n- ${missing.join("\n- ")}`);
+        return;
+      }
     }
 
     try {
@@ -265,6 +352,11 @@ function ApplicationForm() {
         },
       });
     } catch (error) {
+      const missingFields = error.response?.data?.fields;
+      if (Array.isArray(missingFields) && missingFields.length > 0) {
+        alert(`Please fill the following required fields before submitting:\n- ${missingFields.join("\n- ")}`);
+        return;
+      }
       alert(error.response?.data?.message || "Failed to submit ASA Application Portal");
     } finally {
       setSubmitting(false);
@@ -384,56 +476,112 @@ function ApplicationForm() {
               </div>
               <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                 <div>
-                  <label className="mb-2 block text-sm font-semibold text-[#2e2e38]">Type of Applicant *</label>
-                  <select required value={formData.typeOfApplicant} onChange={(e) => updateField("typeOfApplicant", e.target.value)} className="w-full rounded-2xl border border-[#d9d5cc] bg-[#fcfbf7] p-3.5 text-[#1f1f1f] outline-none transition focus:border-[#ffe600] focus:ring-2 focus:ring-[#ffe600]/40">
-                    <option value="">Please Select</option>
-                    <option>Government</option>
-                    <option>Private</option>
-                  </select>
-                </div>
-                <div>
                   <label className="mb-2 block text-sm font-semibold text-[#2e2e38]">Applicant Name *</label>
-                  <input required type="text" value={formData.applicantName} onChange={(e) => updateField("applicantName", e.target.value)} placeholder="Applicant Name" className="w-full rounded-2xl border border-[#d9d5cc] bg-[#fcfbf7] p-3.5 text-[#1f1f1f] outline-none transition focus:border-[#ffe600] focus:ring-2 focus:ring-[#ffe600]/40" />
+                  <input required type="text" value={formData.applicantName} onFocus={() => showUploadField("")} onChange={(e) => updateField("applicantName", e.target.value)} placeholder="Applicant Name" className="w-full rounded-2xl border border-[#d9d5cc] bg-[#fcfbf7] p-3.5 text-[#1f1f1f] outline-none transition focus:border-[#ffe600] focus:ring-2 focus:ring-[#ffe600]/40" />
                 </div>
                 <div>
                   <label className="mb-2 block text-sm font-semibold text-[#2e2e38]">Registration / Incorporation No. *</label>
-                  <input required type="text" value={formData.registrationNumber} onChange={(e) => updateField("registrationNumber", e.target.value)} placeholder="Registration Number" className="w-full rounded-2xl border border-[#d9d5cc] bg-[#fcfbf7] p-3.5 text-[#1f1f1f] outline-none transition focus:border-[#ffe600] focus:ring-2 focus:ring-[#ffe600]/40" />
+                  <input required type="text" value={formData.registrationNumber} onFocus={() => showUploadField("registration")} onChange={(e) => updateField("registrationNumber", e.target.value)} placeholder="Registration Number" className="w-full rounded-2xl border border-[#d9d5cc] bg-[#fcfbf7] p-3.5 text-[#1f1f1f] outline-none transition focus:border-[#ffe600] focus:ring-2 focus:ring-[#ffe600]/40" />
+                  {renderUploadField({
+                    isVisible: activeUploadField === "registration",
+                    fileName: formData.registrationDocumentName,
+                    fileDataUrl: formData.registrationDocumentDataUrl,
+                    helperText: "Please attach a copy of the registration or incorporation document, if applicable.",
+                    onChange: (e) => handleFileUpload(e, "registrationDocumentName", "registrationDocumentDataUrl"),
+                    onDelete: () => { updateField("registrationDocumentName", ""); updateField("registrationDocumentDataUrl", ""); },
+                  })}
                 </div>
                 <div>
                   <label className="mb-2 block text-sm font-semibold text-[#2e2e38]">License Number *</label>
-                  <input required type="text" value={formData.licenseNumber} onChange={(e) => updateField("licenseNumber", e.target.value)} placeholder="License Number" className="w-full rounded-2xl border border-[#d9d5cc] bg-[#fcfbf7] p-3.5 text-[#1f1f1f] outline-none transition focus:border-[#ffe600] focus:ring-2 focus:ring-[#ffe600]/40" />
+                  <input required type="text" value={formData.licenseNumber} onFocus={() => showUploadField("license")} onChange={(e) => updateField("licenseNumber", e.target.value)} placeholder="License Number" className="w-full rounded-2xl border border-[#d9d5cc] bg-[#fcfbf7] p-3.5 text-[#1f1f1f] outline-none transition focus:border-[#ffe600] focus:ring-2 focus:ring-[#ffe600]/40" />
+                  {renderUploadField({
+                    isVisible: activeUploadField === "license",
+                    fileName: formData.licenseDocumentName,
+                    fileDataUrl: formData.licenseDocumentDataUrl,
+                    helperText: "Please attach a copy of the license document, if applicable.",
+                    onChange: (e) => handleFileUpload(e, "licenseDocumentName", "licenseDocumentDataUrl"),
+                    onDelete: () => { updateField("licenseDocumentName", ""); updateField("licenseDocumentDataUrl", ""); },
+                  })}
                 </div>
                 <div>
                   <label className="mb-2 block text-sm font-semibold text-[#2e2e38]">Registered Office Address *</label>
-                  <input required type="text" value={formData.registeredOfficeAddress} onChange={(e) => updateField("registeredOfficeAddress", e.target.value)} placeholder="Registered office address" className="w-full rounded-2xl border border-[#d9d5cc] bg-[#fcfbf7] p-3.5 text-[#1f1f1f] outline-none transition focus:border-[#ffe600] focus:ring-2 focus:ring-[#ffe600]/40" />
+                  <input required type="text" value={formData.registeredOfficeAddress} onFocus={() => showUploadField("")} onChange={(e) => updateField("registeredOfficeAddress", e.target.value)} placeholder="Registered office address" className="w-full rounded-2xl border border-[#d9d5cc] bg-[#fcfbf7] p-3.5 text-[#1f1f1f] outline-none transition focus:border-[#ffe600] focus:ring-2 focus:ring-[#ffe600]/40" />
                 </div>
                 <div>
                   <label className="mb-2 block text-sm font-semibold text-[#2e2e38]">Correspondence Address</label>
-                  <input type="text" value={formData.correspondenceAddress} onChange={(e) => updateField("correspondenceAddress", e.target.value)} placeholder="Correspondence address" className="w-full rounded-2xl border border-[#d9d5cc] bg-[#fcfbf7] p-3.5 text-[#1f1f1f] outline-none transition focus:border-[#ffe600] focus:ring-2 focus:ring-[#ffe600]/40" />
+                  <input type="text" value={formData.correspondenceAddress} onFocus={() => showUploadField("correspondence")} onBlur={() => showUploadField("")} onChange={(e) => updateField("correspondenceAddress", e.target.value)} placeholder="Correspondence address" className="w-full rounded-2xl border border-[#d9d5cc] bg-[#fcfbf7] p-3.5 text-[#1f1f1f] outline-none transition focus:border-[#ffe600] focus:ring-2 focus:ring-[#ffe600]/40" />
+                  {activeUploadField === "correspondence" ? <p className="mt-2 text-xs leading-relaxed text-[#5f6368]">Use this only if it is different from the registered office address.</p> : null}
                 </div>
                 <div>
                   <label className="mb-2 block text-sm font-semibold text-[#2e2e38]">GSTN Registration Number</label>
-                  <input type="text" value={formData.gstnNumber} onChange={(e) => updateField("gstnNumber", e.target.value)} placeholder="GSTN number" className="w-full rounded-2xl border border-[#d9d5cc] bg-[#fcfbf7] p-3.5 text-[#1f1f1f] outline-none transition focus:border-[#ffe600] focus:ring-2 focus:ring-[#ffe600]/40" />
+                  <input type="text" value={formData.gstnNumber} onFocus={() => showUploadField("gstn")} onChange={(e) => updateField("gstnNumber", e.target.value)} placeholder="GSTN number" className="w-full rounded-2xl border border-[#d9d5cc] bg-[#fcfbf7] p-3.5 text-[#1f1f1f] outline-none transition focus:border-[#ffe600] focus:ring-2 focus:ring-[#ffe600]/40" />
+                  {renderUploadField({
+                    isVisible: activeUploadField === "gstn",
+                    fileName: formData.gstnDocumentName,
+                    fileDataUrl: formData.gstnDocumentDataUrl,
+                    helperText: "Please attach a copy of the GSTN registration document, if applicable.",
+                    onChange: (e) => handleFileUpload(e, "gstnDocumentName", "gstnDocumentDataUrl"),
+                    onDelete: () => { updateField("gstnDocumentName", ""); updateField("gstnDocumentDataUrl", ""); },
+                  })}
                 </div>
                 <div>
                   <label className="mb-2 block text-sm font-semibold text-[#2e2e38]">TAN Number</label>
-                  <input type="text" value={formData.tanNumber} onChange={(e) => updateField("tanNumber", e.target.value)} placeholder="TAN number" className="w-full rounded-2xl border border-[#d9d5cc] bg-[#fcfbf7] p-3.5 text-[#1f1f1f] outline-none transition focus:border-[#ffe600] focus:ring-2 focus:ring-[#ffe600]/40" />
+                  <input type="text" value={formData.tanNumber} onFocus={() => showUploadField("tan")} onChange={(e) => updateField("tanNumber", e.target.value)} placeholder="TAN number" className="w-full rounded-2xl border border-[#d9d5cc] bg-[#fcfbf7] p-3.5 text-[#1f1f1f] outline-none transition focus:border-[#ffe600] focus:ring-2 focus:ring-[#ffe600]/40" />
+                  {renderUploadField({
+                    isVisible: activeUploadField === "tan",
+                    fileName: formData.tanDocumentName,
+                    fileDataUrl: formData.tanDocumentDataUrl,
+                    helperText: "Please attach a copy of the TAN document, if applicable.",
+                    onChange: (e) => handleFileUpload(e, "tanDocumentName", "tanDocumentDataUrl"),
+                    onDelete: () => { updateField("tanDocumentName", ""); updateField("tanDocumentDataUrl", ""); },
+                  })}
+                </div>
+                <div>
+                  <label className="mb-2 block text-sm font-semibold text-[#2e2e38]">Category of Applicant</label>
+                  <select value={formData.applicantCategory} onFocus={() => showUploadField("")} onChange={(e) => updateField("applicantCategory", e.target.value)} className="w-full rounded-2xl border border-[#d9d5cc] bg-[#fcfbf7] p-3.5 text-[#1f1f1f] outline-none transition focus:border-[#ffe600] focus:ring-2 focus:ring-[#ffe600]/40">
+                    <option value="">Select Category</option>
+                    <option>Category 1: Ministry/Department of Central or State Government</option>
+                    <option>Category 2: Authority constituted under Central or State Act</option>
+                    <option>Category 3: Any other entity of national importance</option>
+                    <option>Category 4: Company registered under Companies Act, 2013</option>
+                    <option>Category 5: An AUA or a KUA</option>
+                  </select>
                 </div>
               </div>
-              <div className="mt-6">
-                <label className="mb-2 block text-sm font-semibold text-[#2e2e38]">Category of Applicant</label>
-                <select value={formData.applicantCategory} onChange={(e) => updateField("applicantCategory", e.target.value)} className="w-full rounded-2xl border border-[#d9d5cc] bg-[#fcfbf7] p-3.5 text-[#1f1f1f] outline-none transition focus:border-[#ffe600] focus:ring-2 focus:ring-[#ffe600]/40">
-                  <option value="">Select Category</option>
-                  <option>Category 1: Ministry/Department of Central or State Government</option>
-                  <option>Category 2: Authority constituted under Central or State Act</option>
-                  <option>Category 3: Any other entity of national importance</option>
-                  <option>Category 4: Company registered under Companies Act, 2013</option>
-                  <option>Category 5: An AUA or a KUA</option>
-                </select>
+              <div className="mt-6 rounded-2xl border border-[#d9d5cc] bg-[#fcfbf7] p-4">
+                <p className="text-sm font-semibold text-[#2e2e38]">Board Resolution / Authorization Document</p>
+                <p className="mt-2 text-xs leading-relaxed text-[#5f6368]">
+                  Please attach the certified copy of the board resolution, minutes, or other valid letter/instrument of authorization
+                  citing approval for submitting the application form, signing the Authentication Service Agency Agreement, and doing
+                  other acts in relation to the same.
+                </p>
+                <div className="mt-3">
+                  {renderUploadField({
+                    isVisible: true,
+                    fileName: formData.authorizationDocumentName,
+                    fileDataUrl: formData.authorizationDocumentDataUrl,
+                    helperText: "Attach the certified copy of the authorization document.",
+                    onChange: (e) => handleFileUpload(e, "authorizationDocumentName", "authorizationDocumentDataUrl"),
+                    onDelete: () => { updateField("authorizationDocumentName", ""); updateField("authorizationDocumentDataUrl", ""); },
+                  })}
+                </div>
               </div>
               <div className="mt-10 flex justify-between border-t border-[#e4e0d6] pt-6">
-                <button type="button" onClick={() => activeStep > 1 && setActiveStep(activeStep - 1)} className={`rounded-2xl px-8 py-3 font-semibold transition ${activeStep === 1 ? "cursor-not-allowed bg-[#d9d5cc] text-[#8a8a90] opacity-60" : "bg-[#8a8a90] text-white hover:bg-[#6c6c73]"}`} disabled={activeStep === 1}>Previous</button>
-                <button type="button" onClick={() => window.dispatchEvent(new CustomEvent("changeStep", { detail: activeStep + 1 }))} className="rounded-2xl bg-[#2e2e38] px-8 py-3 font-semibold text-[#ffe600] shadow-lg transition hover:bg-[#1f1f1f]">Next</button>
+                <button
+                  type="button"
+                  onClick={() => changeStep(activeStep - 1)}
+                  disabled={activeStep === 1}
+                  className="rounded-2xl bg-[#8a8a90] px-8 py-3 font-semibold text-white transition hover:bg-[#6c6c73] disabled:cursor-not-allowed disabled:opacity-70"
+                >
+                  Previous
+                </button>
+                <button
+                  type="button"
+                  onClick={() => changeStep(activeStep + 1)}
+                  className="rounded-2xl bg-[#2e2e38] px-8 py-3 font-semibold text-[#ffe600] shadow-lg transition hover:bg-[#1f1f1f]"
+                >
+                  Next
+                </button>
               </div>
             </div>
           )}
@@ -448,6 +596,35 @@ function ApplicationForm() {
 }
 
 export default ApplicationForm;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

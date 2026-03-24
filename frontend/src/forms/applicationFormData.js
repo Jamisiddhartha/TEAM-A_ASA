@@ -1,5 +1,4 @@
 export const initialApplicationFormData = {
-  typeOfApplicant: "",
   applicantName: "",
   registrationNumber: "",
   licenseNumber: "",
@@ -7,6 +6,16 @@ export const initialApplicationFormData = {
   correspondenceAddress: "",
   gstnNumber: "",
   tanNumber: "",
+  registrationDocumentName: "",
+  registrationDocumentDataUrl: "",
+  licenseDocumentName: "",
+  licenseDocumentDataUrl: "",
+  gstnDocumentName: "",
+  gstnDocumentDataUrl: "",
+  tanDocumentName: "",
+  tanDocumentDataUrl: "",
+  authorizationDocumentName: "",
+  authorizationDocumentDataUrl: "",
   applicantCategory: "",
   kmpName: "",
   kmpDesignation: "",
@@ -81,3 +90,6 @@ export const initialApplicationFormData = {
   signatureAuthMode: "",
   authorizedSignatoryName: "",
 };
+
+
+

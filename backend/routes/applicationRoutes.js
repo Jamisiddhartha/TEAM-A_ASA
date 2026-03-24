@@ -17,6 +17,8 @@ const STEP3_APPENDICES = [
 
 const STEP4_UPLOAD_DIR = path.join(process.cwd(), "uploads", "step4");
 const STEP6_UPLOAD_DIR = path.join(process.cwd(), "uploads", "step6");
+const STEP8_UPLOAD_DIR = path.join(process.cwd(), "uploads", "step8");
+const STEP10_UPLOAD_DIR = path.join(process.cwd(), "uploads", "step10");
 
 function sanitizeFileName(name, fallback) {
   const safe = String(name || fallback || "document.pdf")
@@ -260,6 +262,179 @@ function mapStep6Details(row, req) {
     createdAt: row.created_at || null,
     updatedAt: row.updated_at || null,
   };
+}
+
+async function loadStep7Details(applicationId) {
+  const result = await pool.query(
+    `SELECT s7.*, u.fullname AS issued_by_name, u.email AS issued_by_email
+     FROM application_step7_actions s7
+     LEFT JOIN users u ON u.id = s7.issued_by_user_id
+     WHERE s7.application_id = $1
+     LIMIT 1`,
+    [applicationId]
+  );
+
+  return result.rows[0] || null;
+}
+
+function mapStep7Details(row) {
+  if (!row) {
+    return {
+      applicationId: null,
+      issuedByUserId: null,
+      issuedByName: null,
+      issuedByEmail: null,
+      accessKeyReference: "",
+      accessKeyValue: "",
+      mappedEntityName: "",
+      mappingReference: "",
+      preprodEndpoint: "",
+      ipWhitelist: "",
+      issueNotes: "",
+      testingStatus: "pending",
+      applicantTestSummary: "",
+      testEvidenceReference: "",
+      completedByUserId: null,
+      completedAt: null,
+      issuedAt: null,
+      createdAt: null,
+      updatedAt: null,
+    };
+  }
+
+  return {
+    applicationId: row.application_id,
+    issuedByUserId: row.issued_by_user_id || null,
+    issuedByName: row.issued_by_name || null,
+    issuedByEmail: row.issued_by_email || null,
+    accessKeyReference: row.access_key_reference || "",
+    accessKeyValue: row.access_key_value || "",
+    mappedEntityName: row.mapped_entity_name || "",
+    mappingReference: row.mapping_reference || "",
+    preprodEndpoint: row.preprod_endpoint || "",
+    ipWhitelist: row.ip_whitelist || "",
+    issueNotes: row.issue_notes || "",
+    testingStatus: row.testing_status || "pending",
+    applicantTestSummary: row.applicant_test_summary || "",
+    testEvidenceReference: row.test_evidence_reference || "",
+    completedByUserId: row.completed_by_user_id || null,
+    completedAt: row.completed_at || null,
+    issuedAt: row.issued_at || null,
+    createdAt: row.created_at || null,
+    updatedAt: row.updated_at || null,
+  };
+}
+
+async function loadStep8Submission(applicationId) {
+  const result = await pool.query(
+    `SELECT s8.*, ua.fullname AS submitted_by_auditor_name, ua.email AS submitted_by_auditor_email,
+            ur.fullname AS reviewed_by_name, ur.email AS reviewed_by_email,
+            s5.assigned_auditor_user_id, aa.fullname AS assigned_auditor_name, aa.email AS assigned_auditor_email
+     FROM application_step8_actions s8
+     LEFT JOIN users ua ON ua.id = s8.submitted_by_auditor_user_id
+     LEFT JOIN users ur ON ur.id = s8.reviewed_by_user_id
+     LEFT JOIN application_step5_actions s5 ON s5.application_id = s8.application_id
+     LEFT JOIN users aa ON aa.id = s5.assigned_auditor_user_id
+     WHERE s8.application_id = $1
+     LIMIT 1`,
+    [applicationId]
+  );
+
+  return result.rows[0] || null;
+}
+
+function mapStep8Details(row, req) {
+  if (!row) {
+    return { applicationId: null, assignedAuditorUserId: null, assignedAuditorName: null, assignedAuditorEmail: null, submittedByAuditorUserId: null, submittedByAuditorName: null, submittedByAuditorEmail: null, isAuditReportRef: null, complianceChecklistRef: null, artefactsRef: null, isAuditReportFileUrl: null, isAuditReportFileName: null, complianceChecklistFileUrl: null, complianceChecklistFileName: null, artefactsFileUrl: null, artefactsFileName: null, submissionRemarks: "", reviewStatus: "pending", reviewRemarks: "", reviewedByUserId: null, reviewedByName: null, reviewedByEmail: null, submittedAt: null, reviewedAt: null, createdAt: null, updatedAt: null };
+  }
+  return { applicationId: row.application_id, assignedAuditorUserId: row.assigned_auditor_user_id || null, assignedAuditorName: row.assigned_auditor_name || null, assignedAuditorEmail: row.assigned_auditor_email || null, submittedByAuditorUserId: row.submitted_by_auditor_user_id || null, submittedByAuditorName: row.submitted_by_auditor_name || null, submittedByAuditorEmail: row.submitted_by_auditor_email || null, isAuditReportRef: row.is_audit_report_ref || null, complianceChecklistRef: row.compliance_checklist_ref || null, artefactsRef: row.artefacts_ref || null, isAuditReportFileUrl: toPublicFileUrl(req, row.is_audit_report_file_path), isAuditReportFileName: row.is_audit_report_file_name || null, complianceChecklistFileUrl: toPublicFileUrl(req, row.compliance_checklist_file_path), complianceChecklistFileName: row.compliance_checklist_file_name || null, artefactsFileUrl: toPublicFileUrl(req, row.artefacts_file_path), artefactsFileName: row.artefacts_file_name || null, submissionRemarks: row.submission_remarks || "", reviewStatus: row.review_status || "pending", reviewRemarks: row.review_remarks || "", reviewedByUserId: row.reviewed_by_user_id || null, reviewedByName: row.reviewed_by_name || null, reviewedByEmail: row.reviewed_by_email || null, submittedAt: row.submitted_at || null, reviewedAt: row.reviewed_at || null, createdAt: row.created_at || null, updatedAt: row.updated_at || null };
+}
+
+async function loadStep9Approval(applicationId) {
+  const result = await pool.query(
+    `SELECT s9.*, 
+            u.fullname AS approved_by_name, u.email AS approved_by_email,
+            tc.fullname AS tech_centre_acknowledged_by_name, tc.email AS tech_centre_acknowledged_by_email
+     FROM application_step9_actions s9
+     LEFT JOIN users u ON u.id = s9.approved_by_user_id
+     LEFT JOIN users tc ON tc.id = s9.tech_centre_acknowledged_by_user_id
+     WHERE s9.application_id = $1
+     LIMIT 1`,
+    [applicationId]
+  );
+  return result.rows[0] || null;
+}
+
+function mapStep9Details(row) {
+  if (!row) {
+    return {
+      applicationId: null,
+      approvedByUserId: null,
+      approvedByName: null,
+      approvedByEmail: null,
+      approvalReference: "",
+      approvalNote: "",
+      notifiedApplicant: false,
+      notifiedTechCentre: false,
+      techCentreAcknowledged: false,
+      techCentreAcknowledgedByUserId: null,
+      techCentreAcknowledgedByName: null,
+      techCentreAcknowledgedByEmail: null,
+      techCentreAcknowledgedAt: null,
+      techCentreNotes: "",
+      techCentreSupportStatus: "pending",
+      issuedAt: null,
+      createdAt: null,
+      updatedAt: null,
+    };
+  }
+
+  return {
+    applicationId: row.application_id,
+    approvedByUserId: row.approved_by_user_id || null,
+    approvedByName: row.approved_by_name || null,
+    approvedByEmail: row.approved_by_email || null,
+    approvalReference: row.approval_reference || "",
+    approvalNote: row.approval_note || "",
+    notifiedApplicant: Boolean(row.notified_applicant),
+    notifiedTechCentre: Boolean(row.notified_tech_centre),
+    techCentreAcknowledged: Boolean(row.tech_centre_acknowledged),
+    techCentreAcknowledgedByUserId: row.tech_centre_acknowledged_by_user_id || null,
+    techCentreAcknowledgedByName: row.tech_centre_acknowledged_by_name || null,
+    techCentreAcknowledgedByEmail: row.tech_centre_acknowledged_by_email || null,
+    techCentreAcknowledgedAt: row.tech_centre_acknowledged_at || null,
+    techCentreNotes: row.tech_centre_notes || "",
+    techCentreSupportStatus: row.tech_centre_support_status || "pending",
+    issuedAt: row.issued_at || null,
+    createdAt: row.created_at || null,
+    updatedAt: row.updated_at || null,
+  };
+}
+
+async function loadStep10Payment(applicationId) {
+  const result = await pool.query(
+    `SELECT s10.*, us.fullname AS submitted_by_name, us.email AS submitted_by_email, ur.fullname AS reviewed_by_name, ur.email AS reviewed_by_email FROM application_step10_actions s10 LEFT JOIN users us ON us.id = s10.submitted_by_user_id LEFT JOIN users ur ON ur.id = s10.reviewed_by_user_id WHERE s10.application_id = $1 LIMIT 1`,
+    [applicationId]
+  );
+  return result.rows[0] || null;
+}
+
+function mapStep10Details(row, req) {
+  if (!row) return { applicationId: null, submittedByUserId: null, submittedByName: null, submittedByEmail: null, paymentReference: "", transactionId: "", receiptFileUrl: null, receiptFileName: null, paymentRemarks: "", reviewStatus: "pending", reviewRemarks: "", reviewedByUserId: null, reviewedByName: null, reviewedByEmail: null, submittedAt: null, reviewedAt: null, createdAt: null, updatedAt: null };
+  return { applicationId: row.application_id, submittedByUserId: row.submitted_by_user_id || null, submittedByName: row.submitted_by_name || null, submittedByEmail: row.submitted_by_email || null, paymentReference: row.payment_reference || "", transactionId: row.transaction_id || "", receiptFileUrl: toPublicFileUrl(req, row.receipt_file_path), receiptFileName: row.receipt_file_name || null, paymentRemarks: row.payment_remarks || "", reviewStatus: row.review_status || "pending", reviewRemarks: row.review_remarks || "", reviewedByUserId: row.reviewed_by_user_id || null, reviewedByName: row.reviewed_by_name || null, reviewedByEmail: row.reviewed_by_email || null, submittedAt: row.submitted_at || null, reviewedAt: row.reviewed_at || null, createdAt: row.created_at || null, updatedAt: row.updated_at || null };
+}
+
+async function loadStep11Production(applicationId) {
+  const result = await pool.query(
+    `SELECT s11.*, u.fullname AS issued_by_name, u.email AS issued_by_email FROM application_step11_actions s11 LEFT JOIN users u ON u.id = s11.issued_by_user_id WHERE s11.application_id = $1 LIMIT 1`,
+    [applicationId]
+  );
+  return result.rows[0] || null;
+}
+
+function mapStep11Details(row) {
+  if (!row) return { applicationId: null, issuedByUserId: null, issuedByName: null, issuedByEmail: null, productionKeyReference: "", productionKeyValue: "", productionEndpoint: "", productionEnvironmentDetails: "", goLiveNotes: "", migratedAt: null, createdAt: null, updatedAt: null };
+  return { applicationId: row.application_id, issuedByUserId: row.issued_by_user_id || null, issuedByName: row.issued_by_name || null, issuedByEmail: row.issued_by_email || null, productionKeyReference: row.production_key_reference || "", productionKeyValue: row.production_key_value || "", productionEndpoint: row.production_endpoint || "", productionEnvironmentDetails: row.production_environment_details || "", goLiveNotes: row.go_live_notes || "", migratedAt: row.migrated_at || null, createdAt: row.created_at || null, updatedAt: row.updated_at || null };
 }
 
 function formatDate(value) {
@@ -843,6 +1018,120 @@ router.post("/:id/step6/review", async (req, res) => {
     res.status(500).json({ message: error?.message || "Failed to review Step 6" });
   }
 });
+router.get("/:id/step7", async (req, res) => {
+  try {
+    const applicationResult = await pool.query("SELECT id, current_step, organization_name FROM applications WHERE id = $1 LIMIT 1", [req.params.id]);
+    if (applicationResult.rows.length === 0) {
+      return res.status(404).json({ message: "Application not found" });
+    }
+
+    const step7 = await loadStep7Details(req.params.id);
+    const mapped = mapStep7Details(step7);
+    if (!step7) {
+      mapped.applicationId = Number(req.params.id);
+      mapped.mappedEntityName = applicationResult.rows[0].organization_name || "";
+    }
+
+    res.json({ step7: mapped });
+  } catch {
+    res.status(500).json({ message: "Failed to load Step 7 details" });
+  }
+});
+
+router.post("/:id/step7/issue", async (req, res) => {
+  const {
+    issuedByUserId,
+    accessKeyReference,
+    accessKeyValue,
+    mappedEntityName,
+    mappingReference,
+    preprodEndpoint,
+    ipWhitelist,
+    issueNotes,
+  } = req.body || {};
+
+  if (!issuedByUserId || !String(accessKeyReference || "").trim() || !String(accessKeyValue || "").trim() || !String(mappingReference || "").trim()) {
+    return res.status(400).json({ message: "Step 7 requires issuer, access key reference, access key value, and mapping reference" });
+  }
+
+  try {
+    const appResult = await pool.query("SELECT * FROM applications WHERE id = $1 LIMIT 1", [req.params.id]);
+    if (appResult.rows.length === 0) {
+      return res.status(404).json({ message: "Application not found" });
+    }
+
+    const app = appResult.rows[0];
+    if (Number(app.current_step || 0) < 7) {
+      return res.status(400).json({ message: "Step 7 is available only after Step 6 approval" });
+    }
+
+    await pool.query(
+      `INSERT INTO application_step7_actions (
+         application_id,
+         issued_by_user_id,
+         access_key_reference,
+         access_key_value,
+         mapped_entity_name,
+         mapping_reference,
+         preprod_endpoint,
+         ip_whitelist,
+         issue_notes,
+         issued_at
+       )
+       VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,NOW())
+       ON CONFLICT (application_id)
+       DO UPDATE SET
+         issued_by_user_id = EXCLUDED.issued_by_user_id,
+         access_key_reference = EXCLUDED.access_key_reference,
+         access_key_value = EXCLUDED.access_key_value,
+         mapped_entity_name = EXCLUDED.mapped_entity_name,
+         mapping_reference = EXCLUDED.mapping_reference,
+         preprod_endpoint = EXCLUDED.preprod_endpoint,
+         ip_whitelist = EXCLUDED.ip_whitelist,
+         issue_notes = EXCLUDED.issue_notes,
+         issued_at = NOW(),
+         updated_at = NOW()`,
+      [
+        req.params.id,
+        issuedByUserId,
+        String(accessKeyReference || "").trim(),
+        String(accessKeyValue || "").trim(),
+        String(mappedEntityName || "").trim() || app.organization_name || null,
+        String(mappingReference || "").trim(),
+        String(preprodEndpoint || "").trim() || null,
+        String(ipWhitelist || "").trim() || null,
+        String(issueNotes || "").trim() || null,
+      ]
+    );
+
+    const summaryParts = [
+      "Step 7 access issued: pre-production key " + String(accessKeyReference || "").trim(),
+      "mapping ref " + String(mappingReference || "").trim(),
+    ];
+    if (String(preprodEndpoint || "").trim()) summaryParts.push("endpoint " + String(preprodEndpoint).trim());
+
+    const appUpdate = await pool.query(
+      `UPDATE applications
+       SET current_step = GREATEST(current_step, 7),
+           overall_status = 'Step 7 Access Issued',
+           environment_status = 'Step 7: Applicant Testing in Pre-production',
+           application_summary = $1
+       WHERE id = $2
+       RETURNING *`,
+      [summaryParts.join('; '), req.params.id]
+    );
+
+    const refreshed = await loadStep7Details(req.params.id);
+    res.json({
+      message: "Step 7 access issued successfully. Applicant must now complete pre-production testing.",
+      application: mapApplication(appUpdate.rows[0]),
+      step7: mapStep7Details(refreshed),
+    });
+  } catch (error) {
+    res.status(500).json({ message: error?.message || "Failed to issue Step 7 access" });
+  }
+});
+
 router.post("/:id/in-principle-approval", async (req, res) => {
   const { remarks, appendices, issuedByUserId } = req.body || {};
 
@@ -1224,7 +1513,799 @@ router.post("/:id/step4/review", async (req, res) => {
     res.status(500).json({ message: "Failed to review Step 4" });
   }
 });
-router.get("/:id", async (req, res) => {
+router.post("/:id/step7/complete", async (req, res) => {
+  const { completedByUserId, testSummary, testEvidenceReference } = req.body || {};
+
+  if (!completedByUserId || !String(testSummary || "").trim()) {
+    return res.status(400).json({ message: "Step 7 completion requires applicant user id and testing summary" });
+  }
+
+  try {
+    const appResult = await pool.query("SELECT * FROM applications WHERE id = $1 LIMIT 1", [req.params.id]);
+    if (appResult.rows.length === 0) {
+      return res.status(404).json({ message: "Application not found" });
+    }
+
+    const step7 = await loadStep7Details(req.params.id);
+    if (!step7?.issued_at) {
+      return res.status(400).json({ message: "UIDAI has not issued Step 7 access yet" });
+    }
+
+    await pool.query(
+      `UPDATE application_step7_actions
+       SET testing_status = 'completed',
+           applicant_test_summary = $1,
+           test_evidence_reference = $2,
+           completed_by_user_id = $3,
+           completed_at = NOW(),
+           updated_at = NOW()
+       WHERE application_id = $4`,
+      [
+        String(testSummary || "").trim(),
+        String(testEvidenceReference || "").trim() || null,
+        completedByUserId,
+        req.params.id,
+      ]
+    );
+
+    const appUpdate = await pool.query(
+      `UPDATE applications
+       SET current_step = GREATEST(current_step, 8),
+           overall_status = 'Step 7 Testing Completed',
+           environment_status = 'Step 8: IS Audit Submission',
+           application_summary = $1
+       WHERE id = $2
+       RETURNING *`,
+      [String(testSummary || "").trim(), req.params.id]
+    );
+
+    const refreshed = await loadStep7Details(req.params.id);
+    res.json({
+      message: "Step 7 completed successfully and application moved to Step 8",
+      application: mapApplication(appUpdate.rows[0]),
+      step7: mapStep7Details(refreshed),
+    });
+  } catch (error) {
+    res.status(500).json({ message: error?.message || "Failed to complete Step 7" });
+  }
+});
+
+router.get("/:id/step8", async (req, res) => {
+  try {
+    const applicationResult = await pool.query(
+      `SELECT a.id, s5.assigned_auditor_user_id
+       FROM applications a
+       LEFT JOIN application_step5_actions s5 ON s5.application_id = a.id
+       WHERE a.id = $1
+       LIMIT 1`,
+      [req.params.id]
+    );
+
+    if (applicationResult.rows.length === 0) {
+      return res.status(404).json({ message: "Application not found" });
+    }
+
+    const row = applicationResult.rows[0];
+    const step8 = await loadStep8Submission(req.params.id);
+    const mapped = mapStep8Details(step8, req);
+    if (!step8) {
+      mapped.applicationId = Number(req.params.id);
+      mapped.assignedAuditorUserId = row.assigned_auditor_user_id || null;
+    }
+
+    res.json({ step8: mapped });
+  } catch {
+    res.status(500).json({ message: "Failed to load Step 8 details" });
+  }
+});
+
+router.post("/:id/step8/submit", async (req, res) => {
+  const {
+    submittedByAuditorUserId,
+    isAuditReportRef,
+    complianceChecklistRef,
+    artefactsRef,
+    submissionRemarks,
+    isAuditReportFileData,
+    isAuditReportFileName,
+    complianceChecklistFileData,
+    complianceChecklistFileName,
+    artefactsFileData,
+    artefactsFileName,
+  } = req.body || {};
+
+  if (!submittedByAuditorUserId) {
+    return res.status(400).json({ message: "Step 8 submission requires the auditor user id" });
+  }
+
+  try {
+    const appResult = await pool.query(
+      `SELECT a.*, s5.assigned_auditor_user_id
+       FROM applications a
+       LEFT JOIN application_step5_actions s5 ON s5.application_id = a.id
+       WHERE a.id = $1
+       LIMIT 1`,
+      [req.params.id]
+    );
+
+    if (appResult.rows.length === 0) {
+      return res.status(404).json({ message: "Application not found" });
+    }
+
+    const app = appResult.rows[0];
+    if (Number(app.current_step || 0) < 8) {
+      return res.status(400).json({ message: "Step 8 is available only after Step 7 testing is completed" });
+    }
+
+    if (app.assigned_auditor_user_id && Number(app.assigned_auditor_user_id) !== Number(submittedByAuditorUserId)) {
+      return res.status(403).json({ message: "This Step 8 submission is assigned to another auditor" });
+    }
+
+    const existing = await loadStep8Submission(req.params.id);
+    if (existing?.review_status === "approved") {
+      return res.status(400).json({ message: "Step 8 has already been approved" });
+    }
+    if (existing?.review_status === "under_review") {
+      return res.status(400).json({ message: "Step 8 is already under review" });
+    }
+
+    let isAuditReportPath = existing?.is_audit_report_file_path || null;
+    let isAuditReportStoredName = existing?.is_audit_report_file_name || null;
+    let complianceChecklistPath = existing?.compliance_checklist_file_path || null;
+    let complianceChecklistStoredName = existing?.compliance_checklist_file_name || null;
+    let artefactsPath = existing?.artefacts_file_path || null;
+    let artefactsStoredName = existing?.artefacts_file_name || null;
+
+    if (isAuditReportFileData) {
+      const saved = await savePdfDataUrl({
+        dataUrl: isAuditReportFileData,
+        applicationId: req.params.id,
+        prefix: "step8-is-audit-report",
+        originalName: isAuditReportFileName,
+        uploadDir: STEP8_UPLOAD_DIR,
+        publicBasePath: "/uploads/step8",
+      });
+      isAuditReportPath = saved.filePath;
+      isAuditReportStoredName = saved.fileName;
+    }
+
+    if (complianceChecklistFileData) {
+      const saved = await savePdfDataUrl({
+        dataUrl: complianceChecklistFileData,
+        applicationId: req.params.id,
+        prefix: "step8-compliance-checklist",
+        originalName: complianceChecklistFileName,
+        uploadDir: STEP8_UPLOAD_DIR,
+        publicBasePath: "/uploads/step8",
+      });
+      complianceChecklistPath = saved.filePath;
+      complianceChecklistStoredName = saved.fileName;
+    }
+
+    if (artefactsFileData) {
+      const saved = await savePdfDataUrl({
+        dataUrl: artefactsFileData,
+        applicationId: req.params.id,
+        prefix: "step8-artefacts",
+        originalName: artefactsFileName,
+        uploadDir: STEP8_UPLOAD_DIR,
+        publicBasePath: "/uploads/step8",
+      });
+      artefactsPath = saved.filePath;
+      artefactsStoredName = saved.fileName;
+    }
+
+    if (!isAuditReportPath || !complianceChecklistPath || !artefactsPath) {
+      return res.status(400).json({ message: "Upload the IS audit report PDF, compliance checklist PDF, and artefacts PDF for Step 8" });
+    }
+
+    await pool.query(
+      `INSERT INTO application_step8_actions (
+         application_id,
+         submitted_by_auditor_user_id,
+         is_audit_report_ref,
+         compliance_checklist_ref,
+         artefacts_ref,
+         is_audit_report_file_path,
+         is_audit_report_file_name,
+         compliance_checklist_file_path,
+         compliance_checklist_file_name,
+         artefacts_file_path,
+         artefacts_file_name,
+         submission_remarks,
+         review_status,
+         review_remarks,
+         reviewed_by_user_id,
+         submitted_at,
+         reviewed_at
+       )
+       VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,'under_review',NULL,NULL,NOW(),NULL)
+       ON CONFLICT (application_id)
+       DO UPDATE SET
+         submitted_by_auditor_user_id = EXCLUDED.submitted_by_auditor_user_id,
+         is_audit_report_ref = EXCLUDED.is_audit_report_ref,
+         compliance_checklist_ref = EXCLUDED.compliance_checklist_ref,
+         artefacts_ref = EXCLUDED.artefacts_ref,
+         is_audit_report_file_path = EXCLUDED.is_audit_report_file_path,
+         is_audit_report_file_name = EXCLUDED.is_audit_report_file_name,
+         compliance_checklist_file_path = EXCLUDED.compliance_checklist_file_path,
+         compliance_checklist_file_name = EXCLUDED.compliance_checklist_file_name,
+         artefacts_file_path = EXCLUDED.artefacts_file_path,
+         artefacts_file_name = EXCLUDED.artefacts_file_name,
+         submission_remarks = EXCLUDED.submission_remarks,
+         review_status = 'under_review',
+         review_remarks = NULL,
+         reviewed_by_user_id = NULL,
+         submitted_at = NOW(),
+         reviewed_at = NULL,
+         updated_at = NOW()`,
+      [
+        req.params.id,
+        submittedByAuditorUserId,
+        isAuditReportRef || null,
+        complianceChecklistRef || null,
+        artefactsRef || null,
+        isAuditReportPath,
+        isAuditReportStoredName,
+        complianceChecklistPath,
+        complianceChecklistStoredName,
+        artefactsPath,
+        artefactsStoredName,
+        submissionRemarks || null,
+      ]
+    );
+
+    await pool.query(
+      `UPDATE applications
+       SET current_step = GREATEST(current_step, 8),
+           overall_status = 'Step 8 IS Audit Submitted',
+           environment_status = 'Step 8 Audit Report Under Review',
+           application_summary = $1
+       WHERE id = $2`,
+      [
+        submissionRemarks
+          ? `Step 8 submitted by auditor: ${submissionRemarks}`
+          : 'Step 8 IS audit report, compliance checklist, and artefacts submitted for IS division review.',
+        req.params.id,
+      ]
+    );
+
+    const refreshed = await loadStep8Submission(req.params.id);
+    res.json({
+      message: "Step 8 submitted successfully and is now under review",
+      step8: mapStep8Details(refreshed, req),
+    });
+  } catch (error) {
+    res.status(500).json({ message: error?.message || "Failed to submit Step 8" });
+  }
+});
+
+router.post("/:id/step8/review", async (req, res) => {
+  const { reviewedByUserId, decision, reviewRemarks } = req.body || {};
+
+  if (!reviewedByUserId || !decision || !["approved", "rejected"].includes(decision)) {
+    return res.status(400).json({ message: "Step 8 review requires reviewer and valid decision" });
+  }
+
+  try {
+    const appResult = await pool.query("SELECT * FROM applications WHERE id = $1 LIMIT 1", [req.params.id]);
+    if (appResult.rows.length === 0) {
+      return res.status(404).json({ message: "Application not found" });
+    }
+
+    const step8 = await loadStep8Submission(req.params.id);
+    if (!step8?.submitted_at) {
+      return res.status(400).json({ message: "Auditor has not submitted Step 8 yet" });
+    }
+
+    await pool.query(
+      `UPDATE application_step8_actions
+       SET review_status = $1,
+           review_remarks = $2,
+           reviewed_by_user_id = $3,
+           reviewed_at = NOW(),
+           updated_at = NOW()
+       WHERE application_id = $4`,
+      [decision, reviewRemarks || null, reviewedByUserId, req.params.id]
+    );
+
+    const appUpdate = await pool.query(
+      `UPDATE applications
+       SET current_step = CASE WHEN $1 = 'approved' THEN GREATEST(current_step, 9) ELSE GREATEST(current_step, 8) END,
+           overall_status = $2,
+           environment_status = $3,
+           application_summary = $4
+       WHERE id = $5
+       RETURNING *`,
+      [
+        decision,
+        decision === "approved" ? "Step 8 Approved" : "Step 8 Rejected",
+        decision === "approved" ? "Step 9: Final Approval" : "Step 8 Resubmission Required",
+        reviewRemarks
+          ? `Step 8 ${decision} by IS division: ${reviewRemarks}`
+          : decision === "approved"
+            ? "Step 8 approved by IS division."
+            : "Step 8 rejected by IS division and sent back to the auditor.",
+        req.params.id,
+      ]
+    );
+
+    const refreshed = await loadStep8Submission(req.params.id);
+    res.json({
+      message: decision === "approved" ? "Step 8 approved and application moved to Step 9" : "Step 8 rejected and sent back for resubmission",
+      application: mapApplication(appUpdate.rows[0]),
+      step8: mapStep8Details(refreshed, req),
+    });
+  } catch (error) {
+    res.status(500).json({ message: error?.message || "Failed to review Step 8" });
+  }
+});
+
+router.get("/:id/step9", async (req, res) => {
+  try {
+    const applicationResult = await pool.query("SELECT id FROM applications WHERE id = $1 LIMIT 1", [req.params.id]);
+    if (applicationResult.rows.length === 0) {
+      return res.status(404).json({ message: "Application not found" });
+    }
+
+    const step9 = await loadStep9Approval(req.params.id);
+    const mapped = mapStep9Details(step9);
+    if (!step9) {
+      mapped.applicationId = Number(req.params.id);
+    }
+
+    res.json({ step9: mapped });
+  } catch {
+    res.status(500).json({ message: "Failed to load Step 9 details" });
+  }
+});
+
+router.post("/:id/step9/issue", async (req, res) => {
+  const { approvedByUserId, approvalReference, approvalNote, notifiedApplicant, notifiedTechCentre } = req.body || {};
+
+  if (!approvedByUserId || !String(approvalReference || "").trim()) {
+    return res.status(400).json({ message: "Step 9 requires approver and approval reference" });
+  }
+
+  try {
+    const appResult = await pool.query("SELECT * FROM applications WHERE id = $1 LIMIT 1", [req.params.id]);
+    if (appResult.rows.length === 0) {
+      return res.status(404).json({ message: "Application not found" });
+    }
+
+    const app = appResult.rows[0];
+    if (Number(app.current_step || 0) < 9) {
+      return res.status(400).json({ message: "Step 9 is available only after Step 8 approval" });
+    }
+
+    await pool.query(
+      `INSERT INTO application_step9_actions (
+         application_id,
+         approved_by_user_id,
+         approval_reference,
+         approval_note,
+         notified_applicant,
+         notified_tech_centre,
+         issued_at
+       )
+       VALUES ($1,$2,$3,$4,$5,$6,NOW())
+       ON CONFLICT (application_id)
+       DO UPDATE SET
+         approved_by_user_id = EXCLUDED.approved_by_user_id,
+         approval_reference = EXCLUDED.approval_reference,
+         approval_note = EXCLUDED.approval_note,
+         notified_applicant = EXCLUDED.notified_applicant,
+         notified_tech_centre = EXCLUDED.notified_tech_centre,
+         issued_at = NOW(),
+         updated_at = NOW()`,
+      [
+        req.params.id,
+        approvedByUserId,
+        String(approvalReference || "").trim(),
+        String(approvalNote || "").trim() || null,
+        Boolean(notifiedApplicant),
+        Boolean(notifiedTechCentre),
+      ]
+    );
+
+    const appUpdate = await pool.query(
+      `UPDATE applications
+       SET current_step = GREATEST(current_step, 10),
+           overall_status = 'Step 9 Final Approval Granted',
+           environment_status = 'Step 10: Final License Fee Payment',
+           application_summary = $1
+       WHERE id = $2
+       RETURNING *`,
+      [
+        String(approvalNote || "").trim()
+          ? `Step 9 final approval issued: ${String(approvalNote).trim()}`
+          : `Step 9 final approval issued with reference ${String(approvalReference || "").trim()}`,
+        req.params.id,
+      ]
+    );
+
+    const refreshed = await loadStep9Approval(req.params.id);
+    res.json({
+      message: "Step 9 approval issued successfully and application moved to Step 10",
+      application: mapApplication(appUpdate.rows[0]),
+      step9: mapStep9Details(refreshed),
+    });
+  } catch (error) {
+    res.status(500).json({ message: error?.message || "Failed to issue Step 9 approval" });
+  }
+});
+
+router.post("/:id/step9/tech-centre-update", async (req, res) => {
+  const { techCentreUserId, supportStatus, techCentreNotes, acknowledged } = req.body || {};
+  const allowedStatuses = ["pending", "acknowledged", "ready_for_step11"];
+
+  if (!techCentreUserId || !allowedStatuses.includes(String(supportStatus || "pending"))) {
+    return res.status(400).json({ message: "Tech Centre update requires user id and a valid support status" });
+  }
+
+  try {
+    const appResult = await pool.query("SELECT * FROM applications WHERE id = $1 LIMIT 1", [req.params.id]);
+    if (appResult.rows.length === 0) {
+      return res.status(404).json({ message: "Application not found" });
+    }
+
+    const step9 = await loadStep9Approval(req.params.id);
+    if (!step9?.issued_at) {
+      return res.status(400).json({ message: "Step 9 approval has not been issued yet" });
+    }
+
+    if (!step9.notified_tech_centre) {
+      return res.status(400).json({ message: "This Step 9 record has not been forwarded to Tech Centre yet" });
+    }
+
+    const resolvedStatus = String(supportStatus || "pending");
+    const isAcknowledged = typeof acknowledged === "boolean" ? acknowledged : resolvedStatus !== "pending";
+
+    await pool.query(
+      `UPDATE application_step9_actions
+       SET tech_centre_acknowledged = $1,
+           tech_centre_acknowledged_by_user_id = CASE WHEN $1 THEN $2 ELSE tech_centre_acknowledged_by_user_id END,
+           tech_centre_acknowledged_at = CASE WHEN $1 THEN COALESCE(tech_centre_acknowledged_at, NOW()) ELSE NULL END,
+           tech_centre_notes = $3,
+           tech_centre_support_status = $4,
+           updated_at = NOW()
+       WHERE application_id = $5`,
+      [
+        isAcknowledged,
+        techCentreUserId,
+        String(techCentreNotes || "").trim() || null,
+        resolvedStatus,
+        req.params.id,
+      ]
+    );
+
+    await pool.query(
+      `UPDATE applications
+       SET application_summary = $1
+       WHERE id = $2`,
+      [
+        String(techCentreNotes || "").trim()
+          ? `Tech Centre updated Step 9 support status to ${resolvedStatus}: ${String(techCentreNotes).trim()}`
+          : `Tech Centre updated Step 9 support status to ${resolvedStatus}`,
+        req.params.id,
+      ]
+    );
+
+    const refreshed = await loadStep9Approval(req.params.id);
+    res.json({
+      message: "Tech Centre handoff updated successfully",
+      step9: mapStep9Details(refreshed),
+    });
+  } catch (error) {
+    res.status(500).json({ message: error?.message || "Failed to update Tech Centre handoff" });
+  }
+});
+router.get("/:id/step10", async (req, res) => {
+  try {
+    const applicationResult = await pool.query("SELECT id FROM applications WHERE id = $1 LIMIT 1", [req.params.id]);
+    if (applicationResult.rows.length === 0) {
+      return res.status(404).json({ message: "Application not found" });
+    }
+
+    const step10 = await loadStep10Payment(req.params.id);
+    const mapped = mapStep10Details(step10, req);
+    if (!step10) {
+      mapped.applicationId = Number(req.params.id);
+    }
+
+    res.json({ step10: mapped });
+  } catch {
+    res.status(500).json({ message: "Failed to load Step 10 details" });
+  }
+});
+
+router.post("/:id/step10/submit", async (req, res) => {
+  const {
+    submittedByUserId,
+    paymentReference,
+    transactionId,
+    paymentRemarks,
+    receiptFileData,
+    receiptFileName,
+  } = req.body || {};
+
+  if (!submittedByUserId || (!String(paymentReference || "").trim() && !String(transactionId || "").trim())) {
+    return res.status(400).json({ message: "Step 10 requires applicant user id and a payment reference or transaction id" });
+  }
+
+  try {
+    const appResult = await pool.query("SELECT * FROM applications WHERE id = $1 LIMIT 1", [req.params.id]);
+    if (appResult.rows.length === 0) {
+      return res.status(404).json({ message: "Application not found" });
+    }
+
+    const app = appResult.rows[0];
+    if (Number(app.current_step || 0) < 10) {
+      return res.status(400).json({ message: "Step 10 is available only after Step 9 approval" });
+    }
+
+    const existing = await loadStep10Payment(req.params.id);
+    if (existing?.review_status === "approved") {
+      return res.status(400).json({ message: "Step 10 has already been approved" });
+    }
+    if (existing?.review_status === "under_review") {
+      return res.status(400).json({ message: "Step 10 payment proof is already under review" });
+    }
+
+    let receiptPath = existing?.receipt_file_path || null;
+    let receiptStoredName = existing?.receipt_file_name || null;
+
+    if (receiptFileData) {
+      const saved = await savePdfDataUrl({
+        dataUrl: receiptFileData,
+        applicationId: req.params.id,
+        prefix: "step10-payment-receipt",
+        originalName: receiptFileName,
+        uploadDir: STEP10_UPLOAD_DIR,
+        publicBasePath: "/uploads/step10",
+      });
+      receiptPath = saved.filePath;
+      receiptStoredName = saved.fileName;
+    }
+
+    if (!receiptPath) {
+      return res.status(400).json({ message: "Upload the final license fee payment receipt PDF for Step 10" });
+    }
+
+    await pool.query(
+      `INSERT INTO application_step10_actions (
+         application_id,
+         submitted_by_user_id,
+         payment_reference,
+         transaction_id,
+         receipt_file_path,
+         receipt_file_name,
+         payment_remarks,
+         review_status,
+         review_remarks,
+         reviewed_by_user_id,
+         submitted_at,
+         reviewed_at
+       )
+       VALUES ($1,$2,$3,$4,$5,$6,$7,'under_review',NULL,NULL,NOW(),NULL)
+       ON CONFLICT (application_id)
+       DO UPDATE SET
+         submitted_by_user_id = EXCLUDED.submitted_by_user_id,
+         payment_reference = EXCLUDED.payment_reference,
+         transaction_id = EXCLUDED.transaction_id,
+         receipt_file_path = EXCLUDED.receipt_file_path,
+         receipt_file_name = EXCLUDED.receipt_file_name,
+         payment_remarks = EXCLUDED.payment_remarks,
+         review_status = 'under_review',
+         review_remarks = NULL,
+         reviewed_by_user_id = NULL,
+         submitted_at = NOW(),
+         reviewed_at = NULL,
+         updated_at = NOW()`,
+      [
+        req.params.id,
+        submittedByUserId,
+        String(paymentReference || "").trim() || null,
+        String(transactionId || "").trim() || null,
+        receiptPath,
+        receiptStoredName,
+        String(paymentRemarks || "").trim() || null,
+      ]
+    );
+
+    await pool.query(
+      `UPDATE applications
+       SET current_step = GREATEST(current_step, 10),
+           overall_status = 'Step 10 Payment Submitted',
+           environment_status = 'Step 10 Payment Under Review',
+           application_summary = $1
+       WHERE id = $2`,
+      [
+        String(paymentRemarks || "").trim()
+          ? `Step 10 payment submitted: ${String(paymentRemarks).trim()}`
+          : 'Final license fee payment proof submitted for UIDAI verification.',
+        req.params.id,
+      ]
+    );
+
+    const refreshed = await loadStep10Payment(req.params.id);
+    res.json({
+      message: "Step 10 payment submitted successfully and is now under review",
+      step10: mapStep10Details(refreshed, req),
+    });
+  } catch (error) {
+    res.status(500).json({ message: error?.message || "Failed to submit Step 10" });
+  }
+});
+
+router.post("/:id/step10/review", async (req, res) => {
+  const { reviewedByUserId, decision, reviewRemarks } = req.body || {};
+
+  if (!reviewedByUserId || !decision || !["approved", "rejected"].includes(decision)) {
+    return res.status(400).json({ message: "Step 10 review requires reviewer and valid decision" });
+  }
+
+  try {
+    const appResult = await pool.query("SELECT * FROM applications WHERE id = $1 LIMIT 1", [req.params.id]);
+    if (appResult.rows.length === 0) {
+      return res.status(404).json({ message: "Application not found" });
+    }
+
+    const step10 = await loadStep10Payment(req.params.id);
+    if (!step10?.submitted_at) {
+      return res.status(400).json({ message: "Applicant has not submitted Step 10 yet" });
+    }
+
+    await pool.query(
+      `UPDATE application_step10_actions
+       SET review_status = $1,
+           review_remarks = $2,
+           reviewed_by_user_id = $3,
+           reviewed_at = NOW(),
+           updated_at = NOW()
+       WHERE application_id = $4`,
+      [decision, reviewRemarks || null, reviewedByUserId, req.params.id]
+    );
+
+    const appUpdate = await pool.query(
+      `UPDATE applications
+       SET current_step = CASE WHEN $1 = 'approved' THEN GREATEST(current_step, 11) ELSE GREATEST(current_step, 10) END,
+           overall_status = $2,
+           environment_status = $3,
+           application_summary = $4
+       WHERE id = $5
+       RETURNING *`,
+      [
+        decision,
+        decision === "approved" ? "Step 10 Payment Approved" : "Step 10 Payment Rejected",
+        decision === "approved" ? "Step 11: Live Production Migration" : "Step 10 Resubmission Required",
+        reviewRemarks
+          ? `Step 10 ${decision} by UIDAI: ${reviewRemarks}`
+          : decision === "approved"
+            ? "Step 10 payment approved by UIDAI."
+            : "Step 10 payment proof rejected and sent back to applicant.",
+        req.params.id,
+      ]
+    );
+
+    const refreshed = await loadStep10Payment(req.params.id);
+    res.json({
+      message: decision === "approved" ? "Step 10 approved and application moved to Step 11" : "Step 10 rejected and sent back for resubmission",
+      application: mapApplication(appUpdate.rows[0]),
+      step10: mapStep10Details(refreshed, req),
+    });
+  } catch (error) {
+    res.status(500).json({ message: error?.message || "Failed to review Step 10" });
+  }
+});
+
+router.get("/:id/step11", async (req, res) => {
+  try {
+    const applicationResult = await pool.query("SELECT id FROM applications WHERE id = $1 LIMIT 1", [req.params.id]);
+    if (applicationResult.rows.length === 0) {
+      return res.status(404).json({ message: "Application not found" });
+    }
+
+    const step11 = await loadStep11Production(req.params.id);
+    const mapped = mapStep11Details(step11);
+    if (!step11) {
+      mapped.applicationId = Number(req.params.id);
+    }
+
+    res.json({ step11: mapped });
+  } catch {
+    res.status(500).json({ message: "Failed to load Step 11 details" });
+  }
+});
+
+router.post("/:id/step11/issue", async (req, res) => {
+  const {
+    issuedByUserId,
+    productionKeyReference,
+    productionKeyValue,
+    productionEndpoint,
+    productionEnvironmentDetails,
+    goLiveNotes,
+  } = req.body || {};
+
+  if (!issuedByUserId || !String(productionKeyReference || "").trim() || !String(productionKeyValue || "").trim() || !String(productionEndpoint || "").trim()) {
+    return res.status(400).json({ message: "Step 11 requires issuer, production key reference, production key value, and production endpoint" });
+  }
+
+  try {
+    const appResult = await pool.query("SELECT * FROM applications WHERE id = $1 LIMIT 1", [req.params.id]);
+    if (appResult.rows.length === 0) {
+      return res.status(404).json({ message: "Application not found" });
+    }
+
+    const app = appResult.rows[0];
+    if (Number(app.current_step || 0) < 11) {
+      return res.status(400).json({ message: "Step 11 is available only after Step 10 approval" });
+    }
+
+    await pool.query(
+      `INSERT INTO application_step11_actions (
+         application_id,
+         issued_by_user_id,
+         production_key_reference,
+         production_key_value,
+         production_endpoint,
+         production_environment_details,
+         go_live_notes,
+         migrated_at
+       )
+       VALUES ($1,$2,$3,$4,$5,$6,$7,NOW())
+       ON CONFLICT (application_id)
+       DO UPDATE SET
+         issued_by_user_id = EXCLUDED.issued_by_user_id,
+         production_key_reference = EXCLUDED.production_key_reference,
+         production_key_value = EXCLUDED.production_key_value,
+         production_endpoint = EXCLUDED.production_endpoint,
+         production_environment_details = EXCLUDED.production_environment_details,
+         go_live_notes = EXCLUDED.go_live_notes,
+         migrated_at = NOW(),
+         updated_at = NOW()`,
+      [
+        req.params.id,
+        issuedByUserId,
+        String(productionKeyReference || "").trim(),
+        String(productionKeyValue || "").trim(),
+        String(productionEndpoint || "").trim(),
+        String(productionEnvironmentDetails || "").trim() || null,
+        String(goLiveNotes || "").trim() || null,
+      ]
+    );
+
+    const summaryParts = [
+      `Production credentials issued with reference ${String(productionKeyReference || "").trim()}`,
+      `endpoint ${String(productionEndpoint || "").trim()}`,
+    ];
+
+    if (String(goLiveNotes || "").trim()) {
+      summaryParts.push(String(goLiveNotes).trim());
+    }
+
+    const appUpdate = await pool.query(
+      `UPDATE applications
+       SET current_step = GREATEST(current_step, 11),
+           overall_status = 'Live Production Enabled',
+           environment_status = 'Step 11 Complete: Live Production',
+           application_summary = $1
+       WHERE id = $2
+       RETURNING *`,
+      [summaryParts.join('; '), req.params.id]
+    );
+
+    const refreshed = await loadStep11Production(req.params.id);
+    res.json({
+      message: "Step 11 production access issued successfully",
+      application: mapApplication(appUpdate.rows[0]),
+      step11: mapStep11Details(refreshed),
+    });
+  } catch (error) {
+    res.status(500).json({ message: error?.message || "Failed to issue Step 11 production access" });
+  }
+});router.get("/:id", async (req, res) => {
   try {
     const result = await pool.query("SELECT * FROM applications WHERE id = $1", [req.params.id]);
     if (result.rows.length === 0) {
@@ -1323,8 +2404,20 @@ router.post("/", async (req, res) => {
 router.post("/form-submission", async (req, res) => {
   const { userId, formData } = req.body;
 
-  if (!formData?.applicantName || !formData?.typeOfApplicant || !formData?.officialEmail || !formData?.mobileNumber) {
-    return res.status(400).json({ message: "Missing required ASA application form fields" });
+  const requiredFieldChecks = [
+    ["Applicant Name", formData?.applicantName],
+    ["Official Email Address", formData?.officialEmail],
+    ["Mobile Number", formData?.mobileNumber],
+  ];
+  const missingFields = requiredFieldChecks
+    .filter(([, value]) => !String(value || "").trim())
+    .map(([label]) => label);
+
+  if (missingFields.length > 0) {
+    return res.status(400).json({
+      message: "Missing required ASA application form fields",
+      fields: missingFields,
+    });
   }
 
   if (!userId) {
@@ -1376,7 +2469,7 @@ router.post("/form-submission", async (req, res) => {
         formData.applicantName,
         formData.officialEmail,
         formData.mobileNumber,
-        formData.typeOfApplicant,
+        formData.applicantCategory || "ASA Applicant",
         formData.connectivityType || "Application Form Submission",
         2,
         "Application ID Generated",
@@ -1526,6 +2619,11 @@ router.get("/:id/in-principle-approval-letter-pdf", async (req, res) => {
     res.status(500).json({ message: "Failed to generate in-principle approval letter PDF" });
   }
 });
+
+
+
+
+
 
 
 
