@@ -1,0 +1,5846 @@
+{
+  "service": {
+    "department_id": 1,
+    "service_id": "591.0",
+    "form_type_id": 1,
+    "form_name": "Combined Application Form (CAF)",
+    "service_code": "591.0",
+    "department_code": "1"
+  },
+  "form_schema": {
+    "meta": {
+      "department_id": 1,
+      "service_id": "591.0",
+      "form_type_id": 1,
+      "form_name": "Combined Application Form (CAF)",
+      "form_version": "V1.0"
+    },
+    "categories": [
+      {
+        "ref": "$C1",
+        "action": "INSERT_NEW",
+        "category_name": "Company Details",
+        "name_in_hindi": null,
+        "parent_id": 0,
+        "is_active": true
+      },
+      {
+        "ref": "$C2",
+        "action": "INSERT_NEW",
+        "category_name": "Corporate Address",
+        "name_in_hindi": null,
+        "parent_id": 0,
+        "is_active": true
+      },
+      {
+        "ref": "$C3",
+        "action": "INSERT_NEW",
+        "category_name": "Correspondence Address",
+        "name_in_hindi": null,
+        "parent_id": 0,
+        "is_active": true
+      },
+      {
+        "ref": "$C4",
+        "action": "INSERT_NEW",
+        "category_name": "Authorized Signatory Details",
+        "name_in_hindi": null,
+        "parent_id": 0,
+        "is_active": true
+      },
+      {
+        "ref": "$C5",
+        "action": "INSERT_NEW",
+        "category_name": "Promoter Details",
+        "name_in_hindi": null,
+        "parent_id": 0,
+        "is_active": true
+      },
+      {
+        "ref": "$C6",
+        "action": "INSERT_NEW",
+        "category_name": "Project Basic Information",
+        "name_in_hindi": null,
+        "parent_id": 0,
+        "is_active": true
+      },
+      {
+        "ref": "$C7",
+        "action": "INSERT_NEW",
+        "category_name": "Location Details",
+        "name_in_hindi": null,
+        "parent_id": 0,
+        "is_active": true
+      },
+      {
+        "ref": "$C8",
+        "action": "INSERT_NEW",
+        "category_name": "Land Details",
+        "name_in_hindi": null,
+        "parent_id": 0,
+        "is_active": true
+      },
+      {
+        "ref": "$C9",
+        "action": "INSERT_NEW",
+        "category_name": "Investment Details",
+        "name_in_hindi": null,
+        "parent_id": 0,
+        "is_active": true
+      },
+      {
+        "ref": "$C10",
+        "action": "INSERT_NEW",
+        "category_name": "Financing Pattern",
+        "name_in_hindi": null,
+        "parent_id": 0,
+        "is_active": true
+      },
+      {
+        "ref": "$C11",
+        "action": "INSERT_NEW",
+        "category_name": "Water Requirement",
+        "name_in_hindi": null,
+        "parent_id": 0,
+        "is_active": true
+      },
+      {
+        "ref": "$C12",
+        "action": "INSERT_NEW",
+        "category_name": "Power Requirement",
+        "name_in_hindi": null,
+        "parent_id": 0,
+        "is_active": true
+      },
+      {
+        "ref": "$C13",
+        "action": "INSERT_NEW",
+        "category_name": "Manpower Requirement",
+        "name_in_hindi": null,
+        "parent_id": 0,
+        "is_active": true
+      },
+      {
+        "ref": "$C14",
+        "action": "INSERT_NEW",
+        "category_name": "Government Assistance Details",
+        "name_in_hindi": null,
+        "parent_id": 0,
+        "is_active": true
+      },
+      {
+        "ref": "$C15",
+        "action": "INSERT_NEW",
+        "category_name": "Document Upload",
+        "name_in_hindi": null,
+        "parent_id": 0,
+        "is_active": true
+      }
+    ],
+    "form_fields": [
+      {
+        "ref": "$F1",
+        "action": "INSERT_NEW",
+        "name": "New Or Existing",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C1"
+      },
+      {
+        "ref": "$F2",
+        "action": "INSERT_NEW",
+        "name": "Type Of Proposal",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C1"
+      },
+      {
+        "ref": "$F3",
+        "action": "INSERT_NEW",
+        "name": "CAF Id",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C1"
+      },
+      {
+        "ref": "$F4",
+        "action": "INSERT_NEW",
+        "name": "Name Of Company",
+        "name_in_hindi": null,
+        "is_editable": "N",
+        "is_active": true,
+        "category_ref": "$C1"
+      },
+      {
+        "ref": "$F5",
+        "action": "INSERT_NEW",
+        "name": "Primary Activity Of Project",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C1"
+      },
+      {
+        "ref": "$F6",
+        "action": "INSERT_NEW",
+        "name": "Constitution Of Establishment",
+        "name_in_hindi": null,
+        "is_editable": "N",
+        "is_active": true,
+        "category_ref": "$C1"
+      },
+      {
+        "ref": "$F7",
+        "action": "INSERT_NEW",
+        "name": "Company PAN Number",
+        "name_in_hindi": null,
+        "is_editable": "N",
+        "is_active": true,
+        "category_ref": "$C1"
+      },
+      {
+        "ref": "$F8",
+        "action": "INSERT_NEW",
+        "name": "Corporate Identification Number",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C1"
+      },
+      {
+        "ref": "$F9",
+        "action": "INSERT_NEW",
+        "name": "LLPIN Number",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C1"
+      },
+      {
+        "ref": "$F10",
+        "action": "INSERT_NEW",
+        "name": "Do You Have GST Number",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C1"
+      },
+      {
+        "ref": "$F11",
+        "action": "INSERT_NEW",
+        "name": "GST Number",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C1"
+      },
+      {
+        "ref": "$F12",
+        "action": "INSERT_NEW",
+        "name": "Date Of Incorporation",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C1"
+      },
+      {
+        "ref": "$F13",
+        "action": "INSERT_NEW",
+        "name": "Date Of Business Commencement",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C1"
+      },
+      {
+        "ref": "$F14",
+        "action": "INSERT_NEW",
+        "name": "Is A Startup Company",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C1"
+      },
+      {
+        "ref": "$F15",
+        "action": "INSERT_NEW",
+        "name": "Corporate Address Line 1",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C2"
+      },
+      {
+        "ref": "$F16",
+        "action": "INSERT_NEW",
+        "name": "Corporate Address Line 2",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C2"
+      },
+      {
+        "ref": "$F17",
+        "action": "INSERT_NEW",
+        "name": "Corporate Country",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C2"
+      },
+      {
+        "ref": "$F18",
+        "action": "INSERT_NEW",
+        "name": "Corporate State",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C2"
+      },
+      {
+        "ref": "$F19",
+        "action": "INSERT_NEW",
+        "name": "Corporate District",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C2"
+      },
+      {
+        "ref": "$F20",
+        "action": "INSERT_NEW",
+        "name": "Corporate Taluk",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C2"
+      },
+      {
+        "ref": "$F21",
+        "action": "INSERT_NEW",
+        "name": "Corporate City",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C2"
+      },
+      {
+        "ref": "$F22",
+        "action": "INSERT_NEW",
+        "name": "Corporate Pin Code",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C2"
+      },
+      {
+        "ref": "$F23",
+        "action": "INSERT_NEW",
+        "name": "Corporate Std Code",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C2"
+      },
+      {
+        "ref": "$F24",
+        "action": "INSERT_NEW",
+        "name": "Corporate Phone",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C2"
+      },
+      {
+        "ref": "$F25",
+        "action": "INSERT_NEW",
+        "name": "Corporate Country Code",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C2"
+      },
+      {
+        "ref": "$F26",
+        "action": "INSERT_NEW",
+        "name": "Corporate Mobile",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C2"
+      },
+      {
+        "ref": "$F27",
+        "action": "INSERT_NEW",
+        "name": "Corporate Email",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C2"
+      },
+      {
+        "ref": "$F28",
+        "action": "INSERT_NEW",
+        "name": "Correspondence Address Same As Corporate",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C2"
+      },
+      {
+        "ref": "$F29",
+        "action": "INSERT_NEW",
+        "name": "Correspondence Address Line 1",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C3"
+      },
+      {
+        "ref": "$F30",
+        "action": "INSERT_NEW",
+        "name": "Correspondence Address Line 2",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C3"
+      },
+      {
+        "ref": "$F31",
+        "action": "INSERT_NEW",
+        "name": "Correspondence Country",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C3"
+      },
+      {
+        "ref": "$F32",
+        "action": "INSERT_NEW",
+        "name": "Correspondence State",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C3"
+      },
+      {
+        "ref": "$F33",
+        "action": "INSERT_NEW",
+        "name": "Correspondence District",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C3"
+      },
+      {
+        "ref": "$F34",
+        "action": "INSERT_NEW",
+        "name": "Correspondence Taluk",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C3"
+      },
+      {
+        "ref": "$F35",
+        "action": "INSERT_NEW",
+        "name": "Correspondence City",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C3"
+      },
+      {
+        "ref": "$F36",
+        "action": "INSERT_NEW",
+        "name": "Correspondence Pin Code",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C3"
+      },
+      {
+        "ref": "$F37",
+        "action": "INSERT_NEW",
+        "name": "Correspondence Std Code",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C3"
+      },
+      {
+        "ref": "$F38",
+        "action": "INSERT_NEW",
+        "name": "Correspondence Phone Number",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C3"
+      },
+      {
+        "ref": "$F39",
+        "action": "INSERT_NEW",
+        "name": "Correspondence Country Code",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C3"
+      },
+      {
+        "ref": "$F40",
+        "action": "INSERT_NEW",
+        "name": "Correspondence Mobile Number",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C3"
+      },
+      {
+        "ref": "$F41",
+        "action": "INSERT_NEW",
+        "name": "Correspondence Email",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C3"
+      },
+      {
+        "ref": "$F42",
+        "action": "INSERT_NEW",
+        "name": "Authorized Signatory Name",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C4"
+      },
+      {
+        "ref": "$F43",
+        "action": "INSERT_NEW",
+        "name": "Authorized Signatory Designation",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C4"
+      },
+      {
+        "ref": "$F44",
+        "action": "INSERT_NEW",
+        "name": "Authorized Signatory PAN",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C4"
+      },
+      {
+        "ref": "$F45",
+        "action": "INSERT_NEW",
+        "name": "Authorized Signatory Aadhaar",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C4"
+      },
+      {
+        "ref": "$F46",
+        "action": "INSERT_NEW",
+        "name": "Authorized Signatory Mobile Number",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C4"
+      },
+      {
+        "ref": "$F47",
+        "action": "INSERT_NEW",
+        "name": "Authorized Signatory",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C4"
+      },
+      {
+        "ref": "$F48",
+        "action": "INSERT_NEW",
+        "name": "Authorized Signatory DIN",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C4"
+      },
+      {
+        "ref": "$F49",
+        "action": "INSERT_NEW",
+        "name": "Authorized Signatory Address Line 1",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C4"
+      },
+      {
+        "ref": "$F50",
+        "action": "INSERT_NEW",
+        "name": "Authorized Signatory Address Line 2",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C4"
+      },
+      {
+        "ref": "$F51",
+        "action": "INSERT_NEW",
+        "name": "Authorized Signatory Country",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C4"
+      },
+      {
+        "ref": "$F52",
+        "action": "INSERT_NEW",
+        "name": "Authorized Signatory State",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C4"
+      },
+      {
+        "ref": "$F53",
+        "action": "INSERT_NEW",
+        "name": "Authorized Signatory District",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C4"
+      },
+      {
+        "ref": "$F54",
+        "action": "INSERT_NEW",
+        "name": "Authorized Signatory Taluk",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C4"
+      },
+      {
+        "ref": "$F55",
+        "action": "INSERT_NEW",
+        "name": "Authorized Signatory",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C4"
+      },
+      {
+        "ref": "$F56",
+        "action": "INSERT_NEW",
+        "name": "Authorized Signatory Pin Code",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C4"
+      },
+      {
+        "ref": "$F57",
+        "action": "INSERT_NEW",
+        "name": "Promoter Name",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C5"
+      },
+      {
+        "ref": "$F58",
+        "action": "INSERT_NEW",
+        "name": "Promoter Designation",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C5"
+      },
+      {
+        "ref": "$F59",
+        "action": "INSERT_NEW",
+        "name": "Promoter Gender",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C5"
+      },
+      {
+        "ref": "$F60",
+        "action": "INSERT_NEW",
+        "name": "Promoter Social Category",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C5"
+      },
+      {
+        "ref": "$F61",
+        "action": "INSERT_NEW",
+        "name": "Promoter PAN",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C5"
+      },
+      {
+        "ref": "$F62",
+        "action": "INSERT_NEW",
+        "name": "Promoter Aadhaar",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C5"
+      },
+      {
+        "ref": "$F63",
+        "action": "INSERT_NEW",
+        "name": "Promoter Date Of Birth",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C5"
+      },
+      {
+        "ref": "$F64",
+        "action": "INSERT_NEW",
+        "name": "Promoter Mobile Number",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C5"
+      },
+      {
+        "ref": "$F65",
+        "action": "INSERT_NEW",
+        "name": "Promoter Email",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C5"
+      },
+      {
+        "ref": "$F66",
+        "action": "INSERT_NEW",
+        "name": "Promoter Share Percentage",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C5"
+      },
+      {
+        "ref": "$F67",
+        "action": "INSERT_NEW",
+        "name": "Promoter DIN",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C5"
+      },
+      {
+        "ref": "$F68",
+        "action": "INSERT_NEW",
+        "name": "Name Of Industrial",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C6"
+      },
+      {
+        "ref": "$F69",
+        "action": "INSERT_NEW",
+        "name": "NIC Code",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C6"
+      },
+      {
+        "ref": "$F70",
+        "action": "INSERT_NEW",
+        "name": "Industry Type",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C6"
+      },
+      {
+        "ref": "$F71",
+        "action": "INSERT_NEW",
+        "name": "Products Or Services To Be Manufactured",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C6"
+      },
+      {
+        "ref": "$F72",
+        "action": "INSERT_NEW",
+        "name": "Is Existing MSME Unit",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C6"
+      },
+      {
+        "ref": "$F73",
+        "action": "INSERT_NEW",
+        "name": "Udyam Registration Number",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C6"
+      },
+      {
+        "ref": "$F74",
+        "action": "INSERT_NEW",
+        "name": "Whether Pollution Causing Industry",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C6"
+      },
+      {
+        "ref": "$F75",
+        "action": "INSERT_NEW",
+        "name": "Pollution Category",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C6"
+      },
+      {
+        "ref": "$F76",
+        "action": "INSERT_NEW",
+        "name": "Project Location District",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C7"
+      },
+      {
+        "ref": "$F77",
+        "action": "INSERT_NEW",
+        "name": "Project Location Taluk",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C7"
+      },
+      {
+        "ref": "$F78",
+        "action": "INSERT_NEW",
+        "name": "Project Location Hobli",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C7"
+      },
+      {
+        "ref": "$F79",
+        "action": "INSERT_NEW",
+        "name": "Project Location Village",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C7"
+      },
+      {
+        "ref": "$F80",
+        "action": "INSERT_NEW",
+        "name": "Project Location Zone",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C7"
+      },
+      {
+        "ref": "$F81",
+        "action": "INSERT_NEW",
+        "name": "Project Address Line",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C7"
+      },
+      {
+        "ref": "$F82",
+        "action": "INSERT_NEW",
+        "name": "Project Address Line",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C7"
+      },
+      {
+        "ref": "$F83",
+        "action": "INSERT_NEW",
+        "name": "Project Pin Code",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C7"
+      },
+      {
+        "ref": "$F84",
+        "action": "INSERT_NEW",
+        "name": "Industrial Area Or",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C7"
+      },
+      {
+        "ref": "$F85",
+        "action": "INSERT_NEW",
+        "name": "Land Availability Status",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C8"
+      },
+      {
+        "ref": "$F86",
+        "action": "INSERT_NEW",
+        "name": "Land Source",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C8"
+      },
+      {
+        "ref": "$F87",
+        "action": "INSERT_NEW",
+        "name": "Total Land Required In Acres",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C8"
+      },
+      {
+        "ref": "$F88",
+        "action": "INSERT_NEW",
+        "name": "Built Up Area Required In Sq Ft",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C8"
+      },
+      {
+        "ref": "$F89",
+        "action": "INSERT_NEW",
+        "name": "Survey Or Katha Number",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C8"
+      },
+      {
+        "ref": "$F90",
+        "action": "INSERT_NEW",
+        "name": "Existing Plant Area In Acres",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C8"
+      },
+      {
+        "ref": "$F91",
+        "action": "INSERT_NEW",
+        "name": "Investment In Land",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C9"
+      },
+      {
+        "ref": "$F92",
+        "action": "INSERT_NEW",
+        "name": "Investment In Building",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C9"
+      },
+      {
+        "ref": "$F93",
+        "action": "INSERT_NEW",
+        "name": "Investment In Plant And Machinery",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C9"
+      },
+      {
+        "ref": "$F94",
+        "action": "INSERT_NEW",
+        "name": "Investment In Other Fixed Assets",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C9"
+      },
+      {
+        "ref": "$F95",
+        "action": "INSERT_NEW",
+        "name": "Total Fixed Capital Investment",
+        "name_in_hindi": null,
+        "is_editable": "N",
+        "is_active": true,
+        "category_ref": "$C9"
+      },
+      {
+        "ref": "$F96",
+        "action": "INSERT_NEW",
+        "name": "Working Capital",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C9"
+      },
+      {
+        "ref": "$F97",
+        "action": "INSERT_NEW",
+        "name": "Total Project Cost",
+        "name_in_hindi": null,
+        "is_editable": "N",
+        "is_active": true,
+        "category_ref": "$C9"
+      },
+      {
+        "ref": "$F98",
+        "action": "INSERT_NEW",
+        "name": "Existing Investment In VFA",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C9"
+      },
+      {
+        "ref": "$F99",
+        "action": "INSERT_NEW",
+        "name": "FDI Investment",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C9"
+      },
+      {
+        "ref": "$F100",
+        "action": "INSERT_NEW",
+        "name": "Source Of FDI",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C9"
+      },
+      {
+        "ref": "$F101",
+        "action": "INSERT_NEW",
+        "name": "Own Funds Or Equity",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C10"
+      },
+      {
+        "ref": "$F102",
+        "action": "INSERT_NEW",
+        "name": "Bank Loan",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C10"
+      },
+      {
+        "ref": "$F103",
+        "action": "INSERT_NEW",
+        "name": "Name Of Bank Or Financial Institution",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C10"
+      },
+      {
+        "ref": "$F104",
+        "action": "INSERT_NEW",
+        "name": "Subsidy Or Grant",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C10"
+      },
+      {
+        "ref": "$F105",
+        "action": "INSERT_NEW",
+        "name": "Other Source Amount",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C10"
+      },
+      {
+        "ref": "$F106",
+        "action": "INSERT_NEW",
+        "name": "Other Source Description",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C10"
+      },
+      {
+        "ref": "$F107",
+        "action": "INSERT_NEW",
+        "name": "Total Financing",
+        "name_in_hindi": null,
+        "is_editable": "N",
+        "is_active": true,
+        "category_ref": "$C10"
+      },
+      {
+        "ref": "$F108",
+        "action": "INSERT_NEW",
+        "name": "Total Water Requirement In KLD",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C11"
+      },
+      {
+        "ref": "$F109",
+        "action": "INSERT_NEW",
+        "name": "Source Of Water",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C11"
+      },
+      {
+        "ref": "$F110",
+        "action": "INSERT_NEW",
+        "name": "Water Source Other Description",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C11"
+      },
+      {
+        "ref": "$F111",
+        "action": "INSERT_NEW",
+        "name": "Industrial Use Water In KLD",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C11"
+      },
+      {
+        "ref": "$F112",
+        "action": "INSERT_NEW",
+        "name": "Domestic Use Water In KLD",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C11"
+      },
+      {
+        "ref": "$F113",
+        "action": "INSERT_NEW",
+        "name": "Total Power Requirement In KVA",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C12"
+      },
+      {
+        "ref": "$F114",
+        "action": "INSERT_NEW",
+        "name": "Connected Load In KW",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C12"
+      },
+      {
+        "ref": "$F115",
+        "action": "INSERT_NEW",
+        "name": "Source Of Power",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C12"
+      },
+      {
+        "ref": "$F116",
+        "action": "INSERT_NEW",
+        "name": "Power Source Other Description",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C12"
+      },
+      {
+        "ref": "$F117",
+        "action": "INSERT_NEW",
+        "name": "Renewable Energy Percentage",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C12"
+      },
+      {
+        "ref": "$F118",
+        "action": "INSERT_NEW",
+        "name": "Male Direct Employment",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C13"
+      },
+      {
+        "ref": "$F119",
+        "action": "INSERT_NEW",
+        "name": "Female Direct Employment",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C13"
+      },
+      {
+        "ref": "$F120",
+        "action": "INSERT_NEW",
+        "name": "Total Direct Employment",
+        "name_in_hindi": null,
+        "is_editable": "N",
+        "is_active": true,
+        "category_ref": "$C13"
+      },
+      {
+        "ref": "$F121",
+        "action": "INSERT_NEW",
+        "name": "Skilled Employment",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C13"
+      },
+      {
+        "ref": "$F122",
+        "action": "INSERT_NEW",
+        "name": "Semi Skilled Employment",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C13"
+      },
+      {
+        "ref": "$F123",
+        "action": "INSERT_NEW",
+        "name": "Unskilled Employment",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C13"
+      },
+      {
+        "ref": "$F124",
+        "action": "INSERT_NEW",
+        "name": "Karnataka State Employment",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C13"
+      },
+      {
+        "ref": "$F125",
+        "action": "INSERT_NEW",
+        "name": "Local District Employment",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C13"
+      },
+      {
+        "ref": "$F126",
+        "action": "INSERT_NEW",
+        "name": "Indirect Employment",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C13"
+      },
+      {
+        "ref": "$F127",
+        "action": "INSERT_NEW",
+        "name": "Type Of Assistance Required",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C14"
+      },
+      {
+        "ref": "$F128",
+        "action": "INSERT_NEW",
+        "name": "Whether Applying For Social Category Benefit",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C14"
+      },
+      {
+        "ref": "$F129",
+        "action": "INSERT_NEW",
+        "name": "Social Category For Benefit",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C14"
+      },
+      {
+        "ref": "$F130",
+        "action": "INSERT_NEW",
+        "name": "Whether Tumakuru Machine Tool Park",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C14"
+      },
+      {
+        "ref": "$F131",
+        "action": "INSERT_NEW",
+        "name": "Assistance Remarks",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C14"
+      },
+      {
+        "ref": "$F132",
+        "action": "INSERT_NEW",
+        "name": "Company PAN Card",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C15"
+      },
+      {
+        "ref": "$F133",
+        "action": "INSERT_NEW",
+        "name": "Authorized Signatory Aadhaar Card",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C15"
+      },
+      {
+        "ref": "$F134",
+        "action": "INSERT_NEW",
+        "name": "Certificate Of Incorporation Or Registration",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C15"
+      },
+      {
+        "ref": "$F135",
+        "action": "INSERT_NEW",
+        "name": "GST Certificate",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C15"
+      },
+      {
+        "ref": "$F136",
+        "action": "INSERT_NEW",
+        "name": "Land Document Or Title Deed",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C15"
+      },
+      {
+        "ref": "$F137",
+        "action": "INSERT_NEW",
+        "name": "Detailed Project Report",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C15"
+      },
+      {
+        "ref": "$F138",
+        "action": "INSERT_NEW",
+        "name": "Bank Statement Or Net Worth Certificate",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C15"
+      },
+      {
+        "ref": "$F139",
+        "action": "INSERT_NEW",
+        "name": "Partnership Deed",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C15"
+      },
+      {
+        "ref": "$F140",
+        "action": "INSERT_NEW",
+        "name": "Promoter Photograph",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C15"
+      },
+      {
+        "ref": "$F141",
+        "action": "INSERT_NEW",
+        "name": "Udyam Registration Certificate",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C15"
+      },
+      {
+        "ref": "$F142",
+        "action": "INSERT_NEW",
+        "name": "Previous CAF Approval Letter",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C15"
+      },
+      {
+        "ref": "$F143",
+        "action": "INSERT_NEW",
+        "name": "Any Other Document",
+        "name_in_hindi": null,
+        "is_editable": "Y",
+        "is_active": true,
+        "category_ref": "$C15"
+      }
+    ],
+    "page_masters": [
+      {
+        "ref": "$P1",
+        "page_name": "Company Details",
+        "preference": 1
+      },
+      {
+        "ref": "$P2",
+        "page_name": "Authorized Signatory And Promoter Details",
+        "preference": 2
+      },
+      {
+        "ref": "$P3",
+        "page_name": "Proposed Project Details",
+        "preference": 3
+      },
+      {
+        "ref": "$P4",
+        "page_name": "Project Finance",
+        "preference": 4
+      },
+      {
+        "ref": "$P5",
+        "page_name": "Project Requirement",
+        "preference": 5
+      },
+      {
+        "ref": "$P6",
+        "page_name": "Assistance",
+        "preference": 6
+      }
+    ],
+    "page_category_mappings": [
+      {
+        "page_ref": "$P1",
+        "category_ref": "$C1",
+        "preference": 1,
+        "help_text": null
+      },
+      {
+        "page_ref": "$P1",
+        "category_ref": "$C2",
+        "preference": 2,
+        "help_text": null
+      },
+      {
+        "page_ref": "$P1",
+        "category_ref": "$C3",
+        "preference": 3,
+        "help_text": null
+      },
+      {
+        "page_ref": "$P2",
+        "category_ref": "$C4",
+        "preference": 1,
+        "help_text": null
+      },
+      {
+        "page_ref": "$P2",
+        "category_ref": "$C5",
+        "preference": 2,
+        "help_text": null
+      },
+      {
+        "page_ref": "$P3",
+        "category_ref": "$C6",
+        "preference": 1,
+        "help_text": null
+      },
+      {
+        "page_ref": "$P3",
+        "category_ref": "$C7",
+        "preference": 2,
+        "help_text": null
+      },
+      {
+        "page_ref": "$P3",
+        "category_ref": "$C8",
+        "preference": 3,
+        "help_text": null
+      },
+      {
+        "page_ref": "$P4",
+        "category_ref": "$C9",
+        "preference": 1,
+        "help_text": null
+      },
+      {
+        "page_ref": "$P4",
+        "category_ref": "$C10",
+        "preference": 2,
+        "help_text": null
+      },
+      {
+        "page_ref": "$P5",
+        "category_ref": "$C11",
+        "preference": 1,
+        "help_text": null
+      },
+      {
+        "page_ref": "$P5",
+        "category_ref": "$C12",
+        "preference": 2,
+        "help_text": null
+      },
+      {
+        "page_ref": "$P5",
+        "category_ref": "$C13",
+        "preference": 3,
+        "help_text": null
+      },
+      {
+        "page_ref": "$P6",
+        "category_ref": "$C14",
+        "preference": 1,
+        "help_text": null
+      },
+      {
+        "page_ref": "$P6",
+        "category_ref": "$C15",
+        "preference": 2,
+        "help_text": null
+      }
+    ],
+    "builder_fields": [
+      {
+        "ref": "$BF1",
+        "page_ref": "$P1",
+        "category_ref": "$C1",
+        "field_ref": "$F1",
+        "preference": 1,
+        "input_type": "radio",
+        "is_required": "Y",
+        "is_active": "Y",
+        "custom_label": "New Or Existing",
+        "grid_span": 6,
+        "help_text": "Default: new. | Existing Offline Offline means industrial unit already in operation",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": null,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF2",
+        "page_ref": "$P1",
+        "category_ref": "$C1",
+        "field_ref": "$F2",
+        "preference": 2,
+        "input_type": "select",
+        "is_required": "Y",
+        "is_active": "Y",
+        "custom_label": "Type Of Proposal",
+        "grid_span": 6,
+        "help_text": "Source: MASTER (Type of Proposal master table)",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": null,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF3",
+        "page_ref": "$P1",
+        "category_ref": "$C1",
+        "field_ref": "$F3",
+        "preference": 3,
+        "input_type": "select",
+        "is_required": "C",
+        "is_active": "Y",
+        "custom_label": "CAF Id",
+        "grid_span": 6,
+        "help_text": "Source: MASTER (Approved CAF IDs for logged-in investor) | When a CAF ID is selected, data from that CAF will auto-populate this form",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": null,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF4",
+        "page_ref": "$P1",
+        "category_ref": "$C1",
+        "field_ref": "$F4",
+        "preference": 4,
+        "input_type": "text",
+        "is_required": "N",
+        "is_active": "Y",
+        "custom_label": "Name Of Company",
+        "grid_span": 6,
+        "help_text": "Auto Read-only | Auto populated from Unit Trust Populated investor registration details. Non- editable.",
+        "is_editable": "N",
+        "is_readonly": "Y",
+        "max_length": null,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF5",
+        "page_ref": "$P1",
+        "category_ref": "$C1",
+        "field_ref": "$F5",
+        "preference": 5,
+        "input_type": "select",
+        "is_required": "Y",
+        "is_active": "Y",
+        "custom_label": "Primary Activity Of Project",
+        "grid_span": 6,
+        "help_text": "Project",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": null,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF6",
+        "page_ref": "$P1",
+        "category_ref": "$C1",
+        "field_ref": "$F6",
+        "preference": 6,
+        "input_type": "select",
+        "is_required": "N",
+        "is_active": "Y",
+        "custom_label": "Constitution Of Establishment",
+        "grid_span": 6,
+        "help_text": "Auto Read-only | Source: MASTER Establishment Populated (Constitution of Establishment master) | Auto populated from investor registration. Non- editable.",
+        "is_editable": "N",
+        "is_readonly": "Y",
+        "max_length": null,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF7",
+        "page_ref": "$P1",
+        "category_ref": "$C1",
+        "field_ref": "$F7",
+        "preference": 7,
+        "input_type": "text",
+        "is_required": "N",
+        "is_active": "Y",
+        "custom_label": "Company PAN Number",
+        "grid_span": 6,
+        "help_text": "Auto Read-only | Max: 10 chars | Populated Pattern: ^[A-Z]{5}[0-9]{4}[A- Z]{1}$ | Auto populated. Masked display (last 4 characters visible).",
+        "is_editable": "N",
+        "is_readonly": "Y",
+        "max_length": 10,
+        "min_length": null,
+        "pattern": "^[A-Z]{5}[0-9]{4}[A- Z]{1}$",
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF8",
+        "page_ref": "$P1",
+        "category_ref": "$C1",
+        "field_ref": "$F8",
+        "preference": 8,
+        "input_type": "text",
+        "is_required": "C",
+        "is_active": "Y",
+        "custom_label": "Corporate Identification Number",
+        "grid_span": 6,
+        "help_text": "Max: 21 chars | Pattern: Identification Number ^[LUu]{1}[0-9]{5}[A-Za-z]{2}[0- 9]{4}[A-Za-z]{3}[0-9]{6}$ | Authenticated via CIN API",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": 21,
+        "min_length": null,
+        "pattern": "Identification Number ^[LUu]{1}[0-9]{5}[A-Za-z]{2}[0- 9]{4}[A-Za-z]{3}[0-9]{6}$",
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF9",
+        "page_ref": "$P1",
+        "category_ref": "$C1",
+        "field_ref": "$F9",
+        "preference": 9,
+        "input_type": "text",
+        "is_required": "C",
+        "is_active": "Y",
+        "custom_label": "LLPIN Number",
+        "grid_span": 6,
+        "help_text": "Max: 7 chars | Limited Liability Partnership Identification Number. Authenticated via CIN API.",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": 7,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF10",
+        "page_ref": "$P1",
+        "category_ref": "$C1",
+        "field_ref": "$F10",
+        "preference": 10,
+        "input_type": "radio",
+        "is_required": "Y",
+        "is_active": "Y",
+        "custom_label": "Do You Have GST Number",
+        "grid_span": 6,
+        "help_text": "Number",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": null,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF11",
+        "page_ref": "$P1",
+        "category_ref": "$C1",
+        "field_ref": "$F11",
+        "preference": 11,
+        "input_type": "text",
+        "is_required": "C",
+        "is_active": "Y",
+        "custom_label": "GST Number",
+        "grid_span": 6,
+        "help_text": "Max: 15 chars | Pattern: ^[0- 9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1- 9A-Z]{1}Z[0-9A-Z]{1}$ | 15- character alphanumeric GSTIN. Validated via GST API.",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": 15,
+        "min_length": null,
+        "pattern": "^[0- 9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1- 9A-Z]{1}Z[0-9A-Z]{1}$",
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF12",
+        "page_ref": "$P1",
+        "category_ref": "$C1",
+        "field_ref": "$F12",
+        "preference": 12,
+        "input_type": "date",
+        "is_required": "Y",
+        "is_active": "Y",
+        "custom_label": "Date Of Incorporation",
+        "grid_span": 6,
+        "help_text": "Read-only | Auto populated from investor registration. Editable only for Sole Proprietorship.",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": null,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF13",
+        "page_ref": "$P1",
+        "category_ref": "$C1",
+        "field_ref": "$F13",
+        "preference": 13,
+        "input_type": "date",
+        "is_required": "C",
+        "is_active": "Y",
+        "custom_label": "Date Of Business Commencement",
+        "grid_span": 6,
+        "help_text": "Validation: {\"maxDate\": \"today\", Commencement \"minAfterField\": \"Date Of Incorporation\"} | Should not be a future date and not prior to Date of Incorporation.",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": null,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF14",
+        "page_ref": "$P1",
+        "category_ref": "$C1",
+        "field_ref": "$F14",
+        "preference": 14,
+        "input_type": "radio",
+        "is_required": "N",
+        "is_active": "Y",
+        "custom_label": "Is A Startup Company",
+        "grid_span": 6,
+        "help_text": "",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": null,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF15",
+        "page_ref": "$P1",
+        "category_ref": "$C2",
+        "field_ref": "$F15",
+        "preference": 15,
+        "input_type": "text",
+        "is_required": "Y",
+        "is_active": "Y",
+        "custom_label": "Corporate Address Line 1",
+        "grid_span": 12,
+        "help_text": "Max: 255 chars | Auto fetched Line 1 from CIN API for company types. Others enter manually.",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": 255,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF16",
+        "page_ref": "$P1",
+        "category_ref": "$C2",
+        "field_ref": "$F16",
+        "preference": 16,
+        "input_type": "text",
+        "is_required": "N",
+        "is_active": "Y",
+        "custom_label": "Corporate Address Line 2",
+        "grid_span": 12,
+        "help_text": "Max: 255 chars Line 2",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": 255,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF17",
+        "page_ref": "$P1",
+        "category_ref": "$C2",
+        "field_ref": "$F17",
+        "preference": 17,
+        "input_type": "select",
+        "is_required": "Y",
+        "is_active": "Y",
+        "custom_label": "Corporate Country",
+        "grid_span": 6,
+        "help_text": "Source: MASTER (Country master — ISO ALPHA codes)",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": null,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF18",
+        "page_ref": "$P1",
+        "category_ref": "$C2",
+        "field_ref": "$F18",
+        "preference": 18,
+        "input_type": "select",
+        "is_required": "Y",
+        "is_active": "Y",
+        "custom_label": "Corporate State",
+        "grid_span": 6,
+        "help_text": "Source: MASTER (State master — LGD directory) | Cascading: depends on Corporate Country.",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": null,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF19",
+        "page_ref": "$P1",
+        "category_ref": "$C2",
+        "field_ref": "$F19",
+        "preference": 19,
+        "input_type": "select",
+        "is_required": "Y",
+        "is_active": "Y",
+        "custom_label": "Corporate District",
+        "grid_span": 6,
+        "help_text": "Source: MASTER (District master — LGD directory) | Cascading: depends on Corporate State.",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": null,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF20",
+        "page_ref": "$P1",
+        "category_ref": "$C2",
+        "field_ref": "$F20",
+        "preference": 20,
+        "input_type": "select",
+        "is_required": "Y",
+        "is_active": "Y",
+        "custom_label": "Corporate Taluk",
+        "grid_span": 6,
+        "help_text": "Source: MASTER (Taluk master — LGD directory) | Cascading: depends on Corporate District.",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": null,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF21",
+        "page_ref": "$P1",
+        "category_ref": "$C2",
+        "field_ref": "$F21",
+        "preference": 21,
+        "input_type": "text",
+        "is_required": "Y",
+        "is_active": "Y",
+        "custom_label": "Corporate City",
+        "grid_span": 6,
+        "help_text": "Max: 50 chars | Validation: {\"noSpecialChars\": true}",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": 50,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": {
+          "noSpecialChars": true
+        },
+        "layout_type": null
+      },
+      {
+        "ref": "$BF22",
+        "page_ref": "$P1",
+        "category_ref": "$C2",
+        "field_ref": "$F22",
+        "preference": 22,
+        "input_type": "text",
+        "is_required": "Y",
+        "is_active": "Y",
+        "custom_label": "Corporate Pin Code",
+        "grid_span": 6,
+        "help_text": "Max: 10 chars | Validation: {\"noSpecialChars\": true}",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": 10,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": {
+          "noSpecialChars": true
+        },
+        "layout_type": null
+      },
+      {
+        "ref": "$BF23",
+        "page_ref": "$P1",
+        "category_ref": "$C2",
+        "field_ref": "$F23",
+        "preference": 23,
+        "input_type": "text",
+        "is_required": "N",
+        "is_active": "Y",
+        "custom_label": "Corporate Std Code",
+        "grid_span": 6,
+        "help_text": "Max: 10 chars",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": 10,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF24",
+        "page_ref": "$P1",
+        "category_ref": "$C2",
+        "field_ref": "$F24",
+        "preference": 24,
+        "input_type": "text",
+        "is_required": "N",
+        "is_active": "Y",
+        "custom_label": "Corporate Phone",
+        "grid_span": 6,
+        "help_text": "Max: 15 chars Number",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": 15,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF25",
+        "page_ref": "$P1",
+        "category_ref": "$C2",
+        "field_ref": "$F25",
+        "preference": 25,
+        "input_type": "select",
+        "is_required": "Y",
+        "is_active": "Y",
+        "custom_label": "Corporate Country Code",
+        "grid_span": 6,
+        "help_text": "Source: MASTER (ISD Country Code master) | On selection of",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": null,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF26",
+        "page_ref": "$P1",
+        "category_ref": "$C2",
+        "field_ref": "$F26",
+        "preference": 26,
+        "input_type": "tel",
+        "is_required": "Y",
+        "is_active": "Y",
+        "custom_label": "Corporate Mobile",
+        "grid_span": 6,
+        "help_text": "Max: 15 chars | No special Number characters allowed. Encrypted storage.",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": 15,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF27",
+        "page_ref": "$P1",
+        "category_ref": "$C2",
+        "field_ref": "$F27",
+        "preference": 27,
+        "input_type": "email",
+        "is_required": "Y",
+        "is_active": "Y",
+        "custom_label": "Corporate Email",
+        "grid_span": 6,
+        "help_text": "Max: 100 chars | Encrypted storage. Not exposed without investor consent.",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": 100,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF28",
+        "page_ref": "$P1",
+        "category_ref": "$C2",
+        "field_ref": "$F28",
+        "preference": 28,
+        "input_type": "checkbox",
+        "is_required": "N",
+        "is_active": "Y",
+        "custom_label": "Correspondence Address Same As Corporate",
+        "grid_span": 12,
+        "help_text": "If checked, Corporate Address is Address Same As copied to Correspondence Corporate Address.",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": null,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF29",
+        "page_ref": "$P1",
+        "category_ref": "$C3",
+        "field_ref": "$F29",
+        "preference": 29,
+        "input_type": "text",
+        "is_required": "Y",
+        "is_active": "Y",
+        "custom_label": "Correspondence Address Line 1",
+        "grid_span": 12,
+        "help_text": "Max: 300 chars Address Line 1",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": 300,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF30",
+        "page_ref": "$P1",
+        "category_ref": "$C3",
+        "field_ref": "$F30",
+        "preference": 30,
+        "input_type": "text",
+        "is_required": "Y",
+        "is_active": "Y",
+        "custom_label": "Correspondence Address Line 2",
+        "grid_span": 12,
+        "help_text": "Max: 300 chars Address Line 2",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": 300,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF31",
+        "page_ref": "$P1",
+        "category_ref": "$C3",
+        "field_ref": "$F31",
+        "preference": 31,
+        "input_type": "select",
+        "is_required": "Y",
+        "is_active": "Y",
+        "custom_label": "Correspondence Country",
+        "grid_span": 6,
+        "help_text": "Source: MASTER (Country master Country — ISO ALPHA codes)",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": null,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF32",
+        "page_ref": "$P1",
+        "category_ref": "$C3",
+        "field_ref": "$F32",
+        "preference": 32,
+        "input_type": "select",
+        "is_required": "Y",
+        "is_active": "Y",
+        "custom_label": "Correspondence State",
+        "grid_span": 6,
+        "help_text": "Source: MASTER (State master — LGD directory) | Cascading: depends on Correspondence Country.",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": null,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF33",
+        "page_ref": "$P1",
+        "category_ref": "$C3",
+        "field_ref": "$F33",
+        "preference": 33,
+        "input_type": "select",
+        "is_required": "Y",
+        "is_active": "Y",
+        "custom_label": "Correspondence District",
+        "grid_span": 6,
+        "help_text": "Source: MASTER (District master District — LGD directory) | Cascading: depends on Correspondence State.",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": null,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF34",
+        "page_ref": "$P1",
+        "category_ref": "$C3",
+        "field_ref": "$F34",
+        "preference": 34,
+        "input_type": "select",
+        "is_required": "Y",
+        "is_active": "Y",
+        "custom_label": "Correspondence Taluk",
+        "grid_span": 6,
+        "help_text": "Source: MASTER (Taluk master — LGD directory) | Cascading: depends on Correspondence District.",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": null,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF35",
+        "page_ref": "$P1",
+        "category_ref": "$C3",
+        "field_ref": "$F35",
+        "preference": 35,
+        "input_type": "text",
+        "is_required": "Y",
+        "is_active": "Y",
+        "custom_label": "Correspondence City",
+        "grid_span": 6,
+        "help_text": "Max: 50 chars",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": 50,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF36",
+        "page_ref": "$P1",
+        "category_ref": "$C3",
+        "field_ref": "$F36",
+        "preference": 36,
+        "input_type": "text",
+        "is_required": "Y",
+        "is_active": "Y",
+        "custom_label": "Correspondence Pin Code",
+        "grid_span": 6,
+        "help_text": "Max: 10 chars Code",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": 10,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF37",
+        "page_ref": "$P1",
+        "category_ref": "$C3",
+        "field_ref": "$F37",
+        "preference": 37,
+        "input_type": "text",
+        "is_required": "N",
+        "is_active": "Y",
+        "custom_label": "Correspondence Std Code",
+        "grid_span": 6,
+        "help_text": "Max: 10 chars Code",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": 10,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF38",
+        "page_ref": "$P1",
+        "category_ref": "$C3",
+        "field_ref": "$F38",
+        "preference": 38,
+        "input_type": "text",
+        "is_required": "N",
+        "is_active": "Y",
+        "custom_label": "Correspondence Phone Number",
+        "grid_span": 6,
+        "help_text": "Max: 15 chars Phone Number",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": 15,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF39",
+        "page_ref": "$P1",
+        "category_ref": "$C3",
+        "field_ref": "$F39",
+        "preference": 39,
+        "input_type": "select",
+        "is_required": "Y",
+        "is_active": "Y",
+        "custom_label": "Correspondence Country Code",
+        "grid_span": 6,
+        "help_text": "Source: MASTER (ISD Country Country Code Code master)",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": null,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF40",
+        "page_ref": "$P1",
+        "category_ref": "$C3",
+        "field_ref": "$F40",
+        "preference": 40,
+        "input_type": "tel",
+        "is_required": "Y",
+        "is_active": "Y",
+        "custom_label": "Correspondence Mobile Number",
+        "grid_span": 6,
+        "help_text": "Max: 15 chars | Encrypted Mobile Number storage.",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": 15,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF41",
+        "page_ref": "$P1",
+        "category_ref": "$C3",
+        "field_ref": "$F41",
+        "preference": 41,
+        "input_type": "email",
+        "is_required": "Y",
+        "is_active": "Y",
+        "custom_label": "Correspondence Email",
+        "grid_span": 6,
+        "help_text": "Max: 100 chars | Encrypted storage.",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": 100,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF42",
+        "page_ref": "$P2",
+        "category_ref": "$C4",
+        "field_ref": "$F42",
+        "preference": 42,
+        "input_type": "text",
+        "is_required": "Y",
+        "is_active": "Y",
+        "custom_label": "Authorized Signatory Name",
+        "grid_span": 6,
+        "help_text": "Max: 100 chars | Full name of the Name authorized signatory as per PAN/Aadhaar.",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": 100,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF43",
+        "page_ref": "$P2",
+        "category_ref": "$C4",
+        "field_ref": "$F43",
+        "preference": 43,
+        "input_type": "text",
+        "is_required": "Y",
+        "is_active": "Y",
+        "custom_label": "Authorized Signatory Designation",
+        "grid_span": 6,
+        "help_text": "Max: 100 chars | Designation of Designation the authorized signatory (e.g. Director, MD, Partner).",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": 100,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF44",
+        "page_ref": "$P2",
+        "category_ref": "$C4",
+        "field_ref": "$F44",
+        "preference": 44,
+        "input_type": "text",
+        "is_required": "Y",
+        "is_active": "Y",
+        "custom_label": "Authorized Signatory PAN",
+        "grid_span": 6,
+        "help_text": "Max: 10 chars | Pattern: ^[A- PAN Z]{5}[0-9]{4}[A-Z]{1}$ | PAN of the Authorized Signatory (not company PAN).",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": 10,
+        "min_length": null,
+        "pattern": "^[A- PAN Z]{5}[0-9]{4}[A-Z]{1}$",
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF45",
+        "page_ref": "$P2",
+        "category_ref": "$C4",
+        "field_ref": "$F45",
+        "preference": 45,
+        "input_type": "text",
+        "is_required": "Y",
+        "is_active": "Y",
+        "custom_label": "Authorized Signatory Aadhaar",
+        "grid_span": 6,
+        "help_text": "Max: 12 chars | Pattern: Aadhaar ^\\d{12}$ | Aadhaar of Authorized Signatory. Masked display. Encrypted storage.",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": 12,
+        "min_length": null,
+        "pattern": "Aadhaar ^\\d{12}$",
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF46",
+        "page_ref": "$P2",
+        "category_ref": "$C4",
+        "field_ref": "$F46",
+        "preference": 46,
+        "input_type": "tel",
+        "is_required": "Y",
+        "is_active": "Y",
+        "custom_label": "Authorized Signatory Mobile Number",
+        "grid_span": 6,
+        "help_text": "Max: 10 chars | Pattern: ^[6- Mobile Number 9]\\d{9}$ | Mobile number for OTP and communication. Encrypted storage.",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": 10,
+        "min_length": null,
+        "pattern": "^[6- Mobile Number 9]\\d{9}$",
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF47",
+        "page_ref": "$P2",
+        "category_ref": "$C4",
+        "field_ref": "$F47",
+        "preference": 47,
+        "input_type": "email",
+        "is_required": "Y",
+        "is_active": "Y",
+        "custom_label": "Authorized Signatory",
+        "grid_span": 6,
+        "help_text": "Max: 100 chars | Email of the Email authorized signatory. Encrypted storage.",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": 100,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF48",
+        "page_ref": "$P2",
+        "category_ref": "$C4",
+        "field_ref": "$F48",
+        "preference": 48,
+        "input_type": "text",
+        "is_required": "C",
+        "is_active": "Y",
+        "custom_label": "Authorized Signatory DIN",
+        "grid_span": 6,
+        "help_text": "Max: 8 chars | Pattern: ^[0- DIN 9]{8}$ | Director Identification Number. Authenticated via MCA API.",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": 8,
+        "min_length": null,
+        "pattern": "^[0- DIN 9]{8}$",
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF49",
+        "page_ref": "$P2",
+        "category_ref": "$C4",
+        "field_ref": "$F49",
+        "preference": 49,
+        "input_type": "text",
+        "is_required": "Y",
+        "is_active": "Y",
+        "custom_label": "Authorized Signatory Address Line 1",
+        "grid_span": 12,
+        "help_text": "Max: 255 chars Address Line 1",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": 255,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF50",
+        "page_ref": "$P2",
+        "category_ref": "$C4",
+        "field_ref": "$F50",
+        "preference": 50,
+        "input_type": "text",
+        "is_required": "N",
+        "is_active": "Y",
+        "custom_label": "Authorized Signatory Address Line 2",
+        "grid_span": 12,
+        "help_text": "Max: 255 chars Address Line 2",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": 255,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF51",
+        "page_ref": "$P2",
+        "category_ref": "$C4",
+        "field_ref": "$F51",
+        "preference": 51,
+        "input_type": "select",
+        "is_required": "Y",
+        "is_active": "Y",
+        "custom_label": "Authorized Signatory Country",
+        "grid_span": 6,
+        "help_text": "Source: MASTER (Country master Country — ISO ALPHA codes)",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": null,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF52",
+        "page_ref": "$P2",
+        "category_ref": "$C4",
+        "field_ref": "$F52",
+        "preference": 52,
+        "input_type": "select",
+        "is_required": "Y",
+        "is_active": "Y",
+        "custom_label": "Authorized Signatory State",
+        "grid_span": 6,
+        "help_text": "Source: MASTER (State master — State LGD directory) | Cascading: depends on Authorized Signatory Country.",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": null,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF53",
+        "page_ref": "$P2",
+        "category_ref": "$C4",
+        "field_ref": "$F53",
+        "preference": 53,
+        "input_type": "select",
+        "is_required": "Y",
+        "is_active": "Y",
+        "custom_label": "Authorized Signatory District",
+        "grid_span": 6,
+        "help_text": "Source: MASTER (District master District — LGD directory) | Cascading: depends on Authorized Signatory State.",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": null,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF54",
+        "page_ref": "$P2",
+        "category_ref": "$C4",
+        "field_ref": "$F54",
+        "preference": 54,
+        "input_type": "select",
+        "is_required": "Y",
+        "is_active": "Y",
+        "custom_label": "Authorized Signatory Taluk",
+        "grid_span": 6,
+        "help_text": "Source: MASTER (Taluk master — Taluk LGD directory) | Cascading: depends on Authorized Signatory District.",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": null,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF55",
+        "page_ref": "$P2",
+        "category_ref": "$C4",
+        "field_ref": "$F55",
+        "preference": 55,
+        "input_type": "text",
+        "is_required": "Y",
+        "is_active": "Y",
+        "custom_label": "Authorized Signatory",
+        "grid_span": 6,
+        "help_text": "Max: 50 chars City",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": 50,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF56",
+        "page_ref": "$P2",
+        "category_ref": "$C4",
+        "field_ref": "$F56",
+        "preference": 56,
+        "input_type": "text",
+        "is_required": "Y",
+        "is_active": "Y",
+        "custom_label": "Authorized Signatory Pin Code",
+        "grid_span": 6,
+        "help_text": "Max: 6 chars | Pattern: ^\\d{6}$ Pin Code",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": 6,
+        "min_length": null,
+        "pattern": "^\\d{6}$ Pin Code",
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF57",
+        "page_ref": "$P2",
+        "category_ref": "$C5",
+        "field_ref": "$F57",
+        "preference": 57,
+        "input_type": "text",
+        "is_required": "Y",
+        "is_active": "Y",
+        "custom_label": "Promoter Name",
+        "grid_span": 6,
+        "help_text": "Max: 100 chars | Full name as per PAN card.",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": 100,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF58",
+        "page_ref": "$P2",
+        "category_ref": "$C5",
+        "field_ref": "$F58",
+        "preference": 58,
+        "input_type": "text",
+        "is_required": "Y",
+        "is_active": "Y",
+        "custom_label": "Promoter Designation",
+        "grid_span": 6,
+        "help_text": "Max: 100 chars | Designation/role in the company (Director, Partner, Proprietor, etc.)",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": 100,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF59",
+        "page_ref": "$P2",
+        "category_ref": "$C5",
+        "field_ref": "$F59",
+        "preference": 59,
+        "input_type": "select",
+        "is_required": "Y",
+        "is_active": "Y",
+        "custom_label": "Promoter Gender",
+        "grid_span": 6,
+        "help_text": "",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": null,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF60",
+        "page_ref": "$P2",
+        "category_ref": "$C5",
+        "field_ref": "$F60",
+        "preference": 60,
+        "input_type": "select",
+        "is_required": "Y",
+        "is_active": "Y",
+        "custom_label": "Promoter Social Category",
+        "grid_span": 6,
+        "help_text": "Category",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": null,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF61",
+        "page_ref": "$P2",
+        "category_ref": "$C5",
+        "field_ref": "$F61",
+        "preference": 61,
+        "input_type": "text",
+        "is_required": "Y",
+        "is_active": "Y",
+        "custom_label": "Promoter PAN",
+        "grid_span": 6,
+        "help_text": "Max: 10 chars | Pattern: ^[A- Z]{5}[0-9]{4}[A-Z]{1}$ | Promoter PAN. Masked display.",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": 10,
+        "min_length": null,
+        "pattern": "^[A- Z]{5}[0-9]{4}[A-Z]{1}$",
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF62",
+        "page_ref": "$P2",
+        "category_ref": "$C5",
+        "field_ref": "$F62",
+        "preference": 62,
+        "input_type": "text",
+        "is_required": "Y",
+        "is_active": "Y",
+        "custom_label": "Promoter Aadhaar",
+        "grid_span": 6,
+        "help_text": "Max: 12 chars | Pattern: ^\\d{12}$ | Promoter Aadhaar. Masked display. Encrypted storage.",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": 12,
+        "min_length": null,
+        "pattern": "^\\d{12}$",
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF63",
+        "page_ref": "$P2",
+        "category_ref": "$C5",
+        "field_ref": "$F63",
+        "preference": 63,
+        "input_type": "date",
+        "is_required": "Y",
+        "is_active": "Y",
+        "custom_label": "Promoter Date Of Birth",
+        "grid_span": 6,
+        "help_text": "Validation: {\"maxDate\": \"today\"} | Birth Must not be a future date.",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": null,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": {
+          "maxDate": "today"
+        },
+        "layout_type": null
+      },
+      {
+        "ref": "$BF64",
+        "page_ref": "$P2",
+        "category_ref": "$C5",
+        "field_ref": "$F64",
+        "preference": 64,
+        "input_type": "tel",
+        "is_required": "Y",
+        "is_active": "Y",
+        "custom_label": "Promoter Mobile Number",
+        "grid_span": 6,
+        "help_text": "Max: 10 chars | Pattern: ^[6- Number 9]\\d{9}$",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": 10,
+        "min_length": null,
+        "pattern": "^[6- Number 9]\\d{9}$",
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF65",
+        "page_ref": "$P2",
+        "category_ref": "$C5",
+        "field_ref": "$F65",
+        "preference": 65,
+        "input_type": "email",
+        "is_required": "Y",
+        "is_active": "Y",
+        "custom_label": "Promoter Email",
+        "grid_span": 6,
+        "help_text": "Max: 100 chars",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": 100,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF66",
+        "page_ref": "$P2",
+        "category_ref": "$C5",
+        "field_ref": "$F66",
+        "preference": 66,
+        "input_type": "number",
+        "is_required": "Y",
+        "is_active": "Y",
+        "custom_label": "Promoter Share Percentage",
+        "grid_span": 6,
+        "help_text": "Validation: {\"min\": 0, \"max\": 100}",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": null,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": {
+          "min": 0,
+          "max": 100
+        },
+        "layout_type": null
+      },
+      {
+        "ref": "$BF67",
+        "page_ref": "$P2",
+        "category_ref": "$C5",
+        "field_ref": "$F67",
+        "preference": 67,
+        "input_type": "text",
+        "is_required": "C",
+        "is_active": "Y",
+        "custom_label": "Promoter DIN",
+        "grid_span": 6,
+        "help_text": "Max: 8 chars | Pattern: ^[0- 9]{8}$ | Director Identification Number.",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": 8,
+        "min_length": null,
+        "pattern": "^[0- 9]{8}$",
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF68",
+        "page_ref": "$P3",
+        "category_ref": "$C6",
+        "field_ref": "$F68",
+        "preference": 68,
+        "input_type": "text",
+        "is_required": "Y",
+        "is_active": "Y",
+        "custom_label": "Name Of Industrial",
+        "grid_span": 6,
+        "help_text": "Max: 255 chars | Name of the Unit proposed industrial unit/project.",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": 255,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF69",
+        "page_ref": "$P3",
+        "category_ref": "$C6",
+        "field_ref": "$F69",
+        "preference": 69,
+        "input_type": "select",
+        "is_required": "Y",
+        "is_active": "Y",
+        "custom_label": "NIC Code",
+        "grid_span": 6,
+        "help_text": "Source: MASTER (NIC Code master — National Industry Classification) | Select the NIC",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": null,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF70",
+        "page_ref": "$P3",
+        "category_ref": "$C6",
+        "field_ref": "$F70",
+        "preference": 70,
+        "input_type": "select",
+        "is_required": "Y",
+        "is_active": "Y",
+        "custom_label": "Industry Type",
+        "grid_span": 6,
+        "help_text": "As per MSMED Act 2006 / Udyam Registration classification.",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": null,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF71",
+        "page_ref": "$P3",
+        "category_ref": "$C6",
+        "field_ref": "$F71",
+        "preference": 71,
+        "input_type": "textarea",
+        "is_required": "Y",
+        "is_active": "Y",
+        "custom_label": "Products Or Services To Be Manufactured",
+        "grid_span": 12,
+        "help_text": "Max: 1000 chars | Briefly To Be Manufactured describe the products/services to be manufactured or provided.",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": 1000,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF72",
+        "page_ref": "$P3",
+        "category_ref": "$C6",
+        "field_ref": "$F72",
+        "preference": 72,
+        "input_type": "radio",
+        "is_required": "N",
+        "is_active": "Y",
+        "custom_label": "Is Existing MSME Unit",
+        "grid_span": 6,
+        "help_text": "",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": null,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF73",
+        "page_ref": "$P3",
+        "category_ref": "$C6",
+        "field_ref": "$F73",
+        "preference": 73,
+        "input_type": "text",
+        "is_required": "C",
+        "is_active": "Y",
+        "custom_label": "Udyam Registration Number",
+        "grid_span": 6,
+        "help_text": "Max: 19 chars | Pattern: Number ^UDYAM-[A-Z]{2}-[0-9]{2}-[0- 9]{7}$ | Udyam Registration Number (format: UDYAM-XX-00- 0000000).",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": 19,
+        "min_length": null,
+        "pattern": "Number ^UDYAM-[A-Z]{2}-[0-9]{2}-[0- 9]{7}$",
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF74",
+        "page_ref": "$P3",
+        "category_ref": "$C6",
+        "field_ref": "$F74",
+        "preference": 74,
+        "input_type": "radio",
+        "is_required": "Y",
+        "is_active": "Y",
+        "custom_label": "Whether Pollution Causing Industry",
+        "grid_span": 6,
+        "help_text": "Causing Industry",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": null,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF75",
+        "page_ref": "$P3",
+        "category_ref": "$C6",
+        "field_ref": "$F75",
+        "preference": 75,
+        "input_type": "select",
+        "is_required": "C",
+        "is_active": "Y",
+        "custom_label": "Pollution Category",
+        "grid_span": 6,
+        "help_text": "As per KSPCB / CPCB pollution category classification.",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": null,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF76",
+        "page_ref": "$P3",
+        "category_ref": "$C7",
+        "field_ref": "$F76",
+        "preference": 76,
+        "input_type": "select",
+        "is_required": "Y",
+        "is_active": "Y",
+        "custom_label": "Project Location District",
+        "grid_span": 6,
+        "help_text": "Source: MASTER (District master — District Karnataka districts only) | District where the proposed unit will be located.",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": null,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF77",
+        "page_ref": "$P3",
+        "category_ref": "$C7",
+        "field_ref": "$F77",
+        "preference": 77,
+        "input_type": "select",
+        "is_required": "Y",
+        "is_active": "Y",
+        "custom_label": "Project Location Taluk",
+        "grid_span": 6,
+        "help_text": "Source: MASTER (Taluk master — Taluk LGD directory) | Cascading: depends on Project Location District.",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": null,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF78",
+        "page_ref": "$P3",
+        "category_ref": "$C7",
+        "field_ref": "$F78",
+        "preference": 78,
+        "input_type": "select",
+        "is_required": "Y",
+        "is_active": "Y",
+        "custom_label": "Project Location Hobli",
+        "grid_span": 6,
+        "help_text": "Source: MASTER (Hobli master — Hobli LGD directory) | Cascading: depends on Project Location Taluk.",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": null,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF79",
+        "page_ref": "$P3",
+        "category_ref": "$C7",
+        "field_ref": "$F79",
+        "preference": 79,
+        "input_type": "select",
+        "is_required": "Y",
+        "is_active": "Y",
+        "custom_label": "Project Location Village",
+        "grid_span": 6,
+        "help_text": "Source: MASTER (Village master — Village LGD directory) | Cascading: depends on Project Location Hobli.",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": null,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF80",
+        "page_ref": "$P3",
+        "category_ref": "$C7",
+        "field_ref": "$F80",
+        "preference": 80,
+        "input_type": "select",
+        "is_required": "Y",
+        "is_active": "Y",
+        "custom_label": "Project Location Zone",
+        "grid_span": 6,
+        "help_text": "Zone classification as per Karnataka Industrial Policy for incentive purposes.",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": null,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF81",
+        "page_ref": "$P3",
+        "category_ref": "$C7",
+        "field_ref": "$F81",
+        "preference": 81,
+        "input_type": "text",
+        "is_required": "Y",
+        "is_active": "Y",
+        "custom_label": "Project Address Line",
+        "grid_span": 12,
+        "help_text": "Max: 255 chars",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": 255,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF82",
+        "page_ref": "$P3",
+        "category_ref": "$C7",
+        "field_ref": "$F82",
+        "preference": 82,
+        "input_type": "text",
+        "is_required": "N",
+        "is_active": "Y",
+        "custom_label": "Project Address Line",
+        "grid_span": 12,
+        "help_text": "Max: 255 chars",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": 255,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF83",
+        "page_ref": "$P3",
+        "category_ref": "$C7",
+        "field_ref": "$F83",
+        "preference": 83,
+        "input_type": "text",
+        "is_required": "Y",
+        "is_active": "Y",
+        "custom_label": "Project Pin Code",
+        "grid_span": 6,
+        "help_text": "Max: 6 chars | Pattern: ^\\d{6}$",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": 6,
+        "min_length": null,
+        "pattern": "^\\d{6}$",
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF84",
+        "page_ref": "$P3",
+        "category_ref": "$C7",
+        "field_ref": "$F84",
+        "preference": 84,
+        "input_type": "text",
+        "is_required": "N",
+        "is_active": "Y",
+        "custom_label": "Industrial Area Or",
+        "grid_span": 6,
+        "help_text": "Max: 255 chars | Name of Estate Name Industrial Area / KIADB Estate / SEZ, if applicable.",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": 255,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF85",
+        "page_ref": "$P3",
+        "category_ref": "$C8",
+        "field_ref": "$F85",
+        "preference": 85,
+        "input_type": "select",
+        "is_required": "Y",
+        "is_active": "Y",
+        "custom_label": "Land Availability Status",
+        "grid_span": 6,
+        "help_text": "Current status of land for the Status proposed project.",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": null,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF86",
+        "page_ref": "$P3",
+        "category_ref": "$C8",
+        "field_ref": "$F86",
+        "preference": 86,
+        "input_type": "select",
+        "is_required": "Y",
+        "is_active": "Y",
+        "custom_label": "Land Source",
+        "grid_span": 6,
+        "help_text": "",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": null,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF87",
+        "page_ref": "$P3",
+        "category_ref": "$C8",
+        "field_ref": "$F87",
+        "preference": 87,
+        "input_type": "number",
+        "is_required": "Y",
+        "is_active": "Y",
+        "custom_label": "Total Land Required In Acres",
+        "grid_span": 6,
+        "help_text": "Validation: {\"min\": 0.01, \"max\": In Acres 9999} | Total land area required in acres. Land > 10 acres requires LAC meeting.",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": null,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF88",
+        "page_ref": "$P3",
+        "category_ref": "$C8",
+        "field_ref": "$F88",
+        "preference": 88,
+        "input_type": "number",
+        "is_required": "N",
+        "is_active": "Y",
+        "custom_label": "Built Up Area Required In Sq Ft",
+        "grid_span": 6,
+        "help_text": "Validation: {\"min\": 0} | Total Required In Sq Ft built-up area required in square feet.",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": null,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": {
+          "min": 0
+        },
+        "layout_type": null
+      },
+      {
+        "ref": "$BF89",
+        "page_ref": "$P3",
+        "category_ref": "$C8",
+        "field_ref": "$F89",
+        "preference": 89,
+        "input_type": "text",
+        "is_required": "C",
+        "is_active": "Y",
+        "custom_label": "Survey Or Katha Number",
+        "grid_span": 6,
+        "help_text": "Max: 100 chars | Survey number Number / Katha number of the available land parcel.",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": 100,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF90",
+        "page_ref": "$P3",
+        "category_ref": "$C8",
+        "field_ref": "$F90",
+        "preference": 90,
+        "input_type": "number",
+        "is_required": "C",
+        "is_active": "Y",
+        "custom_label": "Existing Plant Area In Acres",
+        "grid_span": 6,
+        "help_text": "Validation: {\"min\": 0} | Area of Acres existing plant/facility in acres.",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": null,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": {
+          "min": 0
+        },
+        "layout_type": null
+      },
+      {
+        "ref": "$BF91",
+        "page_ref": "$P4",
+        "category_ref": "$C9",
+        "field_ref": "$F91",
+        "preference": 91,
+        "input_type": "number",
+        "is_required": "Y",
+        "is_active": "Y",
+        "custom_label": "Investment In Land",
+        "grid_span": 6,
+        "help_text": "Validation: {\"min\": 0} | Investment Land in land in INR Lakhs. Enter 0 if land is leased.",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": null,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": {
+          "min": 0
+        },
+        "layout_type": null
+      },
+      {
+        "ref": "$BF92",
+        "page_ref": "$P4",
+        "category_ref": "$C9",
+        "field_ref": "$F92",
+        "preference": 92,
+        "input_type": "number",
+        "is_required": "Y",
+        "is_active": "Y",
+        "custom_label": "Investment In Building",
+        "grid_span": 6,
+        "help_text": "Validation: {\"min\": 0} | Investment Building in building / civil construction in INR Lakhs.",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": null,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": {
+          "min": 0
+        },
+        "layout_type": null
+      },
+      {
+        "ref": "$BF93",
+        "page_ref": "$P4",
+        "category_ref": "$C9",
+        "field_ref": "$F93",
+        "preference": 93,
+        "input_type": "number",
+        "is_required": "Y",
+        "is_active": "Y",
+        "custom_label": "Investment In Plant And Machinery",
+        "grid_span": 6,
+        "help_text": "Validation: {\"min\": 0} | Investment Plant And in plant, machinery and equipment Machinery in INR Lakhs.",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": null,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": {
+          "min": 0
+        },
+        "layout_type": null
+      },
+      {
+        "ref": "$BF94",
+        "page_ref": "$P4",
+        "category_ref": "$C9",
+        "field_ref": "$F94",
+        "preference": 94,
+        "input_type": "number",
+        "is_required": "N",
+        "is_active": "Y",
+        "custom_label": "Investment In Other Fixed Assets",
+        "grid_span": 6,
+        "help_text": "Validation: {\"min\": 0} | Investment Other Fixed in other fixed assets (furniture, Assets vehicles, tools, etc.)",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": null,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": {
+          "min": 0
+        },
+        "layout_type": null
+      },
+      {
+        "ref": "$BF95",
+        "page_ref": "$P4",
+        "category_ref": "$C9",
+        "field_ref": "$F95",
+        "preference": 95,
+        "input_type": "number",
+        "is_required": "N",
+        "is_active": "Y",
+        "custom_label": "Total Fixed Capital Investment",
+        "grid_span": 6,
+        "help_text": "Auto-calculated from fixed capital investment components.",
+        "is_editable": "N",
+        "is_readonly": "Y",
+        "max_length": null,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF96",
+        "page_ref": "$P4",
+        "category_ref": "$C9",
+        "field_ref": "$F96",
+        "preference": 96,
+        "input_type": "number",
+        "is_required": "Y",
+        "is_active": "Y",
+        "custom_label": "Working Capital",
+        "grid_span": 6,
+        "help_text": "Validation: {\"min\": 0} | Estimated working capital requirement in INR Lakhs.",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": null,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": {
+          "min": 0
+        },
+        "layout_type": null
+      },
+      {
+        "ref": "$BF97",
+        "page_ref": "$P4",
+        "category_ref": "$C9",
+        "field_ref": "$F97",
+        "preference": 97,
+        "input_type": "number",
+        "is_required": "N",
+        "is_active": "Y",
+        "custom_label": "Total Project Cost",
+        "grid_span": 6,
+        "help_text": "Auto Read-only | Auto-calculated: Total Calculated Fixed Capital Investment + Working Capital.",
+        "is_editable": "N",
+        "is_readonly": "Y",
+        "max_length": null,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF98",
+        "page_ref": "$P4",
+        "category_ref": "$C9",
+        "field_ref": "$F98",
+        "preference": 98,
+        "input_type": "number",
+        "is_required": "C",
+        "is_active": "Y",
+        "custom_label": "Existing Investment In VFA",
+        "grid_span": 6,
+        "help_text": "Validation: {\"min\": 0} | Existing Investment In VFA VFA investment before proposed expansion/diversification in INR Lakhs.",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": null,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": {
+          "min": 0
+        },
+        "layout_type": null
+      },
+      {
+        "ref": "$BF99",
+        "page_ref": "$P4",
+        "category_ref": "$C9",
+        "field_ref": "$F99",
+        "preference": 99,
+        "input_type": "number",
+        "is_required": "N",
+        "is_active": "Y",
+        "custom_label": "FDI Investment",
+        "grid_span": 6,
+        "help_text": "Validation: {\"min\": 0} | Foreign Direct Investment component in INR Lakhs, if any.",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": null,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": {
+          "min": 0
+        },
+        "layout_type": null
+      },
+      {
+        "ref": "$BF100",
+        "page_ref": "$P4",
+        "category_ref": "$C9",
+        "field_ref": "$F100",
+        "preference": 100,
+        "input_type": "text",
+        "is_required": "C",
+        "is_active": "Y",
+        "custom_label": "Source Of FDI",
+        "grid_span": 6,
+        "help_text": "Max: 255 chars | Country/entity source of FDI investment.",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": 255,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF101",
+        "page_ref": "$P4",
+        "category_ref": "$C10",
+        "field_ref": "$F101",
+        "preference": 101,
+        "input_type": "number",
+        "is_required": "Y",
+        "is_active": "Y",
+        "custom_label": "Own Funds Or Equity",
+        "grid_span": 6,
+        "help_text": "Validation: {\"min\": 0} | Promoter's own funds / equity contribution in INR Lakhs.",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": null,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": {
+          "min": 0
+        },
+        "layout_type": null
+      },
+      {
+        "ref": "$BF102",
+        "page_ref": "$P4",
+        "category_ref": "$C10",
+        "field_ref": "$F102",
+        "preference": 102,
+        "input_type": "number",
+        "is_required": "N",
+        "is_active": "Y",
+        "custom_label": "Bank Loan",
+        "grid_span": 6,
+        "help_text": "Validation: {\"min\": 0} | Term loan from bank/financial institution in INR Lakhs.",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": null,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": {
+          "min": 0
+        },
+        "layout_type": null
+      },
+      {
+        "ref": "$BF103",
+        "page_ref": "$P4",
+        "category_ref": "$C10",
+        "field_ref": "$F103",
+        "preference": 103,
+        "input_type": "text",
+        "is_required": "C",
+        "is_active": "Y",
+        "custom_label": "Name Of Bank Or Financial Institution",
+        "grid_span": 6,
+        "help_text": "Max: 255 chars | Name of Financial Institution bank/NBFC providing the loan.",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": 255,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF104",
+        "page_ref": "$P4",
+        "category_ref": "$C10",
+        "field_ref": "$F104",
+        "preference": 104,
+        "input_type": "number",
+        "is_required": "N",
+        "is_active": "Y",
+        "custom_label": "Subsidy Or Grant",
+        "grid_span": 6,
+        "help_text": "Validation: {\"min\": 0} | Government subsidy/grant component in INR Lakhs, if any.",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": null,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": {
+          "min": 0
+        },
+        "layout_type": null
+      },
+      {
+        "ref": "$BF105",
+        "page_ref": "$P4",
+        "category_ref": "$C10",
+        "field_ref": "$F105",
+        "preference": 105,
+        "input_type": "number",
+        "is_required": "N",
+        "is_active": "Y",
+        "custom_label": "Other Source Amount",
+        "grid_span": 6,
+        "help_text": "Validation: {\"min\": 0} | Any other financing source in INR Lakhs.",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": null,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": {
+          "min": 0
+        },
+        "layout_type": null
+      },
+      {
+        "ref": "$BF106",
+        "page_ref": "$P4",
+        "category_ref": "$C10",
+        "field_ref": "$F106",
+        "preference": 106,
+        "input_type": "text",
+        "is_required": "C",
+        "is_active": "Y",
+        "custom_label": "Other Source Description",
+        "grid_span": 6,
+        "help_text": "Max: 255 chars | Describe the Description other financing source.",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": 255,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF107",
+        "page_ref": "$P4",
+        "category_ref": "$C10",
+        "field_ref": "$F107",
+        "preference": 107,
+        "input_type": "number",
+        "is_required": "N",
+        "is_active": "Y",
+        "custom_label": "Total Financing",
+        "grid_span": 6,
+        "help_text": "Auto Read-only | Auto-calculated: Calculated Own Funds + Bank Loan + Subsidy + Other Source.",
+        "is_editable": "N",
+        "is_readonly": "Y",
+        "max_length": null,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF108",
+        "page_ref": "$P5",
+        "category_ref": "$C11",
+        "field_ref": "$F108",
+        "preference": 108,
+        "input_type": "number",
+        "is_required": "Y",
+        "is_active": "Y",
+        "custom_label": "Total Water Requirement In KLD",
+        "grid_span": 6,
+        "help_text": "Validation: {\"min\": 0} | Total Requirement In KLD water requirement in Kilo Litres per Day (KLD).",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": null,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": {
+          "min": 0
+        },
+        "layout_type": null
+      },
+      {
+        "ref": "$BF109",
+        "page_ref": "$P5",
+        "category_ref": "$C11",
+        "field_ref": "$F109",
+        "preference": 109,
+        "input_type": "select",
+        "is_required": "Y",
+        "is_active": "Y",
+        "custom_label": "Source Of Water",
+        "grid_span": 6,
+        "help_text": "",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": null,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF110",
+        "page_ref": "$P5",
+        "category_ref": "$C11",
+        "field_ref": "$F110",
+        "preference": 110,
+        "input_type": "text",
+        "is_required": "C",
+        "is_active": "Y",
+        "custom_label": "Water Source Other Description",
+        "grid_span": 6,
+        "help_text": "Max: 255 chars Description",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": 255,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF111",
+        "page_ref": "$P5",
+        "category_ref": "$C11",
+        "field_ref": "$F111",
+        "preference": 111,
+        "input_type": "number",
+        "is_required": "N",
+        "is_active": "Y",
+        "custom_label": "Industrial Use Water In KLD",
+        "grid_span": 6,
+        "help_text": "Validation: {\"min\": 0} | Water In KLD required for industrial process use (KLD).",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": null,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": {
+          "min": 0
+        },
+        "layout_type": null
+      },
+      {
+        "ref": "$BF112",
+        "page_ref": "$P5",
+        "category_ref": "$C11",
+        "field_ref": "$F112",
+        "preference": 112,
+        "input_type": "number",
+        "is_required": "N",
+        "is_active": "Y",
+        "custom_label": "Domestic Use Water In KLD",
+        "grid_span": 6,
+        "help_text": "Validation: {\"min\": 0} | Water In KLD required for domestic/sanitary use (KLD).",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": null,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": {
+          "min": 0
+        },
+        "layout_type": null
+      },
+      {
+        "ref": "$BF113",
+        "page_ref": "$P5",
+        "category_ref": "$C12",
+        "field_ref": "$F113",
+        "preference": 113,
+        "input_type": "number",
+        "is_required": "Y",
+        "is_active": "Y",
+        "custom_label": "Total Power Requirement In KVA",
+        "grid_span": 6,
+        "help_text": "Validation: {\"min\": 0} | Total Requirement In KVA power requirement in KVA (Kilo Volt Ampere).",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": null,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": {
+          "min": 0
+        },
+        "layout_type": null
+      },
+      {
+        "ref": "$BF114",
+        "page_ref": "$P5",
+        "category_ref": "$C12",
+        "field_ref": "$F114",
+        "preference": 114,
+        "input_type": "number",
+        "is_required": "Y",
+        "is_active": "Y",
+        "custom_label": "Connected Load In KW",
+        "grid_span": 6,
+        "help_text": "Validation: {\"min\": 0} | KW Connected load in Kilowatts (KW).",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": null,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": {
+          "min": 0
+        },
+        "layout_type": null
+      },
+      {
+        "ref": "$BF115",
+        "page_ref": "$P5",
+        "category_ref": "$C12",
+        "field_ref": "$F115",
+        "preference": 115,
+        "input_type": "select",
+        "is_required": "Y",
+        "is_active": "Y",
+        "custom_label": "Source Of Power",
+        "grid_span": 6,
+        "help_text": "",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": null,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF116",
+        "page_ref": "$P5",
+        "category_ref": "$C12",
+        "field_ref": "$F116",
+        "preference": 116,
+        "input_type": "text",
+        "is_required": "C",
+        "is_active": "Y",
+        "custom_label": "Power Source Other Description",
+        "grid_span": 6,
+        "help_text": "Max: 255 chars Description",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": 255,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF117",
+        "page_ref": "$P5",
+        "category_ref": "$C12",
+        "field_ref": "$F117",
+        "preference": 117,
+        "input_type": "number",
+        "is_required": "N",
+        "is_active": "Y",
+        "custom_label": "Renewable Energy Percentage",
+        "grid_span": 6,
+        "help_text": "Validation: {\"min\": 0, \"max\": Percentage 100} | Percentage of total power from renewable sources, if applicable.",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": null,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF118",
+        "page_ref": "$P5",
+        "category_ref": "$C13",
+        "field_ref": "$F118",
+        "preference": 118,
+        "input_type": "number",
+        "is_required": "Y",
+        "is_active": "Y",
+        "custom_label": "Male Direct Employment",
+        "grid_span": 6,
+        "help_text": "Validation: {\"min\": 0} | Number Direct of direct male employees.",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": null,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": {
+          "min": 0
+        },
+        "layout_type": null
+      },
+      {
+        "ref": "$BF119",
+        "page_ref": "$P5",
+        "category_ref": "$C13",
+        "field_ref": "$F119",
+        "preference": 119,
+        "input_type": "number",
+        "is_required": "Y",
+        "is_active": "Y",
+        "custom_label": "Female Direct Employment",
+        "grid_span": 6,
+        "help_text": "Validation: {\"min\": 0} | Number Direct of direct female employees.",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": null,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": {
+          "min": 0
+        },
+        "layout_type": null
+      },
+      {
+        "ref": "$BF120",
+        "page_ref": "$P5",
+        "category_ref": "$C13",
+        "field_ref": "$F120",
+        "preference": 120,
+        "input_type": "number",
+        "is_required": "N",
+        "is_active": "Y",
+        "custom_label": "Total Direct Employment",
+        "grid_span": 6,
+        "help_text": "Auto Read-only | Auto-calculated: Employment Calculated Male + Female direct employment.",
+        "is_editable": "N",
+        "is_readonly": "Y",
+        "max_length": null,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF121",
+        "page_ref": "$P5",
+        "category_ref": "$C13",
+        "field_ref": "$F121",
+        "preference": 121,
+        "input_type": "number",
+        "is_required": "N",
+        "is_active": "Y",
+        "custom_label": "Skilled Employment",
+        "grid_span": 6,
+        "help_text": "Validation: {\"min\": 0} | Number of skilled employees among total direct employment.",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": null,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": {
+          "min": 0
+        },
+        "layout_type": null
+      },
+      {
+        "ref": "$BF122",
+        "page_ref": "$P5",
+        "category_ref": "$C13",
+        "field_ref": "$F122",
+        "preference": 122,
+        "input_type": "number",
+        "is_required": "N",
+        "is_active": "Y",
+        "custom_label": "Semi Skilled Employment",
+        "grid_span": 6,
+        "help_text": "Validation: {\"min\": 0} Employment",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": null,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": {
+          "min": 0
+        },
+        "layout_type": null
+      },
+      {
+        "ref": "$BF123",
+        "page_ref": "$P5",
+        "category_ref": "$C13",
+        "field_ref": "$F123",
+        "preference": 123,
+        "input_type": "number",
+        "is_required": "N",
+        "is_active": "Y",
+        "custom_label": "Unskilled Employment",
+        "grid_span": 6,
+        "help_text": "Validation: {\"min\": 0}",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": null,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": {
+          "min": 0
+        },
+        "layout_type": null
+      },
+      {
+        "ref": "$BF124",
+        "page_ref": "$P5",
+        "category_ref": "$C13",
+        "field_ref": "$F124",
+        "preference": 124,
+        "input_type": "number",
+        "is_required": "Y",
+        "is_active": "Y",
+        "custom_label": "Karnataka State Employment",
+        "grid_span": 6,
+        "help_text": "Validation: {\"min\": 0} | Number Employment of employees who are Karnataka state domicile.",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": null,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": {
+          "min": 0
+        },
+        "layout_type": null
+      },
+      {
+        "ref": "$BF125",
+        "page_ref": "$P5",
+        "category_ref": "$C13",
+        "field_ref": "$F125",
+        "preference": 125,
+        "input_type": "number",
+        "is_required": "N",
+        "is_active": "Y",
+        "custom_label": "Local District Employment",
+        "grid_span": 6,
+        "help_text": "Validation: {\"min\": 0} | Number Employment of employees from the local district.",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": null,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": {
+          "min": 0
+        },
+        "layout_type": null
+      },
+      {
+        "ref": "$BF126",
+        "page_ref": "$P5",
+        "category_ref": "$C13",
+        "field_ref": "$F126",
+        "preference": 126,
+        "input_type": "number",
+        "is_required": "N",
+        "is_active": "Y",
+        "custom_label": "Indirect Employment",
+        "grid_span": 6,
+        "help_text": "Validation: {\"min\": 0} | Estimated indirect/ancillary employment generated.",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": null,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": {
+          "min": 0
+        },
+        "layout_type": null
+      },
+      {
+        "ref": "$BF127",
+        "page_ref": "$P6",
+        "category_ref": "$C14",
+        "field_ref": "$F127",
+        "preference": 127,
+        "input_type": "text",
+        "is_required": "N",
+        "is_active": "Y",
+        "custom_label": "Type Of Assistance Required",
+        "grid_span": 12,
+        "help_text": "Source: MASTER (Government Assistance / Incentive Scheme master) | Required Select all applicable assistance/incentive schemes.",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": null,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF128",
+        "page_ref": "$P6",
+        "category_ref": "$C14",
+        "field_ref": "$F128",
+        "preference": 128,
+        "input_type": "radio",
+        "is_required": "N",
+        "is_active": "Y",
+        "custom_label": "Whether Applying For Social Category Benefit",
+        "grid_span": 6,
+        "help_text": "Social category benefits for Applying For SC/ST/Women/OBC/Minorities/Physically Social Category Handicapped Benefit",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": null,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF129",
+        "page_ref": "$P6",
+        "category_ref": "$C14",
+        "field_ref": "$F129",
+        "preference": 129,
+        "input_type": "select",
+        "is_required": "C",
+        "is_active": "Y",
+        "custom_label": "Social Category For Benefit",
+        "grid_span": 6,
+        "help_text": "For Benefit",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": null,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF130",
+        "page_ref": "$P6",
+        "category_ref": "$C14",
+        "field_ref": "$F130",
+        "preference": 130,
+        "input_type": "radio",
+        "is_required": "N",
+        "is_active": "Y",
+        "custom_label": "Whether Tumakuru Machine Tool Park",
+        "grid_span": 6,
+        "help_text": "If project is within Tumakuru Machine Tumakuru Tool Park, it requires Machine Tool Park",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": null,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF131",
+        "page_ref": "$P6",
+        "category_ref": "$C14",
+        "field_ref": "$F131",
+        "preference": 131,
+        "input_type": "textarea",
+        "is_required": "N",
+        "is_active": "Y",
+        "custom_label": "Assistance Remarks",
+        "grid_span": 12,
+        "help_text": "Max: 1000 chars | Any additional Remarks remarks or details regarding the assistance being sought.",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": 1000,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF132",
+        "page_ref": "$P6",
+        "category_ref": "$C15",
+        "field_ref": "$F132",
+        "preference": 1,
+        "input_type": "file",
+        "is_required": "Y",
+        "is_active": "Y",
+        "custom_label": "Company PAN Card",
+        "grid_span": 6,
+        "help_text": "Validation: {\"accept\": Card Upload \".pdf,.jpg,.jpeg,.png\", \"maxSizeMB\": 2} | Upload Company PAN Card (PDF/JPG, max 2MB).",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": null,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF133",
+        "page_ref": "$P6",
+        "category_ref": "$C15",
+        "field_ref": "$F133",
+        "preference": 2,
+        "input_type": "file",
+        "is_required": "Y",
+        "is_active": "Y",
+        "custom_label": "Authorized Signatory Aadhaar Card",
+        "grid_span": 6,
+        "help_text": "Validation: {\"accept\": Signatory Aadhaar Upload \".pdf,.jpg,.jpeg,.png\", \"maxSizeMB\": 2} | Card Upload Aadhaar Card of Authorized Signatory (PDF/JPG, max 2MB).",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": null,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF134",
+        "page_ref": "$P6",
+        "category_ref": "$C15",
+        "field_ref": "$F134",
+        "preference": 3,
+        "input_type": "file",
+        "is_required": "C",
+        "is_active": "Y",
+        "custom_label": "Certificate Of Incorporation Or Registration",
+        "grid_span": 6,
+        "help_text": "Validation: {\"accept\": Incorporation Or Upload \".pdf,.jpg,.jpeg,.png\", \"maxSizeMB\": 5} | Registration Certificate of Incorporation (MCA) / Registration Certificate (PDF, max 5MB).",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": null,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF135",
+        "page_ref": "$P6",
+        "category_ref": "$C15",
+        "field_ref": "$F135",
+        "preference": 4,
+        "input_type": "file",
+        "is_required": "C",
+        "is_active": "Y",
+        "custom_label": "GST Certificate",
+        "grid_span": 6,
+        "help_text": "Validation: {\"accept\": Upload \".pdf,.jpg,.jpeg,.png\", \"maxSizeMB\": 2} | GST Registration Certificate (PDF/JPG, max 2MB).",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": null,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF136",
+        "page_ref": "$P6",
+        "category_ref": "$C15",
+        "field_ref": "$F136",
+        "preference": 5,
+        "input_type": "file",
+        "is_required": "C",
+        "is_active": "Y",
+        "custom_label": "Land Document Or Title Deed",
+        "grid_span": 6,
+        "help_text": "Validation: {\"accept\": Title Deed Upload \".pdf,.jpg,.jpeg,.png\", \"maxSizeMB\": 10} | Land Title Deed / Patta / RTC / Sale Deed (PDF, max 10MB).",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": null,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF137",
+        "page_ref": "$P6",
+        "category_ref": "$C15",
+        "field_ref": "$F137",
+        "preference": 6,
+        "input_type": "file",
+        "is_required": "Y",
+        "is_active": "Y",
+        "custom_label": "Detailed Project Report",
+        "grid_span": 6,
+        "help_text": "Validation: {\"accept\": \".pdf\", Report Upload \"maxSizeMB\": 10} | Detailed Project Report (DPR) in PDF format (max 10MB).",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": null,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF138",
+        "page_ref": "$P6",
+        "category_ref": "$C15",
+        "field_ref": "$F138",
+        "preference": 7,
+        "input_type": "file",
+        "is_required": "Y",
+        "is_active": "Y",
+        "custom_label": "Bank Statement Or Net Worth Certificate",
+        "grid_span": 6,
+        "help_text": "Validation: {\"accept\": Net Worth Upload \".pdf,.jpg,.jpeg,.png\", \"maxSizeMB\": 5} | Certificate Latest 6-month bank statement OR Chartered Accountant's net worth certificate.",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": null,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF139",
+        "page_ref": "$P6",
+        "category_ref": "$C15",
+        "field_ref": "$F139",
+        "preference": 8,
+        "input_type": "file",
+        "is_required": "C",
+        "is_active": "Y",
+        "custom_label": "Partnership Deed",
+        "grid_span": 6,
+        "help_text": "Validation: {\"accept\": Upload \".pdf,.jpg,.jpeg,.png\", \"maxSizeMB\": 5} | Registered Partnership Deed (PDF, max 5MB).",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": null,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF140",
+        "page_ref": "$P6",
+        "category_ref": "$C15",
+        "field_ref": "$F140",
+        "preference": 9,
+        "input_type": "file",
+        "is_required": "N",
+        "is_active": "Y",
+        "custom_label": "Promoter Photograph",
+        "grid_span": 6,
+        "help_text": "Validation: {\"accept\": \".jpg,.jpeg,.png\", Photograph Upload \"maxSizeMB\": 1} | Recent passport-size photograph of primary promoter (JPG/PNG, max 1MB).",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": null,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF141",
+        "page_ref": "$P6",
+        "category_ref": "$C15",
+        "field_ref": "$F141",
+        "preference": 10,
+        "input_type": "file",
+        "is_required": "C",
+        "is_active": "Y",
+        "custom_label": "Udyam Registration Certificate",
+        "grid_span": 6,
+        "help_text": "Validation: {\"accept\": Registration Upload \".pdf,.jpg,.jpeg,.png\", \"maxSizeMB\": 2} |",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": null,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF142",
+        "page_ref": "$P6",
+        "category_ref": "$C15",
+        "field_ref": "$F142",
+        "preference": 11,
+        "input_type": "file",
+        "is_required": "C",
+        "is_active": "Y",
+        "custom_label": "Previous CAF Approval Letter",
+        "grid_span": 6,
+        "help_text": "Validation: {\"accept\": Approval Letter Upload \".pdf,.jpg,.jpeg,.png\", \"maxSizeMB\": 5} | Approval letter of previous CAF for expansion/diversification/modernization.",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": null,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      },
+      {
+        "ref": "$BF143",
+        "page_ref": "$P6",
+        "category_ref": "$C15",
+        "field_ref": "$F143",
+        "preference": 12,
+        "input_type": "file",
+        "is_required": "N",
+        "is_active": "Y",
+        "custom_label": "Any Other Document",
+        "grid_span": 6,
+        "help_text": "Validation: {\"accept\": Document Upload \".pdf,.jpg,.jpeg,.png\", \"maxSizeMB\": 5} | Any other supporting document (optional).",
+        "is_editable": "Y",
+        "is_readonly": "N",
+        "max_length": null,
+        "min_length": null,
+        "pattern": null,
+        "placeholder": null,
+        "validation_rule": null,
+        "layout_type": null
+      }
+    ],
+    "field_options": [
+      {
+        "builder_field_ref": "$BF1",
+        "source_type": "STATIC",
+        "static_options": [
+          {
+            "label": "New.",
+            "value": "new"
+          }
+        ],
+        "master_table_id": null,
+        "parent_builder_field_ref": null
+      },
+      {
+        "builder_field_ref": "$BF2",
+        "source_type": "MASTER",
+        "static_options": null,
+        "master_table_id": null,
+        "parent_builder_field_ref": null
+      },
+      {
+        "builder_field_ref": "$BF3",
+        "source_type": "MASTER",
+        "static_options": null,
+        "master_table_id": null,
+        "parent_builder_field_ref": null
+      },
+      {
+        "builder_field_ref": "$BF10",
+        "source_type": "STATIC",
+        "static_options": [
+          {
+            "label": "Yes",
+            "value": "yes"
+          },
+          {
+            "label": "No",
+            "value": "no"
+          }
+        ],
+        "master_table_id": null,
+        "parent_builder_field_ref": null
+      },
+      {
+        "builder_field_ref": "$BF14",
+        "source_type": "STATIC",
+        "static_options": [
+          {
+            "label": "Yes",
+            "value": "yes"
+          },
+          {
+            "label": "No",
+            "value": "no"
+          }
+        ],
+        "master_table_id": null,
+        "parent_builder_field_ref": null
+      },
+      {
+        "builder_field_ref": "$BF17",
+        "source_type": "MASTER",
+        "static_options": null,
+        "master_table_id": null,
+        "parent_builder_field_ref": null
+      },
+      {
+        "builder_field_ref": "$BF18",
+        "source_type": "MASTER",
+        "static_options": null,
+        "master_table_id": null,
+        "parent_builder_field_ref": null
+      },
+      {
+        "builder_field_ref": "$BF19",
+        "source_type": "MASTER",
+        "static_options": null,
+        "master_table_id": null,
+        "parent_builder_field_ref": null
+      },
+      {
+        "builder_field_ref": "$BF20",
+        "source_type": "MASTER",
+        "static_options": null,
+        "master_table_id": null,
+        "parent_builder_field_ref": null
+      },
+      {
+        "builder_field_ref": "$BF25",
+        "source_type": "MASTER",
+        "static_options": null,
+        "master_table_id": null,
+        "parent_builder_field_ref": null
+      },
+      {
+        "builder_field_ref": "$BF31",
+        "source_type": "MASTER",
+        "static_options": null,
+        "master_table_id": null,
+        "parent_builder_field_ref": null
+      },
+      {
+        "builder_field_ref": "$BF32",
+        "source_type": "MASTER",
+        "static_options": null,
+        "master_table_id": null,
+        "parent_builder_field_ref": null
+      },
+      {
+        "builder_field_ref": "$BF33",
+        "source_type": "MASTER",
+        "static_options": null,
+        "master_table_id": null,
+        "parent_builder_field_ref": null
+      },
+      {
+        "builder_field_ref": "$BF34",
+        "source_type": "MASTER",
+        "static_options": null,
+        "master_table_id": null,
+        "parent_builder_field_ref": null
+      },
+      {
+        "builder_field_ref": "$BF39",
+        "source_type": "MASTER",
+        "static_options": null,
+        "master_table_id": null,
+        "parent_builder_field_ref": null
+      },
+      {
+        "builder_field_ref": "$BF51",
+        "source_type": "MASTER",
+        "static_options": null,
+        "master_table_id": null,
+        "parent_builder_field_ref": null
+      },
+      {
+        "builder_field_ref": "$BF52",
+        "source_type": "MASTER",
+        "static_options": null,
+        "master_table_id": null,
+        "parent_builder_field_ref": null
+      },
+      {
+        "builder_field_ref": "$BF53",
+        "source_type": "MASTER",
+        "static_options": null,
+        "master_table_id": null,
+        "parent_builder_field_ref": null
+      },
+      {
+        "builder_field_ref": "$BF54",
+        "source_type": "MASTER",
+        "static_options": null,
+        "master_table_id": null,
+        "parent_builder_field_ref": null
+      },
+      {
+        "builder_field_ref": "$BF69",
+        "source_type": "MASTER",
+        "static_options": null,
+        "master_table_id": null,
+        "parent_builder_field_ref": null
+      },
+      {
+        "builder_field_ref": "$BF72",
+        "source_type": "STATIC",
+        "static_options": [
+          {
+            "label": "Yes",
+            "value": "yes"
+          },
+          {
+            "label": "No",
+            "value": "no"
+          }
+        ],
+        "master_table_id": null,
+        "parent_builder_field_ref": null
+      },
+      {
+        "builder_field_ref": "$BF74",
+        "source_type": "STATIC",
+        "static_options": [
+          {
+            "label": "Yes",
+            "value": "yes"
+          },
+          {
+            "label": "No",
+            "value": "no"
+          }
+        ],
+        "master_table_id": null,
+        "parent_builder_field_ref": null
+      },
+      {
+        "builder_field_ref": "$BF76",
+        "source_type": "MASTER",
+        "static_options": null,
+        "master_table_id": null,
+        "parent_builder_field_ref": null
+      },
+      {
+        "builder_field_ref": "$BF77",
+        "source_type": "MASTER",
+        "static_options": null,
+        "master_table_id": null,
+        "parent_builder_field_ref": null
+      },
+      {
+        "builder_field_ref": "$BF78",
+        "source_type": "MASTER",
+        "static_options": null,
+        "master_table_id": null,
+        "parent_builder_field_ref": null
+      },
+      {
+        "builder_field_ref": "$BF79",
+        "source_type": "MASTER",
+        "static_options": null,
+        "master_table_id": null,
+        "parent_builder_field_ref": null
+      },
+      {
+        "builder_field_ref": "$BF127",
+        "source_type": "MASTER",
+        "static_options": null,
+        "master_table_id": null,
+        "parent_builder_field_ref": null
+      },
+      {
+        "builder_field_ref": "$BF128",
+        "source_type": "STATIC",
+        "static_options": [
+          {
+            "label": "Yes",
+            "value": "yes"
+          },
+          {
+            "label": "No",
+            "value": "no"
+          }
+        ],
+        "master_table_id": null,
+        "parent_builder_field_ref": null
+      },
+      {
+        "builder_field_ref": "$BF130",
+        "source_type": "STATIC",
+        "static_options": [
+          {
+            "label": "Yes",
+            "value": "yes"
+          },
+          {
+            "label": "No",
+            "value": "no"
+          }
+        ],
+        "master_table_id": null,
+        "parent_builder_field_ref": null
+      }
+    ],
+    "addmore_groups": [
+      {
+        "ref": "$AG1",
+        "page_ref": "$P2",
+        "category_ref": "$C5",
+        "label": "Promoter Details",
+        "min_rows": 1,
+        "max_rows": null,
+        "trigger_builder_field_ref": "$BF57"
+      },
+      {
+        "ref": "$AG2",
+        "page_ref": "$P2",
+        "category_ref": "$C5",
+        "label": "Promoter Details",
+        "min_rows": 1,
+        "max_rows": 10,
+        "trigger_builder_field_ref": "$BF57"
+      }
+    ],
+    "add_more_columns": [
+      {
+        "group_ref": "$AG2",
+        "builder_field_ref": "$BF57",
+        "col_order": 1
+      },
+      {
+        "group_ref": "$AG2",
+        "builder_field_ref": "$BF58",
+        "col_order": 2
+      },
+      {
+        "group_ref": "$AG2",
+        "builder_field_ref": "$BF59",
+        "col_order": 3
+      },
+      {
+        "group_ref": "$AG2",
+        "builder_field_ref": "$BF60",
+        "col_order": 4
+      },
+      {
+        "group_ref": "$AG2",
+        "builder_field_ref": "$BF61",
+        "col_order": 5
+      },
+      {
+        "group_ref": "$AG2",
+        "builder_field_ref": "$BF62",
+        "col_order": 6
+      },
+      {
+        "group_ref": "$AG2",
+        "builder_field_ref": "$BF63",
+        "col_order": 7
+      },
+      {
+        "group_ref": "$AG2",
+        "builder_field_ref": "$BF64",
+        "col_order": 8
+      },
+      {
+        "group_ref": "$AG2",
+        "builder_field_ref": "$BF65",
+        "col_order": 9
+      },
+      {
+        "group_ref": "$AG2",
+        "builder_field_ref": "$BF66",
+        "col_order": 10
+      },
+      {
+        "group_ref": "$AG2",
+        "builder_field_ref": "$BF67",
+        "col_order": 11
+      }
+    ],
+    "form_rules": [
+      {
+        "scope": "FIELD",
+        "when_json": {
+          "any": [
+            {
+              "field": "Type Of Proposal",
+              "operator": "=",
+              "value": "expansion"
+            },
+            {
+              "field": "Type Of Proposal",
+              "operator": "=",
+              "value": "diversification"
+            },
+            {
+              "field": "Type Of Proposal",
+              "operator": "=",
+              "value": "modernization"
+            }
+          ]
+        },
+        "then_json": {
+          "action": "SHOW",
+          "target_field": "CAF Id"
+        }
+      },
+      {
+        "scope": "FIELD",
+        "when_json": {
+          "any": [
+            {
+              "field": "Constitution Of Establishment",
+              "operator": "=",
+              "value": "public_limited"
+            },
+            {
+              "field": "Constitution Of Establishment",
+              "operator": "=",
+              "value": "private_limited"
+            },
+            {
+              "field": "Constitution Of Establishment",
+              "operator": "=",
+              "value": "one_person_company"
+            },
+            {
+              "field": "Constitution Of Establishment",
+              "operator": "=",
+              "value": "section_8"
+            },
+            {
+              "field": "Constitution Of Establishment",
+              "operator": "=",
+              "value": "llp"
+            }
+          ]
+        },
+        "then_json": {
+          "action": "SHOW",
+          "target_field": "Corporate Identification Number"
+        }
+      },
+      {
+        "scope": "FIELD",
+        "when_json": {
+          "any": [
+            {
+              "field": "Constitution Of Establishment",
+              "operator": "=",
+              "value": "llp"
+            }
+          ]
+        },
+        "then_json": {
+          "action": "SHOW",
+          "target_field": "LLPIN Number"
+        }
+      },
+      {
+        "scope": "FIELD",
+        "when_json": {
+          "any": [
+            {
+              "field": "Do You Have GST Number",
+              "operator": "=",
+              "value": "yes"
+            }
+          ]
+        },
+        "then_json": {
+          "action": "SHOW",
+          "target_field": "GST Number"
+        }
+      },
+      {
+        "scope": "FIELD",
+        "when_json": {
+          "any": [
+            {
+              "field": "Type Of Proposal",
+              "operator": "=",
+              "value": "expansion"
+            },
+            {
+              "field": "Type Of Proposal",
+              "operator": "=",
+              "value": "diversification"
+            },
+            {
+              "field": "Type Of Proposal",
+              "operator": "=",
+              "value": "modernization"
+            }
+          ]
+        },
+        "then_json": {
+          "action": "SHOW",
+          "target_field": "Date Of Business Commencement"
+        }
+      },
+      {
+        "scope": "SECTION",
+        "when_json": {
+          "any": [
+            {
+              "field": "Correspondence Address Same As Corporate",
+              "operator": "=",
+              "value": false
+            }
+          ]
+        },
+        "then_json": {
+          "action": "SHOW",
+          "target_category": "Correspondence Address"
+        }
+      },
+      {
+        "scope": "FIELD",
+        "when_json": {
+          "any": [
+            {
+              "field": "Constitution Of Establishment",
+              "operator": "=",
+              "value": "public_limited"
+            },
+            {
+              "field": "Constitution Of Establishment",
+              "operator": "=",
+              "value": "private_limited"
+            },
+            {
+              "field": "Constitution Of Establishment",
+              "operator": "=",
+              "value": "one_person_company"
+            },
+            {
+              "field": "Constitution Of Establishment",
+              "operator": "=",
+              "value": "section_8"
+            }
+          ]
+        },
+        "then_json": {
+          "action": "SHOW",
+          "target_field": "Authorized Signatory DIN"
+        }
+      },
+      {
+        "scope": "FIELD",
+        "when_json": {
+          "any": [
+            {
+              "field": "Is Existing MSME Unit",
+              "operator": "=",
+              "value": "yes"
+            }
+          ]
+        },
+        "then_json": {
+          "action": "SHOW",
+          "target_field": "Udyam Registration Number"
+        }
+      },
+      {
+        "scope": "FIELD",
+        "when_json": {
+          "any": [
+            {
+              "field": "Whether Pollution Causing Industry",
+              "operator": "=",
+              "value": "yes"
+            }
+          ]
+        },
+        "then_json": {
+          "action": "SHOW",
+          "target_field": "Pollution Category"
+        }
+      },
+      {
+        "scope": "FIELD",
+        "when_json": {
+          "any": [
+            {
+              "field": "Land Availability Status",
+              "operator": "=",
+              "value": "available"
+            }
+          ]
+        },
+        "then_json": {
+          "action": "SHOW",
+          "target_field": "Survey Or Katha Number"
+        }
+      },
+      {
+        "scope": "FIELD",
+        "when_json": {
+          "any": [
+            {
+              "field": "Type Of Proposal",
+              "operator": "=",
+              "value": "expansion"
+            },
+            {
+              "field": "Type Of Proposal",
+              "operator": "=",
+              "value": "diversification"
+            },
+            {
+              "field": "Type Of Proposal",
+              "operator": "=",
+              "value": "modernization"
+            }
+          ]
+        },
+        "then_json": {
+          "action": "SHOW",
+          "target_field": "Existing Plant Area In Acres"
+        }
+      },
+      {
+        "scope": "FIELD",
+        "when_json": {
+          "any": [
+            {
+              "field": "Type Of Proposal",
+              "operator": "=",
+              "value": "expansion"
+            },
+            {
+              "field": "Type Of Proposal",
+              "operator": "=",
+              "value": "diversification"
+            },
+            {
+              "field": "Type Of Proposal",
+              "operator": "=",
+              "value": "modernization"
+            }
+          ]
+        },
+        "then_json": {
+          "action": "SHOW",
+          "target_field": "Existing Investment In VFA"
+        }
+      },
+      {
+        "scope": "FIELD",
+        "when_json": {
+          "any": [
+            {
+              "field": "Bank Loan",
+              "operator": ">",
+              "value": 0.0
+            }
+          ]
+        },
+        "then_json": {
+          "action": "SHOW",
+          "target_field": "Name Of Bank Or Financial Institution"
+        }
+      },
+      {
+        "scope": "FIELD",
+        "when_json": {
+          "any": [
+            {
+              "field": "Other Source Amount",
+              "operator": ">",
+              "value": 0.0
+            }
+          ]
+        },
+        "then_json": {
+          "action": "SHOW",
+          "target_field": "Other Source Description"
+        }
+      },
+      {
+        "scope": "FIELD",
+        "when_json": {
+          "any": [
+            {
+              "field": "FDI Investment",
+              "operator": ">",
+              "value": 0.0
+            }
+          ]
+        },
+        "then_json": {
+          "action": "SHOW",
+          "target_field": "Source Of FDI"
+        }
+      },
+      {
+        "scope": "FIELD",
+        "when_json": {
+          "any": [
+            {
+              "field": "Source Of Water",
+              "operator": "=",
+              "value": "other"
+            }
+          ]
+        },
+        "then_json": {
+          "action": "SHOW",
+          "target_field": "Water Source Other Description"
+        }
+      },
+      {
+        "scope": "FIELD",
+        "when_json": {
+          "any": [
+            {
+              "field": "Source Of Power",
+              "operator": "=",
+              "value": "other"
+            }
+          ]
+        },
+        "then_json": {
+          "action": "SHOW",
+          "target_field": "Power Source Other Description"
+        }
+      },
+      {
+        "scope": "FIELD",
+        "when_json": {
+          "any": [
+            {
+              "field": "Whether Applying For Social Category Benefit",
+              "operator": "=",
+              "value": "yes"
+            }
+          ]
+        },
+        "then_json": {
+          "action": "SHOW",
+          "target_field": "Social Category For Benefit"
+        }
+      },
+      {
+        "scope": "FIELD",
+        "when_json": {
+          "any": [
+            {
+              "field": "Constitution Of Establishment",
+              "operator": "=",
+              "value": "public_limited"
+            },
+            {
+              "field": "Constitution Of Establishment",
+              "operator": "=",
+              "value": "private_limited"
+            },
+            {
+              "field": "Constitution Of Establishment",
+              "operator": "=",
+              "value": "one_person_company"
+            },
+            {
+              "field": "Constitution Of Establishment",
+              "operator": "=",
+              "value": "section_8"
+            },
+            {
+              "field": "Constitution Of Establishment",
+              "operator": "=",
+              "value": "llp"
+            },
+            {
+              "field": "Constitution Of Establishment",
+              "operator": "=",
+              "value": "partnership"
+            }
+          ]
+        },
+        "then_json": {
+          "action": "SHOW",
+          "target_field": "Certificate Of Incorporation Or Registration"
+        }
+      },
+      {
+        "scope": "FIELD",
+        "when_json": {
+          "any": [
+            {
+              "field": "Do You Have GST Number",
+              "operator": "=",
+              "value": "yes"
+            }
+          ]
+        },
+        "then_json": {
+          "action": "SHOW",
+          "target_field": "GST Certificate"
+        }
+      },
+      {
+        "scope": "FIELD",
+        "when_json": {
+          "any": [
+            {
+              "field": "Land Availability Status",
+              "operator": "=",
+              "value": "available"
+            }
+          ]
+        },
+        "then_json": {
+          "action": "SHOW",
+          "target_field": "Land Document Or Title Deed"
+        }
+      },
+      {
+        "scope": "FIELD",
+        "when_json": {
+          "any": [
+            {
+              "field": "Constitution Of Establishment",
+              "operator": "=",
+              "value": "partnership"
+            }
+          ]
+        },
+        "then_json": {
+          "action": "SHOW",
+          "target_field": "Partnership Deed"
+        }
+      },
+      {
+        "scope": "FIELD",
+        "when_json": {
+          "any": [
+            {
+              "field": "Is Existing MSME Unit",
+              "operator": "=",
+              "value": "yes"
+            }
+          ]
+        },
+        "then_json": {
+          "action": "SHOW",
+          "target_field": "Udyam Registration Certificate"
+        }
+      },
+      {
+        "scope": "FIELD",
+        "when_json": {
+          "any": [
+            {
+              "field": "Type Of Proposal",
+              "operator": "=",
+              "value": "expansion"
+            },
+            {
+              "field": "Type Of Proposal",
+              "operator": "=",
+              "value": "diversification"
+            },
+            {
+              "field": "Type Of Proposal",
+              "operator": "=",
+              "value": "modernization"
+            }
+          ]
+        },
+        "then_json": {
+          "action": "SHOW",
+          "target_field": "Previous CAF Approval Letter"
+        }
+      }
+    ]
+  },
+  "workflow": {
+    "workflow_code": "CAF_APPROVAL",
+    "workflow_name": "Combined Application Form (CAF) Workflow",
+    "workflow_version_label": "V1.0",
+    "workflow_version_number": 1,
+    "document_date": null,
+    "service_code": "591.0",
+    "department_code": "1",
+    "steps": [
+      {
+        "step_no": 1,
+        "process_id": "IN_001",
+        "role_name": "Investor",
+        "role_id": 2,
+        "form_type_abbr": "AF",
+        "form_type_id": 1,
+        "jurisdiction_code": "DISTRICT",
+        "jurisdiction_level_id": 2,
+        "assignment_strategy_code": "ROLE",
+        "assignment_strategy_id": 1,
+        "sla_hours": 0,
+        "delay_reason_required": false,
+        "next_allocation_role_name": "Joint Director, DIC",
+        "next_allocation_role_id": 22,
+        "sub_responsibility": "None",
+        "parallel_forward": false,
+        "retain_ownership": false,
+        "actions": [
+          {
+            "action_label": "Submission",
+            "action_code": "P",
+            "action_master_id": null,
+            "next_step": 2,
+            "next_role_id": 22,
+            "next_role_name": "Joint Director, DIC"
+          }
+        ]
+      },
+      {
+        "step_no": 2,
+        "process_id": "JD_002",
+        "role_name": "Joint Director, DIC",
+        "role_id": 22,
+        "form_type_abbr": "PFAL",
+        "form_type_id": 7,
+        "jurisdiction_code": "DISTRICT",
+        "jurisdiction_level_id": 2,
+        "assignment_strategy_code": "ROLE",
+        "assignment_strategy_id": 1,
+        "sla_hours": 48,
+        "delay_reason_required": true,
+        "next_allocation_role_name": "Investor",
+        "next_allocation_role_id": 2,
+        "sub_responsibility": "None",
+        "parallel_forward": false,
+        "retain_ownership": false,
+        "actions": [
+          {
+            "action_label": "Revert to",
+            "action_code": "RB",
+            "action_master_id": null,
+            "next_step": 1,
+            "next_role_id": 2,
+            "next_role_name": "Investor"
+          },
+          {
+            "action_label": "Forward to",
+            "action_code": "F",
+            "action_master_id": null,
+            "next_step": 3,
+            "next_role_id": null,
+            "next_role_name": "Assistant Director, DIC"
+          },
+          {
+            "action_label": "Approve",
+            "action_code": "A",
+            "action_master_id": null,
+            "next_step": 5,
+            "next_role_id": 2,
+            "next_role_name": "Investor"
+          },
+          {
+            "action_label": "Reject",
+            "action_code": "R",
+            "action_master_id": null,
+            "next_step": 5,
+            "next_role_id": 2,
+            "next_role_name": "Investor"
+          }
+        ]
+      },
+      {
+        "step_no": 3,
+        "process_id": "AD_003",
+        "role_name": "Assistant Director, DIC",
+        "role_id": null,
+        "form_type_abbr": "PFVL",
+        "form_type_id": 5,
+        "jurisdiction_code": "DISTRICT",
+        "jurisdiction_level_id": 2,
+        "assignment_strategy_code": "ROLE",
+        "assignment_strategy_id": 1,
+        "sla_hours": 72,
+        "delay_reason_required": false,
+        "next_allocation_role_name": "Deputy Director, DIC",
+        "next_allocation_role_id": null,
+        "sub_responsibility": "Document Verification",
+        "parallel_forward": false,
+        "retain_ownership": false,
+        "actions": [
+          {
+            "action_label": "Forward to",
+            "action_code": "F",
+            "action_master_id": null,
+            "next_step": 4,
+            "next_role_id": null,
+            "next_role_name": "Deputy Director, DIC"
+          }
+        ]
+      },
+      {
+        "step_no": 4,
+        "process_id": "DD_004",
+        "role_name": "Deputy Director, DIC",
+        "role_id": null,
+        "form_type_abbr": "PFDIFL",
+        "form_type_id": 8,
+        "jurisdiction_code": "DISTRICT",
+        "jurisdiction_level_id": 2,
+        "assignment_strategy_code": "ROLE",
+        "assignment_strategy_id": 1,
+        "sla_hours": 72,
+        "delay_reason_required": false,
+        "next_allocation_role_name": "Joint Director, DIC",
+        "next_allocation_role_id": 22,
+        "sub_responsibility": "None",
+        "parallel_forward": false,
+        "retain_ownership": false,
+        "actions": [
+          {
+            "action_label": "Forward to",
+            "action_code": "F",
+            "action_master_id": null,
+            "next_step": 2,
+            "next_role_id": 22,
+            "next_role_name": "Joint Director, DIC"
+          },
+          {
+            "action_label": "Revert to",
+            "action_code": "RB",
+            "action_master_id": null,
+            "next_step": 3,
+            "next_role_id": null,
+            "next_role_name": "Assistant Director, DIC"
+          }
+        ]
+      },
+      {
+        "step_no": 5,
+        "process_id": "IN_002",
+        "role_name": "Investor",
+        "role_id": 2,
+        "form_type_abbr": "AF",
+        "form_type_id": 1,
+        "jurisdiction_code": "DISTRICT",
+        "jurisdiction_level_id": 2,
+        "assignment_strategy_code": "ROLE",
+        "assignment_strategy_id": 1,
+        "sla_hours": 0,
+        "delay_reason_required": false,
+        "next_allocation_role_name": "None",
+        "next_allocation_role_id": null,
+        "sub_responsibility": "None",
+        "parallel_forward": false,
+        "retain_ownership": false,
+        "actions": [
+          {
+            "action_label": "View",
+            "action_code": "VIEW",
+            "action_master_id": null,
+            "next_step": null,
+            "next_role_id": null,
+            "next_role_name": "None"
+          }
+        ]
+      }
+    ],
+    "officer_forms": [
+      {
+        "role_name": "Joint Director, DIC",
+        "workflow_section_name": "For Department Use Only | Role Name: JD DIC",
+        "form_type_id": 7,
+        "form_type_abbr": "PFAL",
+        "process_id": "JD_002",
+        "page_name": "Joint Director, DIC",
+        "category_name": "For Department Use Only",
+        "fields": [
+          {
+            "field_number": 1,
+            "name": "Comment",
+            "input_type": "textarea",
+            "grid_span": 6,
+            "notes": "Max: 1000 chars | Briefly comments.",
+            "is_required": "Y",
+            "is_editable": "Y",
+            "is_readonly": "N",
+            "validation_rule": null,
+            "static_options": null
+          },
+          {
+            "field_number": 2,
+            "name": "Supportive Documents",
+            "input_type": "file",
+            "grid_span": 6,
+            "notes": "Not Mandatory",
+            "is_required": "N",
+            "is_editable": "Y",
+            "is_readonly": "N",
+            "validation_rule": null,
+            "static_options": null
+          },
+          {
+            "field_number": 3,
+            "name": "Actions",
+            "input_type": "button",
+            "grid_span": 3,
+            "notes": "Revert to Applicant | Forward to AD DIC | Approve | Reject",
+            "is_required": "N",
+            "is_editable": "Y",
+            "is_readonly": "N",
+            "validation_rule": null,
+            "static_options": [
+              {
+                "label": "Revert to Applicant",
+                "value": "revert_to_applicant"
+              },
+              {
+                "label": "Forward to AD DIC",
+                "value": "forward_to_ad_dic"
+              },
+              {
+                "label": "Approve",
+                "value": "approve"
+              },
+              {
+                "label": "Reject",
+                "value": "reject"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "role_name": "Assistant Director, DIC",
+        "workflow_section_name": "For Department Use Only | Role Name: AD DIC",
+        "form_type_id": 5,
+        "form_type_abbr": "PFVL",
+        "process_id": "AD_003",
+        "page_name": "Assistant Director, DIC",
+        "category_name": "For Department Use Only",
+        "fields": [
+          {
+            "field_number": 1,
+            "name": "Comment",
+            "input_type": "textarea",
+            "grid_span": 6,
+            "notes": "Max: 1000 chars | Briefly comments.",
+            "is_required": "Y",
+            "is_editable": "Y",
+            "is_readonly": "N",
+            "validation_rule": null,
+            "static_options": null
+          },
+          {
+            "field_number": 2,
+            "name": "Supportive Documents",
+            "input_type": "file",
+            "grid_span": 6,
+            "notes": "Not Mandatory",
+            "is_required": "N",
+            "is_editable": "Y",
+            "is_readonly": "N",
+            "validation_rule": null,
+            "static_options": null
+          },
+          {
+            "field_number": 3,
+            "name": "Actions",
+            "input_type": "button",
+            "grid_span": 3,
+            "notes": "Forward to DD DIC",
+            "is_required": "N",
+            "is_editable": "Y",
+            "is_readonly": "N",
+            "validation_rule": null,
+            "static_options": [
+              {
+                "label": "Forward to DD DIC",
+                "value": "forward_to_dd_dic"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "role_name": "Deputy Director, DIC",
+        "workflow_section_name": "For Department Use Only | Role Name: DD DIC",
+        "form_type_id": 8,
+        "form_type_abbr": "PFDIFL",
+        "process_id": "DD_004",
+        "page_name": "Deputy Director, DIC",
+        "category_name": "For Department Use Only",
+        "fields": [
+          {
+            "field_number": 1,
+            "name": "Comment",
+            "input_type": "textarea",
+            "grid_span": 6,
+            "notes": "Max: 1000 chars | Briefly comments.",
+            "is_required": "Y",
+            "is_editable": "Y",
+            "is_readonly": "N",
+            "validation_rule": null,
+            "static_options": null
+          },
+          {
+            "field_number": 2,
+            "name": "Supportive Documents",
+            "input_type": "file",
+            "grid_span": 6,
+            "notes": "Not Mandatory",
+            "is_required": "N",
+            "is_editable": "Y",
+            "is_readonly": "N",
+            "validation_rule": null,
+            "static_options": null
+          },
+          {
+            "field_number": 3,
+            "name": "Actions",
+            "input_type": "button",
+            "grid_span": 3,
+            "notes": "Forward to JD DIC | Revert to AD DIC",
+            "is_required": "N",
+            "is_editable": "Y",
+            "is_readonly": "N",
+            "validation_rule": null,
+            "static_options": [
+              {
+                "label": "Forward to JD DIC",
+                "value": "forward_to_jd_dic"
+              },
+              {
+                "label": "Revert to AD DIC",
+                "value": "revert_to_ad_dic"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "references": {
+      "form_types": [
+        {
+          "id": 1,
+          "name": "Applicant Form",
+          "abbr": "AF"
+        },
+        {
+          "id": 5,
+          "name": "Processing Form - Verification Level",
+          "abbr": "PFVL"
+        },
+        {
+          "id": 7,
+          "name": "Processing Form - Approver Level",
+          "abbr": "PFAL"
+        },
+        {
+          "id": 8,
+          "name": "Processing Form - Department Internal Forward Level",
+          "abbr": "PFDIFL"
+        }
+      ]
+    }
+  },
+  "source": {
+    "template_file": "C:\\Users\\VE912YL\\Downloads\\CAF_Full_SRS_v8_with_workflow (1).pdf"
+  }
+}
